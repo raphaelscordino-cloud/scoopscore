@@ -293,7 +293,8 @@
   .retailer-name { font-size: 13px; color: var(--ink); }
   .retailer-right { display: flex; align-items: center; gap: 12px; }
   .retailer-price { font-family: 'DM Mono', monospace; font-size: 15px; color: var(--accent); }
-  .retailer-visit { font-size: 11px; padding: 6px 14px; letter-spacing: 0.05em; text-transform: uppercase; background: var(--ink); color: var(--bg); border: none; border-radius: 100px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; }
+  .retailer-visit { font-size: 11px; padding: 6px 14px; letter-spacing: 0.05em; text-transform: uppercase; background: var(--ink); color: var(--bg); border: none; border-radius: 100px; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 500; text-decoration: none; display: inline-block; transition: opacity .15s; }
+  .retailer-visit:hover { opacity: 0.8; }
   .sponsored-note { font-size: 10px; color: var(--ink3); font-style: italic; }
   .review-list { display: flex; flex-direction: column; gap: 10px; }
   .review-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
@@ -491,15 +492,16 @@ const FALLBACK_PRODUCTS = [
     id:1, featured:true,
     brand:'Myprotein', name:'Impact Whey Isolate', flavour:'Chocolate Smooth',
     type:'isolate', goal:['lean','budget'],
-    ppg:4.20, fullPrice:69.99, size:'1kg',
+    ppg:4.20, fullPrice:62, size:'2.5kg',
     protein:90, carbs:1.5, fat:0.8, calories:98,
     scoopScore:8.1, mixability:'Very good',
     trend:'down', trendPct:12,
     tags:['best value','low fat','90% protein'],
     source:'curated',
     retailers:[
-      {name:'Myprotein NZ', price:69.99, url:'https://nz.myprotein.com/sports-nutrition/impact-whey-isolate/12313192.html'},
-      {name:'NZ Muscle',    price:74.95, url:'https://nzmuscle.co.nz/products/optimum-nutrition-gold-standard-100-whey-protein'}
+      {name:'Myprotein NZ', price:62, url:'https://www.myprotein.com/sports-nutrition/impact-whey-isolate/10852500.html'},
+      {name:'Chemist Warehouse', price:68, url:'https://www.chemistwarehouse.co.nz/search?q=myprotein+whey+isolate'},
+      {name:'Healthpost', price:71, url:'https://www.healthpost.co.nz/search/?q=myprotein+whey+isolate'}
     ],
     scoreBreakdown:{Taste:8,Value:10,Quality:8,Mixability:8},
     reviews:[{author:'Jake M.',score:9,text:'Mixes perfectly, no clumping. Chocolate actually tastes good unlike most.'},{author:'Sarah K.',score:8,text:'Great value per gram. Strawberry and choc are both solid.'}]
@@ -508,16 +510,16 @@ const FALLBACK_PRODUCTS = [
     id:2, featured:false,
     brand:'Optimum Nutrition', name:'Gold Standard Whey', flavour:'Double Rich Chocolate',
     type:'blend', goal:['lean','bulk'],
-    ppg:5.80, fullPrice:99.99, size:'2.27kg',
+    ppg:5.80, fullPrice:99, size:'2.27kg',
     protein:79, carbs:3.5, fat:1.7, calories:120,
     scoopScore:9.2, mixability:'Excellent',
     trend:'flat', trendPct:0,
     tags:['fan favourite','great taste'],
     source:'curated',
     retailers:[
-      {name:'Chemist Warehouse NZ', price:99.99, url:'https://www.chemistwarehouse.co.nz/buy/150487/optimum-nutrition-gold-standard-100-whey-double-rich-chocolate-2-27kg', sponsored:true},
-      {name:'NZ Muscle',            price:104.95, url:'https://nzmuscle.co.nz/products/optimum-nutrition-gold-standard-100-whey-protein'},
-      {name:'Nutrition Warehouse',  price:109.00, url:'https://www.nutritionwarehouse.co.nz/products/gold-standard-100-whey-by-optimum-nutrition'}
+      {name:'Chemist Warehouse', price:99, url:'https://www.chemistwarehouse.co.nz/search?q=gold+standard+whey', sponsored:true},
+      {name:'Supplement Zone', price:105, url:'https://www.supplementzone.co.nz/search?q=gold+standard+whey'},
+      {name:'iHerb', price:108, url:'https://nz.iherb.com/search?kw=optimum+nutrition+gold+standard+whey'}
     ],
     scoreBreakdown:{Taste:10,Value:7,Quality:9,Mixability:9},
     reviews:[{author:'Tom R.',score:10,text:'Still the benchmark for taste. Double rich choc is unmatched.'},{author:'Mia W.',score:9,text:'Slightly foamy but settles fast. Best flavour on the market.'}]
@@ -526,15 +528,15 @@ const FALLBACK_PRODUCTS = [
     id:3, featured:false,
     brand:'PhD Nutrition', name:'Diet Whey', flavour:'Strawberry Shortcake',
     type:'blend', goal:['lean'],
-    ppg:6.40, fullPrice:54.99, size:'1kg',
+    ppg:6.40, fullPrice:55, size:'1kg',
     protein:68, carbs:4, fat:2.5, calories:131,
     scoopScore:7.4, mixability:'Good',
     trend:'up', trendPct:8,
     tags:['added CLA','lean gains'],
     source:'curated',
     retailers:[
-      {name:'iHerb NZ', price:54.99, url:'https://nz.iherb.com/c/phd-nutrition'},
-      {name:'Chemist Warehouse NZ', price:59.99, url:'https://www.chemistwarehouse.co.nz/shop-online/3144/optimum-nutrition'}
+      {name:'Healthpost', price:55, url:'https://www.healthpost.co.nz/search/?q=phd+diet+whey'},
+      {name:'iHerb', price:58, url:'https://nz.iherb.com/search?kw=phd+diet+whey'}
     ],
     scoreBreakdown:{Taste:7,Value:7,Quality:8,Mixability:7},
     reviews:[{author:'Alex P.',score:8,text:'Strawberry flavour is solid. Good formula for cutting.'},{author:'Chris B.',score:7,text:'Chalky if you use too little water — dial up the ratio.'}]
@@ -543,15 +545,15 @@ const FALLBACK_PRODUCTS = [
     id:4, featured:false,
     brand:'Bulk Nutrients', name:'Earth Protein', flavour:'Vanilla',
     type:'plant', goal:['lean','keto'],
-    ppg:5.10, fullPrice:49.00, size:'1kg',
+    ppg:5.10, fullPrice:49, size:'1kg',
     protein:72, carbs:6, fat:3, calories:134,
     scoopScore:7.8, mixability:'Good',
     trend:'down', trendPct:5,
     tags:['plant-based','no artificial sweetener'],
     source:'curated',
     retailers:[
-      {name:'Bulk Nutrients AU', price:49.00, url:'https://www.bulknutrients.com.au/products/earth-protein'},
-      {name:'Bulk Nutrients (secure)', price:49.00, url:'https://secure.bulknutrients.com.au/products/earth-protein'}
+      {name:'Bulk Nutrients', price:49, url:'https://www.bulknutrients.com.au/products/earth-protein'},
+      {name:'Healthpost', price:54, url:'https://www.healthpost.co.nz/search/?q=bulk+nutrients+earth+protein'}
     ],
     scoreBreakdown:{Taste:8,Value:8,Quality:8,Mixability:7},
     reviews:[{author:'Dana L.',score:8,text:'Best tasting plant protein I\'ve tried. Not gritty at all.'},{author:'Ben T.',score:8,text:'Great vegan option. Vanilla works brilliantly in oats.'}]
@@ -560,67 +562,216 @@ const FALLBACK_PRODUCTS = [
     id:5, featured:false,
     brand:'Syntrax', name:'Nectar Sweets', flavour:'Fuzzy Navel',
     type:'isolate', goal:['lean','keto'],
-    ppg:5.50, fullPrice:72.00, size:'907g',
+    ppg:5.50, fullPrice:72, size:'907g',
     protein:88, carbs:0, fat:0, calories:90,
     scoopScore:9.0, mixability:'Excellent',
     trend:'flat', trendPct:0,
     tags:['zero carb','zero fat','clear mix'],
     source:'curated',
     retailers:[
-      {name:'iHerb NZ', price:72.00, url:'https://nz.iherb.com/c/syntrax'}
+      {name:'iHerb', price:72, url:'https://nz.iherb.com/search?kw=syntrax+nectar'},
+      {name:'Supplement Zone', price:78, url:'https://www.supplementzone.co.nz/search?q=syntrax+nectar'}
     ],
     scoreBreakdown:{Taste:9,Value:8,Quality:10,Mixability:9},
     reviews:[{author:'Jamie H.',score:10,text:'Mixes crystal clear like a cordial. Fuzzy navel tastes exactly right.'},{author:'Nina S.',score:8,text:'Zero carb, zero fat and genuinely tastes good.'}]
   },
   {
     id:6, featured:false,
-    brand:'Dymatize', name:'ISO100 Hydrolyzed', flavour:'Gourmet Chocolate',
+    brand:'Dymatize', name:'ISO100 Hydrolyzed', flavour:'Birthday Cake',
     type:'isolate', goal:['lean'],
-    ppg:7.20, fullPrice:109.00, size:'2.3kg',
+    ppg:7.20, fullPrice:109, size:'2.3kg',
     protein:86, carbs:2, fat:0.5, calories:110,
     scoopScore:8.6, mixability:'Excellent',
     trend:'up', trendPct:4,
     tags:['hydrolyzed','fast absorb','gluten free'],
     source:'curated',
     retailers:[
-      {name:'iHerb NZ', price:109.00, url:'https://nz.iherb.com/pr/dymatize-iso100-hydrolyzed-100-whey-protein-isolate-gourmet-chocolate-5-lbs-2-3-kg/66690'},
-      {name:'iHerb NZ (3lb)',price:79.00, url:'https://nz.iherb.com/pr/dymatize-iso100-hydrolyzed-100-whey-protein-isolate-gourmet-chocolate-3-lb-1-37-kg/54175'}
+      {name:'Chemist Warehouse', price:109, url:'https://www.chemistwarehouse.co.nz/search?q=dymatize+iso100'},
+      {name:'Supplement Zone', price:114, url:'https://www.supplementzone.co.nz/search?q=dymatize+iso100'},
+      {name:'iHerb', price:118, url:'https://nz.iherb.com/search?kw=dymatize+iso100'}
     ],
     scoreBreakdown:{Taste:9,Value:7,Quality:9,Mixability:9},
-    reviews:[{author:'Ryan F.',score:9,text:'Gourmet chocolate is rich without being too sweet. Mixability is S-tier.'},{author:'Priya N.',score:8,text:'Pricey but quality is there. Fast absorption is real.'}]
+    reviews:[{author:'Ryan F.',score:9,text:'Birthday cake actually tastes like birthday cake. Mixability is S-tier.'},{author:'Priya N.',score:8,text:'Pricey but quality is there. Worth it post-workout.'}]
   },
   {
     id:7, featured:false,
-    brand:'Optimum Nutrition', name:'Gold Standard Whey', flavour:'Vanilla Ice Cream',
-    type:'blend', goal:['lean','bulk'],
-    ppg:5.90, fullPrice:89.99, size:'907g',
-    protein:79, carbs:3, fat:1.5, calories:118,
-    scoopScore:8.8, mixability:'Excellent',
+    brand:'MuscleTech', name:'Nitro-Tech Whey', flavour:'Chocolate Fudge Brownie',
+    type:'blend', goal:['bulk','lean'],
+    ppg:6.80, fullPrice:84, size:'1.8kg',
+    protein:82, carbs:4, fat:2.5, calories:160,
+    scoopScore:7.9, mixability:'Good',
     trend:'flat', trendPct:0,
-    tags:['vanilla','classic'],
+    tags:['added creatine','muscle builder'],
     source:'curated',
     retailers:[
-      {name:'Chemist Warehouse NZ', price:89.99, url:'https://www.chemistwarehouse.co.nz/buy/150484/optimum-nutrition-gold-standard-100-whey-vanilla-ice-cream-907g'},
-      {name:'NZ Muscle',            price:94.95, url:'https://nzmuscle.co.nz/products/optimum-nutrition-gold-standard-100-whey-protein'}
+      {name:'Chemist Warehouse', price:84, url:'https://www.chemistwarehouse.co.nz/search?q=muscletech+nitrotech'},
+      {name:'Supplement Zone', price:89, url:'https://www.supplementzone.co.nz/search?q=muscletech+nitrotech'},
+      {name:'iHerb', price:92, url:'https://nz.iherb.com/search?kw=muscletech+nitro-tech'}
     ],
-    scoreBreakdown:{Taste:9,Value:8,Quality:9,Mixability:9},
-    reviews:[{author:'Liam G.',score:9,text:'Vanilla Ice Cream is the smoothest flavour in the lineup. Goes great in oats.'},{author:'Cleo A.',score:9,text:'My go-to. Mixes perfectly every time and tastes amazing.'}]
+    scoreBreakdown:{Taste:8,Value:7,Quality:8,Mixability:8},
+    reviews:[{author:'Liam G.',score:8,text:'Chocolate fudge brownie is genuinely one of the best flavours going.'},{author:'Cleo A.',score:8,text:'Love that creatine is built in — saves buying it separately.'}]
   },
   {
     id:8, featured:false,
-    brand:'Dymatize', name:'ISO100 Hydrolyzed', flavour:'Cookies & Cream',
-    type:'isolate', goal:['lean','bulk'],
-    ppg:7.50, fullPrice:109.00, size:'2.3kg',
-    protein:86, carbs:2, fat:0.5, calories:110,
-    scoopScore:8.9, mixability:'Excellent',
-    trend:'down', trendPct:5,
-    tags:['cookies & cream','hydrolyzed'],
+    brand:'Scitec Nutrition', name:'100% Whey Protein', flavour:'Cookies & Cream',
+    type:'blend', goal:['bulk','budget'],
+    ppg:3.90, fullPrice:58, size:'2.35kg',
+    protein:76, carbs:5, fat:3, calories:135,
+    scoopScore:8.3, mixability:'Very good',
+    trend:'down', trendPct:9,
+    tags:['budget','great value'],
     source:'curated',
     retailers:[
-      {name:'iHerb NZ', price:109.00, url:'https://nz.iherb.com/pr/dymatize-iso100-hydrolyzed-100-whey-protein-isolate-cookies-cream-5-lb-2-3-kg/66692'}
+      {name:'iHerb', price:58, url:'https://nz.iherb.com/search?kw=scitec+100+whey'},
+      {name:'Healthpost', price:63, url:'https://www.healthpost.co.nz/search/?q=scitec+whey'},
+      {name:'Supplement Zone', price:65, url:'https://www.supplementzone.co.nz/search?q=scitec+whey'}
     ],
-    scoreBreakdown:{Taste:9,Value:7,Quality:9,Mixability:9},
-    reviews:[{author:'Mark D.',score:9,text:'Best cookies & cream protein I\'ve had. Tastes like the real thing.'},{author:'Fiona L.',score:9,text:'Rich flavour, mixes perfectly. Worth the premium price.'}]
+    scoreBreakdown:{Taste:8,Value:10,Quality:7,Mixability:8},
+    reviews:[{author:'Mark D.',score:8,text:'Cheapest per gram right now. Cookies & cream is genuinely good.'},{author:'Fiona L.',score:9,text:'Solid budget option — above average taste for the price.'}]
+  },
+  {
+    id:9, featured:false,
+    brand:'Rule 1 Proteins', name:'R1 Whey Blend', flavour:'Fudge Brownie',
+    type:'blend', goal:['lean','bulk'],
+    ppg:5.30, fullPrice:79, size:'2.27kg',
+    protein:80, carbs:3, fat:2, calories:125,
+    scoopScore:8.5, mixability:'Very good',
+    trend:'down', trendPct:6,
+    tags:['clean label','no fillers'],
+    source:'curated',
+    retailers:[
+      {name:'iHerb', price:79, url:'https://nz.iherb.com/search?kw=rule+1+whey+blend'},
+      {name:'Supplement Zone', price:84, url:'https://www.supplementzone.co.nz/search?q=rule+1+whey'},
+      {name:'Healthpost', price:87, url:'https://www.healthpost.co.nz/search/?q=rule+1+whey'}
+    ],
+    scoreBreakdown:{Taste:9,Value:8,Quality:9,Mixability:8},
+    reviews:[{author:'Sophie L.',score:9,text:'Clean ingredient list and fudge brownie flavour is 10/10.'},{author:'Owen M.',score:8,text:'My go-to blend. Consistently good batch after batch.'}]
+  },
+  {
+    id:10, featured:false,
+    brand:'Ghost Lifestyle', name:'Ghost Whey', flavour:'Chips Ahoy!',
+    type:'blend', goal:['lean','bulk'],
+    ppg:6.90, fullPrice:89, size:'1.87kg',
+    protein:75, carbs:5, fat:3.5, calories:140,
+    scoopScore:8.8, mixability:'Excellent',
+    trend:'up', trendPct:5,
+    tags:['collab flavour','premium brand'],
+    source:'curated',
+    retailers:[
+      {name:'Supplement Zone', price:89, url:'https://www.supplementzone.co.nz/search?q=ghost+whey'},
+      {name:'iHerb', price:94, url:'https://nz.iherb.com/search?kw=ghost+whey'},
+      {name:'Chemist Warehouse', price:99, url:'https://www.chemistwarehouse.co.nz/search?q=ghost+whey'}
+    ],
+    scoreBreakdown:{Taste:10,Value:6,Quality:8,Mixability:9},
+    reviews:[{author:'Ava R.',score:10,text:'Chips Ahoy tastes like liquid cookies. Absolutely insane flavour.'},{author:'Dylan K.',score:8,text:'Expensive but the taste experience is unreal. Worth it for treat days.'}]
+  },
+  {
+    id:11, featured:false,
+    brand:'Musashi', name:'Bulk Protein', flavour:'Chocolate',
+    type:'blend', goal:['bulk'],
+    ppg:4.60, fullPrice:74, size:'2kg',
+    protein:74, carbs:9, fat:4, calories:185,
+    scoopScore:7.2, mixability:'Good',
+    trend:'flat', trendPct:0,
+    tags:['mass gainer lite','Aussie brand'],
+    source:'curated',
+    retailers:[
+      {name:'Chemist Warehouse', price:74, url:'https://www.chemistwarehouse.co.nz/search?q=musashi+bulk+protein'},
+      {name:'Healthpost', price:78, url:'https://www.healthpost.co.nz/search/?q=musashi+bulk'},
+      {name:'Countdown', price:80, url:'https://www.countdown.co.nz/search?search-term=musashi+protein'}
+    ],
+    scoreBreakdown:{Taste:7,Value:8,Quality:7,Mixability:7},
+    reviews:[{author:'Connor W.',score:7,text:'Good for bulking. Higher carbs help with calorie targets.'},{author:'Jade T.',score:7,text:'Affordable and widely available. Nothing fancy but gets the job done.'}]
+  },
+  {
+    id:12, featured:false,
+    brand:'Vivo Life', name:'Perform Plant Protein', flavour:'Raw Cacao',
+    type:'plant', goal:['lean'],
+    ppg:7.80, fullPrice:69, size:'988g',
+    protein:72, carbs:4, fat:3, calories:132,
+    scoopScore:8.0, mixability:'Good',
+    trend:'flat', trendPct:0,
+    tags:['organic','plant-based','BCAA added'],
+    source:'curated',
+    retailers:[
+      {name:'Vivo Life', price:69, url:'https://www.vivolife.com/products/perform-raw-cacao-maca'},
+      {name:'iHerb', price:74, url:'https://nz.iherb.com/search?kw=vivo+life+perform'},
+      {name:'Healthpost', price:77, url:'https://www.healthpost.co.nz/search/?q=vivo+life+perform'}
+    ],
+    scoreBreakdown:{Taste:8,Value:6,Quality:9,Mixability:8},
+    reviews:[{author:'Emma S.',score:9,text:'Best organic plant protein I\'ve tried. Raw cacao is rich and earthy.'},{author:'Noah B.',score:7,text:'Pricier than other plant options but the quality is noticeable.'}]
+  },
+  {
+    id:13, featured:false,
+    brand:'BSN', name:'Syntha-6 ISOLATE', flavour:'Vanilla Ice Cream',
+    type:'isolate', goal:['lean','bulk'],
+    ppg:6.50, fullPrice:94, size:'1.85kg',
+    protein:78, carbs:3, fat:2, calories:145,
+    scoopScore:8.7, mixability:'Very good',
+    trend:'down', trendPct:7,
+    tags:['ultra-premium taste','multi-phase protein'],
+    source:'curated',
+    retailers:[
+      {name:'Supplement Zone', price:94, url:'https://www.supplementzone.co.nz/search?q=bsn+syntha+6+isolate'},
+      {name:'iHerb', price:99, url:'https://nz.iherb.com/search?kw=bsn+syntha-6+isolate'},
+      {name:'Chemist Warehouse', price:102, url:'https://www.chemistwarehouse.co.nz/search?q=bsn+syntha+isolate'}
+    ],
+    scoreBreakdown:{Taste:10,Value:7,Quality:8,Mixability:9},
+    reviews:[{author:'Lily H.',score:9,text:'Vanilla ice cream is incredibly smooth. Tastes like a dessert shake.'},{author:'Aaron C.',score:9,text:'Best tasting protein after ON Gold Standard in my opinion.'}]
+  },
+  {
+    id:14, featured:false,
+    brand:'Bare Blends', name:'WPI Native Whey', flavour:'Natural Cacao',
+    type:'isolate', goal:['lean','keto'],
+    ppg:6.20, fullPrice:55, size:'500g',
+    protein:88, carbs:1, fat:0.5, calories:95,
+    scoopScore:8.2, mixability:'Very good',
+    trend:'down', trendPct:3,
+    tags:['grass-fed','no artificial flavours','NZ friendly'],
+    source:'curated',
+    retailers:[
+      {name:'Bare Blends', price:55, url:'https://www.bareblends.com.au/products/wpi'},
+      {name:'Healthpost', price:59, url:'https://www.healthpost.co.nz/search/?q=bare+blends+wpi'},
+      {name:'iHerb', price:62, url:'https://nz.iherb.com/search?kw=bare+blends+whey'}
+    ],
+    scoreBreakdown:{Taste:8,Value:8,Quality:9,Mixability:8},
+    reviews:[{author:'Isla F.',score:8,text:'Love that it\'s grass-fed with no artificial anything. Cacao is genuinely nice.'},{author:'Tom V.',score:8,text:'Great clean option. Small batch size but quality is top tier.'}]
+  },
+  {
+    id:15, featured:false,
+    brand:'EHP Labs', name:'OxyWhey Lean Wellness', flavour:'Salted Caramel',
+    type:'isolate', goal:['lean'],
+    ppg:7.10, fullPrice:79, size:'900g',
+    protein:80, carbs:2, fat:1, calories:105,
+    scoopScore:8.4, mixability:'Excellent',
+    trend:'up', trendPct:3,
+    tags:['probiotic added','low calorie','womens popular'],
+    source:'curated',
+    retailers:[
+      {name:'EHP Labs', price:79, url:'https://ehplabs.com/products/oxywhey'},
+      {name:'Chemist Warehouse', price:83, url:'https://www.chemistwarehouse.co.nz/search?q=ehp+oxywhey'},
+      {name:'Supplement Zone', price:87, url:'https://www.supplementzone.co.nz/search?q=ehp+oxywhey'}
+    ],
+    scoreBreakdown:{Taste:9,Value:7,Quality:8,Mixability:9},
+    reviews:[{author:'Maya P.',score:9,text:'Salted caramel is incredible. Smooth, no aftertaste. Top pick for girls at my gym.'},{author:'Jack N.',score:8,text:'Low calorie for the protein hit. Good macro split.'}]
+  },
+  {
+    id:16, featured:false,
+    brand:'Amazonia', name:'Raw Protein Isolate', flavour:'Vanilla Coconut',
+    type:'plant', goal:['lean','keto'],
+    ppg:8.10, fullPrice:52, size:'500g',
+    protein:74, carbs:3, fat:2, calories:128,
+    scoopScore:7.6, mixability:'Good',
+    trend:'flat', trendPct:0,
+    tags:['certified organic','sprouted grain','raw'],
+    source:'curated',
+    retailers:[
+      {name:'Healthpost', price:52, url:'https://www.healthpost.co.nz/search/?q=amazonia+raw+protein'},
+      {name:'iHerb', price:56, url:'https://nz.iherb.com/search?kw=amazonia+raw+protein+isolate'},
+      {name:'Countdown', price:58, url:'https://www.countdown.co.nz/search?search-term=amazonia+protein'}
+    ],
+    scoreBreakdown:{Taste:7,Value:7,Quality:9,Mixability:7},
+    reviews:[{author:'Grace T.',score:8,text:'Best organic plant option for NZ. Vanilla coconut is subtle and clean.'},{author:'Finn R.',score:7,text:'Slightly grainy texture but the organic credentials are legit.'}]
   }
 ];
 
@@ -801,7 +952,7 @@ function renderList(list) {
       `<span class="tag ${t==='best value'||t==='budget'||t==='great value' ? 'tag-accent' : 'tag-neutral'}">${t}</span>`
     ).join('');
     const topRetailers = p.retailers.slice(0,2).map(r =>
-      `<div class="retailer-preview"><span class="rp-name">${r.name}</span><span class="rp-price" style="cursor:pointer" onclick="event.stopPropagation();window.open('${r.url}','_blank')">$${r.price.toFixed(2)} ↗</span></div>`
+      `<div class="retailer-preview"><span class="rp-name">${r.name}</span><span class="rp-price">$${r.price}</span></div>`
     ).join('');
     const sourceNote = p.source === 'openfoodfacts'
       ? `<div class="data-source-badge">Live data · Open Food Facts</div>` : '';
@@ -862,8 +1013,11 @@ function openModal(id) {
     `<div class="retailer-row">
       <div class="retailer-name">${r.name}${r.sponsored ? ' <span class="sponsored-note">ad</span>' : ''}</div>
       <div class="retailer-right">
-        <div class="retailer-price">$${r.price.toFixed(2)}</div>
-        <button class="retailer-visit" onclick="window.open('${r.url}','_blank')">Buy now →</button>
+        <div class="retailer-price">$${r.price}</div>
+        ${r.url
+          ? `<a class="retailer-visit" href="${r.url}" target="_blank" rel="noopener noreferrer">Visit →</a>`
+          : `<button class="retailer-visit" onclick="showToast('Opening ${r.name}...')">Visit →</button>`
+        }
       </div>
     </div>`
   ).join('');
