@@ -21,11 +21,6 @@ const LOG_FILE = path.join(__dirname, 'data', 'scrape.log');
 // Retailers with public Shopify JSON endpoints
 const RETAILERS = [
   {
-    { id:'sportsfuel',  name:'Sportsfuel',   baseUrl:'www.sportsfuel.co.nz',  url:'https://www.sportsfuel.co.nz/products.json',  currency:'NZD', categoryMap:{...} },
-{ id:'xplosiv',     name:'Xplosiv',      baseUrl:'xplosiv.nz',            url:'https://xplosiv.nz/products.json',            currency:'NZD', categoryMap:{...} },
-{ id:'asnonline',   name:'ASN Online',   baseUrl:'asnonline.co.nz',        url:'https://asnonline.co.nz/products.json',       currency:'NZD', categoryMap:{...} },
-{ id:'scorpion',    name:'Scorpion',     baseUrl:'scorpionsupplements.co.nz', url:'https://scorpionsupplements.co.nz/products.json', currency:'NZD', categoryMap:{...} },
-    
     id:       'nzmuscle',
     name:     'NZ Muscle',
     baseUrl:  'nzmuscle.co.nz',
