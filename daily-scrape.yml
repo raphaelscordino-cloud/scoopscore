@@ -1,0 +1,36 @@
+name: Daily Price Scrape
+
+on:
+  # Run every day at 6am NZT (6pm UTC previous day)
+  schedule:
+    - cron: '0 18 * * *'
+
+  # Also allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # needed to push updated products.json back to repo
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run scraper
+        run: node scraper.js
+
+      - name: Commit updated prices
+        run: |
+          git config user.name  "ScoopScore Bot"
+          git config user.email "bot@scoopscore.co.nz"
+          git add data/products.json data/scrape.log
+          git diff --staged --quiet || git commit -m "chore: daily price update $(date -u +%Y-%m-%d)"
+          git push

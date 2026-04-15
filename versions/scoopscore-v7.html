@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScoopScore — NZ Supplement Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,600&family=Barlow:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--bg2:#0f0f0f;--bg3:#161616;--bg4:#1e1e1e;
+  --ink:#EDEBE6;--ink2:#7A7872;--ink3:#3A3835;
+  --orange:#FF5C00;--orange2:#FF8040;
+  --orange-d:rgba(255,92,0,0.12);--orange-d2:rgba(255,92,0,0.06);
+  --blue:#3B8BFF;--red:#FF3B3B;--green:#39D98A;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);--border3:rgba(255,255,255,0.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;font-weight:400;min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--ink3);border-radius:2px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(7,7,7,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;gap:16px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.logo span{color:var(--orange)}
+.nav-cats{display:flex;gap:1px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav-cats::-webkit-scrollbar{display:none}
+.cat-btn{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink2);padding:6px 14px;cursor:pointer;border:1px solid transparent;background:none;transition:all .12s;white-space:nowrap}
+.cat-btn:hover{color:var(--ink);background:var(--bg3)}
+.cat-btn.active{background:var(--orange);color:#000;border-color:var(--orange)}
+.nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.btn-ghost{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink2);padding:7px 16px;border:1px solid var(--border2);cursor:pointer;background:none;transition:all .12s;white-space:nowrap}
+.btn-ghost:hover{border-color:var(--border3);color:var(--ink)}
+.btn-primary{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#000;padding:7px 18px;border:none;cursor:pointer;background:var(--orange);transition:opacity .12s;white-space:nowrap}
+.btn-primary:hover{opacity:.85}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;min-height:86vh;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-gallery{position:absolute;inset:0;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:2px}
+.himg{overflow:hidden}
+.himg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.42) saturate(0.7);transition:transform 10s ease}
+.himg:hover img{transform:scale(1.03)}
+.himg:first-child{grid-row:span 2}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,7,7,.98) 0%,rgba(7,7,7,.7) 38%,rgba(7,7,7,.15) 75%)}
+.hero-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange)}
+.hero-content{position:relative;z-index:2;padding:0 32px 48px;max-width:760px}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero-label::before{content:'';width:28px;height:1px;background:var(--orange)}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(56px,9vw,106px);letter-spacing:-0.01em;line-height:0.9;color:var(--ink);margin-bottom:14px;text-transform:uppercase}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--orange)}
+.hero-sub{font-size:15px;font-weight:300;color:var(--ink2);max-width:500px;line-height:1.75;margin-bottom:26px}
+.hero-search{display:flex;gap:0;max-width:520px;border:1px solid var(--border2)}
+.hero-input{flex:1;padding:13px 18px;background:rgba(255,255,255,0.04);border:none;color:var(--ink);font-size:14px;font-family:'Barlow',sans-serif;outline:none;transition:background .15s}
+.hero-input:focus{background:rgba(255,255,255,0.07)}
+.hero-input::placeholder{color:var(--ink3)}
+.hero-search-btn{padding:13px 24px;background:var(--orange);color:#000;border:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:opacity .12s;white-space:nowrap}
+.hero-search-btn:hover{opacity:.85}
+.hero-stats{display:flex;gap:0;margin-top:32px;padding-top:24px;border-top:1px solid var(--border);flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column;gap:3px;padding-right:28px;margin-right:28px;border-right:1px solid var(--border)}
+.hstat:last-child{border-right:none}
+.hstat-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:26px;letter-spacing:0.02em;color:var(--ink)}
+.hstat-lbl{font-size:10px;color:var(--ink2);letter-spacing:0.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+
+/* BANNER */
+.banner{background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 32px;display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3)}
+.bdot{width:5px;height:5px;background:var(--orange);border-radius:50%;animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.banner a{color:var(--orange2);text-decoration:none}
+.banner a:hover{text-decoration:underline}
+
+/* LAYOUT */
+.main{display:grid;grid-template-columns:230px 1fr}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sb-sec{margin-bottom:24px}
+.sb-head{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.flist{display:flex;flex-direction:column;gap:1px}
+.fitem{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font-size:13px;color:var(--ink2);cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:'Barlow',sans-serif;transition:all .1s;border-left:2px solid transparent}
+.fitem:hover{background:var(--bg3);color:var(--ink);border-left-color:var(--border2)}
+.fitem.active{background:var(--orange-d);color:var(--orange);border-left-color:var(--orange)}
+.fcount{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3);background:var(--bg3);padding:1px 5px;border-radius:2px}
+.fitem.active .fcount{background:var(--orange-d);color:var(--orange)}
+.spills{display:flex;flex-wrap:wrap;gap:4px}
+.spill{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;border:1px solid var(--border2);color:var(--ink2);background:none;cursor:pointer;transition:all .12s}
+.spill:hover{border-color:var(--border3);color:var(--ink)}
+.spill.active{background:var(--orange);border-color:var(--orange);color:#000;font-weight:500}
+.rng{display:flex;flex-direction:column;gap:7px}
+.rng-info{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)}
+.rng-info .rv{font-family:'JetBrains Mono',monospace;color:var(--orange)}
+input[type=range]{width:100%;accent-color:var(--orange);cursor:pointer;height:3px}
+
+/* CONTENT */
+.content{min-height:calc(100vh - 52px)}
+.cbar{display:flex;align-items:center;justify-content:space-between;padding:11px 22px;border-bottom:1px solid var(--border);position:sticky;top:52px;background:rgba(7,7,7,.97);backdrop-filter:blur(8px);z-index:10}
+.ccount{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3)}
+.ccount strong{color:var(--orange)}
+.csort{display:flex;align-items:center;gap:8px}
+.csort-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase}
+.csort-sel{font-size:12px;padding:5px 10px;background:var(--bg2);border:1px solid var(--border2);color:var(--ink);cursor:pointer;font-family:'Barlow',sans-serif;outline:none}
+
+/* LOADING */
+.loading{padding:60px 24px;text-align:center}
+.spinner{width:22px;height:22px;border:1.5px solid var(--border2);border-top-color:var(--orange);border-radius:50%;animation:spin .6s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink3)}
+
+/* PRODUCT ROWS */
+.plist{display:flex;flex-direction:column}
+.prow{display:grid;grid-template-columns:1fr 180px;padding:18px 22px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;animation:slideIn .3s ease both;position:relative}
+.prow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .12s}
+.prow:hover{background:var(--bg2)}
+.prow:hover::before{background:var(--orange)}
+.prow.featured::before{background:var(--orange)}
+@keyframes slideIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+
+.prow-left{}
+.ptop{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.pbrand{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3)}
+.pbest{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;background:var(--orange);color:#000;font-weight:500}
+.psize-badge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.08em;padding:2px 7px;background:var(--bg3);color:var(--ink2);border:1px solid var(--border)}
+.pcatbadge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.08em;padding:2px 7px;border:1px solid;border-radius:0}
+.pname{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.01em;color:var(--ink);margin-bottom:2px}
+.pflavour{font-size:12px;color:var(--ink2);margin-bottom:10px}
+.pdesc{font-size:12px;color:var(--ink2);line-height:1.5;margin-bottom:10px;max-width:520px;font-weight:300}
+
+.pmeta{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.pmi{display:flex;flex-direction:column;gap:2px}
+.pml{font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink3)}
+.pmv{font-size:13px;font-weight:500;color:var(--ink)}
+.pmv.up{color:var(--red)}
+.pmv.down{color:var(--green)}
+.pmv.flat{color:var(--ink3)}
+
+/* score bar */
+.sline{display:flex;align-items:center;gap:10px}
+.slabel{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink3);width:68px;flex-shrink:0}
+.ssegs{display:flex;gap:2px;flex:1;max-width:180px}
+.seg{height:3px;flex:1;background:var(--bg4)}
+.seg.on{background:var(--orange)}
+.sval{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange)}
+
+.ptags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.ptag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.06em;padding:3px 7px;border:1px solid var(--border);color:var(--ink2)}
+.ptag.hi{background:var(--orange-d2);border-color:rgba(255,92,0,0.25);color:var(--orange)}
+
+/* Right price col */
+.prow-right{text-align:right;display:flex;flex-direction:column;justify-content:space-between;padding-left:14px;border-left:1px solid var(--border)}
+.ppg-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink3);margin-bottom:3px}
+.ppg-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:34px;letter-spacing:-0.01em;color:var(--ink);line-height:1}
+.ppg-unit{font-size:10px;color:var(--ink3);margin-top:2px}
+.pfull{font-size:12px;color:var(--ink2);margin-top:5px}
+.rpeeks{display:flex;flex-direction:column;gap:3px;margin-top:7px}
+.rpeek{display:flex;justify-content:flex-end;gap:7px;font-size:11px}
+.rpn{color:var(--ink3);font-size:10px}
+.rpp{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--orange);cursor:pointer;text-decoration:none}
+.rpp:hover{text-decoration:underline}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.92);align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border-top:2px solid var(--orange);width:100%;max-width:720px;max-height:90vh;overflow-y:auto;animation:mup .25s cubic-bezier(0.22,1,0.36,1);padding-bottom:48px}
+@keyframes mup{from{transform:translateY(32px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-top{display:flex;justify-content:space-between;align-items:center;padding:13px 22px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
+.modal-top-brand{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3)}
+.modal-close{width:28px;height:28px;background:var(--bg3);border:1px solid var(--border);color:var(--ink2);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.modal-close:hover{background:var(--border);color:var(--ink)}
+.modal-hero{display:grid;grid-template-columns:1fr 160px;gap:22px;padding:18px 22px;border-bottom:1px solid var(--border)}
+.modal-pname{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px;text-transform:uppercase;letter-spacing:0.01em;color:var(--ink);line-height:1;margin-bottom:4px}
+.modal-flavour{font-size:13px;color:var(--ink2);margin-bottom:8px}
+.modal-desc{font-size:13px;color:var(--ink2);line-height:1.6;font-weight:300;margin-bottom:12px}
+.modal-score-block{text-align:right}
+.modal-snum{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:68px;color:var(--orange);letter-spacing:-0.02em;line-height:1}
+.modal-sden{font-size:18px;color:var(--ink3)}
+.modal-slbl{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink3);margin-top:2px}
+.modal-ssegs{display:flex;gap:3px;margin-top:6px;justify-content:flex-end}
+.modal-seg{width:14px;height:4px;background:var(--bg4)}
+.modal-seg.on{background:var(--orange)}
+.modal-body{padding:0 22px}
+.msec{margin-top:22px}
+.msec-title{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink3);padding-bottom:7px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.brows{display:flex;flex-direction:column;gap:8px}
+.brow{display:flex;align-items:center;gap:12px}
+.brow-lbl{font-size:13px;color:var(--ink2);width:88px;flex-shrink:0}
+.brow-track{flex:1;height:4px;background:var(--bg4)}
+.brow-fill{height:100%;background:var(--orange);transition:width .5s ease}
+.brow-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange);width:20px;text-align:right}
+.macro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mbox{background:var(--bg3);border:1px solid var(--border);padding:13px;text-align:center}
+.mnum{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:24px;color:var(--ink);letter-spacing:0.02em}
+.mlbl{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink3);margin-top:3px}
+.ret-rows{display:flex;flex-direction:column;gap:6px}
+.ret-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--border);background:var(--bg3);transition:border-color .12s}
+.ret-row:hover{border-color:var(--border2)}
+.ret-name{font-size:13px;color:var(--ink)}
+.ret-right{display:flex;align-items:center;gap:10px}
+.ret-price{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--orange)}
+.ret-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 13px;background:var(--ink);color:var(--bg);border:none;cursor:pointer;transition:opacity .12s}
+.ret-btn:hover{opacity:.8}
+.ret-ad{font-size:9px;color:var(--ink3);font-style:italic}
+.rev-list{display:flex;flex-direction:column;gap:8px}
+.rev-card{background:var(--bg3);border:1px solid var(--border);padding:13px 15px}
+.rev-top{display:flex;justify-content:space-between;margin-bottom:5px}
+.rev-author{font-size:13px;font-weight:500;color:var(--ink)}
+.rev-score{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange)}
+.rev-text{font-size:13px;color:var(--ink2);line-height:1.55;font-weight:300}
+
+/* ALERT */
+.alert-bar{background:var(--orange);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.al-left{display:flex;align-items:center;gap:10px}
+.al-pulse{width:7px;height:7px;background:#000;border-radius:50%;animation:blink 2s infinite;flex-shrink:0}
+.al-text{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;color:#000}
+.al-right{display:flex;gap:6px}
+.al-input{padding:7px 13px;background:rgba(0,0,0,.2);border:1px solid rgba(0,0,0,.25);color:#000;font-size:13px;font-family:'Barlow',sans-serif;outline:none;width:200px}
+.al-input::placeholder{color:rgba(0,0,0,.45)}
+.al-submit{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:7px 16px;background:#000;color:var(--orange);border:none;cursor:pointer;transition:opacity .12s}
+.al-submit:hover{opacity:.8}
+
+/* EMPTY/TOAST */
+.empty{padding:80px 22px;text-align:center}
+.empty-d{font-family:'Barlow Condensed',sans-serif;font-size:60px;color:var(--ink3);font-weight:700}
+.empty p{font-size:13px;color:var(--ink3);margin-top:8px;font-family:'JetBrains Mono',monospace}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:var(--bg);padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;opacity:0;transition:all .22s;z-index:400;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:700px){
+  .main{grid-template-columns:1fr}
+  .sidebar{display:none}
+  nav{padding:0 14px}
+  .hero-content{padding:0 14px 36px}
+  .prow{grid-template-columns:1fr}
+  .prow-right{text-align:left;border-left:none;border-top:1px solid var(--border);padding:10px 0 0;margin-top:10px}
+  .alert-bar{flex-direction:column;align-items:flex-start;padding:14px 16px}
+  .al-input{width:100%}
+  .macro-grid{grid-template-columns:repeat(2,1fr)}
+  .modal-hero{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">SCOOP<span>/</span>SCORE</div>
+  <div class="nav-cats" id="navCats">
+    <button class="cat-btn active" onclick="setCategory(this,'all')">All</button>
+    <button class="cat-btn" onclick="setCategory(this,'protein')">Protein</button>
+    <button class="cat-btn" onclick="setCategory(this,'creatine')">Creatine</button>
+    <button class="cat-btn" onclick="setCategory(this,'preworkout')">Pre-workout</button>
+    <button class="cat-btn" onclick="setCategory(this,'fatburner')">Fat burners</button>
+    <button class="cat-btn" onclick="setCategory(this,'bcaa')">BCAAs</button>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost" onclick="showToast('Sign in coming soon')">Sign in</button>
+    <button class="btn-primary" onclick="document.getElementById('alertBar').scrollIntoView({behavior:'smooth'})">Get alerts</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-gallery">
+    <div class="himg"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" alt="Gym"></div>
+    <div class="himg"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Weights"></div>
+    <div class="himg"><img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&q=80" alt="Supps"></div>
+    <div class="himg"><img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=600&q=80" alt="Athlete"></div>
+    <div class="himg"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Supps2"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-content">
+    <div class="hero-label">NZ supplement comparison — verified prices</div>
+    <h1>EVERY SUPPLEMENT.<br>EVERY RETAILER.<br><em>ONE SCORE.</em></h1>
+    <p class="hero-sub">ScoopScore tracks protein, creatine, pre-workout, fat burners and BCAAs across NZ's top retailers — with real prices, honest reviews, and a 1–10 ScoopScore for every product.</p>
+    <div class="hero-search">
+      <input class="hero-input" type="text" id="searchInput" placeholder="Search product, brand, or retailer…" oninput="filterProducts()">
+      <button class="hero-search-btn" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">Browse →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val" id="heroCount">20</div><div class="hstat-lbl">Products</div></div>
+      <div class="hstat"><div class="hstat-val">5</div><div class="hstat-lbl">Categories</div></div>
+      <div class="hstat"><div class="hstat-val">6</div><div class="hstat-lbl">NZ retailers</div></div>
+      <div class="hstat"><div class="hstat-val">Free</div><div class="hstat-lbl">Always</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="bdot"></div>
+  <span>Prices verified April 2026 across <a href="https://nzmuscle.co.nz" target="_blank">NZ Muscle</a>, <a href="https://www.sprintfit.co.nz" target="_blank">Sprint Fit</a>, <a href="https://www.sportsfuel.co.nz" target="_blank">Sportsfuel</a>, <a href="https://www.chemistwarehouse.co.nz" target="_blank">Chemist Warehouse NZ</a> and more</span>
+  <span style="margin-left:auto" id="lastUpdated">April 2026</span>
+</div>
+
+<div class="main">
+  <aside class="sidebar">
+
+    <div class="sb-sec">
+      <div class="sb-head">Category</div>
+      <div class="flist" id="catFilters">
+        <button class="fitem active" onclick="toggleFilter(this,'cat','all')">All <span class="fcount" id="fc-all">20</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'cat','protein')">Protein <span class="fcount">8</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'cat','creatine')">Creatine <span class="fcount">4</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'cat','preworkout')">Pre-workout <span class="fcount">4</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'cat','fatburner')">Fat burners <span class="fcount">2</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'cat','bcaa')">BCAAs <span class="fcount">2</span></button>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-head">Size</div>
+      <div class="spills" id="sizePills">
+        <button class="spill active" onclick="toggleSize(this,'all')">All</button>
+        <button class="spill" onclick="toggleSize(this,'200g')">200g</button>
+        <button class="spill" onclick="toggleSize(this,'300g')">300g</button>
+        <button class="spill" onclick="toggleSize(this,'500g')">500g</button>
+        <button class="spill" onclick="toggleSize(this,'640g')">640g</button>
+        <button class="spill" onclick="toggleSize(this,'650g')">650g</button>
+        <button class="spill" onclick="toggleSize(this,'907g')">907g</button>
+        <button class="spill" onclick="toggleSize(this,'930g')">930g</button>
+        <button class="spill" onclick="toggleSize(this,'1kg')">1kg</button>
+        <button class="spill" onclick="toggleSize(this,'2kg')">2kg</button>
+        <button class="spill" onclick="toggleSize(this,'2.27kg')">2.27kg</button>
+        <button class="spill" onclick="toggleSize(this,'2.3kg')">2.3kg</button>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-head">Retailer</div>
+      <div class="flist" id="retailerFilters">
+        <button class="fitem active" onclick="toggleFilter(this,'retailer','all')">All retailers</button>
+        <button class="fitem" onclick="toggleFilter(this,'retailer','NZ Muscle')">NZ Muscle</button>
+        <button class="fitem" onclick="toggleFilter(this,'retailer','Sprint Fit')">Sprint Fit</button>
+        <button class="fitem" onclick="toggleFilter(this,'retailer','Sportsfuel')">Sportsfuel</button>
+        <button class="fitem" onclick="toggleFilter(this,'retailer','Chemist Warehouse NZ')">Chemist Warehouse</button>
+        <button class="fitem" onclick="toggleFilter(this,'retailer','iHerb NZ')">iHerb NZ</button>
+        <button class="fitem" onclick="toggleFilter(this,'retailer','Myprotein NZ')">Myprotein NZ</button>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-head">Goal</div>
+      <div class="flist">
+        <button class="fitem" onclick="toggleFilter(this,'goal','strength')">Strength & size <span class="fcount">9</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'goal','lean')">Lean & cut <span class="fcount">7</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'goal','energy')">Energy & focus <span class="fcount">6</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'goal','recovery')">Recovery <span class="fcount">5</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'goal','budget')">Budget pick <span class="fcount">4</span></button>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-head">Min ScoopScore</div>
+      <div class="flist">
+        <button class="fitem" onclick="toggleFilter(this,'score','9')">9+ scoops <span class="fcount">4</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'score','8')">8+ scoops <span class="fcount">12</span></button>
+        <button class="fitem" onclick="toggleFilter(this,'score','7')">7+ scoops <span class="fcount">18</span></button>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-head">Max price ($NZD)</div>
+      <div class="rng">
+        <div class="rng-info">Up to <span class="rv" id="priceVal">$150</span></div>
+        <input type="range" min="10" max="150" value="150" step="5" oninput="updatePrice(this.value)">
+      </div>
+    </div>
+
+  </aside>
+
+  <div class="content">
+    <div class="cbar">
+      <div class="ccount">showing <strong id="countDisplay">20</strong> products</div>
+      <div class="csort">
+        <span class="csort-lbl">Sort</span>
+        <select class="csort-sel" id="sortSel" onchange="filterProducts()">
+          <option value="score">ScoopScore (best first)</option>
+          <option value="price">Price (lowest first)</option>
+          <option value="ppg">Value ($/100g protein)</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="plist" id="productList"></div>
+  </div>
+</div>
+
+<div class="alert-bar" id="alertBar">
+  <div class="al-left"><div class="al-pulse"></div><div class="al-text">Get ScoopScore price drop alerts</div></div>
+  <div class="al-right">
+    <input class="al-input" type="email" id="alertEmail" placeholder="your@email.com">
+    <button class="al-submit" onclick="signupAlert()">Notify me</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="handleModalClick(event)">
+  <div class="modal" id="modalInner"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// Category colour map
+const CAT_COLORS = {
+  protein:    {bg:'rgba(59,139,255,0.1)',  border:'rgba(59,139,255,0.3)',  text:'#3B8BFF'},
+  creatine:   {bg:'rgba(57,217,138,0.1)',  border:'rgba(57,217,138,0.3)',  text:'#39D98A'},
+  preworkout: {bg:'rgba(255,92,0,0.1)',    border:'rgba(255,92,0,0.3)',    text:'#FF5C00'},
+  fatburner:  {bg:'rgba(255,59,59,0.1)',   border:'rgba(255,59,59,0.3)',   text:'#FF3B3B'},
+  bcaa:       {bg:'rgba(178,102,255,0.1)', border:'rgba(178,102,255,0.3)', text:'#B266FF'},
+};
+const CAT_LABELS = {protein:'Protein',creatine:'Creatine',preworkout:'Pre-workout',fatburner:'Fat burner',bcaa:'BCAA'};
+
+const PRODUCTS = [
+  // ── PROTEIN ──────────────────────────────────────────────────────────
+  {
+    id:1, featured:true, cat:'protein',
+    brand:'Myprotein', name:'Impact Whey Isolate', flavour:'Vanilla', size:'1kg',
+    goal:['lean','strength','budget'],
+    ppg:4.40, price:79.95,
+    scoopScore:8.1,
+    desc:'90% protein per serving from ultra-filtered whey isolate. Zero fat, virtually zero carbs. Best value isolate currently available in NZ.',
+    keyStats:[{l:'Protein',v:'90%'},{l:'Serving',v:'25g'},{l:'Servings',v:'40'},{l:'Caffeine',v:'None'}],
+    trend:'down', trendPct:12,
+    tags:['best value','90% protein','low fat'],
+    retailers:[
+      {name:'Myprotein NZ',  price:79.95, url:'https://nz.myprotein.com/p/sports-nutrition/myprotein-impact-whey-isolate-vanilla-1kg-au/12313201/'},
+      {name:'NZ Muscle',     price:55.00, url:'https://nzmuscle.co.nz/products/myprotein-impact-whey-isolate'}
+    ],
+    scoreBreakdown:{Taste:8,Value:10,Quality:8,Mixability:8},
+    reviews:[
+      {author:'Jake M.',score:9,text:'Mixes perfectly, no clumping. Vanilla is clean and not over-sweet.'},
+      {author:'Sarah K.',score:8,text:'Best value per gram in NZ. Goes great in oats every morning.'}
+    ]
+  },
+  {
+    id:2, featured:false, cat:'protein',
+    brand:'Myprotein', name:'Impact Whey Isolate', flavour:'Chocolate Smooth', size:'2kg',
+    goal:['lean','strength','budget'],
+    ppg:4.30, price:143.99,
+    scoopScore:7.9,
+    desc:'Same 90% isolate formula in a 2kg bulk bag. Best per-gram cost for Myprotein isolate. Chocolate Smooth is the most popular flavour.',
+    keyStats:[{l:'Protein',v:'90%'},{l:'Serving',v:'25g'},{l:'Servings',v:'80'},{l:'Caffeine',v:'None'}],
+    trend:'down', trendPct:8,
+    tags:['bulk buy','90% protein'],
+    retailers:[
+      {name:'Myprotein NZ', price:143.99, url:'https://nz.myprotein.com/p/sports-nutrition/myprotein-impact-whey-isolate-chocolate-smooth-2kg-2-x-1kg-au/14569174/'},
+      {name:'NZ Muscle',    price:55.00,  url:'https://nzmuscle.co.nz/products/myprotein-impact-whey-isolate'}
+    ],
+    scoreBreakdown:{Taste:8,Value:9,Quality:8,Mixability:8},
+    reviews:[
+      {author:'Jamie H.',score:8,text:'Choc Smooth is solid. Macros and price are unbeatable at 2kg.'},
+      {author:'Nina S.',score:8,text:'My staple protein. Mixes clean and keeps the budget down.'}
+    ]
+  },
+  {
+    id:3, featured:false, cat:'protein',
+    brand:'Optimum Nutrition', name:'Gold Standard 100% Whey', flavour:'Double Rich Chocolate', size:'2.27kg',
+    goal:['lean','strength'],
+    ppg:5.60, price:99.99,
+    scoopScore:9.2,
+    desc:"The world's best-selling whey protein. 24g protein per serve from Whey Protein Isolate as the primary source. Benchmark for flavour in the industry.",
+    keyStats:[{l:'Protein',v:'79%'},{l:'Serving',v:'30g'},{l:'Servings',v:'75'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['world #1','great taste','24g protein'],
+    retailers:[
+      {name:'Chemist Warehouse NZ', price:99.99, url:'https://www.chemistwarehouse.co.nz/buy/150487/optimum-nutrition-gold-standard-100-whey-double-rich-chocolate-2-27kg'},
+      {name:'NZ Muscle',            price:59.95, url:'https://nzmuscle.co.nz/products/optimum-nutrition-gold-standard-100-whey-protein'}
+    ],
+    scoreBreakdown:{Taste:10,Value:7,Quality:9,Mixability:9},
+    reviews:[
+      {author:'Tom R.',score:10,text:'Still the benchmark for taste. Double rich choc is genuinely unmatched.'},
+      {author:'Mia W.',score:9,text:'Slightly foamy but settles fast. Best tasting protein I\'ve tried.'}
+    ]
+  },
+  {
+    id:4, featured:false, cat:'protein',
+    brand:'Optimum Nutrition', name:'Gold Standard 100% Whey', flavour:'Extreme Milk Chocolate', size:'907g',
+    goal:['lean','strength'],
+    ppg:6.20, price:89.99,
+    scoopScore:8.8,
+    desc:'The smaller 907g size of the world-famous Gold Standard. Extreme Milk Chocolate is the fan-favourite flavour. WPI primary source.',
+    keyStats:[{l:'Protein',v:'79%'},{l:'Serving',v:'30g'},{l:'Servings',v:'30'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['classic flavour','24g protein'],
+    retailers:[
+      {name:'Chemist Warehouse NZ', price:89.99, url:'https://www.chemistwarehouse.co.nz/buy/150483/optimum-nutrition-gold-standard-100-whey-extreme-milk-chocolate-907g'},
+      {name:'NZ Muscle',            price:59.95, url:'https://nzmuscle.co.nz/products/optimum-nutrition-gold-standard-100-whey-protein'}
+    ],
+    scoreBreakdown:{Taste:9,Value:8,Quality:9,Mixability:9},
+    reviews:[
+      {author:'Liam G.',score:9,text:'Extreme Milk Choc is my go-to. Tastes great with water or milk.'},
+      {author:'Cleo A.',score:9,text:'Consistent quality. Mixes perfectly every time.'}
+    ]
+  },
+  {
+    id:5, featured:false, cat:'protein',
+    brand:'EHP Labs', name:'OxyWhey Lean Protein', flavour:'Vanilla Ice Cream', size:'930g',
+    goal:['lean','recovery'],
+    ppg:null, price:84.95,
+    scoopScore:9.3,
+    desc:'Lean protein blend with added digestive enzymes, probiotics, green tea extract and L-carnitine. Goes beyond protein — supports gut health and fat metabolism.',
+    keyStats:[{l:'Protein',v:'~68%'},{l:'Serving',v:'37g'},{l:'Servings',v:'25'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['lean protein','probiotics','L-carnitine'],
+    retailers:[
+      {name:'Sprint Fit', price:84.95, url:'https://www.sprintfit.co.nz/product/1455/ehp-labs-oxywhey-lean'}
+    ],
+    scoreBreakdown:{Taste:10,Value:7,Quality:9,Mixability:9},
+    reviews:[
+      {author:'Harris T.',score:9,text:'Vanilla Ice Cream is incredible. Doesn\'t taste like protein at all.'},
+      {author:'Braedyn R.',score:10,text:'My new favourite protein. Almost natural-tasting, refreshing.'}
+    ]
+  },
+  {
+    id:6, featured:false, cat:'protein',
+    brand:'Dymatize', name:'ISO100 Hydrolyzed', flavour:'Gourmet Chocolate', size:'640g',
+    goal:['lean','recovery'],
+    ppg:7.10, price:101.88,
+    scoopScore:8.6,
+    desc:'Hydrolyzed whey protein isolate for ultra-fast absorption. Zero fat, 2g carbs. Banned substance tested by Informed Choice. Premium post-workout protein.',
+    keyStats:[{l:'Protein',v:'86%'},{l:'Serving',v:'29g'},{l:'Servings',v:'22'},{l:'Caffeine',v:'None'}],
+    trend:'up', trendPct:4,
+    tags:['hydrolyzed','fast absorb','gluten free'],
+    retailers:[
+      {name:'iHerb NZ (640g)',   price:101.88, url:'https://nz.iherb.com/pr/dymatize-iso100-hydrolyzed-100-whey-protein-isolate-gourmet-chocolate-1-4-lb-640-g/114524'},
+      {name:'iHerb NZ (1.37kg)', price:196.31, url:'https://nz.iherb.com/pr/dymatize-iso100-hydrolyzed-protein-powder-gourmet-chocolate-3-lb-1-37-kg/54175'}
+    ],
+    scoreBreakdown:{Taste:9,Value:7,Quality:9,Mixability:9},
+    reviews:[
+      {author:'Ryan F.',score:9,text:'Rich chocolate without being too sweet. Mixability is S-tier.'},
+      {author:'Priya N.',score:8,text:'Pricey but quality is real. Noticeably faster recovery post-workout.'}
+    ]
+  },
+  {
+    id:7, featured:false, cat:'protein',
+    brand:'Dymatize', name:'ISO100 Hydrolyzed', flavour:'Cookies & Cream', size:'2.3kg',
+    goal:['lean','strength'],
+    ppg:7.40, price:293.86,
+    scoopScore:8.9,
+    desc:'The best-value size of Dymatize ISO100. Cookies & Cream is their most popular flavour. Hydrolyzed WPI with zero sugar, zero fat.',
+    keyStats:[{l:'Protein',v:'86%'},{l:'Serving',v:'29g'},{l:'Servings',v:'79'},{l:'Caffeine',v:'None'}],
+    trend:'down', trendPct:5,
+    tags:['cookies & cream','hydrolyzed','best value size'],
+    retailers:[
+      {name:'iHerb NZ (2.3kg)', price:293.86, url:'https://nz.iherb.com/pr/dymatize-iso100-hydrolyzed-100-whey-protein-isolate-cookies-cream-5-lb-2-3-kg/66692'}
+    ],
+    scoreBreakdown:{Taste:9,Value:7,Quality:9,Mixability:9},
+    reviews:[
+      {author:'Mark D.',score:9,text:'Best Cookies & Cream protein I\'ve had. Actually tastes like the real thing.'},
+      {author:'Fiona L.',score:9,text:'Rich flavour, mixes perfectly. Worth every cent.'}
+    ]
+  },
+  {
+    id:8, featured:false, cat:'protein',
+    brand:'Bulk Nutrients', name:'Earth Protein', flavour:'Chocolate', size:'1kg',
+    goal:['lean','recovery'],
+    ppg:5.30, price:56.00,
+    scoopScore:7.8,
+    desc:'Plant-based pea, rice and fava bean protein blend. Naturally sweetened with stevia, no artificial flavours. Best-tasting plant protein in NZ.',
+    keyStats:[{l:'Protein',v:'74%'},{l:'Serving',v:'30g'},{l:'Servings',v:'33'},{l:'Caffeine',v:'None'}],
+    trend:'up', trendPct:6,
+    tags:['plant-based','stevia sweetened','vegan'],
+    retailers:[
+      {name:'Bulk Nutrients AU', price:56.00, url:'https://www.bulknutrients.com.au/products/earth-protein'}
+    ],
+    scoreBreakdown:{Taste:8,Value:8,Quality:8,Mixability:7},
+    reviews:[
+      {author:'Dana L.',score:8,text:'Best tasting plant protein I\'ve tried. Not gritty at all.'},
+      {author:'Ben T.',score:8,text:'Great vegan option. Chocolate works brilliantly in smoothies.'}
+    ]
+  },
+
+  // ── CREATINE ─────────────────────────────────────────────────────────
+  {
+    id:9, featured:true, cat:'creatine',
+    brand:'NZ Muscle', name:'Creatine Monohydrate', flavour:'Unflavoured', size:'500g',
+    goal:['strength','budget'],
+    ppg:null, price:24.99,
+    scoopScore:9.0,
+    desc:'Pharmaceutical grade creatine monohydrate with 100 servings at 5g per scoop. No fillers, no additives — pure creatine. Best value creatine in NZ.',
+    keyStats:[{l:'Per serve',v:'5g'},{l:'Servings',v:'100'},{l:'Grade',v:'Pharma'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['best value','pharmaceutical grade','100 serves'],
+    retailers:[
+      {name:'NZ Muscle', price:24.99, url:'https://nzmuscle.co.nz/products/nz-muscle-creatine-monohydrate'}
+    ],
+    scoreBreakdown:{Purity:10,Value:10,Mixability:8,Reputation:9},
+    reviews:[
+      {author:'Matt H.',score:9,text:'Pure and clean. No taste, mixes fine. Best price in NZ by a mile.'},
+      {author:'Olivia T.',score:9,text:'Stacked with protein and noticed strength gains in 3 weeks. Can\'t beat the price.'}
+    ]
+  },
+  {
+    id:10, featured:false, cat:'creatine',
+    brand:'NZ Muscle', name:'Creatine Monohydrate', flavour:'Unflavoured', size:'1kg',
+    goal:['strength','budget'],
+    ppg:null, price:39.99,
+    scoopScore:9.0,
+    desc:'1kg bag of the same pharmaceutical grade creatine. 200 servings at 5g. Best value per serve if you take creatine daily year-round.',
+    keyStats:[{l:'Per serve',v:'5g'},{l:'Servings',v:'200'},{l:'Grade',v:'Pharma'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['bulk buy','200 serves','pharmaceutical grade'],
+    retailers:[
+      {name:'NZ Muscle', price:39.99, url:'https://nzmuscle.co.nz/products/nz-muscle-creatine-monohydrate'}
+    ],
+    scoreBreakdown:{Purity:10,Value:10,Mixability:8,Reputation:9},
+    reviews:[
+      {author:'Sam B.',score:10,text:'Nothing to complain about. Pure creatine at the best price in the country.'},
+      {author:'Erin W.',score:9,text:'1kg will last me nearly a year. Incredible value.'}
+    ]
+  },
+  {
+    id:11, featured:false, cat:'creatine',
+    brand:'Optimum Nutrition', name:'Micronised Creatine Powder', flavour:'Unflavoured', size:'300g',
+    goal:['strength','recovery'],
+    ppg:null, price:39.95,
+    scoopScore:8.5,
+    desc:'Micronised creatine from Optimum Nutrition. Finer particle size for better mixability. 60 servings at 5g. Trusted by athletes worldwide.',
+    keyStats:[{l:'Per serve',v:'5g'},{l:'Servings',v:'60'},{l:'Grade',v:'Micronised'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['micronised','trusted brand','mixes well'],
+    retailers:[
+      {name:'NZ Muscle', price:39.95, url:'https://nzmuscle.co.nz/shop-by-brand/optimum-nutrition'}
+    ],
+    scoreBreakdown:{Purity:9,Value:7,Mixability:9,Reputation:9},
+    reviews:[
+      {author:'Chris P.',score:8,text:'Mixes better than cheaper creatines. No gritty residue at the bottom.'},
+      {author:'Laura B.',score:9,text:'Go-to brand for everything. This creatine is no exception.'}
+    ]
+  },
+  {
+    id:12, featured:false, cat:'creatine',
+    brand:'Musashi', name:'100% Creatine', flavour:'Unflavoured', size:'350g',
+    goal:['strength'],
+    ppg:null, price:39.95,
+    scoopScore:8.2,
+    desc:'100% pure creatine monohydrate from Musashi, one of Australia and NZ\'s most trusted supplement brands. 70 servings at 5g.',
+    keyStats:[{l:'Per serve',v:'5g'},{l:'Servings',v:'70'},{l:'Grade',v:'Pure'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['NZ trusted brand','70 serves'],
+    retailers:[
+      {name:'NZ Muscle', price:39.95, url:'https://nzmuscle.co.nz/products/musashi-100-creatine'}
+    ],
+    scoreBreakdown:{Purity:9,Value:7,Mixability:8,Reputation:8},
+    reviews:[
+      {author:'Dan R.',score:8,text:'Musashi is a solid brand. Clean creatine, mixes fine. Does what it promises.'},
+      {author:'Kim A.',score:8,text:'My local gym stocks this. Consistent quality every time.'}
+    ]
+  },
+
+  // ── PRE-WORKOUT ──────────────────────────────────────────────────────
+  {
+    id:13, featured:true, cat:'preworkout',
+    brand:'Cellucor', name:'C4 Original Pre-Workout', flavour:'Icy Blue Razz', size:'300g',
+    goal:['energy','strength'],
+    ppg:null, price:39.95,
+    scoopScore:8.8,
+    desc:"The world's #1 selling pre-workout. 200mg caffeine, 1.6g CarnoSyn Beta-Alanine, creatine nitrate and vitamins. Clean energy without the crash.",
+    keyStats:[{l:'Caffeine',v:'200mg'},{l:'Beta-Alanine',v:'1.6g'},{l:'Servings',v:'30'},{l:'Stim level',v:'Medium'}],
+    trend:'flat', trendPct:0,
+    tags:['world #1','200mg caffeine','NSF certified'],
+    retailers:[
+      {name:'Sprint Fit',  price:39.95, url:'https://www.sprintfit.co.nz/product/3382/cellucor-c4-original-pre-workout'},
+      {name:'Sportsfuel',  price:39.95, url:'https://www.sportsfuel.co.nz/products/cellucor-c4-id-60serve'}
+    ],
+    scoreBreakdown:{Energy:9,Focus:8,Taste:9,Value:9},
+    reviews:[
+      {author:'Rhys T.',score:9,text:'Always my go-to. Icy Blue Razz is delicious. Gives me the kick I need without going overboard.'},
+      {author:'Mel D.',score:9,text:'Best value pre-workout in NZ. C4 original never fails.'},
+      {author:'Jake A.',score:8,text:'Solid energy and good pumps for heavy training. Blue Raz is a great flavour.'}
+    ]
+  },
+  {
+    id:14, featured:false, cat:'preworkout',
+    brand:'Ghost', name:'Legend V4 Pre-Workout', flavour:"Welch's Grape", size:'30 serves',
+    goal:['energy','strength'],
+    ppg:null, price:63.20,
+    scoopScore:9.1,
+    desc:'Ghost Legend V4 cranks up the formula with 300mg natural caffeine, 6g L-Citrulline, 3.2g Beta-Alanine and added nootropics. Full disclosure label — no proprietary blends.',
+    keyStats:[{l:'Caffeine',v:'300mg'},{l:'Citrulline',v:'6g'},{l:'Servings',v:'30'},{l:'Stim level',v:'High'}],
+    trend:'flat', trendPct:0,
+    tags:['300mg caffeine','full disclosure','nootropics'],
+    retailers:[
+      {name:'Sprint Fit', price:63.20, url:'https://www.sprintfit.co.nz/product/5907/ghost-lifestyle-legend-v4'},
+      {name:'Sportsfuel', price:63.20, url:'https://www.sportsfuel.co.nz/products/ghost-legend-v4-pre-workout'}
+    ],
+    scoreBreakdown:{Energy:10,Focus:9,Taste:9,Value:8},
+    reviews:[
+      {author:'Pri S.',score:9,text:"Not too sweet, Welch's Grape is really good. Strong energy that lasts the whole session."},
+      {author:'Adam L.',score:9,text:'Best pre-workout I\'ve used. 300mg caffeine hits well. No jitters, just clean drive.'}
+    ]
+  },
+  {
+    id:15, featured:false, cat:'preworkout',
+    brand:'Ghost', name:'Legend All Out Pre-Workout', flavour:'Cherry Limeade', size:'20 serves',
+    goal:['energy','strength'],
+    ppg:null, price:99.00,
+    scoopScore:8.7,
+    desc:'Ghost\'s hardest hitting pre-workout. 400mg total caffeine (300mg anhydrous + 100mg extended release), 6g citrulline, 600mg Alpha-GPC, triple nitrate pump matrix.',
+    keyStats:[{l:'Caffeine',v:'400mg'},{l:'Alpha-GPC',v:'600mg'},{l:'Servings',v:'20'},{l:'Stim level',v:'Very high'}],
+    trend:'flat', trendPct:0,
+    tags:['400mg caffeine','alpha-GPC','advanced users only'],
+    retailers:[
+      {name:'Sprint Fit', price:99.00, url:'https://www.sprintfit.co.nz/product/5186/ghost-lifestyle-legend-all-out'}
+    ],
+    scoreBreakdown:{Energy:10,Focus:10,Taste:8,Value:6},
+    reviews:[
+      {author:'Matt B.',score:9,text:'Cherry Limeade is really nice. Hits like a truck — advanced users only.'},
+      {author:'Ash R.',score:8,text:'Intense but controlled. Alpha-GPC focus is noticeably different to other pres.'}
+    ]
+  },
+  {
+    id:16, featured:false, cat:'preworkout',
+    brand:'NZ Muscle', name:'Savage Pre-Workout', flavour:'Watermelon', size:'30 serves',
+    goal:['energy','strength','budget'],
+    ppg:null, price:59.99,
+    scoopScore:8.0,
+    desc:'NZ Muscle\'s own high-stim pre-workout. Strong caffeine dose with citrulline, beta-alanine and focus blend. Good value for an NZ-brand pre-workout.',
+    keyStats:[{l:'Caffeine',v:'~250mg'},{l:'Citrulline',v:'~4g'},{l:'Servings',v:'30'},{l:'Stim level',v:'High'}],
+    trend:'flat', trendPct:0,
+    tags:['NZ brand','high stim','good value'],
+    retailers:[
+      {name:'NZ Muscle', price:59.99, url:'https://nzmuscle.co.nz/products/nz-muscle-savage-pre'}
+    ],
+    scoreBreakdown:{Energy:8,Focus:8,Taste:8,Value:8},
+    reviews:[
+      {author:'Jordan T.',score:8,text:'Solid NZ-made pre. Watermelon is a good flavour. Gets me going every time.'},
+      {author:'Lucy F.',score:8,text:'Good energy and pump combo. Nice to support a local brand too.'}
+    ]
+  },
+
+  // ── FAT BURNERS ──────────────────────────────────────────────────────
+  {
+    id:17, featured:true, cat:'fatburner',
+    brand:'EHP Labs', name:'OxyShred Ultra Concentration', flavour:'Passionfruit', size:'300g',
+    goal:['lean','energy'],
+    ppg:null, price:59.95,
+    scoopScore:9.0,
+    desc:"World's #1 thermogenic fat burner. 150mg caffeine, L-carnitine 3.5g, raspberry ketones, green tea and acetyl-L-carnitine. 60 servings at just $1 per serve.",
+    keyStats:[{l:'Caffeine',v:'150mg'},{l:'L-Carnitine',v:'3.5g'},{l:'Servings',v:'60'},{l:'Sugar',v:'Zero'}],
+    trend:'flat', trendPct:0,
+    tags:['world #1 fat burner','60 serves','zero sugar'],
+    retailers:[
+      {name:'Sprint Fit',  price:59.95, url:'https://www.sprintfit.co.nz/product/1450/ehp-labs-oxyshred-ultra-concentration'},
+      {name:'NZ Muscle',   price:69.00, url:'https://nzmuscle.co.nz/ehp-labs-oxyshred'}
+    ],
+    scoreBreakdown:{Energy:9,FatBurn:9,Taste:9,Value:9},
+    reviews:[
+      {author:'Jess M.',score:10,text:'Passionfruit is my absolute favourite. I look forward to my morning OxyShred.'},
+      {author:'Ben K.',score:9,text:'Best fat burner I\'ve tried. No crash, clean energy, and actually works.'},
+      {author:'Tara V.',score:9,text:'Two months in — amazing results. The mood boost is an unexpected bonus.'}
+    ]
+  },
+  {
+    id:18, featured:false, cat:'fatburner',
+    brand:'EHP Labs', name:'OxyShred Hardcore', flavour:'Grape Bubblegum', size:'300g',
+    goal:['lean','energy'],
+    ppg:null, price:79.89,
+    scoopScore:8.5,
+    desc:'More powerful version of OxyShred for experienced users. Higher caffeine dose, stronger thermogenic blend for maximum fat burning and appetite suppression.',
+    keyStats:[{l:'Caffeine',v:'~250mg'},{l:'L-Carnitine',v:'3.5g'},{l:'Servings',v:'60'},{l:'Sugar',v:'Zero'}],
+    trend:'flat', trendPct:0,
+    tags:['high stim','advanced users','appetite control'],
+    retailers:[
+      {name:'Sprint Fit', price:79.89, url:'https://www.sprintfit.co.nz/product/3669/ehp-labs-oxyshred-hardcore'}
+    ],
+    scoreBreakdown:{Energy:9,FatBurn:9,Taste:8,Value:7},
+    reviews:[
+      {author:'Matt S.',score:8,text:'Grape Bubblegum is the best grape flavour I\'ve had in a supplement. Strong but controlled energy.'},
+      {author:'Rikki D.',score:9,text:'Fantastic results. Takes fat burning to another level compared to regular OxyShred.'}
+    ]
+  },
+
+  // ── BCAAs ─────────────────────────────────────────────────────────────
+  {
+    id:19, featured:false, cat:'bcaa',
+    brand:'NZ Muscle', name:'BCAA Powder', flavour:'Blue Raspberry', size:'300g',
+    goal:['recovery','lean'],
+    ppg:null, price:39.99,
+    scoopScore:8.0,
+    desc:'2:1:1 BCAA ratio (Leucine:Isoleucine:Valine) for muscle recovery and endurance. Helps prevent muscle breakdown during training. 30 servings.',
+    keyStats:[{l:'BCAAs',v:'7g'},{l:'Leucine',v:'3.5g'},{l:'Servings',v:'30'},{l:'Caffeine',v:'None'}],
+    trend:'flat', trendPct:0,
+    tags:['2:1:1 ratio','no caffeine','intra-workout'],
+    retailers:[
+      {name:'NZ Muscle', price:39.99, url:'https://nzmuscle.co.nz/products/nz-muscle-bcaa-powder'}
+    ],
+    scoreBreakdown:{Recovery:8,Taste:8,Value:8,Mixability:8},
+    reviews:[
+      {author:'Anna P.',score:8,text:'Takes the edge off soreness the next day. Blue raspberry is a great flavour.'},
+      {author:'Mark F.',score:8,text:'Good value BCAA from an NZ brand. I take it during longer sessions.'}
+    ]
+  },
+  {
+    id:20, featured:false, cat:'bcaa',
+    brand:'Optimum Nutrition', name:'Amino Energy', flavour:'Watermelon', size:'270g',
+    goal:['energy','recovery'],
+    ppg:null, price:39.95,
+    scoopScore:8.6,
+    desc:'Essential amino acids plus 100mg caffeine per serving. The versatile amino — works as a light pre-workout, intra-workout recovery, or anytime energy drink.',
+    keyStats:[{l:'Aminos',v:'5g EAA'},{l:'Caffeine',v:'100mg'},{l:'Servings',v:'30'},{l:'Sugar',v:'Zero'}],
+    trend:'flat', trendPct:0,
+    tags:['EAA + caffeine','versatile','anytime drink'],
+    retailers:[
+      {name:'NZ Muscle',  price:39.95, url:'https://nzmuscle.co.nz/products/optimum-nutrition-amino-energy'},
+      {name:'Sportsfuel', price:42.95, url:'https://www.sportsfuel.co.nz/collections/amino-acids'}
+    ],
+    scoreBreakdown:{Recovery:8,Taste:9,Value:8,Mixability:9},
+    reviews:[
+      {author:'Sophie H.',score:9,text:'My daily drink. Watermelon is delicious. Light caffeine hit is perfect for afternoons.'},
+      {author:'Tom C.',score:8,text:'Use it as a light pre or mid-workout. Versatile product, great taste.'}
+    ]
+  }
+];
+
+let activeFilters = {cat:'all', size:'all', retailer:'all', goal:null, score:null};
+let maxPrice = 150;
+let currentCategory = 'all';
+
+function setCategory(el, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  currentCategory = cat;
+  // Also sync sidebar cat filter
+  if(cat !== 'all') {
+    document.querySelectorAll('#catFilters .fitem').forEach(b => b.classList.remove('active'));
+    const match = document.querySelector(`#catFilters .fitem[onclick*="'${cat}'"]`);
+    if(match) match.classList.add('active');
+    activeFilters.cat = cat;
+  } else {
+    document.querySelectorAll('#catFilters .fitem').forEach(b => b.classList.remove('active'));
+    document.querySelector('#catFilters .fitem').classList.add('active');
+    activeFilters.cat = 'all';
+  }
+  filterProducts();
+}
+
+function toggleFilter(el, type, val) {
+  const grp = el.closest('.flist');
+  if(grp) grp.querySelectorAll('.fitem').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  activeFilters[type] = val;
+  // Sync nav if cat filter changed
+  if(type === 'cat') {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    const nb = document.querySelector(`.cat-btn[onclick*="'${val}'"]`);
+    if(nb) nb.classList.add('active');
+  }
+  filterProducts();
+}
+
+function toggleSize(el, val) {
+  document.querySelectorAll('.spill').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  activeFilters.size = val;
+  filterProducts();
+}
+
+function updatePrice(v) {
+  maxPrice = parseInt(v);
+  document.getElementById('priceVal').textContent = '$' + v;
+  filterProducts();
+}
+
+function filterProducts() {
+  const q = (document.getElementById('searchInput').value || '').toLowerCase();
+  const sort = document.getElementById('sortSel').value;
+
+  let list = PRODUCTS.filter(p => {
+    if (q && !`${p.brand} ${p.name} ${p.flavour} ${CAT_LABELS[p.cat]}`.toLowerCase().includes(q)) return false;
+    if (activeFilters.cat !== 'all' && p.cat !== activeFilters.cat) return false;
+    if (activeFilters.size !== 'all' && p.size !== activeFilters.size) return false;
+    if (activeFilters.retailer !== 'all' && !p.retailers.some(r => r.name.includes(activeFilters.retailer.replace('NZ Muscle','NZ Muscle').replace('Sprint Fit','Sprint Fit')))) return false;
+    if (activeFilters.goal && activeFilters.goal !== 'any' && !p.goal.includes(activeFilters.goal)) return false;
+    if (activeFilters.score === '9' && p.scoopScore < 9) return false;
+    if (activeFilters.score === '8' && p.scoopScore < 8) return false;
+    if (activeFilters.score === '7' && p.scoopScore < 7) return false;
+    if (p.price > maxPrice) return false;
+    return true;
+  });
+
+  list.sort((a, b) => {
+    if (sort === 'score') return b.scoopScore - a.scoopScore;
+    if (sort === 'price') return a.price - b.price;
+    if (sort === 'ppg') { if(!a.ppg) return 1; if(!b.ppg) return -1; return a.ppg - b.ppg; }
+    if (sort === 'name') return `${a.brand} ${a.name}`.localeCompare(`${b.brand} ${b.name}`);
+    return 0;
+  });
+
+  document.getElementById('countDisplay').textContent = list.length;
+  document.getElementById('heroCount').textContent = PRODUCTS.length;
+  renderList(list);
+}
+
+function segs(score, n=10, cls='seg') {
+  const f = Math.round(score);
+  return Array.from({length:n}, (_,i) => `<div class="${cls}${i<f?' on':''}"></div>`).join('');
+}
+
+function catBadge(cat) {
+  const c = CAT_COLORS[cat];
+  const l = CAT_LABELS[cat];
+  return `<span class="pcatbadge" style="background:${c.bg};border-color:${c.border};color:${c.text}">${l}</span>`;
+}
+
+function renderList(list) {
+  const el = document.getElementById('productList');
+  if (!list.length) {
+    el.innerHTML = `<div class="empty"><div class="empty-d">—</div><p>No products match. Adjust your filters.</p></div>`;
+    return;
+  }
+  el.innerHTML = list.map((p, i) => {
+    const tc = p.trend==='down'?'down':p.trend==='up'?'up':'flat';
+    const tt = p.trend==='flat'?'→ stable':(p.trend==='down'?'↓ ':'↑ ')+p.trendPct+'% this month';
+    const tags = p.tags.map(t => `<span class="ptag${t.includes('best value')||t.includes('world #1')||t.includes('pharmaceutical')?' hi':''}">${t}</span>`).join('');
+    const rpeeks = p.retailers.slice(0,2).map(r =>
+      `<div class="rpeek"><span class="rpn">${r.name}</span><a class="rpp" href="${r.url}" target="_blank" onclick="event.stopPropagation()">$${r.price.toFixed(2)} ↗</a></div>`
+    ).join('');
+    const ppgDisplay = p.ppg ? `<div class="ppg-lbl">Per 100g protein</div><div class="ppg-val">$${p.ppg.toFixed(2)}</div><div class="ppg-unit">NZD / 100g protein</div>` :
+      `<div class="ppg-lbl">From</div><div class="ppg-val" style="font-size:28px">$${Math.min(...p.retailers.map(r=>r.price)).toFixed(2)}</div><div class="ppg-unit">NZD lowest price</div>`;
+
+    return `<div class="prow${p.featured?' featured':''}" style="animation-delay:${i*.04}s" onclick="openModal(${p.id})">
+      <div class="prow-left">
+        <div class="ptop">${catBadge(p.cat)}<span class="pbrand">${p.brand}</span>${p.featured?'<span class="pbest">Top Pick</span>':''}<span class="psize-badge">${p.size}</span></div>
+        <div class="pname">${p.name}</div>
+        <div class="pflavour">${p.flavour}</div>
+        <div class="pdesc">${p.desc}</div>
+        <div class="pmeta">
+          ${p.keyStats.map(s=>`<div class="pmi"><div class="pml">${s.l}</div><div class="pmv">${s.v}</div></div>`).join('')}
+          <div class="pmi"><div class="pml">Trend</div><div class="pmv ${tc}">${tt}</div></div>
+        </div>
+        <div class="sline">
+          <div class="slabel">ScoopScore</div>
+          <div class="ssegs">${segs(p.scoopScore)}</div>
+          <div class="sval">${p.scoopScore}/10</div>
+        </div>
+        <div class="ptags">${tags}</div>
+      </div>
+      <div class="prow-right">
+        <div>${ppgDisplay}</div>
+        <div><div class="pfull">$${p.price.toFixed(2)} / ${p.size}</div><div class="rpeeks">${rpeeks}</div></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+
+  const retHtml = p.retailers.map(r => `
+    <div class="ret-row">
+      <div class="ret-name">${r.name}${r.sponsored?' <span class="ret-ad">sponsored</span>':''}</div>
+      <div class="ret-right">
+        <div class="ret-price">$${r.price.toFixed(2)}</div>
+        <button class="ret-btn" onclick="window.open('${r.url}','_blank')">Buy now →</button>
+      </div>
+    </div>`).join('');
+
+  const revHtml = p.reviews.length
+    ? p.reviews.map(r => `
+      <div class="rev-card">
+        <div class="rev-top"><span class="rev-author">${r.author}</span><span class="rev-score">${r.score}/10</span></div>
+        <div class="rev-text">${r.text}</div>
+      </div>`).join('')
+    : `<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3);padding:12px;background:var(--bg3);border:1px solid var(--border)">No reviews yet.</div>`;
+
+  const breakHtml = Object.entries(p.scoreBreakdown).map(([k,v]) => `
+    <div class="brow">
+      <div class="brow-lbl">${k}</div>
+      <div class="brow-track"><div class="brow-fill" style="width:${v*10}%"></div></div>
+      <div class="brow-val">${v}</div>
+    </div>`).join('');
+
+  const macroSection = p.keyStats.length ? `
+    <div class="msec">
+      <div class="msec-title">Key specs</div>
+      <div class="macro-grid">${p.keyStats.map(s=>`<div class="mbox"><div class="mnum">${s.v}</div><div class="mlbl">${s.l}</div></div>`).join('')}</div>
+    </div>` : '';
+
+  document.getElementById('modalInner').innerHTML = `
+    <div class="modal-top">
+      <div class="modal-top-brand">${p.brand} — ${CAT_LABELS[p.cat]} — ${p.size}</div>
+      <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-hero">
+      <div>
+        <div class="modal-pname">${p.name}</div>
+        <div class="modal-flavour">${p.flavour}</div>
+        <div class="modal-desc">${p.desc}</div>
+        <div class="sline">
+          <div class="slabel">ScoopScore</div>
+          <div class="ssegs">${segs(p.scoopScore)}</div>
+          <div class="sval">${p.scoopScore}/10</div>
+        </div>
+      </div>
+      <div class="modal-score-block">
+        <div><span class="modal-snum">${p.scoopScore}</span><span class="modal-sden">/10</span></div>
+        <div class="modal-slbl">ScoopScore</div>
+        <div class="modal-ssegs">${segs(p.scoopScore,10,'modal-seg')}</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="msec">
+        <div class="msec-title">Score breakdown</div>
+        <div class="brows">${breakHtml}</div>
+      </div>
+      ${macroSection}
+      <div class="msec">
+        <div class="msec-title">Where to buy in NZ</div>
+        <div class="ret-rows">${retHtml}</div>
+      </div>
+      <div class="msec">
+        <div class="msec-title">Community reviews</div>
+        <div class="rev-list">${revHtml}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function handleModalClick(e) {
+  if (e.target === document.getElementById('modalOverlay'))
+    document.getElementById('modalOverlay').classList.remove('open');
+}
+
+function signupAlert() {
+  const email = document.getElementById('alertEmail').value;
+  if (!email || !email.includes('@')) { showToast('Enter a valid email'); return; }
+  document.getElementById('alertEmail').value = '';
+  showToast('On the list — price drop alerts incoming!');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+filterProducts();
+</script>
+</body>
+</html>
