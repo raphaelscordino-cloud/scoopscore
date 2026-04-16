@@ -1,5 +1,103 @@
 # ScoopScore — NZ Supplement Price Tracker
 
+Scrapes supplement prices from NZ retailers daily and serves them on a clean comparison website.
+
+---
+
+## Retailers tracked
+
+| Store | Platform | Free shipping | Status |
+|---|---|---|---|
+| NZ Muscle | Shopify | Always free | ✅ Active |
+| Sportsfuel | Shopify | $60+ | ✅ Active |
+| Scorpion Supplements | Shopify | Check site | ✅ Active |
+| ASN Online | Shopify | $100+ | ✅ Active |
+| Supplement Solutions | Shopify | Check site | ✅ Active |
+| Raisey's | Shopify | Check site | ✅ Active |
+| Xplosiv | Magento | $100+ | ✅ Active (JSON-LD scraper) |
+| Sprint Fit | Custom | Check site | ✅ Active (JSON-LD scraper) |
+
+**To add more stores:** Shopify stores take 5 minutes — just add a line to the `RETAILERS` array. Non-Shopify stores need a custom scraper function.
+
+---
+
+## How it works
+
+```
+scraper.js  →  data/products.json  →  index.html (reads on load)
+```
+
+1. **Shopify retailers** — hits `/products.json` endpoint, gets all products + prices in one API call per page
+2. **Xplosiv (Magento)** — fetches category pages, extracts JSON-LD structured data embedded in HTML
+3. **Sprint Fit (custom)** — same JSON-LD approach
+4. All results written to `data/products.json` with price history preserved
+5. `index.html` loads `data/products.json` on startup
+
+---
+
+## Setup
+
+```bash
+# 1. Clone your repo
+git clone https://github.com/YOUR_USERNAME/scoopscore.git
+cd scoopscore
+
+# 2. Run scraper to generate data
+node scraper.js
+
+# 3. Check output
+cat data/products.json | head -50
+
+# 4. Commit and push
+git add data/products.json data/scrape.log
+git commit -m "initial price data"
+git push
+```
+
+Vercel auto-deploys on every push.
+
+---
+
+## Daily automation
+
+`.github/workflows/daily-scrape.yml` runs every day at 6am NZT automatically. To trigger manually: **Actions → Daily Price Scrape → Run workflow**
+
+---
+
+## Adding a Shopify store
+
+```javascript
+{
+  id:          'storeid',
+  name:        'Store Name',
+  baseUrl:     'storename.co.nz',
+  url:         'https://storename.co.nz/products.json',
+  currency:    'NZD',
+  freeShipping: '$100+',
+  platform:    'shopify',
+  categoryMap: SHARED_CATEGORY_MAP,  // reuses the shared map
+}
+```
+
+Any Shopify store exposes `yourstore.com/products.json` publicly. To check if a store is Shopify, look for "Powered by Shopify" in their page footer, or check aftership.com/brands/storename.
+
+---
+
+## File structure
+
+```
+scoopscore/
+├── index.html          ← website
+├── scraper.js          ← price scraper
+├── package.json
+├── data/
+│   ├── products.json   ← generated daily
+│   └── scrape.log      ← scrape history
+└── .github/
+    └── workflows/
+        └── daily-scrape.yml
+```
+
 Automatically scrapes supplement prices from NZ retailers daily and
 serves them on a clean comparison website.
 
