@@ -18,6 +18,9 @@ const path  = require('path');
 const OUT_FILE = path.join(__dirname, 'data', 'products.json');
 const LOG_FILE = path.join(__dirname, 'data', 'scrape.log');
 
+// Ensure data/ directory exists before anything tries to write to it
+fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+
 // ─── SHARED CATEGORY MAP ───────────────────────────────────────
 // Reused across all Shopify retailers — maps product_type → ScoopScore category
 const SHARED_CATEGORY_MAP = {
