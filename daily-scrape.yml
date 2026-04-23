@@ -23,9 +23,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
 
       - name: Run scraper
+        id: scrape
         run: node scraper.js
+
+      - name: Sanity check output
+        run: |
+          # Fail the workflow if products.json is missing or suspiciously small
+          if [ ! -f data/products.json ]; then
+            echo "ERROR: data/products.json not found after scrape" >&2
+            exit 1
+          fi
+          PRODUCT_COUNT=$(node -e "const d=require('./data/products.json');console.log(d.products?.length||0)")
+          echo "Product count: $PRODUCT_COUNT"
+          if [ "$PRODUCT_COUNT" -lt 50 ]; then
+            echo "ERROR: Only $PRODUCT_COUNT products — something went wrong" >&2
+            exit 1
+          fi
+          echo "✓ Sanity check passed: $PRODUCT_COUNT products"
 
       - name: Commit updated prices
         run: |
@@ -34,3 +54,12 @@ jobs:
           git add data/products.json data/scrape.log
           git diff --staged --quiet || git commit -m "chore: daily price update $(date -u +%Y-%m-%d)"
           git push
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::warning::Scrape failed on $(date -u +%Y-%m-%d). Check the logs above."
+          # Optional: add a curl call to a webhook/Slack/Discord here
+          # curl -s -X POST "${{ secrets.SLACK_WEBHOOK }}" \
+          #   -H 'Content-type: application/json' \
+          #   --data '{"text":"⚠️ ScoopScore daily scrape failed — check GitHub Actions"}'

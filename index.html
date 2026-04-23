@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScoopScore — NZ Supplement Price Comparison</title>
+<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, ASN Online and others.">
+<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scoopscore.co.nz/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scoopscore.co.nz/">
+<meta property="og:title" content="ScoopScore — NZ Supplement Price Comparison">
+<meta property="og:description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest protein, creatine and pre-workout in NZ.">
+<meta property="og:image" content="https://scoopscore.co.nz/og-image.jpg">
+<meta property="og:locale" content="en_NZ">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ScoopScore — NZ Supplement Price Comparison">
+<meta name="twitter:description" content="Compare supplement prices across NZ's top retailers daily.">
+<!-- Schema.org -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ScoopScore","url":"https://scoopscore.co.nz","description":"NZ supplement price comparison tool","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://scoopscore.co.nz/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -306,6 +323,47 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;-webk
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── SKELETON LOADING ── */
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.skel{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:var(--r)}
+.skel-card{width:185px;height:245px;flex-shrink:0;border-radius:var(--r)}
+.skel-brand{height:120px;border-radius:var(--r)}
+
+/* ── SORT CONTROLS ── */
+.sort-bar{display:flex;align-items:center;gap:8px;padding:10px 32px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.sort-bar-inner{max-width:1320px;margin:0 auto;width:100%;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sort-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-right:4px}
+.sort-btn{font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;padding:4px 12px;border-radius:100px;border:1px solid var(--border);background:none;color:var(--ink3);cursor:pointer;transition:all .12s;white-space:nowrap}
+.sort-btn:hover{background:var(--bg3);color:var(--ink);border-color:var(--border2)}
+.sort-btn.active{background:var(--blue-dim);border-color:rgba(59,130,246,.3);color:var(--blue);font-weight:600}
+
+/* ── PRICE HISTORY CHART ── */
+.dp-chart-wrap{padding:24px 40px;border-bottom:1px solid var(--border)}
+.dp-chart-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.dp-chart{height:80px;display:flex;align-items:flex-end;gap:3px;padding-bottom:20px;position:relative}
+.dp-chart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+.dp-chart-bar{width:100%;background:var(--blue);border-radius:2px 2px 0 0;transition:height .3s;min-height:4px;position:relative}
+.dp-chart-bar:hover{background:var(--blue2)}
+.dp-chart-bar[data-best="1"]{background:var(--green)}
+.dp-chart-date{font-family:'Space Mono',monospace;font-size:9px;color:var(--ink4);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;position:absolute;bottom:-18px;left:50%;transform:translateX(-50%)}
+.dp-chart-price-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;color:var(--ink3);position:absolute;top:-16px;left:50%;transform:translateX(-50%);white-space:nowrap;opacity:0;transition:opacity .12s}
+.dp-chart-bar:hover .dp-chart-price-lbl{opacity:1}
+.dp-chart-no-history{font-size:12px;color:var(--ink4);font-family:'Barlow',sans-serif;padding:24px 0;text-align:center}
+
+/* ── COPY LINK / SHARE ── */
+.dp-share-row{display:flex;gap:8px;padding:16px 40px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.dp-share-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r);border:1px solid var(--border2);background:none;color:var(--ink3);cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:6px}
+.dp-share-btn:hover{background:var(--bg3);color:var(--ink);border-color:var(--ink3)}
+
+/* ── PER-SERVE BADGE ── */
+.dp-per-serve{font-size:12px;color:var(--ink3);margin-top:4px;font-family:'Barlow',sans-serif}
+.dp-per-serve strong{color:var(--green);font-weight:600}
+
+/* ── BACK TO TOP ── */
+.btt{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);color:var(--ink2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;opacity:0;pointer-events:none;transition:all .2s;z-index:300}
+.btt.vis{opacity:1;pointer-events:all}
+.btt:hover{background:var(--bg4);color:var(--ink)}
+
 @media(max-width:1024px){.nav-cats{display:none}}
 @media(max-width:900px){.dp-left{display:none}}
 @media(max-width:768px){
@@ -352,7 +410,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;-webk
         <span class="nav-search-icon">⌕</span>
         <input class="nav-search" type="text" placeholder="Search brands or products…" oninput="onSearch(this.value)">
       </div>
-      <button class="nbtn nbtn-g" onclick="showToast('Sign in coming soon')">Sign in</button>
+      <button class="nbtn nbtn-g" onclick="scrollToAlerts()">Get Alerts</button>
       <button class="nbtn nbtn-f" onclick="scrollToAlerts()">Price alerts</button>
     </div>
   </div>
@@ -533,7 +591,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;-webk
         </div>
       </div>
       <div class="footer-bottom">
-        <div class="footer-meta">© 2025 ScoopScore NZ · Price comparison only · Prices updated daily · Clicking "Shop" takes you to the retailer's site</div>
+        <div class="footer-meta">© <span id="footerYear"></span> ScoopScore NZ · Price comparison only · Prices updated daily · Clicking "Shop" takes you to the retailer's site</div>
       </div>
     </div>
   </div>
@@ -557,6 +615,13 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;-webk
     </div>
   </div>
   <div class="bcf-wrap"><div class="bcf" id="bcf"></div></div>
+  <div class="sort-bar"><div class="sort-bar-inner">
+    <span class="sort-lbl">Sort</span>
+    <button class="sort-btn active" onclick="setSort(this,'retailers')">Most retailers</button>
+    <button class="sort-btn" onclick="setSort(this,'price-asc')">Price: low → high</button>
+    <button class="sort-btn" onclick="setSort(this,'price-desc')">Price: high → low</button>
+    <button class="sort-btn" onclick="setSort(this,'name')">Name A–Z</button>
+  </div></div>
   <div class="stock-toggle-wrap">
     <div class="stock-toggle-wrap-inner">
       <label class="stock-toggle">
@@ -602,6 +667,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;-webk
 </div>
 
 <div class="toast" id="toast"></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
 <script>
 // nav scroll effect
@@ -610,8 +676,11 @@ window.addEventListener('scroll',()=>{
 },{ passive:true });
 
 const CAT_META={protein:{label:'Protein',color:'#3b82f6'},creatine:{label:'Creatine',color:'#22c55e'},preworkout:{label:'Pre-Workout',color:'#f59e0b'},fatburner:{label:'Fat Burner',color:'#ef4444'},bcaa:{label:'BCAA',color:'#a855f7'}};
-const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Free over $70'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion',domain:'scorpionsupplements.co.nz',shipping:'Check site'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'}};
+const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion',domain:'scorpionsupplements.co.nz',shipping:'Check site'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Check site'}};
 function rm(id){return RETAILER_META[id]||{name:id,domain:id,shipping:'Check site'};}
+
+let currentSort='retailers';
+function setSort(el,s){document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentSort=s;renderProducts();}
 
 function brandColor(name){const K={'Optimum Nutrition':'#3b82f6','EHP Labs':'#ec4899','Ghost':'#a855f7','Cellucor':'#06b6d4','Myprotein':'#f97316','Dymatize':'#0ea5e9','NZ Muscle':'#22c55e','Musashi':'#f59e0b','Bulk Nutrients':'#10b981','BSN':'#6366f1','MuscleTech':'#ef4444','Rule 1':'#3b82f6','Faction Labs':'#f97316','ATP Science':'#a855f7','RedCon1':'#dc2626','Primabolics':'#d97706','Switch Nutrition':'#22c55e'};if(K[name])return K[name];let h=0;for(let i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))&0xffffff;return `hsl(${h%360},65%,55%)`;}
 function brandDesc(name){const K={'Optimum Nutrition':"The world's best-selling sports nutrition brand. Gold Standard whey has been the industry benchmark since 1994.",'EHP Labs':"Australia's #1 premium supplement brand. Known for OxyShred (world's #1 fat burner) and OxyWhey lean protein.",'Ghost':"The brand that redefined transparency. Full-label disclosure, legendary licensed flavours, athlete-formulated products.",'Cellucor':"Makers of C4, the world's best-selling pre-workout. Clean, effective formulas and iconic flavours.",'Myprotein':"Europe's #1 online sports nutrition brand. Unbeatable value per gram, massive range of proteins and supplements.",'Dymatize':"Precision-engineered sports nutrition. ISO100 hydrolyzed is a favourite of elite athletes for rapid absorption.",'NZ Muscle':"New Zealand's own supplement brand. Pharmaceutical grade ingredients at honest prices, made for Kiwi athletes.",'Musashi':"A trusted Australasian sports nutrition brand with 30+ years of experience. Clean formulas, no proprietary blends.",'Bulk Nutrients':"Australia's leading direct-to-consumer brand. Exceptional value with no middlemen. Massive range, honest labelling.",'BSN':"Pioneers of N.O.-Xplode. Premium formulas with over 20 years of performance nutrition expertise.",'MuscleTech':"Science-backed formulations with clinical doses. Nitro-Tech is one of the world's best-selling protein powders."};return K[name]||`Premium supplements from ${name}, available across NZ's top supplement retailers.`;}
@@ -620,7 +689,10 @@ function normKey(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\
 let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
 
 async function loadData(){
-  try{const r=await fetch('data/products.json');if(r.ok){const d=await r.json();if(d.products?.length){ALL=d.products;META=d.meta||{};init(META.updatedAt);return;}}}catch(e){}
+  // Show skeleton loaders while fetching
+  document.getElementById('featRow').innerHTML=Array(6).fill('<div class="skel skel-card"></div>').join('');
+  document.getElementById('brandGrid').innerHTML=Array(8).fill('<div class="skel skel-brand"></div>').join('');
+  try{const r=await fetch('data/products.json');if(r.ok){const d=await r.json();if(d.products?.length){ALL=d.products;META=d.meta||{};init(META.updatedAt);checkDeepLink();return;}}}catch(e){}
   setStatus('error','Could not load products.json — run node scraper.js first',null);
 }
 
@@ -732,7 +804,13 @@ function setBrandCat(el,cat){document.querySelectorAll('.bcf-pill').forEach(b=>b
 
 function renderProducts(){
   const b=BRANDS[currentBrand];if(!b)return;
-  let groups=b.groupList;if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
+  let groups=[...b.groupList];if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
+  // Apply sort
+  const bestPriceOf=g=>Math.min(...g.listings.filter(l=>l.available!==false).map(l=>l.priceFrom).filter(n=>!isNaN(n))||[9999]);
+  if(currentSort==='price-asc')groups.sort((a,z)=>bestPriceOf(a)-bestPriceOf(z));
+  else if(currentSort==='price-desc')groups.sort((a,z)=>bestPriceOf(z)-bestPriceOf(a));
+  else if(currentSort==='name')groups.sort((a,z)=>a.name.localeCompare(z.name));
+  else groups.sort((a,z)=>{if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;const ra=new Set(a.listings.filter(l=>l.available!==false).map(l=>l.retailer)).size;const rz=new Set(z.listings.filter(l=>l.available!==false).map(l=>l.retailer)).size;return rz-ra||bestPriceOf(a)-bestPriceOf(z);});
   const showOos=document.getElementById('showOosToggle')?.checked||false;
   const oosGroups=groups.filter(g=>g.soldOut);
   const el=document.getElementById('oosCount');
@@ -842,9 +920,50 @@ function openDetail(groupKey,brandName){
   // oos note if fully sold out
   const oosNote=g.soldOut?`<div class="dp-oos-hero"><div class="dp-oos-hero-icon">📭</div><div class="dp-oos-hero-text">This product is currently out of stock across all tracked retailers. Prices shown are the last recorded prices. <a href="#" style="color:var(--blue)" onclick="event.preventDefault();scrollToAlerts();closeDetail()">Set a price alert</a> to be notified when it's back in stock.</div></div>`:'';
 
+  // Price history chart — aggregate history from all listings for this group
+  const allHistory=[];
+  for(const l of g.listings){if(l.priceHistory&&l.priceHistory.length){for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date,retailer:l.retailer});}}
+  // Also add current prices as latest data point
+  for(const l of g.listings)if(l.available!==false)allHistory.push({price:l.priceFrom,date:new Date().toISOString().split('T')[0],retailer:l.retailer,current:true});
+  allHistory.sort((a,b)=>a.date.localeCompare(b.date));
+  let chartHtml='';
+  if(allHistory.length>=2){
+    const prices=allHistory.map(h=>h.price);
+    const mn=Math.min(...prices),mx=Math.max(...prices);
+    const range=mx-mn||1;
+    chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-title">Price history</div><div class="dp-chart">${
+      allHistory.slice(-12).map(h=>{
+        const pct=Math.round(((h.price-mn)/range)*70+10);
+        const isBest=h.price===mn;
+        const dt=h.date.slice(5);// MM-DD
+        return `<div class="dp-chart-bar-wrap"><div class="dp-chart-bar" style="height:${pct}%" data-best="${isBest?1:0}"><div class="dp-chart-price-lbl">$${h.price.toFixed(0)}</div></div><div class="dp-chart-date">${dt}</div></div>`;
+      }).join('')
+    }</div></div>`;
+  } else {
+    chartHtml='';
+  }
+
+  // Per-serve estimate (very rough — based on variant title keywords)
+  let perServe='';
+  const serveV=allVariants.find(v=>/\d+(g|kg|lb|lbs)/i.test(v.title));
+  if(serveV&&inStockRl.length){
+    const m=serveV.title.match(/(\d+\.?\d*)\s*(kg|g|lb|lbs)/i);
+    if(m){const grams=m[2].toLowerCase().startsWith('k')?parseFloat(m[1])*1000:m[2].toLowerCase().startsWith('l')?parseFloat(m[1])*453.6:parseFloat(m[1]);const serves=Math.round(grams/30);if(serves>1){const cpp=(bestPrice/serves).toFixed(2);perServe=`<div class="dp-per-serve">≈ ${serves} serves · <strong>$${cpp}/serve</strong></div>`;}}
+  }
+
+  // Share / copy link buttons
+  const shareUrl=window.location.origin+window.location.pathname+`?brand=${encodeURIComponent(currentBrand)}&product=${encodeURIComponent(g.key)}`;
+  const shareRow=`<div class="dp-share-row">
+    <button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>
+    ${navigator.share?`<button class="dp-share-btn" onclick="navigator.share({title:'${g.name} — ScoopScore',url:'${shareUrl}'})">↑ Share</button>`:''}
+    <button class="dp-share-btn" onclick="window.open('${inStockRl.length?inStockRl[0].url:rl[0].url}','_blank')">🛒 Cheapest →</button>
+  </div>`;
+
   document.getElementById('dpBody').innerHTML=`
+    ${chartHtml}
+    ${shareRow}
     <div class="dp-section"><div class="dp-sec-title">Compare prices — ${rl.length} retailer${rl.length!==1?'s':''}</div>${retailerRows}${oosNote}</div>
-    ${allVariants.length?`<div class="dp-section"><div class="dp-sec-title">Sizes & flavours</div>${varRows}${moreVars}</div>`:''}
+    ${allVariants.length?`<div class="dp-section"><div class="dp-sec-title">Sizes & flavours</div>${varRows}${moreVars}${perServe}</div>`:''}
     ${desc?`<div class="dp-section"><div class="dp-sec-title">About this product</div><div class="dp-desc">${desc}</div></div>`:''}
   `;
   document.getElementById('detailOverlay').classList.add('open');
@@ -859,6 +978,18 @@ function scrollToAlerts(){if(!document.getElementById('viewHome').classList.cont
 function setStatus(state,msg,updatedAt){const dot=document.getElementById('sDot'),txt=document.getElementById('sTxt'),time=document.getElementById('sTime');if(dot)dot.style.background=state==='live'?'var(--green)':state==='loading'?'#f59e0b':'var(--red)';if(txt)txt.textContent=msg;if(time&&updatedAt){const d=new Date(updatedAt);time.textContent=`Updated ${d.toLocaleDateString('en-NZ',{day:'numeric',month:'short'})} ${d.toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'})}`;}}
 function signupAlert(){const e=document.getElementById('alertEmail').value;if(!e||!e.includes('@')){showToast('Enter a valid email');return;}document.getElementById('alertEmail').value='';showToast('Done — you\'ll be notified of price drops');}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// Keyboard: Escape closes modal
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+
+// Back-to-top visibility
+window.addEventListener('scroll',()=>{document.getElementById('btt')?.classList.toggle('vis',window.scrollY>400);},{passive:true});
+
+// Footer year
+document.getElementById('footerYear').textContent=new Date().getFullYear();
+
+// Handle ?brand=&product= deep-link on load
+function checkDeepLink(){const p=new URLSearchParams(window.location.search);const b=p.get('brand'),k=p.get('product');if(b&&k&&BRANDS[b])openDetail(k,b);}
 
 loadData();
 </script>

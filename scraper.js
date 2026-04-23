@@ -428,25 +428,25 @@ function extractProduct(raw, retailer) {
   if (!isSupplementProduct(raw)) return null;
   if (!raw.variants || raw.variants.length === 0) return null;
 
-  // Get available variants only
-  const variants = raw.variants.filter(v => v.available !== false);
-  if (variants.length === 0) return null;
+  // All variants including out-of-stock ones
+  const allVariants = raw.variants || [];
+  const availableVariants = allVariants.filter(v => v.available !== false);
 
-  // Lowest price across variants
-  const prices = variants
-    .map(v => parseFloat(v.price))
-    .filter(p => !isNaN(p) && p > 0);
-  if (prices.length === 0) return null;
+  // Lowest price across ALL variants (show crossed-out price even if OOS)
+  const allPrices = allVariants.map(v => parseFloat(v.price)).filter(p => !isNaN(p) && p > 0);
+  if (allPrices.length === 0) return null;
 
-  const minPrice = Math.min(...prices);
-  const maxPrice = Math.max(...prices);
+  const availPrices = availableVariants.map(v => parseFloat(v.price)).filter(p => !isNaN(p) && p > 0);
+  const minPrice = availPrices.length ? Math.min(...availPrices) : Math.min(...allPrices);
+  const maxPrice = Math.max(...allPrices);
+  const available = availableVariants.length > 0;
 
-  // Build variant list for size/flavour options
-  const variantList = variants.map(v => ({
-    id:      v.id,
-    title:   v.title,        // e.g. "Chocolate / 1Kg"
-    price:   parseFloat(v.price),
-    sku:     v.sku || '',
+  // Build variant list for size/flavour options — include all
+  const variantList = allVariants.map(v => ({
+    id:        v.id,
+    title:     v.title,        // e.g. "Chocolate / 1Kg"
+    price:     parseFloat(v.price),
+    sku:       v.sku || '',
     available: v.available !== false
   }));
 
@@ -464,12 +464,12 @@ function extractProduct(raw, retailer) {
     tags:        (raw.tags || []).slice(0, 8),
     priceFrom:   minPrice,
     priceTo:     maxPrice > minPrice ? maxPrice : null,
+    available,
     currency:    retailer.currency,
     variants:    variantList,
     url:         `https://${retailer.baseUrl}/products/${raw.handle}`,
     imageUrl:    raw.images && raw.images[0] ? raw.images[0].src : null,
     updatedAt:   new Date().toISOString(),
-    // Price history — we'll track this over time
     priceHistory: []
   };
 }
@@ -483,27 +483,42 @@ function mergeWithExisting(newProducts, existingProducts) {
 
   return newProducts.map(newP => {
     const existing = existingMap[newP.id];
-    if (!existing) return newP;
+    const today = new Date().toISOString().split('T')[0];
 
-    // Append to price history if price changed
-    const history = existing.priceHistory || [];
+    if (!existing) {
+      // First time we've seen this product — seed price history
+      return {
+        ...newP,
+        priceHistory: [{ price: newP.priceFrom, date: today }]
+      };
+    }
+
+    // Preserve existing history and append if price changed
+    const history = [...(existing.priceHistory || [])];
     const lastEntry = history[history.length - 1];
     const priceChanged = !lastEntry || lastEntry.price !== newP.priceFrom;
 
-    if (priceChanged && lastEntry) {
-      history.push({
-        price: newP.priceFrom,
-        date:  new Date().toISOString().split('T')[0]
-      });
-      // Keep last 90 days of history
+    if (priceChanged) {
+      history.push({ price: newP.priceFrom, date: today });
+      // Keep last 90 data points
       while (history.length > 90) history.shift();
     }
 
-    return {
-      ...newP,
-      priceHistory: history
-    };
+    return { ...newP, priceHistory: history };
   });
+}
+
+// ─── RETRY WRAPPER ─────────────────────────────────────────────
+async function withRetry(fn, retries = 3, delayMs = 2000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (attempt === retries) throw err;
+      log(`  Retry ${attempt}/${retries - 1} after error: ${err.message}`);
+      await sleep(delayMs * attempt);
+    }
+  }
 }
 
 // ─── SCRAPE ONE RETAILER ────────────────────────────────────────
@@ -516,7 +531,7 @@ async function scrapeRetailer(retailer) {
   while (hasMore) {
     try {
       log(`  Page ${page}...`);
-      const data = await fetchJSON(retailer.url, page);
+      const data = await withRetry(() => fetchJSON(retailer.url, page));
 
       if (!data.products || data.products.length === 0) {
         hasMore = false;
@@ -536,7 +551,7 @@ async function scrapeRetailer(retailer) {
       if (hasMore) await sleep(500);
 
     } catch (err) {
-      log(`  ERROR on page ${page}: ${err.message}`);
+      log(`  ERROR on page ${page} (gave up after retries): ${err.message}`);
       hasMore = false;
     }
   }
