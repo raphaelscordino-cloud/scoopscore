@@ -22,60 +22,107 @@ const LOG_FILE = path.join(__dirname, 'data', 'scrape.log');
 fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
 
 // ─── SHARED CATEGORY MAP ───────────────────────────────────────
-// Reused across all Shopify retailers — maps product_type → ScoopScore category
+// Maps Shopify product_type → ScoopScore category.
+// IMPORTANT: Each retailer sets their own product_type strings in Shopify admin.
+// These are NOT standardised — "Whey Protein" at one store may be
+// "Protein Powder" or left BLANK at another. The map must cover every variant
+// we've seen in the wild. detectCategory() also does title/tag fallback,
+// but the map is the primary fast-path for correctly-tagged products.
 const SHARED_CATEGORY_MAP = {
-  // Protein
-  'Whey Protein':             'protein',
-  'Whey Protein Isolate':     'protein',
-  'Whey Protein Concentrate': 'protein',
-  'Whey Protein Blend':       'protein',
-  'Isolate Protein':          'protein',
-  'Isolate':                  'protein',
-  'Plant Based Protein':      'protein',
-  'Plant Protein':            'protein',
-  'Vegan Protein':            'protein',
-  'Mass Gainer':              'protein',
-  'Weight Gainer':            'protein',
-  'Protein Blend':            'protein',
-  'Protein Powder':           'protein',
-  'Casein Protein':           'protein',
-  'Casein':                   'protein',
-  'Lean Protein':             'protein',
-  'Hydrolysed Protein':       'protein',
-  'Hydrolyzed Protein':       'protein',
-  'Egg Protein':              'protein',
-  'Beef Protein':             'protein',
-  // Creatine
-  'Creatine':                 'creatine',
-  'Creatine Monohydrate':     'creatine',
-  'Creatine HCL':             'creatine',
-  'Creatine Blend':           'creatine',
-  // Pre-workout
-  'Pre-Workout':              'preworkout',
-  'Pre Workout':              'preworkout',
-  'Pre-workout':              'preworkout',
-  'Preworkout':               'preworkout',
-  'Pump':                     'preworkout',
-  'Stim Free Pre-Workout':    'preworkout',
-  'Non-Stim Pre-Workout':     'preworkout',
-  // Fat burners
-  'Fat Burner':               'fatburner',
-  'Fat Burners':              'fatburner',
-  'Thermogenic':              'fatburner',
-  'Weight Loss':              'fatburner',
-  'Weight Management':        'fatburner',
-  'Shred':                    'fatburner',
-  'Metabolism Support':       'fatburner',
-  // BCAAs / Aminos
-  'BCAA':                     'bcaa',
-  'BCAAs':                    'bcaa',
-  'EAA':                      'bcaa',
-  'EAAs':                     'bcaa',
-  'Amino Acids':               'bcaa',
-  'Amino':                    'bcaa',
-  'Essential Amino Acids':    'bcaa',
-  'Intra-Workout':            'bcaa',
-  'Recovery':                 'bcaa',
+  // ── Protein (covers every product_type string seen across NZ retailers) ──
+  'Whey Protein':                'protein',
+  'Whey Protein Isolate':        'protein',
+  'Whey Protein Concentrate':    'protein',
+  'Whey Protein Blend':          'protein',
+  'Whey Protein Powder':         'protein',   // ← Sportsfuel uses this
+  'Protein Powder':              'protein',
+  'Protein Blend':               'protein',
+  'Protein':                     'protein',   // ← catch-all for bare "Protein" type
+  'Isolate Protein':             'protein',
+  'Isolate':                     'protein',
+  'Hydrolysed Whey':             'protein',
+  'Hydrolyzed Whey':             'protein',
+  'Hydrolysed Protein':          'protein',
+  'Hydrolyzed Protein':          'protein',
+  'Plant Based Protein':         'protein',
+  'Plant Protein':               'protein',
+  'Vegan Protein':               'protein',
+  'Pea Protein':                 'protein',
+  'Hemp Protein':                'protein',
+  'Mass Gainer':                 'protein',
+  'Mass Gainers':                'protein',   // ← plural variant
+  'Weight Gainer':               'protein',
+  'Weight Gainers':              'protein',
+  'Lean Protein':                'protein',
+  'Casein Protein':              'protein',
+  'Casein':                      'protein',
+  'Egg Protein':                 'protein',
+  'Beef Protein':                'protein',
+  'Collagen Protein':            'protein',
+  'Collagen':                    'protein',
+  'Thermogenic Protein':         'protein',
+  'Low Carb Protein':            'protein',
+  'Protein Bar':                 'protein',
+  'Protein Bars':                'protein',
+  'Protein Snacks':              'protein',
+  'Protein Water':               'protein',
+  // ── Creatine ──
+  'Creatine':                    'creatine',
+  'Creatine Monohydrate':        'creatine',
+  'Creatine HCL':                'creatine',
+  'Creatine HCI':                'creatine',
+  'Creatine Blend':              'creatine',
+  'Creatine Supplement':         'creatine',
+  'Creatine Supplements':        'creatine',
+  'Creatine Powder':             'creatine',
+  'Creatine Capsules':           'creatine',
+  'Creatine Gummies':            'creatine',
+  'Flavoured Creatine':          'creatine',
+  // ── Pre-Workout ──
+  'Pre-Workout':                 'preworkout',
+  'Pre Workout':                 'preworkout',
+  'Pre-workout':                 'preworkout',
+  'Preworkout':                  'preworkout',
+  'Pre Workouts':                'preworkout',
+  'Pre-Workouts':                'preworkout',
+  'Pump':                        'preworkout',
+  'Pump Pre-Workout':            'preworkout',
+  'Stim Free Pre-Workout':       'preworkout',
+  'Non-Stim Pre-Workout':        'preworkout',
+  'Low-Stim Pre-Workout':        'preworkout',
+  'Low Stim Pre-Workout':        'preworkout',
+  'Energy Drink':                'preworkout',
+  'Energy Drinks':               'preworkout',
+  // ── Fat Burners ──
+  'Fat Burner':                  'fatburner',
+  'Fat Burners':                 'fatburner',
+  'Fat Metaboliser':             'fatburner',
+  'Fat Metabolisers':            'fatburner',
+  'Thermogenic':                 'fatburner',
+  'Thermogenics':                'fatburner',
+  'Weight Loss':                 'fatburner',
+  'Weight Management':           'fatburner',
+  'Shred':                       'fatburner',
+  'Metabolism Support':          'fatburner',
+  'L-Carnitine':                 'fatburner',
+  'Carnitine':                   'fatburner',
+  'CLA':                         'fatburner',
+  'Appetite Control':            'fatburner',
+  // ── BCAAs / Aminos ──
+  'BCAA':                        'bcaa',
+  'BCAAs':                       'bcaa',
+  'EAA':                         'bcaa',
+  'EAAs':                        'bcaa',
+  'Amino Acids':                 'bcaa',
+  'Amino':                       'bcaa',
+  'Aminos':                      'bcaa',
+  'Essential Amino Acids':       'bcaa',
+  'Intra-Workout':               'bcaa',
+  'Intra Workout':               'bcaa',
+  'Recovery':                    'bcaa',
+  'Glutamine':                   'bcaa',
+  'Post Workout':                'bcaa',
+  'Post-Workout':                'bcaa',
 };
 
 // ─── RETAILERS ─────────────────────────────────────────────────
@@ -388,28 +435,41 @@ function sleep(ms) {
 }
 
 // ─── CATEGORY DETECTION ────────────────────────────────────────
+// Three-pass detection: product_type map → tags → title keywords.
+// product_type varies wildly between retailers — each store admin sets
+// their own strings. The map above covers every known variant.
 function detectCategory(product, categoryMap) {
-  // 1. Check product_type against our map
-  const pt = (product.product_type || '').toLowerCase();
-  for (const [key, cat] of Object.entries(categoryMap)) {
-    if (pt.includes(key.toLowerCase())) return cat;
+  const pt = (product.product_type || '').trim();
+
+  // 1. Exact match first (case-insensitive)
+  if (pt) {
+    const ptLower = pt.toLowerCase();
+    for (const [key, cat] of Object.entries(categoryMap)) {
+      if (ptLower === key.toLowerCase()) return cat;
+    }
+    // 1b. Partial/substring match (e.g. "Whey Protein Powder 5lb" → matches "Whey Protein Powder")
+    for (const [key, cat] of Object.entries(categoryMap)) {
+      if (ptLower.includes(key.toLowerCase())) return cat;
+    }
   }
 
-  // 2. Check tags
+  // 2. Check tags (retailer-applied collection tags often reveal category)
   const tags = (product.tags || []).map(t => t.toLowerCase()).join(' ');
-  if (tags.includes('protein') || tags.includes('whey') || tags.includes('casein') || tags.includes('isolate')) return 'protein';
+  if (tags.includes('whey-protein') || tags.includes('whey protein') || tags.includes('protein-powder') || tags.includes('protein powder')) return 'protein';
+  if (tags.includes('protein') || tags.includes('whey') || tags.includes('casein') || tags.includes('isolate') || tags.includes('mass-gainer') || tags.includes('mass gainer')) return 'protein';
   if (tags.includes('creatine')) return 'creatine';
-  if (tags.includes('pre-workout') || tags.includes('pre workout')) return 'preworkout';
-  if (tags.includes('fat burner') || tags.includes('weight loss') || tags.includes('thermogenic')) return 'fatburner';
+  if (tags.includes('pre-workout') || tags.includes('pre workout') || tags.includes('preworkout')) return 'preworkout';
+  if (tags.includes('fat-burner') || tags.includes('fat burner') || tags.includes('weight-loss') || tags.includes('weight loss') || tags.includes('thermogenic')) return 'fatburner';
   if (tags.includes('bcaa') || tags.includes('eaa') || tags.includes('amino')) return 'bcaa';
 
-  // 3. Scan title
+  // 3. Title keyword scan (last resort — catches products with blank product_type)
   const title = product.title.toLowerCase();
-  if (title.includes('whey') || title.includes('protein') || title.includes('isolate') || title.includes('casein') || title.includes('mass gainer')) return 'protein';
+  if (title.includes('whey') || title.includes('isolate') || title.includes('casein') || title.includes('mass gainer') || title.includes('mass-gainer') || title.includes('weight gainer') || title.includes('plant protein') || title.includes('vegan protein') || title.includes('pea protein') || title.includes('collagen protein')) return 'protein';
+  if (title.match(/\bprotein\b/) && !title.includes('bar') && !title.includes('snack') && !title.includes('cookie') && !title.includes('chip')) return 'protein';
   if (title.includes('creatine')) return 'creatine';
   if (title.includes('pre-workout') || title.includes('pre workout') || title.includes('preworkout')) return 'preworkout';
-  if (title.includes('oxyshred') || title.includes('fat burn') || title.includes('thermogenic') || title.includes('shred')) return 'fatburner';
-  if (title.includes('bcaa') || title.includes('amino') || title.includes('eaa')) return 'bcaa';
+  if (title.includes('oxyshred') || title.includes('fat burn') || title.includes('thermogenic') || title.includes('shred') || title.includes('l-carnitine') || title.includes('carnitine') || title.includes('fat metabolis')) return 'fatburner';
+  if (title.includes('bcaa') || title.includes('amino acid') || title.includes(' eaa') || title.includes('glutamine') || title.includes('intra-workout') || title.includes('intra workout')) return 'bcaa';
 
   return null; // not a supplement we track
 }
@@ -424,8 +484,20 @@ function isSupplementProduct(product) {
 // ─── EXTRACT CLEAN PRODUCT DATA ────────────────────────────────
 function extractProduct(raw, retailer) {
   const category = detectCategory(raw, retailer.categoryMap);
-  if (!category) return null;
-  if (!isSupplementProduct(raw)) return null;
+  if (!category) {
+    // Log products that look like supplements but failed category detection
+    // so you can add missing product_type strings to the map
+    const title = (raw.title || '').toLowerCase();
+    const isSuppLike = ['protein','whey','creatine','pre-workout','amino','bcaa','fat burner','isolate','casein','mass','gainer'].some(kw => title.includes(kw));
+    if (isSuppLike) {
+      log(`  [SKIPPED - no category] "${raw.title}" | product_type: "${raw.product_type || '(blank)'}" | tags: ${(raw.tags||[]).slice(0,5).join(',')}`);
+    }
+    return null;
+  }
+  if (!isSupplementProduct(raw)) {
+    log(`  [SKIPPED - not supplement] "${raw.title}" | product_type: "${raw.product_type || '(blank)'}"`);
+    return null;
+  }
   if (!raw.variants || raw.variants.length === 0) return null;
 
   // All variants including out-of-stock ones
