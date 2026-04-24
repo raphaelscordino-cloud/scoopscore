@@ -700,7 +700,10 @@ function init(updatedAt){
   BRANDS={};
   for(const p of ALL){
     if(!BRANDS[p.brand])BRANDS[p.brand]={name:p.brand,groups:{},cats:new Set(),retailers:new Set()};
-    const b=BRANDS[p.brand];const key=normKey(p.name);
+    const b=BRANDS[p.brand];
+    // Include category in the key so products with the same name but different
+    // category (e.g. "Collagen" vs a whey "Protein") don't collapse into one group
+    const key=normKey(p.name)+'__'+p.category;
     if(!b.groups[key])b.groups[key]={key,name:p.name,category:p.category,imageUrl:p.imageUrl,listings:[]};
     if(p.name.length<b.groups[key].name.length)b.groups[key].name=p.name;
     if(p.imageUrl&&!b.groups[key].imageUrl)b.groups[key].imageUrl=p.imageUrl;
@@ -709,33 +712,43 @@ function init(updatedAt){
   for(const b of Object.values(BRANDS)){
     b.cats=[...b.cats];b.retailers=[...b.retailers];
     for(const g of Object.values(b.groups)){
-      // a group is fully sold out only if every listing has available===false
-      // available===undefined means scraper doesn't track it yet → treat as in stock
+      // available===false means explicitly OOS; available===undefined (old scrape data) → treat as in stock
       g.soldOut = g.listings.length > 0 && g.listings.every(l => l.available === false);
       g.partialOos = !g.soldOut && g.listings.some(l => l.available === false);
+      // Pre-compute in-stock listings for performance
+      g.inStockListings = g.listings.filter(l => l.available !== false);
     }
     b.groupList=Object.values(b.groups).sort((a,z)=>{
       // in-stock first, then sort by retailer count desc, then price asc
       if(a.soldOut!==z.soldOut) return a.soldOut?1:-1;
-      const ra=new Set(a.listings.filter(l=>l.available!==false).map(l=>l.retailer)).size;
-      const rz=new Set(z.listings.filter(l=>l.available!==false).map(l=>l.retailer)).size;
+      const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;
+      const rz=new Set(z.inStockListings.map(l=>l.retailer)).size;
       if(rz!==ra) return rz-ra;
-      const pa=Math.min(...a.listings.filter(l=>l.available!==false).map(l=>l.priceFrom).filter(n=>!isNaN(n))||[9999]);
-      const pz=Math.min(...z.listings.filter(l=>l.available!==false).map(l=>l.priceFrom).filter(n=>!isNaN(n))||[9999]);
+      const pa=a.inStockListings.length?Math.min(...a.inStockListings.map(l=>l.priceFrom)):9999;
+      const pz=z.inStockListings.length?Math.min(...z.inStockListings.map(l=>l.priceFrom)):9999;
       return pa-pz;
     });
   }
   const rc=(META.retailers||[]).filter(r=>(META.retailerStats||{})[r]>0).length;
+  const inStockCount=ALL.filter(p=>p.available!==false).length;
   document.getElementById('hsBrands').textContent=Object.keys(BRANDS).length;
-  document.getElementById('hsProducts').textContent=ALL.length;
+  // Show in-stock product count (more accurate/useful than total including OOS)
+  document.getElementById('hsProducts').textContent=inStockCount;
   document.getElementById('hsRetailers').textContent=rc||Object.keys(RETAILER_META).length;
-  setStatus('live',`${ALL.length} products tracked across ${rc||Object.keys(RETAILER_META).length} NZ retailers`,updatedAt);
+  setStatus('live',`${inStockCount} products tracked across ${rc||Object.keys(RETAILER_META).length} NZ retailers`,updatedAt);
   renderFeatured();renderBrands();
 }
 
 function renderFeatured(){
   const featured=[];
-  for(const b of Object.values(BRANDS))for(const g of b.groupList){if(!g.imageUrl)continue;const rc=new Set(g.listings.map(l=>l.retailer)).size;const best=Math.min(...g.listings.map(l=>l.priceFrom));featured.push({brand:b.name,group:g,rc,best});}
+  for(const b of Object.values(BRANDS))for(const g of b.groupList){
+    if(!g.imageUrl||g.soldOut)continue;
+    const inStock=g.inStockListings;
+    if(!inStock.length)continue;
+    const rc=new Set(inStock.map(l=>l.retailer)).size;
+    const best=Math.min(...inStock.map(l=>l.priceFrom));
+    featured.push({brand:b.name,group:g,rc,best});
+  }
   featured.sort((a,z)=>z.rc-a.rc||a.best-z.best);
   const top=featured.slice(0,16);
   document.getElementById('featCount').textContent=`${top.length} products`;
@@ -762,24 +775,55 @@ function navFilterCat(el,cat){
   catFilter=cat;document.getElementById('bsTitle').textContent=cat==='all'?'All Brands':(CAT_META[cat]?.label||cat);
   renderBrands();if(document.getElementById('viewHome').classList.contains('active'))document.querySelector('.brand-grid').scrollIntoView({behavior:'smooth'});
 }
-function onSearch(q){searchQ=q.toLowerCase();renderBrands();}
+function onSearch(q){
+  searchQ=q.toLowerCase().trim();
+  renderBrands();
+  // If we're already in a brand view, also filter its product list
+  if(currentBrand&&document.getElementById('viewBrand').classList.contains('active')){
+    renderProducts();
+  }
+}
+
 function renderBrands(){
   let brands=Object.values(BRANDS);
   if(catFilter!=='all')brands=brands.filter(b=>b.cats.includes(catFilter));
-  if(searchQ)brands=brands.filter(b=>b.name.toLowerCase().includes(searchQ)||b.groupList.some(g=>g.name.toLowerCase().includes(searchQ)));
-  brands.sort((a,b)=>b.groupList.length-a.groupList.length||a.name.localeCompare(b.name));
-  document.getElementById('bsCount').textContent=`${brands.length} brands`;
+  if(searchQ){
+    brands=brands.filter(b=>{
+      if(b.name.toLowerCase().includes(searchQ))return true;
+      // Match on product names within the brand
+      if(b.groupList.some(g=>g.name.toLowerCase().includes(searchQ)))return true;
+      // Match on category labels (e.g. "collagen", "pre workout")
+      if(b.cats.some(cc=>(CAT_META[cc]?.label||cc).toLowerCase().includes(searchQ)))return true;
+      return false;
+    });
+  }
+  brands.sort((a,b)=>{
+    // If searching, put brands where the brand name itself matches first
+    if(searchQ){
+      const am=a.name.toLowerCase().includes(searchQ)?1:0;
+      const bm=b.name.toLowerCase().includes(searchQ)?1:0;
+      if(am!==bm)return bm-am;
+    }
+    return b.groupList.length-a.groupList.length||a.name.localeCompare(b.name);
+  });
+  document.getElementById('bsCount').textContent=`${brands.length} brand${brands.length!==1?'s':''}`;
   const grid=document.getElementById('brandGrid');
-  if(!brands.length){grid.innerHTML=`<div class="loading-wrap" style="grid-column:1/-1"><div class="load-txt">No brands found</div></div>`;return;}
+  if(!brands.length){grid.innerHTML=`<div class="loading-wrap" style="grid-column:1/-1"><div class="load-txt">No brands found for "${searchQ}"</div></div>`;return;}
   grid.innerHTML=brands.map((b,i)=>{
-    const c=brandColor(b.name);const min=Math.min(...b.groupList.map(g=>Math.min(...g.listings.map(l=>l.priceFrom))));
-    const mc=b.groupList.filter(g=>new Set(g.listings.map(l=>l.retailer)).size>1).length;
+    const c=brandColor(b.name);
+    const inStockPrices=b.groupList.flatMap(g=>g.inStockListings.map(l=>l.priceFrom)).filter(p=>!isNaN(p));
+    const min=inStockPrices.length?Math.min(...inStockPrices):null;
+    const mc=b.groupList.filter(g=>new Set(g.inStockListings.map(l=>l.retailer)).size>1).length;
     const catPills=b.cats.map(cc=>`<span class="bc-cat">${CAT_META[cc]?.label||cc}</span>`).join('');
+    // Count matched products to show in card when searching
+    const matchedProducts=searchQ?b.groupList.filter(g=>g.name.toLowerCase().includes(searchQ)).length:0;
+    const matchNote=matchedProducts>0&&!b.name.toLowerCase().includes(searchQ)?`<div style="font-size:11px;color:var(--blue);margin-top:2px">${matchedProducts} matching product${matchedProducts!==1?'s':''}</div>`:'';
     return `<div class="brand-card" style="--ac:${c};animation:fadeUp .35s ease ${i*.03}s both" onclick="openBrand('${b.name.replace(/'/g,"\\'")}')">
       <div class="bc-bar"></div>
       <div class="bc-initial">${b.name[0]}</div>
       <div class="bc-name">${b.name}</div>
-      <div class="bc-meta">${b.groupList.length} products &middot; from $${min.toFixed(2)}${mc?` &middot; <span class="bc-meta-green">${mc} compared</span>`:''}</div>
+      <div class="bc-meta">${b.groupList.length} products${min!==null?` &middot; from $${min.toFixed(2)}`:''}${mc?` &middot; <span class="bc-meta-green">${mc} compared</span>`:''}</div>
+      ${matchNote}
       <div class="bc-cats">${catPills}</div>
       <div class="bc-arrow">→</div>
     </div>`;
@@ -789,12 +833,14 @@ function renderBrands(){
 function openBrand(name){
   const b=BRANDS[name];if(!b)return;
   currentBrand=name;currentCat='all';
-  const c=brandColor(name);const minPrice=Math.min(...b.groupList.map(g=>Math.min(...g.listings.map(l=>l.priceFrom))));
+  const c=brandColor(name);
+  const inStockPrices=b.groupList.flatMap(g=>g.inStockListings.map(l=>l.priceFrom)).filter(p=>!isNaN(p));
+  const minPrice=inStockPrices.length?Math.min(...inStockPrices):0;
   document.getElementById('bvName').textContent=name;
   document.getElementById('bvMeta').textContent=`${b.groupList.length} products · from $${minPrice.toFixed(2)} NZD · ${[...b.retailers].map(r=>rm(r).name).join(', ')}`;
   document.getElementById('bvDesc').textContent=brandDesc(name);
   document.getElementById('bvBg').style.background=`radial-gradient(ellipse 50% 100% at 100% 50%,${c}14 0%,transparent 65%)`;
-  const mc=b.groupList.filter(g=>new Set(g.listings.map(l=>l.retailer)).size>1).length;
+  const mc=b.groupList.filter(g=>new Set(g.inStockListings.map(l=>l.retailer)).size>1).length;
   document.getElementById('bvStats').innerHTML=`<div class="bvs-item" style="text-align:right"><div class="bvs-n">${b.groupList.length}</div><div class="bvs-l">Products</div></div><div class="bvs-item" style="text-align:right"><div class="bvs-n" style="color:var(--green)">${mc}</div><div class="bvs-l">Compared</div></div><div class="bvs-item" style="text-align:right"><div class="bvs-n">$${minPrice.toFixed(0)}</div><div class="bvs-l">From</div></div>`;
   const cats=['all',...b.cats];
   document.getElementById('bcf').innerHTML=cats.map(cc=>{const lbl=cc==='all'?`All (${b.groupList.length})`:`${CAT_META[cc]?.label||cc} (${b.groupList.filter(g=>g.category===cc).length})`;return `<button class="bcf-pill${cc==='all'?' active':''}" onclick="setBrandCat(this,'${cc}')">${lbl}</button>`;}).join('');
@@ -804,27 +850,48 @@ function setBrandCat(el,cat){document.querySelectorAll('.bcf-pill').forEach(b=>b
 
 function renderProducts(){
   const b=BRANDS[currentBrand];if(!b)return;
-  let groups=[...b.groupList];if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
-  // Apply sort
-  const bestPriceOf=g=>Math.min(...g.listings.filter(l=>l.available!==false).map(l=>l.priceFrom).filter(n=>!isNaN(n))||[9999]);
+  let groups=[...b.groupList];
+  if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
+  // Filter by search query if one is active
+  if(searchQ)groups=groups.filter(g=>g.name.toLowerCase().includes(searchQ)||g.category.toLowerCase().includes(searchQ)||(CAT_META[g.category]?.label||'').toLowerCase().includes(searchQ));
+  // Apply sort — use pre-computed inStockListings
+  const bestPriceOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
   if(currentSort==='price-asc')groups.sort((a,z)=>bestPriceOf(a)-bestPriceOf(z));
   else if(currentSort==='price-desc')groups.sort((a,z)=>bestPriceOf(z)-bestPriceOf(a));
   else if(currentSort==='name')groups.sort((a,z)=>a.name.localeCompare(z.name));
-  else groups.sort((a,z)=>{if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;const ra=new Set(a.listings.filter(l=>l.available!==false).map(l=>l.retailer)).size;const rz=new Set(z.listings.filter(l=>l.available!==false).map(l=>l.retailer)).size;return rz-ra||bestPriceOf(a)-bestPriceOf(z);});
+  else groups.sort((a,z)=>{
+    if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;
+    const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;
+    const rz=new Set(z.inStockListings.map(l=>l.retailer)).size;
+    return rz-ra||bestPriceOf(a)-bestPriceOf(z);
+  });
   const showOos=document.getElementById('showOosToggle')?.checked||false;
   const oosGroups=groups.filter(g=>g.soldOut);
   const el=document.getElementById('oosCount');
   if(el) el.textContent=oosGroups.length?`${oosGroups.length} out of stock hidden`:'';
   if(!showOos) groups=groups.filter(g=>!g.soldOut);
   const plist=document.getElementById('plist');
-  if(!groups.length){plist.innerHTML=`<div class="plist-empty">${showOos?'No products in this category':'No in-stock products — <a href="#" style="color:var(--blue)" onclick="event.preventDefault();document.getElementById(\'showOosToggle\').checked=true;renderProducts()">show out of stock</a>'}</div>`;return;}
+  if(!groups.length){
+    const emptyMsg=searchQ
+      ?`No products matching "${searchQ}"${currentCat!=='all'?` in ${CAT_META[currentCat]?.label||currentCat}`:''}`
+      :showOos?'No products in this category':'No in-stock products — <a href="#" style="color:var(--blue)" onclick="event.preventDefault();document.getElementById(\'showOosToggle\').checked=true;renderProducts()">show out of stock</a>';
+    plist.innerHTML=`<div class="plist-empty">${emptyMsg}</div>`;return;
+  }
   plist.innerHTML=groups.map((g,i)=>{
     const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-    const byR={};for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
+    // One card per retailer — take cheapest listing per retailer
+    const byR={};
+    for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
     const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
     const inStockRl=rl.filter(l=>l.available!==false);
     const best=inStockRl.length?inStockRl[0].priceFrom:null;
+    // Variant count across all listings
     const tv=[...new Set(g.listings.flatMap(l=>l.variants.map(v=>v.title)))].length;
+    // Retailer count: show in-stock count, with total in parens if some are OOS
+    const oosRetailers=rl.length-inStockRl.length;
+    const retailerLabel=inStockRl.length
+      ? `${inStockRl.length} retailer${inStockRl.length!==1?'s':''}${oosRetailers?` (+${oosRetailers} OOS)`:''}`
+      : `${rl.length} retailer${rl.length!==1?'s':''} (all OOS)`;
     const img=g.imageUrl?`<div class="prow-img"><img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:'<div class="prow-img"></div>';
     const cards=rl.map(l=>{
       const isOos=l.available===false;
@@ -840,7 +907,7 @@ function renderProducts(){
         <div class="prow-left">
           <div class="prow-cat" style="background:${cm.color}18;color:${cm.color};border:1px solid ${cm.color}35">${cm.label}</div>
           <div class="prow-name">${g.name}</div>
-          <div class="prow-opts">${tv} variant${tv!==1?'s':''} · ${rl.length} retailer${rl.length!==1?'s':''}</div>
+          <div class="prow-opts">${tv} variant${tv!==1?'s':''} · ${retailerLabel}</div>
           ${oosBadge}
         </div>
         <div class="prow-right">${cards}</div>
@@ -852,7 +919,15 @@ function renderProducts(){
 function openDetail(groupKey,brandName){
   const b=BRANDS[brandName];if(!b)return;
   currentBrand=brandName;
-  const g=b.groups[groupKey];if(!g)return;
+  // Support both old key format (normKey only) and new format (normKey__category).
+  // The card onclick passes g.key which is always the current format, but deep links
+  // from before the key change may omit the __category suffix.
+  let g=b.groups[groupKey];
+  if(!g){
+    // Fallback: find first group whose key starts with groupKey
+    g=Object.values(b.groups).find(gr=>gr.key.startsWith(groupKey));
+  }
+  if(!g)return;
   const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
   const byR={};for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
   const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
