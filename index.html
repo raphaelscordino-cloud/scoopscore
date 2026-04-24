@@ -684,7 +684,26 @@ function setSort(el,s){document.querySelectorAll('.sort-btn').forEach(b=>b.class
 
 function brandColor(name){const K={'Optimum Nutrition':'#3b82f6','EHP Labs':'#ec4899','Ghost':'#a855f7','Cellucor':'#06b6d4','Myprotein':'#f97316','Dymatize':'#0ea5e9','NZ Muscle':'#22c55e','Musashi':'#f59e0b','Bulk Nutrients':'#10b981','BSN':'#6366f1','MuscleTech':'#ef4444','Rule 1':'#3b82f6','Faction Labs':'#f97316','ATP Science':'#a855f7','RedCon1':'#dc2626','Primabolics':'#d97706','Switch Nutrition':'#22c55e'};if(K[name])return K[name];let h=0;for(let i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))&0xffffff;return `hsl(${h%360},65%,55%)`;}
 function brandDesc(name){const K={'Optimum Nutrition':"The world's best-selling sports nutrition brand. Gold Standard whey has been the industry benchmark since 1994.",'EHP Labs':"Australia's #1 premium supplement brand. Known for OxyShred (world's #1 fat burner) and OxyWhey lean protein.",'Ghost':"The brand that redefined transparency. Full-label disclosure, legendary licensed flavours, athlete-formulated products.",'Cellucor':"Makers of C4, the world's best-selling pre-workout. Clean, effective formulas and iconic flavours.",'Myprotein':"Europe's #1 online sports nutrition brand. Unbeatable value per gram, massive range of proteins and supplements.",'Dymatize':"Precision-engineered sports nutrition. ISO100 hydrolyzed is a favourite of elite athletes for rapid absorption.",'NZ Muscle':"New Zealand's own supplement brand. Pharmaceutical grade ingredients at honest prices, made for Kiwi athletes.",'Musashi':"A trusted Australasian sports nutrition brand with 30+ years of experience. Clean formulas, no proprietary blends.",'Bulk Nutrients':"Australia's leading direct-to-consumer brand. Exceptional value with no middlemen. Massive range, honest labelling.",'BSN':"Pioneers of N.O.-Xplode. Premium formulas with over 20 years of performance nutrition expertise.",'MuscleTech':"Science-backed formulations with clinical doses. Nitro-Tech is one of the world's best-selling protein powders."};return K[name]||`Premium supplements from ${name}, available across NZ's top supplement retailers.`;}
-function normKey(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\b\d+\s*(g|kg|lb|lbs|mg|ml|l|caps?|capsules?|tablets?|tabs?|serves?|servings?|pack|x\d+)\b/g,' ').replace(/\s+/g,' ').trim();}
+function normKey(s){
+  return s.toLowerCase()
+    // strip punctuation except spaces
+    .replace(/[^a-z0-9 ]/g,' ')
+    // strip weights, sizes, counts (5lb, 1kg, 500g, 90caps, etc.)
+    .replace(/\b\d+\s*(g|kg|lb|lbs|mg|ml|l|caps?|capsules?|tablets?|tabs?|serves?|servings?|pack|x\d+)\b/g,' ')
+    // strip bare percentage numbers left over after punct strip (e.g. "100% Whey" -> "100 whey" -> "whey")
+    .replace(/\b100\b/g,' ')
+    // strip reformulation/edition noise — "New & Improved", "New Formula", "Classic", etc.
+    // These are marketing words that retailers add when reformulating; the product is the same
+    .replace(/\b(new|improved|original|classic|advanced|ultra|plus|pro|elite|premium|edition|version|v\d+)\b/g,' ')
+    // strip generic product-form words that carry no identity info
+    .replace(/\b(powder|supplement|formula|blend)\b/g,' ')
+    // collapse "whey protein" -> "whey", "casein protein" -> "casein", etc.
+    // so "Mutant Whey Protein Powder" and "Mutant Whey" both key to "mutant whey"
+    // BUT preserves "Gold Standard Casein" vs "Gold Standard Whey" as different keys
+    .replace(/\b(whey|casein|isolate|pea|plant|vegan|egg|beef|collagen)\s+protein\b/g,(_,p1)=>p1)
+    // collapse whitespace
+    .replace(/\s+/g,' ').trim();
+}
 
 let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
 
