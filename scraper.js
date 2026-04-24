@@ -208,11 +208,37 @@ const SUPP_KEYWORDS = [
   'pump', 'nitric oxide', 'carnitine', 'cla', 'greens'
 ];
 
-const SUPP_EXCLUDE = [
-  'shaker', 'bottle', 'bag', 'shirt', 't-shirt', 'shorts', 'legging',
-  'singlet', 'rack', 'bench', 'dumbbell', 'barbell', 'kettlebell',
-  'resistance band', 'skipping', 'mat', 'glove', 'belt', 'wrap',
-  'treadmill', 'rower', 'boxing', 'flooring', 'ice bath'
+// IMPORTANT: these are matched as WHOLE WORDS only (word boundaries) to avoid
+// false positives like 'mat' matching 'Dymatize', or 'bag' matching 'Chamber Bag 4lb'.
+// Use specific multi-word phrases where needed.
+const SUPP_EXCLUDE_PATTERNS = [
+  /\bshakers?\b/,
+  /\bwater bottle\b/,
+  /\bt-shirt\b/,
+  /\btee shirt\b/,
+  /\bshorts\b/,
+  /\blegging\b/,
+  /\bsinglet\b/,
+  /\bdumbbell\b/,
+  /\bbarbell\b/,
+  /\bkettlebell\b/,
+  /\bresistance band\b/,
+  /\bskipping rope\b/,
+  /\bexercise mat\b/,
+  /\byoga mat\b/,
+  /\blifting glove\b/,
+  /\blifting belt\b/,
+  /\bwrist wrap\b/,
+  /\bknee wrap\b/,
+  /\btreadmill\b/,
+  /\brower\b/,
+  /\bbox(?:ing)?\s+(?:glove|equipment|set)\b/, // only "boxing gloves/equipment" not "12 Box"
+  /\bflooring\b/,
+  /\bice bath\b/,
+  /\bbench press\b/,
+  /\bpower rack\b/,
+  /\bmassage (?:ball|gun|stick|cane|roller)\b/,
+  /\bworkout equipment\b/,     // product_type used by Sportsfuel for jugs/racks
 ];
 
 // ─── UTILITIES ─────────────────────────────────────────────────
@@ -475,10 +501,18 @@ function detectCategory(product, categoryMap) {
 }
 
 function isSupplementProduct(product) {
-  const text = `${product.title} ${product.product_type} ${(product.tags || []).join(' ')}`.toLowerCase();
-  const isSupp = SUPP_KEYWORDS.some(kw => text.includes(kw));
-  const isExcluded = SUPP_EXCLUDE.some(kw => text.includes(kw));
-  return isSupp && !isExcluded;
+  const fullText = `${product.title} ${product.product_type} ${(product.tags || []).join(' ')}`.toLowerCase();
+  const isSupp = SUPP_KEYWORDS.some(kw => fullText.includes(kw));
+  if (!isSupp) return false;
+
+  // Only apply exclusion patterns to the product_type field.
+  // Checking the title causes false positives on bundle products like
+  // "Pre-Workout + Free Shaker" or "Protein Powder 12 Box" — the supplement
+  // keyword wins but the exclusion word happens to be in the product name.
+  // product_type is set by the retailer's admin and is a reliable signal.
+  const typeText = (product.product_type || '').toLowerCase();
+  const isExcluded = SUPP_EXCLUDE_PATTERNS.some(re => re.test(typeText));
+  return !isExcluded;
 }
 
 // ─── EXTRACT CLEAN PRODUCT DATA ────────────────────────────────
