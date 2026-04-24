@@ -599,6 +599,8 @@ async function scrapeRetailer(retailer) {
   const products = [];
   let page = 1;
   let hasMore = true;
+  let consecutiveErrors = 0;
+  const MAX_CONSECUTIVE_ERRORS = 3; // Only stop if 3 pages in a row all fail
 
   while (hasMore) {
     try {
@@ -610,6 +612,7 @@ async function scrapeRetailer(retailer) {
         break;
       }
 
+      consecutiveErrors = 0; // reset on success
       for (const raw of data.products) {
         const product = extractProduct(raw, retailer);
         if (product) products.push(product);
@@ -623,12 +626,22 @@ async function scrapeRetailer(retailer) {
       if (hasMore) await sleep(500);
 
     } catch (err) {
-      log(`  ERROR on page ${page} (gave up after retries): ${err.message}`);
-      hasMore = false;
+      consecutiveErrors++;
+      log(`  ERROR on page ${page} (attempt ${consecutiveErrors}/${MAX_CONSECUTIVE_ERRORS}): ${err.message}`);
+      if (consecutiveErrors >= MAX_CONSECUTIVE_ERRORS) {
+        log(`  Stopping ${retailer.name} after ${MAX_CONSECUTIVE_ERRORS} consecutive page failures`);
+        hasMore = false;
+      } else {
+        // Skip this page and try the next one — a single bad page shouldn't
+        // abort the entire catalogue (Sportsfuel has 1000+ products across many pages)
+        log(`  Skipping page ${page} and continuing to page ${page + 1}...`);
+        page++;
+        await sleep(2000); // longer pause before retrying
+      }
     }
   }
 
-  log(`  Found ${products.length} supplement products from ${retailer.name}`);
+  log(`  Found ${products.length} supplement products from ${retailer.name} (${page - 1} page${page - 1 !== 1 ? 's' : ''} fetched)`);
   return products;
 }
 
