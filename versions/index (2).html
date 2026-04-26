@@ -3,635 +3,1516 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScoopScore — NZ Supplement Price Tracker</title>
+<title>ScoopScore — NZ Supplement Price Comparison</title>
+<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, ASN Online and others.">
+<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scoopscore.co.nz/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scoopscore.co.nz/">
+<meta property="og:title" content="ScoopScore — NZ Supplement Price Comparison">
+<meta property="og:description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest protein, creatine and pre-workout in NZ.">
+<meta property="og:image" content="https://scoopscore.co.nz/og-image.jpg">
+<meta property="og:locale" content="en_NZ">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ScoopScore — NZ Supplement Price Comparison">
+<meta name="twitter:description" content="Compare supplement prices across NZ's top retailers daily.">
+<!-- Schema.org -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ScoopScore","url":"https://scoopscore.co.nz","description":"NZ supplement price comparison tool","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://scoopscore.co.nz/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0c0c0c; --bg2:#141414; --bg3:#1a1a1a; --bg4:#222;
-  --ink:#f5f2ed; --ink2:#9a9690; --ink3:#4a4845;
-  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.13);
-  --white:#fff; --green:#4ade80; --red:#f87171;
+  --bg:#f8f7f5;   --bg2:#f0efe9;  --bg3:#e5e3db;  --bg4:#cccab8;
+  --ink:#2c2b28;  --ink2:#5c5a55; --ink3:#9a9890; --ink4:#b8b6ae;
+  --border:rgba(44,43,40,.07); --border2:rgba(44,43,40,.13);
+  --accent:#3d3b36; --accent2:#5c5a55; --accent-dim:rgba(44,43,40,.06);
+  --blue:#3d3b36; --blue2:#5c5a55; --blue-dim:rgba(44,43,40,.06);
+  --green:#3a7d52; --green-bg:rgba(58,125,82,.07); --green-border:rgba(58,125,82,.18);
+  --red:#c0392b;
+  --r:6px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--ink3)}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--bg4)}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;background:rgba(12,12,12,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.02em;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:8px}
-.nav-logo-badge{font-size:9px;font-weight:700;font-family:'Space Mono',monospace;letter-spacing:.1em;background:var(--ink);color:var(--bg);padding:2px 7px;border-radius:2px;text-transform:uppercase}
-.nav-bc{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase}
-.nav-bc .sep{color:var(--ink3)}
-.nav-bc .cur{color:var(--ink2)}
-.nav-right{display:flex;gap:10px;align-items:center}
-.nbtn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:7px 18px;cursor:pointer;transition:all .15s;border-radius:100px}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:400;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(248,247,245,.9);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-color:var(--border)}
+.nav-inner{max-width:1320px;margin:0 auto;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:20px}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px}
+.nav-logo-tag{font-size:10px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.08em;background:var(--ink);color:var(--bg);padding:3px 8px;border-radius:100px;text-transform:uppercase;opacity:.85}
+.nav-cats{display:flex;align-items:center;gap:1px}
+.nav-cat{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--ink3);padding:5px 13px;border-radius:100px;cursor:pointer;border:none;background:none;transition:all .12s;white-space:nowrap;letter-spacing:-.01em}
+.nav-cat:hover{color:var(--ink);background:var(--bg3)}
+.nav-cat.active{color:var(--ink);background:var(--bg3);font-weight:500}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.nav-search-wrap{position:relative}
+.nav-search{padding:7px 12px 7px 34px;background:var(--bg3);border:1px solid transparent;color:var(--ink);font-size:13px;font-family:'Inter',sans-serif;outline:none;border-radius:100px;width:200px;transition:all .15s}
+.nav-search:focus{border-color:var(--border2);background:var(--bg2);box-shadow:0 0 0 3px rgba(44,43,40,.06)}
+.nav-search::placeholder{color:var(--ink4)}
+.nav-search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:14px;pointer-events:none}
+.nbtn{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:7px 16px;cursor:pointer;transition:all .12s;border-radius:100px;letter-spacing:-.01em}
 .nbtn-g{background:none;border:1px solid var(--border2);color:var(--ink2)}
-.nbtn-g:hover{border-color:var(--ink2);color:var(--ink)}
-.nbtn-f{background:var(--ink);color:var(--bg);border:none;font-weight:600}
-.nbtn-f:hover{background:var(--ink2)}
+.nbtn-g:hover{border-color:var(--ink3);color:var(--ink)}
+.nbtn-f{background:var(--ink2);color:var(--bg);border:none}
+.nbtn-f:hover{background:var(--ink)}
 
-/* VIEWS */
-.view{display:none;padding-top:56px}
-.view.active{display:block}
+.view{display:none}.view.active{display:block}
 
-/* ── HOME HERO ── */
-.hero{min-height:90vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
-.hero-bg{position:absolute;inset:0;display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr;gap:2px}
-.hbg{overflow:hidden}
-.hbg img{width:100%;height:100%;object-fit:cover;filter:brightness(.32);transition:transform 12s ease}
-.hbg:first-child{grid-row:span 2}
-.hbg:hover img{transform:scale(1.04)}
-.hero-veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,12,1) 0%,rgba(12,12,12,.85) 28%,rgba(12,12,12,.2) 65%,transparent 100%)}
-.hero-content{position:relative;z-index:2;padding:0 36px 64px}
-.hero-tag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.hero-tag::before{content:'';width:28px;height:1px;background:var(--ink3)}
-.hero-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(52px,8.5vw,108px);line-height:.9;letter-spacing:-.03em;color:var(--ink);margin-bottom:20px;text-transform:uppercase}
-.hero-h1 em{font-style:italic;font-weight:600;color:var(--ink3)}
-.hero-sub{font-size:15px;font-weight:300;color:var(--ink2);max-width:420px;line-height:1.75;margin-bottom:32px}
-.hero-search{display:flex;gap:0;border:1px solid var(--border2);max-width:500px;transition:border-color .2s}
-.hero-search:focus-within{border-color:var(--ink2)}
-.hero-search input{flex:1;padding:13px 20px;background:rgba(255,255,255,.04);border:none;color:var(--ink);font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
-.hero-search input::placeholder{color:var(--ink3)}
-.hero-search button{padding:13px 24px;background:var(--ink);border:none;color:var(--bg);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;white-space:nowrap}
-.hero-search button:hover{background:var(--ink2)}
-.hero-stats{display:flex;gap:36px;margin-top:40px;padding-top:32px;border-top:1px solid var(--border)}
-.hs-item{display:flex;flex-direction:column;gap:4px}
-.hs-n{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.hs-l{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+/* ── HERO — full bleed, editorial ── */
+.hero{position:relative;height:calc(100vh - 52px);min-height:580px;max-height:900px;overflow:hidden;display:flex;align-items:center;margin-top:52px;background:#1e1d1a}
+.hero-img{position:absolute;inset:0}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.45}
+/* layered veil */
+.hero-veil{position:absolute;inset:0;background:linear-gradient(to top, rgba(20,19,16,.95) 0%, rgba(20,19,16,.5) 50%, rgba(20,19,16,.15) 100%)}
+.hero-veil2{position:absolute;inset:0;background:linear-gradient(to right, rgba(20,19,16,.55) 0%, rgba(20,19,16,.1) 60%, transparent 100%)}
 
-/* TICKER */
-.ticker{background:var(--ink);color:var(--bg);height:34px;overflow:hidden;display:flex;align-items:center}
-.ticker-track{display:flex;animation:ticker 35s linear infinite;white-space:nowrap}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{display:flex;align-items:center;gap:12px;padding:0 28px;font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.ti-dot{width:3px;height:3px;background:rgba(0,0,0,.25);border-radius:50%}
+.hero-content{position:relative;z-index:2;width:100%;max-width:1320px;margin:0 auto;padding:0 32px 160px}
+.hero-overline{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero-overline-bar{width:24px;height:1px;background:rgba(255,255,255,.4)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(80px,12vw,180px);line-height:.88;letter-spacing:.02em;text-transform:uppercase;color:#fff;margin-bottom:0}
+.hero-h1-plain{color:rgba(255,255,255,.45)}
+.hero-h1-accent{color:#fff}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:32px;flex-wrap:wrap}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.7;max-width:400px;letter-spacing:-.01em}
+.hero-ctas{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.hero-btn-p{padding:14px 36px;background:rgba(248,247,245,.92);color:#2c2b28;border:none;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em;cursor:pointer;border-radius:100px;transition:all .15s}
+.hero-btn-p:hover{background:rgba(248,247,245,.75)}
+.hero-btn-s{padding:14px 28px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.15);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;letter-spacing:-.01em;cursor:pointer;border-radius:100px;transition:all .15s;backdrop-filter:blur(8px)}
+.hero-btn-s:hover{background:rgba(255,255,255,.13)}
 
-/* STATUS */
-.status{background:var(--bg2);border-bottom:1px solid var(--border);padding:7px 36px;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.06em}
-.s-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;background:var(--green);animation:blink 2.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+/* hero stats strip */
+.hero-stats{position:absolute;bottom:0;left:0;right:0;z-index:3;border-top:1px solid rgba(255,255,255,.08);background:rgba(20,19,16,.5);backdrop-filter:blur(20px)}
+.hero-stats-inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:stretch}
+.hs-item{flex:1;padding:20px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.07)}
+.hs-item:last-child{border-right:none}
+.hs-n{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.04em;color:rgba(255,255,255,.9);line-height:1}
+.hs-l{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* ── STATUS ── */
+.status{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px}
+.status-inner{max-width:1320px;margin:0 auto;height:36px;display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:var(--ink3);letter-spacing:-.01em}
+.s-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--green);animation:blink 2.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 .s-time{margin-left:auto}
 
-/* CATEGORY TABS */
-.cat-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 36px;background:var(--bg);overflow-x:auto}
-.cat-tabs::-webkit-scrollbar{display:none}
-.ct{font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--ink3);padding:14px 20px;cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;font-family:'DM Sans',sans-serif}
-.ct:hover{color:var(--ink2)}
-.ct.active{color:var(--ink);border-bottom-color:var(--ink)}
+/* ── CONTENT WRAPPER ── */
+.wrap{max-width:100%;padding:0 32px}
 
-/* BRAND GRID */
-.brand-section{padding:48px 36px}
-.bs-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:24px}
-.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
-.brand-card{background:var(--bg2);border:1px solid var(--border);padding:26px 22px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden;border-radius:2px}
-.brand-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ac,#94a3b8);transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
-.brand-card:hover{background:var(--bg3);border-color:var(--border2);transform:translateY(-2px)}
-.brand-card:hover::after{transform:scaleX(1)}
-.bc-initial{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;letter-spacing:-.04em;color:var(--ac,#94a3b8);opacity:.12;position:absolute;right:14px;top:8px;line-height:1;pointer-events:none}
-.bc-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em}
-.bc-meta{font-family:'Space Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.04em}
+/* ── SECTION HEADER ── */
+.sec-hdr{display:flex;align-items:baseline;justify-content:space-between;padding:52px 0 20px}
+.sec-hdr-l{display:flex;align-items:baseline;gap:12px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:32px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.sec-count{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:var(--ink3);letter-spacing:-.01em}
+.sec-link{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink3);letter-spacing:-.01em;cursor:pointer;background:none;border:none;transition:color .12s}
+.sec-link:hover{color:var(--ink)}
+
+/* ── FEATURED STRIP ── */
+.feat-scroll{overflow-x:auto;margin:0 -32px;padding:0 32px 2px}
+.feat-scroll::-webkit-scrollbar{display:none}
+.feat-row{display:flex;gap:12px;min-width:max-content;padding-right:32px;padding-bottom:48px}
+.feat-card{width:185px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:all .2s;overflow:hidden;flex-shrink:0;border-radius:12px;animation:fadeUp .4s ease both}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+.feat-img{height:165px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.feat-img img{width:100%;height:100%;object-fit:contain;padding:18px;transition:transform .25s}
+.feat-card:hover .feat-img img{transform:scale(1.06)}
+.feat-body{padding:12px 13px 14px}
+.feat-brand-lbl{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.feat-name{font-size:12px;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:8px}
+.feat-bottom{display:flex;justify-content:space-between;align-items:baseline}
+.feat-price{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em;color:var(--ink)}
+.feat-price sup{font-size:13px;vertical-align:super;font-family:'Inter',sans-serif;font-weight:600}
+.feat-badge{font-size:11px;font-weight:600;color:var(--green)}
+.feat-retailers-badge{position:absolute;top:8px;left:8px;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;background:rgba(255,255,255,.9);color:var(--ink2);padding:3px 9px;border-radius:100px;border:1px solid var(--border)}
+
+/* ── ALERT BANNER ── */
+.alert-banner{background:#2c2b28;border:none;border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:48px;position:relative;overflow:hidden}
+.alert-banner::before{content:'ALERTS';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:140px;letter-spacing:.06em;color:rgba(255,255,255,.03);text-transform:uppercase;pointer-events:none;white-space:nowrap}
+.ab-tag{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
+.ab-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.92);margin-bottom:4px}
+.ab-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.6;letter-spacing:-.01em}
+.ab-right{display:flex;gap:8px;flex-shrink:0}
+.ab-input{padding:12px 18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:13px;color:rgba(255,255,255,.85);font-family:'Inter',sans-serif;outline:none;width:220px;border-radius:100px;transition:all .15s}
+.ab-input:focus{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.12)}
+.ab-input::placeholder{color:rgba(255,255,255,.3)}
+.ab-btn{padding:12px 24px;background:rgba(255,255,255,.9);color:#2c2b28;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:-.01em;border:none;border-radius:100px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.ab-btn:hover{background:rgba(255,255,255,.75)}
+
+/* ── BRAND GRID ── */
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;padding-bottom:80px}
+.brand-card{background:var(--bg2);border:1px solid var(--border);padding:20px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;border-radius:12px}
+.brand-card:hover{border-color:var(--border2);background:var(--bg3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.bc-bar{position:absolute;top:0;left:0;right:0;height:2px;background:var(--ink3);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.brand-card:hover .bc-bar{transform:scaleX(1)}
+.bc-initial{font-family:'Bebas Neue',sans-serif;font-size:64px;letter-spacing:-.02em;color:var(--ink);opacity:.04;position:absolute;right:8px;top:0;line-height:1;pointer-events:none}
+.bc-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+.bc-meta{font-size:12px;color:var(--ink3);font-weight:400}
+.bc-meta-green{color:var(--green);font-weight:600}
 .bc-cats{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
-.bc-cat{font-size:9px;font-family:'Space Mono',monospace;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--ink3)}
-.bc-arrow{position:absolute;right:18px;bottom:18px;font-size:16px;color:var(--ink3);transition:all .15s;opacity:0}
-.brand-card:hover .bc-arrow{opacity:1;transform:translate(2px,-2px)}
+.bc-cat{font-size:10px;font-weight:500;letter-spacing:.02em;text-transform:uppercase;padding:3px 8px;border-radius:100px;background:var(--bg3);color:var(--ink3);border:1px solid var(--border)}
+.bc-arrow{position:absolute;right:14px;bottom:14px;font-size:13px;color:var(--ink3);transition:all .15s;opacity:0}
+.brand-card:hover .bc-arrow{opacity:1;color:var(--ink);transform:translate(2px,-2px)}
+
+/* ── PAGE LAYOUT WITH SIDEBAR ── */
+.page-layout{display:grid;grid-template-columns:1fr 320px;align-items:start;max-width:1640px;margin:0 auto}
+.page-main{min-width:0}
+.sidebar{padding:32px 24px 32px 0}
+.sidebar-sticky{position:sticky;top:80px;display:flex;flex-direction:column;gap:20px}
+.ad-slot{}
+.ad-label{font-family:'Barlow',sans-serif;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink4);margin-bottom:6px;text-align:center}
+.ad-box{border-radius:var(--r);overflow:hidden;width:300px}
+.ad-300x250{height:250px}
+.ad-300x600{height:600px}
+.ad-placeholder{width:100%;height:100%;background:var(--bg2);border:1px dashed var(--border2);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.ad-placeholder-icon{font-size:24px;opacity:.3}
+.ad-placeholder-text{font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;color:var(--ink4);letter-spacing:.04em;text-align:center;line-height:1.6}
+
+/* ── FOOTER ── */
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 32px 0}
+.footer-inner{max-width:1320px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:240px 1fr;gap:64px;padding-bottom:48px}
+.footer-brand{}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.footer-logo span{color:var(--ink3)}
+.footer-tagline{font-size:12px;color:var(--ink3);line-height:1.7;font-weight:300}
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.footer-col{display:flex;flex-direction:column;gap:10px}
+.footer-col-title{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+.footer-link{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .12s;font-weight:400;line-height:1}
+.footer-link:hover{color:var(--ink)}
+.footer-bottom{border-top:1px solid var(--border);padding:18px 0;margin-top:0}
+.footer-meta{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--ink4);letter-spacing:-.01em}
 
 /* ── BRAND VIEW ── */
-.bv-header{padding:48px 36px 36px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.bv-header{padding:80px 32px 40px;background:var(--bg);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .bv-bg{position:absolute;inset:0;pointer-events:none}
-.bv-back{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--ink3);cursor:pointer;background:none;border:none;display:flex;align-items:center;gap:6px;transition:color .12s;margin-bottom:24px}
-.bv-back:hover{color:var(--ink2)}
-.bv-name{font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-bottom:8px;text-transform:uppercase}
-.bv-meta{font-family:'Space Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
-.bv-line{width:48px;height:3px;border-radius:2px;margin-bottom:16px}
-.bv-desc{font-size:14px;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.75}
+.bv-inner-wrap{max-width:1320px;margin:0 auto}
+.bv-back{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--ink3);cursor:pointer;background:none;border:none;display:flex;align-items:center;gap:6px;transition:color .12s;margin-bottom:24px}
+.bv-back:hover{color:var(--ink)}
+.bv-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.bv-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,96px);letter-spacing:.02em;text-transform:uppercase;color:var(--ink);line-height:.9}
+.bv-meta{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:var(--ink3);letter-spacing:.02em;text-transform:uppercase;margin-top:12px}
+.bv-desc{font-size:14px;font-weight:300;color:var(--ink3);max-width:520px;line-height:1.7;margin-top:10px}
+.bv-stats{display:flex;gap:28px;flex-shrink:0}
+.bvs-n{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:.02em;color:var(--ink);line-height:1}
+.bvs-l{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);margin-top:2px}
 
-/* Brand cat filters */
-.bcf{display:flex;gap:6px;flex-wrap:wrap;padding:18px 36px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:56px;z-index:10;backdrop-filter:blur(12px)}
-.bcf-pill{font-size:12px;font-weight:500;padding:7px 16px;border-radius:100px;cursor:pointer;transition:all .12s;border:1px solid var(--border2);background:none;color:var(--ink2);font-family:'DM Sans',sans-serif}
-.bcf-pill:hover{border-color:var(--ink2);color:var(--ink)}
-.bcf-pill.active{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+/* cat filter */
+.bcf-wrap{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:10;overflow-x:auto}
+.bcf-wrap::-webkit-scrollbar{display:none}
+.bcf{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:4px;padding:10px 32px}
+.bcf-pill{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;padding:6px 16px;border-radius:100px;cursor:pointer;border:1px solid transparent;background:none;color:var(--ink3);transition:all .12s;white-space:nowrap}
+.bcf-pill:hover{background:var(--bg2);color:var(--ink)}
+.bcf-pill.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg);font-weight:500}
 
 /* PRODUCT LIST */
-.plist{display:flex;flex-direction:column}
-.plist-empty{padding:80px 36px;text-align:center;font-family:'Space Mono',monospace;font-size:11px;color:var(--ink3);letter-spacing:.08em}
-
-/* Product row — PriceSpy style */
-.prow{display:grid;grid-template-columns:72px 1fr;gap:0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;position:relative;animation:slideIn .3s ease both}
-.prow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--bac,#94a3b8);transform:scaleY(0);transform-origin:bottom;transition:transform .2s ease}
+.plist-wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+.plist{display:flex;flex-direction:column;background:var(--bg)}
+.plist-empty{padding:80px 0;text-align:center;font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:var(--ink3)}
+.prow{display:grid;grid-template-columns:80px 1fr;border-bottom:1px solid var(--border);cursor:pointer;transition:background .08s;animation:fadeUp .25s ease both}
 .prow:hover{background:var(--bg2)}
-.prow:hover::before{transform:scaleY(1)}
+.prow-img{display:flex;align-items:center;justify-content:center;padding:14px 0}
+.prow-img img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:8px;padding:3px}
+.prow-body{display:flex;align-items:center;justify-content:space-between;padding:16px 0 16px 16px;gap:16px;min-width:0}
+.prow-left{flex:1;min-width:0}
+.prow-cat{display:inline-block;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:100px;margin-bottom:5px}
+.prow-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:var(--ink);line-height:1.15;text-transform:uppercase}
+.prow-opts{font-size:12px;color:var(--ink3);margin-top:3px;font-family:'Inter',sans-serif;letter-spacing:-.01em}
+.prow-right{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
+.prc{display:flex;flex-direction:column;gap:2px;padding:8px 11px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;min-width:95px;cursor:pointer;transition:all .12s}
+.prc:hover{border-color:var(--ink);background:var(--bg3)}
+.prc.best{background:var(--green-bg);border-color:var(--green-border)}
+.prc-name{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+.prc-price{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em;color:var(--ink);line-height:1}
+.prc-price sup{font-size:12px;font-family:'Inter',sans-serif;font-weight:600;vertical-align:super}
+.prc-badge{font-size:10px;font-family:'Inter',sans-serif;font-weight:600;color:var(--green);letter-spacing:.03em;text-transform:uppercase}
+.prc.oos{opacity:.4;cursor:default;border-style:dashed}
+.prc.oos:hover{border-color:var(--border);background:var(--bg2)}
+.prc-oos{font-size:10px;font-family:'Inter',sans-serif;font-weight:500;color:var(--ink3);letter-spacing:.02em;text-transform:uppercase}
+.prow-oos-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--ink3);background:var(--bg2);border:1px solid var(--border);padding:3px 10px;border-radius:100px;margin-top:6px}
+.prow-oos-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--ink4);flex-shrink:0}
+/* stock toggle */
+.stock-toggle-wrap{display:flex;align-items:center;gap:10px;padding:10px 32px;background:var(--bg);border-bottom:1px solid var(--border)}
+.stock-toggle-wrap-inner{max-width:1320px;margin:0 auto;width:100%;display:flex;align-items:center;gap:10px}
+.stock-toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.stock-toggle input{opacity:0;width:0;height:0;position:absolute}
+.stock-toggle-track{position:absolute;inset:0;background:var(--bg3);border-radius:100px;cursor:pointer;transition:background .2s;border:1px solid var(--border2)}
+.stock-toggle input:checked+.stock-toggle-track{background:var(--ink)}
+.stock-toggle-thumb{position:absolute;top:3px;left:3px;width:12px;height:12px;background:#fff;border-radius:50%;transition:transform .2s;pointer-events:none}
+.stock-toggle input:checked~.stock-toggle-thumb{transform:translateX(16px)}
+.stock-toggle-label{font-size:13px;font-weight:400;color:var(--ink2);cursor:pointer;user-select:none}
+.stock-toggle-count{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:var(--ink3)}
+/* detail modal sold out */
+.dp-retailer-card.oos{opacity:.5;border-style:dashed}
+.dp-retailer-card.oos:hover{border-color:var(--border)}
+.dp-oos-tag{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border:1px solid var(--border);padding:2px 9px;border-radius:100px}
+.dp-r-btn.oos{background:var(--bg2);color:var(--ink3);border:1px solid var(--border);cursor:default}
+.dp-r-btn.oos:hover{background:var(--bg2)}
+.dp-var.oos{opacity:.4;cursor:default}
+.dp-var.oos:hover{border-color:var(--border);background:var(--bg2)}
+.dp-var-oos{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;color:var(--ink3);letter-spacing:.03em;text-transform:uppercase}
+/* in-stock only price hero note */
+.dp-oos-hero{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:14px;display:flex;align-items:center;gap:10px}
+.dp-oos-hero-icon{font-size:18px;flex-shrink:0}
+.dp-oos-hero-text{font-size:13px;color:var(--ink3);line-height:1.5}
 
-/* Thumbnail */
-.prow-img{width:72px;display:flex;align-items:center;justify-content:center;padding:16px 0 16px 16px;flex-shrink:0}
-.prow-img img{width:52px;height:52px;object-fit:contain;border-radius:4px;background:var(--bg3)}
-
-/* Main content */
-.prow-body{display:flex;flex-direction:column;padding:18px 20px 18px 16px;min-width:0}
-.prow-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
-.prow-title-area{min-width:0}
-.prow-cat{display:inline-block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:100px;margin-bottom:6px}
-.prow-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
-.prow-opts{font-size:11px;color:var(--ink3);margin-top:3px;font-family:'Space Mono',monospace;letter-spacing:.03em}
-
-/* Retailer price cards */
-.prow-retailers{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch}
-.prc{display:flex;flex-direction:column;gap:2px;padding:8px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:3px;min-width:100px;transition:border-color .12s;cursor:pointer}
-.prc:hover{border-color:var(--border2)}
-.prc.best{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.3)}
-.prc-name{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
-.prc-price{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1}
-.prc-price sup{font-size:11px;font-weight:700;vertical-align:super}
-.prc-badge{font-size:8px;font-family:'Space Mono',monospace;letter-spacing:.06em;color:#4ade80;text-transform:uppercase}
-
-/* DETAIL PANEL */
-.detail-overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.82);align-items:stretch;justify-content:flex-end}
-.detail-overlay.open{display:flex}
-.detail-panel{background:var(--bg2);width:100%;max-width:500px;height:100%;overflow-y:auto;animation:slideRight .28s cubic-bezier(0.16,1,0.3,1);border-left:1px solid var(--border2)}
-.detail-panel::-webkit-scrollbar{width:0}
-@keyframes slideRight{from{transform:translateX(40px);opacity:0}to{transform:translateX(0);opacity:1}}
-.dp-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1}
-.dp-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
-.dp-x{width:30px;height:30px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--ink2);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s}
+/* ── DETAIL MODAL ── */
+.detail-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.5);backdrop-filter:blur(12px)}
+.detail-overlay.open{display:flex;align-items:stretch}
+.detail-modal{display:flex;width:100%;height:100%;animation:modalIn .28s cubic-bezier(0.16,1,0.3,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
+.dp-left{width:38%;background:var(--bg2);display:flex;flex-direction:column;border-right:1px solid var(--border)}
+.dp-left-top{padding:18px 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-shrink:0}
+.dp-cat-badge{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.dp-x{width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--ink2);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s}
 .dp-x:hover{background:var(--bg4);color:var(--ink)}
-.dp-hero{padding:32px 24px 24px;border-bottom:1px solid var(--border)}
-.dp-brand-lbl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
-.dp-pname{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin-bottom:4px;text-transform:uppercase}
-.dp-popts{font-size:12px;color:var(--ink2);margin-bottom:18px}
-.dp-bigprice{font-family:'Syne',sans-serif;font-size:60px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--ink)}
-.dp-bigprice sup{font-size:22px;font-weight:700;vertical-align:super}
-.dp-pnote{font-family:'Space Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:.08em;margin-top:6px}
-.dp-body{padding:0 24px}
-.dp-sec{padding:18px 0;border-bottom:1px solid var(--border)}
-.dp-sec:last-child{border-bottom:none}
-.dp-sec-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
-.dp-var{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);margin-bottom:5px;transition:border-color .12s}
-.dp-var:last-child{margin-bottom:0}
-.dp-var:hover{border-color:var(--border2)}
-.dp-var-title{font-size:13px;color:var(--ink)}
+.dp-img-area{flex:1;display:flex;align-items:center;justify-content:center;padding:40px;background:var(--bg2)}
+.dp-img-area img{max-width:100%;max-height:300px;object-fit:contain}
+.dp-img-placeholder{font-family:'Bebas Neue',sans-serif;font-size:110px;color:#e5e7eb;text-align:center;width:100%;letter-spacing:.04em}
+.dp-left-bottom{padding:24px 28px;border-top:1px solid var(--border);flex-shrink:0;background:var(--bg)}
+.dp-brand-lbl{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.dp-pname{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2vw,30px);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);line-height:1.1}
+.dp-popts{font-size:13px;color:var(--ink3);margin-top:5px;font-family:'Inter',sans-serif}
+.dp-right{flex:1;background:var(--bg);overflow-y:auto;display:flex;flex-direction:column}
+.dp-right::-webkit-scrollbar{width:3px}
+.dp-right::-webkit-scrollbar-thumb{background:var(--bg4)}
+.dp-price-hero{padding:40px 40px 32px;border-bottom:1px solid var(--border)}
+.dp-price-label{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.dp-bigprice{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8vw,100px);letter-spacing:.02em;line-height:1;color:var(--ink)}
+.dp-bigprice sup{font-size:28px;font-family:'Inter',sans-serif;font-weight:600;vertical-align:super}
+.dp-bigprice .cents{font-size:42px}
+.dp-best-note{font-size:14px;font-weight:500;color:var(--green);margin-top:10px;display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif}
+.dp-best-sub{font-size:13px;color:var(--ink3);margin-top:3px;font-family:'Inter',sans-serif}
+.dp-section{padding:24px 40px;border-bottom:1px solid var(--border)}
+.dp-section:last-child{border-bottom:none;padding-bottom:40px}
+.dp-sec-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.dp-retailer-card{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;transition:all .12s}
+.dp-retailer-card:last-child{margin-bottom:0}
+.dp-retailer-card.best{background:var(--green-bg);border-color:var(--green-border)}
+.dp-retailer-card:hover{border-color:var(--ink)}
+.dp-r-name{font-size:14px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif}
+.dp-r-best-tag{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);padding:2px 9px;border-radius:100px}
+.dp-r-domain{font-size:12px;color:var(--ink3);margin-top:2px;font-family:'Inter',sans-serif}
+.dp-r-right{display:flex;align-items:center;gap:12px}
+.dp-r-price{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.03em;color:var(--ink)}
+.dp-r-price sup{font-size:14px;vertical-align:super;font-family:'Inter',sans-serif;font-weight:600}
+.dp-r-btn{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:-.01em;padding:10px 20px;border-radius:100px;background:var(--ink2);color:var(--bg);border:none;cursor:pointer;transition:background .12s;white-space:nowrap}
+.dp-r-btn:hover{background:var(--ink)}
+.dp-var{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);margin-bottom:6px;transition:all .1s;border-radius:8px}
+.dp-var:hover{border-color:var(--ink);background:var(--bg3)}
+.dp-var-title{font-size:13px;color:var(--ink);font-weight:400}
 .dp-var-right{display:flex;align-items:center;gap:8px}
-.dp-var-price{font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:var(--ink)}
-.dp-var-btn{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:100px;background:var(--ink);color:var(--bg);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .12s}
-.dp-var-btn:hover{background:var(--ink2)}
-.dp-desc{font-size:13px;color:var(--ink2);line-height:1.7;font-weight:300}
-
-/* ALERT */
-.alert-bar{background:var(--ink);padding:18px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.alert-text{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--bg);letter-spacing:-.01em}
-.alert-right{display:flex;gap:8px}
-.alert-email{padding:9px 18px;background:rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.15);border-radius:100px;font-size:13px;color:var(--bg);font-family:'DM Sans',sans-serif;outline:none;width:210px}
-.alert-email::placeholder{color:rgba(0,0,0,.35)}
-.alert-btn{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:9px 20px;background:var(--bg);color:var(--ink);border:none;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .12s}
-.alert-btn:hover{opacity:.8}
+.dp-var-price{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.03em;color:var(--ink)}
+.dp-var-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:-.01em;padding:7px 14px;border-radius:100px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);cursor:pointer;transition:all .12s}
+.dp-var-btn:hover{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
+.dp-desc{font-size:13px;color:var(--ink3);line-height:1.75;font-weight:300}
 
 /* LOADING */
-.loading-state{padding:80px 36px;text-align:center}
-.spinner{width:28px;height:28px;border:2px solid var(--border2);border-top-color:var(--ink);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
+.loading-wrap{padding:64px 32px;text-align:center}
+.spinner{width:24px;height:24px;border:2px solid var(--bg3);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.load-text{font-family:'Space Mono',monospace;font-size:11px;color:var(--ink3);letter-spacing:.08em}
+.load-txt{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--ink3)}
 
 /* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--ink);color:var(--bg);padding:11px 22px;border-radius:100px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;opacity:0;transition:all .2s;z-index:600;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--ink2);color:var(--bg);border:none;padding:10px 20px;border-radius:100px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:-.01em;opacity:0;transition:all .2s;z-index:600;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* Detail panel image */
-.dp-img{background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:24px}
-.dp-img img{max-width:180px;max-height:180px;object-fit:contain}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-@keyframes slideIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
-@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* ── SKELETON LOADING ── */
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.skel{background:linear-gradient(90deg,var(--bg2) 25%,var(--bg3) 50%,var(--bg2) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:10px}
+.skel-card{width:185px;height:245px;flex-shrink:0;border-radius:12px}
+.skel-brand{height:120px;border-radius:12px}
 
+/* ── SORT CONTROLS ── */
+.sort-bar{display:flex;align-items:center;gap:8px;padding:10px 32px;background:var(--bg);border-bottom:1px solid var(--border)}
+.sort-bar-inner{max-width:1320px;margin:0 auto;width:100%;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sort-lbl{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);margin-right:4px;font-family:'Inter',sans-serif}
+.sort-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;padding:4px 12px;border-radius:100px;border:1px solid var(--border);background:none;color:var(--ink3);cursor:pointer;transition:all .12s;white-space:nowrap}
+.sort-btn:hover{background:var(--bg2);color:var(--ink);border-color:var(--border2)}
+.sort-btn.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg);font-weight:500}
+
+/* ── PRICE HISTORY CHART ── */
+.dp-chart-wrap{padding:24px 40px;border-bottom:1px solid var(--border)}
+.dp-chart-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.dp-chart{height:80px;display:flex;align-items:flex-end;gap:3px;padding-bottom:20px;position:relative}
+.dp-chart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+.dp-chart-bar{width:100%;background:var(--ink);border-radius:2px 2px 0 0;transition:height .3s;min-height:4px;position:relative;opacity:.7}
+.dp-chart-bar:hover{opacity:1}
+.dp-chart-bar[data-best="1"]{background:var(--green);opacity:1}
+.dp-chart-date{font-family:'Space Mono',monospace;font-size:9px;color:var(--ink4);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;position:absolute;bottom:-18px;left:50%;transform:translateX(-50%)}
+.dp-chart-price-lbl{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--ink3);position:absolute;top:-16px;left:50%;transform:translateX(-50%);white-space:nowrap;opacity:0;transition:opacity .12s}
+.dp-chart-bar:hover .dp-chart-price-lbl{opacity:1}
+.dp-chart-no-history{font-size:12px;color:var(--ink4);font-family:'Inter',sans-serif;padding:24px 0;text-align:center}
+
+/* ── COPY LINK / SHARE ── */
+.dp-share-row{display:flex;gap:8px;padding:16px 40px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.dp-share-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:-.01em;padding:7px 16px;border-radius:100px;border:1px solid var(--border2);background:none;color:var(--ink3);cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:6px}
+.dp-share-btn:hover{background:var(--bg2);color:var(--ink);border-color:var(--ink3)}
+
+/* ── PER-SERVE BADGE ── */
+.dp-per-serve{font-size:12px;color:var(--ink3);margin-top:4px;font-family:'Inter',sans-serif}
+.dp-per-serve strong{color:var(--green);font-weight:600}
+
+/* ── BACK TO TOP ── */
+.btt{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:50%;background:var(--ink2);border:none;color:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;opacity:0;pointer-events:none;transition:all .2s;z-index:300}
+.btt.vis{opacity:1;pointer-events:all}
+.btt:hover{background:var(--ink)}
+
+@media(max-width:1024px){.nav-cats{display:none}}
+@media(max-width:900px){.dp-left{display:none}}
 @media(max-width:768px){
-  .nav{padding:0 18px}
-  .hero-content,.brand-section,.bv-header,.alert-bar{padding-left:18px;padding-right:18px}
-  .hero-stats{gap:20px}
-  .brand-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-  .bcf{padding-left:18px;padding-right:18px}
-  .prow{grid-template-columns:52px 1fr}
-  .prow-img{width:52px;padding:12px 0 12px 12px}
-  .prow-img img{width:38px;height:38px}
-  .prow-body{padding:14px 14px 14px 10px}
-  .prc{min-width:80px;padding:6px 10px}
-  .prc-price{font-size:16px}
-  .detail-panel{max-width:100%}
-  .alert-bar{flex-direction:column;align-items:flex-start}
-  .alert-email{width:100%}
+  .nav-inner{padding:0 18px}
+  .hero-content{padding:0 18px 80px}
+  .hero-h1{font-size:68px}
+  .hero-stats-inner,.status-inner,.wrap,.bv-inner-wrap,.plist-wrap,.bcf,.footer-inner{padding-left:18px;padding-right:18px}
+  .feat-scroll{margin:0 -18px;padding:0 18px}
+  .hero-row{flex-direction:column;gap:20px;align-items:flex-start}
+  .page-layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .footer{padding:40px 18px 0}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:24px}
+  .ab-right{flex-direction:column;width:100%}
+  .ab-input{width:100%}
+  .brand-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:6px}
+  .alert-banner{flex-direction:column;align-items:flex-start;padding:22px 22px}
+  .bv-inner{flex-direction:column;align-items:flex-start}
+  .bv-stats{display:none}
+  .prow-right{display:none}
+  .dp-price-hero{padding:24px 20px 20px}
+  .dp-section{padding:18px 20px}
+  .dp-bigprice{font-size:60px}
 }
+/* ── MEGAMENU ── */
+.nav-mega-wrap{position:relative}
+.nav-mega-btn{display:flex;align-items:center;gap:5px}
+.nav-mega-chevron{font-size:10px;transition:transform .2s;display:inline-block}
+.nav-mega-wrap.open .nav-mega-chevron{transform:rotate(180deg)}
+.nav-mega{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:580px;background:var(--bg);border:1px solid var(--border2);border-radius:16px;box-shadow:0 16px 48px rgba(44,43,40,.12);z-index:500;overflow:hidden;animation:megaIn .18s ease}
+@keyframes megaIn{from{opacity:0;transform:translateX(-50%) translateY(-6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.nav-mega-wrap.open .nav-mega{display:block}
+.mega-inner{display:grid;grid-template-columns:200px 1fr}
+.mega-cats{background:var(--bg2);padding:16px 8px;display:flex;flex-direction:column;gap:2px}
+.mega-section-label{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:4px 10px 8px;margin-bottom:2px}
+.mega-cat-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;border:none;background:none;cursor:pointer;transition:background .1s;text-align:left;width:100%}
+.mega-cat-item:hover,.mega-cat-item.active{background:var(--bg3)}
+.mci-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+.mci-label{font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--ink);flex:1}
+.mci-count{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--ink3)}
+.mega-brands{padding:16px;display:flex;flex-direction:column}
+.mega-brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;flex:1}
+.mega-brand-pill{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:all .1s;border:none}
+.mega-brand-pill:hover{background:var(--bg3);border-color:var(--border2)}
+.mbp-name{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink)}
+.mbp-count{font-family:'Inter',sans-serif;font-size:11px;color:var(--ink3)}
+.mega-all-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink2);background:none;border:1px solid var(--border2);border-radius:100px;padding:7px 16px;cursor:pointer;transition:all .12s;align-self:flex-start;margin-top:auto}
+.mega-all-btn:hover{background:var(--bg2);color:var(--ink)}
+/* overlay to close mega on outside click */
+.mega-overlay{display:none;position:fixed;inset:0;z-index:499}
+.mega-overlay.on{display:block}
+
+/* ── BREADCRUMB ── */
+.nav-breadcrumb{background:var(--bg2);border-bottom:1px solid var(--border)}
+.nav-breadcrumb-inner{max-width:1320px;margin:0 auto;padding:0 32px;height:34px;display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink3)}
+.bc-crumb{cursor:pointer;transition:color .1s}
+.bc-crumb:hover{color:var(--ink)}
+.bc-sep{color:var(--ink4);font-size:10px}
+.bc-current{color:var(--ink);font-weight:500}
+
+/* ── NAV SEARCH RESULTS ── */
+.nav-search-results{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--bg);border:1px solid var(--border2);border-radius:12px;box-shadow:0 12px 32px rgba(44,43,40,.1);z-index:600;overflow:hidden;max-height:360px;overflow-y:auto}
+.nav-search-results.open{display:block}
+.nsr-section{padding:8px 0}
+.nsr-section-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:4px 14px 6px}
+.nsr-item{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;transition:background .08s}
+.nsr-item:hover{background:var(--bg2)}
+.nsr-item-img{width:32px;height:32px;border-radius:6px;object-fit:contain;background:var(--bg2);flex-shrink:0}
+.nsr-item-name{font-size:13px;font-weight:500;color:var(--ink)}
+.nsr-item-sub{font-size:11px;color:var(--ink3);margin-top:1px}
+.nsr-item-price{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.03em;color:var(--ink);margin-left:auto;flex-shrink:0}
+.nsr-no-results{padding:20px 14px;font-size:13px;color:var(--ink3);text-align:center}
+
+/* ── CATEGORY VIEW ── */
+.cat-view-header{background:var(--bg);border-bottom:1px solid var(--border);padding:40px 32px 28px}
+.cat-view-header-inner{max-width:1320px;margin:0 auto}
+.cat-view-title{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);line-height:1}
+.cat-view-meta{font-size:13px;font-weight:400;color:var(--ink3);margin-top:6px}
+
+.cat-filter-bar{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:10}
+.cat-filter-bar-inner{max-width:1320px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;height:48px}
+.cat-filter-pills{display:flex;gap:4px;overflow-x:auto;flex:1}
+.cat-filter-pills::-webkit-scrollbar{display:none}
+.cat-sort-wrap{display:flex;align-items:center;gap:4px;flex-shrink:0}
+
+.cat-layout{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:0;padding:0 32px;align-items:start}
+.cat-sidebar{padding:28px 0;position:sticky;top:100px}
+.cat-sidebar-section{}
+.cat-sidebar-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.cat-brand-list{display:flex;flex-direction:column;gap:1px;max-height:320px;overflow-y:auto}
+.cat-brand-list::-webkit-scrollbar{width:2px}
+.cat-brand-filter{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;cursor:pointer;transition:background .08s;border:none;background:none;text-align:left;width:100%}
+.cat-brand-filter:hover{background:var(--bg2)}
+.cat-brand-filter.active{background:var(--bg3)}
+.cbf-check{width:14px;height:14px;border:1.5px solid var(--border2);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;background:var(--bg);transition:all .1s}
+.cat-brand-filter.active .cbf-check{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
+.cbf-label{font-size:13px;font-weight:400;color:var(--ink);font-family:'Inter',sans-serif}
+.cbf-count{font-size:11px;color:var(--ink3);margin-left:auto;font-family:'Inter',sans-serif}
+
+.cat-products{border-left:1px solid var(--border);min-height:60vh;padding-bottom:80px}
 </style>
-</head>
 <body>
 
 <!-- NAV -->
-<div class="nav">
-  <div class="nav-logo" onclick="goHome()">ScoopScore <span class="nav-logo-badge">NZ</span></div>
-  <div class="nav-bc" id="navBc"></div>
-  <div class="nav-right">
-    <button class="nbtn nbtn-g" onclick="showToast('Sign in coming soon')">Sign in</button>
-    <button class="nbtn nbtn-f" onclick="document.getElementById('alertBar').scrollIntoView({behavior:'smooth'})">Price alerts</button>
-  </div>
-</div>
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="goHome()">ScoopScore <span class="nav-logo-tag">NZ</span></div>
 
-<!-- ══ HOME ══ -->
+    <div class="nav-cats" id="navCats">
+      <button class="nav-cat active" onclick="navGoHome(this)">Home</button>
+
+      <!-- Products megamenu trigger -->
+      <div class="nav-mega-wrap" id="megaWrap">
+        <button class="nav-cat nav-mega-btn" id="megaBtn" onclick="toggleMega(event)">
+          Products <span class="nav-mega-chevron" id="megaChevron">▾</span>
+        </button>
+        <div class="nav-mega" id="navMega">
+          <div class="mega-inner">
+            <!-- Left: category list -->
+            <div class="mega-cats">
+              <div class="mega-section-label">Browse by Category</div>
+              <button class="mega-cat-item active" data-cat="all" onclick="megaPickCat(this,'all')">
+                <span class="mci-icon">⊞</span>
+                <span class="mci-label">All Products</span>
+                <span class="mci-count" id="mciCount-all"></span>
+              </button>
+              <button class="mega-cat-item" data-cat="protein" onclick="megaPickCat(this,'protein')">
+                <span class="mci-icon">🥛</span>
+                <span class="mci-label">Protein</span>
+                <span class="mci-count" id="mciCount-protein"></span>
+              </button>
+              <button class="mega-cat-item" data-cat="creatine" onclick="megaPickCat(this,'creatine')">
+                <span class="mci-icon">⚡</span>
+                <span class="mci-label">Creatine</span>
+                <span class="mci-count" id="mciCount-creatine"></span>
+              </button>
+              <button class="mega-cat-item" data-cat="preworkout" onclick="megaPickCat(this,'preworkout')">
+                <span class="mci-icon">🔥</span>
+                <span class="mci-label">Pre-Workout</span>
+                <span class="mci-count" id="mciCount-preworkout"></span>
+              </button>
+              <button class="mega-cat-item" data-cat="fatburner" onclick="megaPickCat(this,'fatburner')">
+                <span class="mci-icon">💧</span>
+                <span class="mci-label">Fat Burners</span>
+                <span class="mci-count" id="mciCount-fatburner"></span>
+              </button>
+              <button class="mega-cat-item" data-cat="bcaa" onclick="megaPickCat(this,'bcaa')">
+                <span class="mci-icon">💊</span>
+                <span class="mci-label">BCAAs</span>
+                <span class="mci-count" id="mciCount-bcaa"></span>
+              </button>
+            </div>
+            <!-- Right: featured brands for hovered category -->
+            <div class="mega-brands">
+              <div class="mega-section-label">Top Brands</div>
+              <div class="mega-brand-grid" id="megaBrandGrid"></div>
+              <button class="mega-all-btn" id="megaAllBtn" onclick="megaViewAll()">View all products →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-cat" onclick="openCategoryView('all');closeMega()">Compare All</button>
+      <button class="nav-cat" onclick="scrollToAlerts();closeMega()">Price Alerts</button>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-search-wrap" id="navSearchWrap">
+        <span class="nav-search-icon">⌕</span>
+        <input class="nav-search" id="navSearchInput" type="text" placeholder="Search brands or products…" oninput="onSearch(this.value)" onfocus="onSearchFocus()" onblur="onSearchBlur()">
+        <div class="nav-search-results" id="navSearchResults"></div>
+      </div>
+      <button class="nbtn nbtn-f" onclick="scrollToAlerts()">Get Alerts</button>
+    </div>
+  </div>
+
+  <!-- Breadcrumb bar -->
+  <div class="nav-breadcrumb" id="navBreadcrumb" style="display:none">
+    <div class="nav-breadcrumb-inner" id="navBreadcrumbInner"></div>
+  </div>
+</nav>
+
+<div class="mega-overlay" id="megaOverlay" onclick="closeMega()"></div>
+
+<!-- HOME VIEW -->
 <div class="view active" id="viewHome">
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hbg"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400&q=80" alt="Gym"></div>
-      <div class="hbg"><img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=800&q=80" alt="Athlete"></div>
-      <div class="hbg"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Weights"></div>
+
+  <!-- HERO — full bleed editorial -->
+  <div class="hero">
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=85" alt="Gym">
     </div>
     <div class="hero-veil"></div>
+    <div class="hero-veil2"></div>
+
     <div class="hero-content">
-      <div class="hero-tag">NZ supplement price tracker</div>
-      <h1 class="hero-h1">Find your<br>brand.<br><em>Find the deal.</em></h1>
-      <p class="hero-sub">Browse by brand, compare prices across NZ's top retailers, and find the best deal — all in one place.</p>
-      <div class="hero-search">
-        <input type="text" id="homeSearch" placeholder="Search brand or product…" oninput="onSearch(this.value)">
-        <button onclick="document.querySelector('.brand-section').scrollIntoView({behavior:'smooth'})">Browse brands →</button>
+      <div class="hero-overline"><div class="hero-overline-bar"></div>NZ supplement price comparison</div>
+      <h1 class="hero-h1">
+        <span class="hero-h1-plain">Stop</span><br>
+        Overpaying<br>
+        <span class="hero-h1-accent">For Supps.</span>
+      </h1>
+      <div class="hero-row">
+        <p class="hero-sub">We compare prices across NZ's top supplement retailers every day. Find the lowest price — then click straight through to buy.</p>
+        <div class="hero-ctas">
+          <button class="hero-btn-p" onclick="document.querySelector('.status').scrollIntoView({behavior:'smooth'})">Compare Prices →</button>
+          <button class="hero-btn-s" onclick="scrollToAlerts()">Get Alerts</button>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="hs-item"><div class="hs-n" id="hsBrands">—</div><div class="hs-l">Brands</div></div>
+    </div>
+
+    <!-- Stats strip pinned to bottom of hero -->
+    <div class="hero-stats">
+      <div class="hero-stats-inner">
+        <div class="hs-item"><div class="hs-n" id="hsBrands">—</div><div class="hs-l">Brands tracked</div></div>
         <div class="hs-item"><div class="hs-n" id="hsProducts">—</div><div class="hs-l">Products</div></div>
-        <div class="hs-item"><div class="hs-n" id="hsRetailers">—</div><div class="hs-l">Retailers</div></div>
-        <div class="hs-item"><div class="hs-n">Daily</div><div class="hs-l">Updates</div></div>
+        <div class="hs-item"><div class="hs-n" id="hsRetailers">—</div><div class="hs-l">NZ retailers</div></div>
+        <div class="hs-item"><div class="hs-n">Daily</div><div class="hs-l">Price updates</div></div>
       </div>
     </div>
-  </section>
-
-  <div class="ticker"><div class="ticker-track" id="tickerTrack"><div class="ti">Loading…</div></div></div>
-  <div class="status"><div class="s-dot" id="sDot"></div><span id="sTxt">Fetching prices…</span><span class="s-time" id="sTime"></span></div>
-
-  <div class="cat-tabs" id="catTabs">
-    <button class="ct active" onclick="filterCat(this,'all')">All brands</button>
-    <button class="ct" onclick="filterCat(this,'protein')">Protein</button>
-    <button class="ct" onclick="filterCat(this,'creatine')">Creatine</button>
-    <button class="ct" onclick="filterCat(this,'preworkout')">Pre-workout</button>
-    <button class="ct" onclick="filterCat(this,'fatburner')">Fat burners</button>
-    <button class="ct" onclick="filterCat(this,'bcaa')">BCAAs</button>
   </div>
 
-  <div class="brand-section">
-    <div class="bs-title" id="bsTitle">All brands</div>
+  <div class="status">
+    <div class="status-inner">
+      <div class="s-dot" id="sDot"></div>
+      <span id="sTxt">Loading prices…</span>
+      <span class="s-time" id="sTime"></span>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT: content + sidebar -->
+  <div class="page-layout">
+    <div class="page-main">
+    <div class="wrap">
+
+    <!-- MOST COMPARED -->
+    <div class="sec-hdr">
+      <div class="sec-hdr-l">
+        <div class="sec-title">Most Compared</div>
+        <div class="sec-count" id="featCount"></div>
+      </div>
+      <button class="sec-link" onclick="document.querySelector('.brand-grid').scrollIntoView({behavior:'smooth'})">All brands →</button>
+    </div>
+    <div class="feat-scroll">
+      <div class="feat-row" id="featRow">
+        <div class="loading-wrap" style="width:280px"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- ALERT BANNER -->
+    <div class="alert-banner" id="alertBar">
+      <div>
+        <div class="ab-tag">Price drop alerts</div>
+        <div class="ab-title">Get notified when prices drop</div>
+        <div class="ab-sub">We watch NZ's retailers daily. Get an email the moment your product gets cheaper.</div>
+      </div>
+      <div class="ab-right">
+        <input class="ab-input" type="email" id="alertEmail" placeholder="your@email.com">
+        <button class="ab-btn" onclick="signupAlert()">Notify Me</button>
+      </div>
+    </div>
+
+    <!-- ALL BRANDS -->
+    <div class="sec-hdr" style="padding-top:0">
+      <div class="sec-hdr-l">
+        <div class="sec-title" id="bsTitle">All Brands</div>
+        <div class="sec-count" id="bsCount"></div>
+      </div>
+    </div>
     <div class="brand-grid" id="brandGrid">
-      <div class="loading-state" style="grid-column:1/-1">
-        <div class="spinner"></div>
-        <div class="load-text">Loading products from NZ Muscle…</div>
+      <div class="loading-wrap" style="grid-column:1/-1"><div class="spinner"></div><div class="load-txt" style="margin-top:8px">Loading products…</div></div>
+    </div>
+
+  </div><!-- /wrap -->
+  </div><!-- /page-main -->
+
+  <!-- ADSENSE SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-sticky">
+
+      <!-- Ad slot 1 — 300x250 -->
+      <div class="ad-slot">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-box ad-300x250">
+          <!-- Replace with your AdSense code -->
+          <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
+          <div class="ad-placeholder">
+            <div class="ad-placeholder-icon">📢</div>
+            <div class="ad-placeholder-text">AdSense<br>300×250</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ad slot 2 — 300x600 -->
+      <div class="ad-slot">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-box ad-300x600">
+          <!-- Replace with your AdSense code -->
+          <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
+          <div class="ad-placeholder">
+            <div class="ad-placeholder-icon">📢</div>
+            <div class="ad-placeholder-text">AdSense<br>300×600</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ad slot 3 — 300x250 -->
+      <div class="ad-slot">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-box ad-300x250">
+          <div class="ad-placeholder">
+            <div class="ad-placeholder-icon">📢</div>
+            <div class="ad-placeholder-text">AdSense<br>300×250</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  </div><!-- /page-layout -->
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">ScoopScore <span>NZ</span></div>
+          <div class="footer-tagline">NZ's supplement price comparison.<br>We don't sell — we just find you the best deal.</div>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <div class="footer-col-title">Information</div>
+            <a class="footer-link" href="#">About ScoopScore</a>
+            <a class="footer-link" href="#">Contact</a>
+            <a class="footer-link" href="#">Advertise with ScoopScore</a>
+            <a class="footer-link" href="#">Register and feature your shop</a>
+            <a class="footer-link" href="#">Login for customers</a>
+            <a class="footer-link" href="#">Frequently Asked Questions</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Rules &amp; Guidelines</div>
+            <a class="footer-link" href="#">Rules and guidelines for users</a>
+            <a class="footer-link" href="#">Disclaimer</a>
+            <a class="footer-link" href="#">Privacy policy</a>
+            <a class="footer-link" href="#">Cookie policy</a>
+            <a class="footer-link" href="#">Cookie settings</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">On ScoopScore</div>
+            <a class="footer-link" href="#">Best Deals NZ</a>
+            <a class="footer-link" href="#">Themes &amp; campaigns</a>
+            <a class="footer-link" href="#">Newsroom</a>
+            <a class="footer-link" href="#">Investor Relations</a>
+            <a class="footer-link" href="#">Articles</a>
+            <a class="footer-link" href="#">Categories</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-meta">© <span id="footerYear"></span> ScoopScore NZ · Price comparison only · Prices updated daily · Clicking "Shop" takes you to the retailer's site</div>
       </div>
     </div>
   </div>
 
-  <div class="alert-bar" id="alertBar">
-    <div class="alert-text">Drop alerts — get emailed the moment a price falls.</div>
-    <div class="alert-right">
-      <input class="alert-email" type="email" id="alertEmail" placeholder="your@email.com">
-      <button class="alert-btn" onclick="signupAlert()">Notify me</button>
+</div>
+
+<!-- CATEGORY VIEW -->
+<div class="view" id="viewCategory">
+  <div class="cat-view-header">
+    <div class="cat-view-header-inner">
+      <div class="cat-view-title" id="catViewTitle">All Products</div>
+      <div class="cat-view-meta" id="catViewMeta"></div>
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="cat-filter-bar">
+    <div class="cat-filter-bar-inner">
+      <div class="cat-filter-pills" id="catFilterPills"></div>
+      <div class="cat-sort-wrap">
+        <span class="sort-lbl">Sort</span>
+        <button class="sort-btn active" onclick="setCatSort(this,'price-asc')">Price ↑</button>
+        <button class="sort-btn" onclick="setCatSort(this,'price-desc')">Price ↓</button>
+        <button class="sort-btn" onclick="setCatSort(this,'retailers')">Most compared</button>
+        <button class="sort-btn" onclick="setCatSort(this,'name')">A–Z</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand sidebar + product list -->
+  <div class="cat-layout">
+    <aside class="cat-sidebar">
+      <div class="cat-sidebar-section">
+        <div class="cat-sidebar-title">Brand</div>
+        <div class="cat-brand-list" id="catBrandList"></div>
+      </div>
+      <div class="cat-sidebar-section" style="margin-top:20px">
+        <div class="cat-sidebar-title">Retailer</div>
+        <div class="cat-brand-list" id="catRetailerList"></div>
+      </div>
+    </aside>
+    <div class="cat-products">
+      <div class="plist" id="catPlist"></div>
     </div>
   </div>
 </div>
 
-<!-- ══ BRAND VIEW ══ -->
+<!-- BRAND VIEW -->
 <div class="view" id="viewBrand">
   <div class="bv-header">
     <div class="bv-bg" id="bvBg"></div>
-    <button class="bv-back" onclick="goHome()">← All brands</button>
-    <div class="bv-name" id="bvName"></div>
-    <div class="bv-meta" id="bvMeta"></div>
-    <div class="bv-line" id="bvLine"></div>
-    <div class="bv-desc" id="bvDesc"></div>
+    <div class="bv-inner-wrap">
+      <button class="bv-back" onclick="goHome()">← All brands</button>
+      <div class="bv-inner">
+        <div>
+          <div class="bv-name" id="bvName"></div>
+          <div class="bv-meta" id="bvMeta"></div>
+          <div class="bv-desc" id="bvDesc"></div>
+        </div>
+        <div class="bv-stats" id="bvStats"></div>
+      </div>
+    </div>
   </div>
-  <div class="bcf" id="bcf"></div>
-  <div class="plist" id="plist"></div>
+  <div class="bcf-wrap"><div class="bcf" id="bcf"></div></div>
+  <div class="sort-bar"><div class="sort-bar-inner">
+    <span class="sort-lbl">Sort</span>
+    <button class="sort-btn active" onclick="setSort(this,'retailers')">Most retailers</button>
+    <button class="sort-btn" onclick="setSort(this,'price-asc')">Price: low → high</button>
+    <button class="sort-btn" onclick="setSort(this,'price-desc')">Price: high → low</button>
+    <button class="sort-btn" onclick="setSort(this,'name')">Name A–Z</button>
+  </div></div>
+  <div class="stock-toggle-wrap">
+    <div class="stock-toggle-wrap-inner">
+      <label class="stock-toggle">
+        <input type="checkbox" id="showOosToggle" onchange="renderProducts()">
+        <div class="stock-toggle-track"></div>
+        <div class="stock-toggle-thumb"></div>
+      </label>
+      <span class="stock-toggle-label" onclick="document.getElementById('showOosToggle').click()">Show out of stock</span>
+      <span class="stock-toggle-count" id="oosCount"></span>
+    </div>
+  </div>
+  <div class="plist-wrap"><div class="plist" id="plist"></div></div>
 </div>
 
-<!-- DETAIL PANEL -->
+<!-- DETAIL MODAL -->
 <div class="detail-overlay" id="detailOverlay" onclick="handleDetailBg(event)">
-  <div class="detail-panel" id="detailPanel"></div>
+  <div class="detail-modal">
+    <div class="dp-left">
+      <div class="dp-left-top">
+        <div class="dp-cat-badge" id="dpCatBadge"></div>
+        <button class="dp-x" onclick="closeDetail()">✕</button>
+      </div>
+      <div class="dp-img-area" id="dpImgArea"></div>
+      <div class="dp-left-bottom">
+        <div class="dp-brand-lbl" id="dpBrandLbl"></div>
+        <div class="dp-pname" id="dpPname"></div>
+        <div class="dp-popts" id="dpPopts"></div>
+      </div>
+    </div>
+    <div class="dp-right" id="dpRight">
+      <div style="display:none;padding:14px 20px;border-bottom:1px solid var(--border)" id="mobileClose">
+        <button class="dp-x" onclick="closeDetail()">✕</button>
+      </div>
+      <div class="dp-price-hero">
+        <div class="dp-price-label">Best price found</div>
+        <div class="dp-bigprice" id="dpBigPrice"></div>
+        <div class="dp-best-note" id="dpBestNote"></div>
+        <div class="dp-best-sub" id="dpBestSub"></div>
+      </div>
+      <div id="dpBody"></div>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
 <script>
-const CAT_META = {
-  protein:    {label:'Protein',    color:'#a8c8ff'},
-  creatine:   {label:'Creatine',   color:'#a8f0c8'},
-  preworkout: {label:'Pre-Workout',color:'#ffd8a8'},
-  fatburner:  {label:'Fat Burner', color:'#ffb8b8'},
-  bcaa:       {label:'BCAA',       color:'#d8b8ff'},
-};
+// nav scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40);
+},{ passive:true });
 
-const RETAILER_META = {
-  nzmuscle:            {name:'NZ Muscle',          domain:'nzmuscle.co.nz',           shipping:'Free shipping'},
-  sportsfuel:          {name:'Sportsfuel',          domain:'sportsfuel.co.nz',          shipping:'Free $60+'},
-  scorpion:            {name:'Scorpion',            domain:'scorpionsupplements.co.nz', shipping:'Check site'},
-  asnonline:           {name:'ASN Online',          domain:'asnonline.co.nz',           shipping:'Free $100+'},
-  supplementsolutions:{name:'Supp Solutions',      domain:'supplementsolutions.co.nz', shipping:'Check site'},
-  raiseys:             {name:"Raisey's",            domain:'raiseys.co.nz',             shipping:'Check site'},
-};
-function rm(id){ return RETAILER_META[id] || {name:id, domain:id, shipping:'Check site'}; }
-
-function brandColor(name) {
-  const K={'Optimum Nutrition':'#c8a96e','EHP Labs':'#e879a0','Ghost':'#a78bfa','Cellucor':'#38bdf8','Myprotein':'#f97316','Dymatize':'#22d3ee','NZ Muscle':'#a3e635','Musashi':'#fb923c','Bulk Nutrients':'#34d399','BSN':'#818cf8','MuscleTech':'#f59e0b','Rule 1':'#60a5fa','Faction Labs':'#fb923c','ATP Science':'#a78bfa','RedCon1':'#f87171','Primabolics':'#fbbf24','Switch Nutrition':'#4ade80'};
-  if(K[name]) return K[name];
-  let h=0; for(let i=0;i<name.length;i++) h=(h*31+name.charCodeAt(i))&0xffffff;
-  return `hsl(${h%360},55%,62%)`;
+// ── MEGAMENU ──
+let megaActiveCat='all';
+function toggleMega(e){
+  e.stopPropagation();
+  const wrap=document.getElementById('megaWrap');
+  const isOpen=wrap.classList.contains('open');
+  isOpen?closeMega():openMega();
 }
-function brandDesc(name){
-  const K={'Optimum Nutrition':"The world's best-selling sports nutrition brand. Gold Standard whey has been the industry benchmark since 1994.",'EHP Labs':"Australia's #1 premium supplement brand. Known for OxyShred (world's #1 fat burner) and OxyWhey lean protein.",'Ghost':"The brand that redefined transparency. Full-label disclosure, legendary licensed flavours, athlete-formulated products.",'Cellucor':"Makers of C4, the world's best-selling pre-workout. Clean, effective formulas and iconic flavours.",'Myprotein':"Europe's #1 online sports nutrition brand. Unbeatable value per gram, massive range of proteins and supplements.",'Dymatize':"Precision-engineered sports nutrition. ISO100 hydrolyzed is a favourite of elite athletes for rapid absorption.",'NZ Muscle':"New Zealand's own supplement brand. Pharmaceutical grade ingredients at honest prices, made for Kiwi athletes.",'Musashi':"A trusted Australasian sports nutrition brand with 30+ years of experience. Clean formulas, no proprietary blends.",'Bulk Nutrients':"Australia's leading direct-to-consumer brand. Exceptional value with no middlemen. Massive range, honest labelling.",'BSN':"Pioneers of N.O.-Xplode. Premium formulas with over 20 years of performance nutrition expertise.",'MuscleTech':"Science-backed formulations with clinical doses. Nitro-Tech is one of the world's best-selling protein powders."};
-  return K[name]||`Premium supplements from ${name}, available across NZ's top supplement retailers.`;
+function openMega(){
+  const wrap=document.getElementById('megaWrap');
+  wrap.classList.add('open');
+  document.getElementById('megaOverlay').classList.add('on');
+  document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
+  document.getElementById('megaBtn').classList.add('active');
+  renderMegaBrands(megaActiveCat);
+}
+function closeMega(){
+  document.getElementById('megaWrap').classList.remove('open');
+  document.getElementById('megaOverlay').classList.remove('on');
+}
+function megaPickCat(el,cat){
+  megaActiveCat=cat;
+  document.querySelectorAll('.mega-cat-item').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderMegaBrands(cat);
+}
+function renderMegaBrands(cat){
+  const brands=Object.values(BRANDS)
+    .filter(b=>cat==='all'||b.cats.includes(cat))
+    .sort((a,b)=>b.groupList.length-a.groupList.length)
+    .slice(0,8);
+  document.getElementById('megaBrandGrid').innerHTML=brands.map(b=>{
+    const count=cat==='all'?b.groupList.length:b.groupList.filter(g=>g.category===cat).length;
+    return `<button class="mega-brand-pill" onclick="openBrand('${b.name.replace(/'/g,"\\'")}');closeMega()">
+      <span class="mbp-name">${b.name}</span><span class="mbp-count">${count}</span>
+    </button>`;
+  }).join('');
+  // Update counts in cat list
+  const cats=['all','protein','creatine','preworkout','fatburner','bcaa'];
+  cats.forEach(c=>{
+    const el=document.getElementById('mciCount-'+c);
+    if(!el)return;
+    const n=c==='all'?Object.keys(BRANDS).length:Object.values(BRANDS).filter(b=>b.cats.includes(c)).length;
+    el.textContent=n;
+  });
+}
+function megaViewAll(){
+  openCategoryView(megaActiveCat);
+  closeMega();
 }
 
-// Normalise a product name for grouping — strip sizes/weights but keep identity
+// ── BREADCRUMB ──
+function setBreadcrumb(crumbs){
+  const bar=document.getElementById('navBreadcrumb');
+  if(!crumbs||!crumbs.length){bar.style.display='none';return;}
+  bar.style.display='block';
+  document.getElementById('navBreadcrumbInner').innerHTML=crumbs.map((c,i)=>{
+    if(i===crumbs.length-1)return `<span class="bc-current">${c.label}</span>`;
+    return `<span class="bc-crumb" onclick="${c.fn}">${c.label}</span><span class="bc-sep">›</span>`;
+  }).join('');
+}
+
+// ── SEARCH RESULTS DROPDOWN ──
+let searchBlurTimer=null;
+function onSearchFocus(){
+  const q=document.getElementById('navSearchInput').value.trim();
+  if(q.length>1)renderSearchResults(q);
+}
+function onSearchBlur(){
+  searchBlurTimer=setTimeout(()=>document.getElementById('navSearchResults').classList.remove('open'),200);
+}
+function renderSearchResults(q){
+  if(q.length<2){document.getElementById('navSearchResults').classList.remove('open');return;}
+  const ql=q.toLowerCase();
+  // Find matching products across all brands
+  const results=[];
+  for(const b of Object.values(BRANDS)){
+    for(const g of b.groupList){
+      if(results.length>=8)break;
+      if(g.name.toLowerCase().includes(ql)||b.name.toLowerCase().includes(ql)){
+        const best=g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):null;
+        results.push({brand:b.name,group:g,best});
+      }
+    }
+    if(results.length>=8)break;
+  }
+  // Brand results
+  const brandResults=Object.values(BRANDS).filter(b=>b.name.toLowerCase().includes(ql)).slice(0,4);
+  const el=document.getElementById('navSearchResults');
+  let html='';
+  if(brandResults.length){
+    html+=`<div class="nsr-section"><div class="nsr-section-label">Brands</div>`;
+    html+=brandResults.map(b=>`<div class="nsr-item" onclick="openBrand('${b.name.replace(/'/g,"\\'")}');clearSearch()">
+      <span style="font-size:22px;width:32px;text-align:center">${b.name[0]}</span>
+      <div><div class="nsr-item-name">${b.name}</div><div class="nsr-item-sub">${b.groupList.length} products</div></div>
+    </div>`).join('');
+    html+='</div>';
+  }
+  if(results.length){
+    html+=`<div class="nsr-section"><div class="nsr-section-label">Products</div>`;
+    html+=results.map(r=>`<div class="nsr-item" onclick="openDetail('${r.group.key.replace(/'/g,"\\'")}','${r.brand.replace(/'/g,"\\'")}');clearSearch()">
+      ${r.group.imageUrl?`<img class="nsr-item-img" src="${r.group.imageUrl}" alt="">`:`<div class="nsr-item-img" style="display:flex;align-items:center;justify-content:center;font-size:16px">🧪</div>`}
+      <div><div class="nsr-item-name">${r.group.name}</div><div class="nsr-item-sub">${r.brand} · ${CAT_META[r.group.category]?.label||r.group.category}</div></div>
+      ${r.best!==null?`<div class="nsr-item-price">$${r.best.toFixed(2)}</div>`:''}
+    </div>`).join('');
+    html+='</div>';
+  }
+  if(!html)html=`<div class="nsr-no-results">No results for "${q}"</div>`;
+  el.innerHTML=html;
+  el.classList.add('open');
+}
+function clearSearch(){
+  document.getElementById('navSearchInput').value='';
+  document.getElementById('navSearchResults').classList.remove('open');
+  searchQ='';
+}
+
+// ── CATEGORY VIEW ──
+let catViewCat='all', catViewBrandFilter='all', catViewRetailerFilter='all', catViewSort='price-asc';
+function openCategoryView(cat){
+  catViewCat=cat||'all';
+  catViewBrandFilter='all';
+  catViewRetailerFilter='all';
+  showView('viewCategory');
+  window.scrollTo({top:0,behavior:'smooth'});
+  const label=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
+  document.getElementById('catViewTitle').textContent=label;
+  // active nav
+  document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
+  setBreadcrumb([{label:'Home',fn:'goHome()'},{label:label}]);
+  renderCatFilterPills();
+  renderCatSidebar();
+  renderCatProducts();
+}
+function renderCatFilterPills(){
+  const cats=['all','protein','creatine','preworkout','fatburner','bcaa'];
+  document.getElementById('catFilterPills').innerHTML=cats.map(c=>{
+    const label=c==='all'?'All':CAT_META[c]?.label||c;
+    return `<button class="bcf-pill${catViewCat===c?' active':''}" onclick="setCatViewCat(this,'${c}')">${label}</button>`;
+  }).join('');
+}
+function setCatViewCat(el,cat){
+  catViewCat=cat;catViewBrandFilter='all';catViewRetailerFilter='all';
+  document.querySelectorAll('#catFilterPills .bcf-pill').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('catViewTitle').textContent=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
+  renderCatSidebar();renderCatProducts();
+}
+function setCatSort(el,s){
+  catViewSort=s;
+  document.querySelectorAll('.cat-sort-wrap .sort-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderCatProducts();
+}
+function renderCatSidebar(){
+  // Brand list
+  const allGroups=getCatGroups();
+  const brandCounts={};
+  for(const {brand,group} of allGroups){
+    if(!brandCounts[brand])brandCounts[brand]=0;
+    brandCounts[brand]++;
+  }
+  const brands=Object.entries(brandCounts).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('catBrandList').innerHTML=brands.map(([name,count])=>`
+    <button class="cat-brand-filter${catViewBrandFilter===name?' active':''}" onclick="setCatBrandFilter('${name.replace(/'/g,"\\'")}')">
+      <span class="cbf-check">${catViewBrandFilter===name?'✓':''}</span>
+      <span class="cbf-label">${name}</span>
+      <span class="cbf-count">${count}</span>
+    </button>`).join('');
+  // Retailer list
+  const retailerCounts={};
+  for(const {group} of allGroups){
+    for(const l of group.inStockListings){
+      if(!retailerCounts[l.retailer])retailerCounts[l.retailer]=0;
+      retailerCounts[l.retailer]++;
+    }
+  }
+  document.getElementById('catRetailerList').innerHTML=Object.entries(retailerCounts).sort((a,b)=>b[1]-a[1]).map(([r,count])=>`
+    <button class="cat-brand-filter${catViewRetailerFilter===r?' active':''}" onclick="setCatRetailerFilter('${r}')">
+      <span class="cbf-check">${catViewRetailerFilter===r?'✓':''}</span>
+      <span class="cbf-label">${rm(r).name}</span>
+      <span class="cbf-count">${count}</span>
+    </button>`).join('');
+}
+function getCatGroups(){
+  const results=[];
+  for(const b of Object.values(BRANDS)){
+    for(const g of b.groupList){
+      if(catViewCat!=='all'&&g.category!==catViewCat)continue;
+      if(g.soldOut)continue;
+      results.push({brand:b.name,group:g});
+    }
+  }
+  return results;
+}
+function setCatBrandFilter(name){
+  catViewBrandFilter=catViewBrandFilter===name?'all':name;
+  renderCatSidebar();renderCatProducts();
+}
+function setCatRetailerFilter(r){
+  catViewRetailerFilter=catViewRetailerFilter===r?'all':r;
+  renderCatSidebar();renderCatProducts();
+}
+function renderCatProducts(){
+  let groups=getCatGroups();
+  if(catViewBrandFilter!=='all')groups=groups.filter(({brand})=>brand===catViewBrandFilter);
+  if(catViewRetailerFilter!=='all')groups=groups.filter(({group})=>group.inStockListings.some(l=>l.retailer===catViewRetailerFilter));
+  if(searchQ)groups=groups.filter(({group,brand})=>group.name.toLowerCase().includes(searchQ)||brand.toLowerCase().includes(searchQ));
+  // Sort
+  const bestOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
+  if(catViewSort==='price-asc')groups.sort((a,z)=>bestOf(a.group)-bestOf(z.group));
+  else if(catViewSort==='price-desc')groups.sort((a,z)=>bestOf(z.group)-bestOf(a.group));
+  else if(catViewSort==='name')groups.sort((a,z)=>a.group.name.localeCompare(z.group.name));
+  else groups.sort((a,z)=>{
+    const ra=new Set(a.group.inStockListings.map(l=>l.retailer)).size;
+    const rz=new Set(z.group.inStockListings.map(l=>l.retailer)).size;
+    return rz-ra;
+  });
+  document.getElementById('catViewMeta').textContent=`${groups.length} product${groups.length!==1?'s':''}`;
+  const plist=document.getElementById('catPlist');
+  if(!groups.length){plist.innerHTML='<div class="plist-empty">No products found</div>';return;}
+  plist.innerHTML=groups.map(({brand,group:g},i)=>{
+    const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
+    const byR={};
+    for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
+    const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
+    const inStockRl=rl.filter(l=>l.available!==false);
+    const best=inStockRl.length?inStockRl[0].priceFrom:null;
+    const tv=[...new Set(g.listings.flatMap(l=>l.variants.map(v=>v.title)))].length;
+    const img=g.imageUrl?`<div class="prow-img"><img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:'<div class="prow-img"></div>';
+    const cards=rl.map(l=>{
+      const isOos=l.available===false;
+      const d=Math.floor(l.priceFrom);const c=(l.priceFrom%1).toFixed(2).slice(1);
+      const ib=!isOos&&l.priceFrom===best;
+      if(isOos)return `<div class="prc oos"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price" style="color:var(--ink3)"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div><div class="prc-oos">Out of stock</div></div>`;
+      return `<div class="prc${ib?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div>${ib&&inStockRl.length>1?'<div class="prc-badge">✓ Best</div>':''}</div>`;
+    }).join('');
+    return `<div class="prow" style="animation-delay:${i*.015}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
+      ${img}
+      <div class="prow-body">
+        <div class="prow-left">
+          <div class="prow-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</div>
+          <div class="prow-name">${g.name}</div>
+          <div class="prow-opts">${brand} · ${tv} variant${tv!==1?'s':''} · ${inStockRl.length} retailer${inStockRl.length!==1?'s':''}</div>
+        </div>
+        <div class="prow-right">${cards}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── VIEW MANAGEMENT ──
+
+const CAT_META={protein:{label:'Protein',color:'#3b82f6'},creatine:{label:'Creatine',color:'#22c55e'},preworkout:{label:'Pre-Workout',color:'#f59e0b'},fatburner:{label:'Fat Burner',color:'#ef4444'},bcaa:{label:'BCAA',color:'#a855f7'}};
+const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion',domain:'scorpionsupplements.co.nz',shipping:'Check site'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Check site'}};
+function rm(id){return RETAILER_META[id]||{name:id,domain:id,shipping:'Check site'};}
+
+let currentSort='retailers';
+function setSort(el,s){document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentSort=s;renderProducts();}
+
+function brandColor(name){const K={'Optimum Nutrition':'#3b82f6','EHP Labs':'#ec4899','Ghost':'#a855f7','Cellucor':'#06b6d4','Myprotein':'#f97316','Dymatize':'#0ea5e9','NZ Muscle':'#22c55e','Musashi':'#f59e0b','Bulk Nutrients':'#10b981','BSN':'#6366f1','MuscleTech':'#ef4444','Rule 1':'#3b82f6','Faction Labs':'#f97316','ATP Science':'#a855f7','RedCon1':'#dc2626','Primabolics':'#d97706','Switch Nutrition':'#22c55e'};if(K[name])return K[name];let h=0;for(let i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))&0xffffff;return `hsl(${h%360},65%,55%)`;}
+function brandDesc(name){const K={'Optimum Nutrition':"The world's best-selling sports nutrition brand. Gold Standard whey has been the industry benchmark since 1994.",'EHP Labs':"Australia's #1 premium supplement brand. Known for OxyShred (world's #1 fat burner) and OxyWhey lean protein.",'Ghost':"The brand that redefined transparency. Full-label disclosure, legendary licensed flavours, athlete-formulated products.",'Cellucor':"Makers of C4, the world's best-selling pre-workout. Clean, effective formulas and iconic flavours.",'Myprotein':"Europe's #1 online sports nutrition brand. Unbeatable value per gram, massive range of proteins and supplements.",'Dymatize':"Precision-engineered sports nutrition. ISO100 hydrolyzed is a favourite of elite athletes for rapid absorption.",'NZ Muscle':"New Zealand's own supplement brand. Pharmaceutical grade ingredients at honest prices, made for Kiwi athletes.",'Musashi':"A trusted Australasian sports nutrition brand with 30+ years of experience. Clean formulas, no proprietary blends.",'Bulk Nutrients':"Australia's leading direct-to-consumer brand. Exceptional value with no middlemen. Massive range, honest labelling.",'BSN':"Pioneers of N.O.-Xplode. Premium formulas with over 20 years of performance nutrition expertise.",'MuscleTech':"Science-backed formulations with clinical doses. Nitro-Tech is one of the world's best-selling protein powders."};return K[name]||`Premium supplements from ${name}, available across NZ's top supplement retailers.`;}
 function normKey(s){
   return s.toLowerCase()
+    // strip punctuation except spaces
     .replace(/[^a-z0-9 ]/g,' ')
+    // strip weights, sizes, counts (5lb, 1kg, 500g, 90caps, etc.)
     .replace(/\b\d+\s*(g|kg|lb|lbs|mg|ml|l|caps?|capsules?|tablets?|tabs?|serves?|servings?|pack|x\d+)\b/g,' ')
+    // strip bare percentage numbers left over after punct strip (e.g. "100% Whey" -> "100 whey" -> "whey")
+    .replace(/\b100\b/g,' ')
+    // strip reformulation/edition noise — "New & Improved", "New Formula", "Classic", etc.
+    // These are marketing words that retailers add when reformulating; the product is the same
+    .replace(/\b(new|improved|original|classic|advanced|ultra|plus|pro|elite|premium|edition|version|v\d+)\b/g,' ')
+    // strip generic product-form words that carry no identity info
+    .replace(/\b(powder|supplement|formula|blend)\b/g,' ')
+    // collapse "whey protein" -> "whey", "casein protein" -> "casein", etc.
+    // so "Mutant Whey Protein Powder" and "Mutant Whey" both key to "mutant whey"
+    // BUT preserves "Gold Standard Casein" vs "Gold Standard Whey" as different keys
+    .replace(/\b(whey|casein|isolate|pea|plant|vegan|egg|beef|collagen)\s+protein\b/g,(_,p1)=>p1)
+    // collapse whitespace
     .replace(/\s+/g,' ').trim();
 }
 
-let ALL=[], BRANDS={}, META={}, currentBrand=null, currentCat='all', catFilter='all', searchQ='', currentProductKey=null;
+let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
 
-// ── LOAD ────────────────────────────────────────────────────────
 async function loadData(){
-  try{
-    const r=await fetch('data/products.json');
-    if(r.ok){
-      const d=await r.json();
-      if(d.products?.length){ ALL=d.products; META=d.meta||{}; init(META.updatedAt); return; }
-    }
-  }catch(e){}
+  // Show skeleton loaders while fetching
+  document.getElementById('featRow').innerHTML=Array(6).fill('<div class="skel skel-card"></div>').join('');
+  document.getElementById('brandGrid').innerHTML=Array(8).fill('<div class="skel skel-brand"></div>').join('');
+  try{const r=await fetch('data/products.json');if(r.ok){const d=await r.json();if(d.products?.length){ALL=d.products;META=d.meta||{};init(META.updatedAt);checkDeepLink();return;}}}catch(e){}
   setStatus('error','Could not load products.json — run node scraper.js first',null);
 }
 
 function init(updatedAt){
-  // Build BRANDS: each brand contains "product groups"
-  // A product group = all retailer listings for the same product (by normalised name)
   BRANDS={};
   for(const p of ALL){
-    if(!BRANDS[p.brand]) BRANDS[p.brand]={name:p.brand, groups:{}, cats:new Set(), retailers:new Set()};
+    if(!BRANDS[p.brand])BRANDS[p.brand]={name:p.brand,groups:{},cats:new Set(),retailers:new Set()};
     const b=BRANDS[p.brand];
-    const key=normKey(p.name);
-    if(!b.groups[key]) b.groups[key]={key, name:p.name, category:p.category, imageUrl:p.imageUrl, listings:[]};
-    // Use the shortest/cleanest name as the display name
-    if(p.name.length < b.groups[key].name.length) b.groups[key].name=p.name;
-    // Prefer a listing that has an image
-    if(p.imageUrl && !b.groups[key].imageUrl) b.groups[key].imageUrl=p.imageUrl;
-    b.groups[key].listings.push(p);
-    b.cats.add(p.category);
-    b.retailers.add(p.retailer);
+    // Include category in the key so products with the same name but different
+    // category (e.g. "Collagen" vs a whey "Protein") don't collapse into one group
+    const key=normKey(p.name)+'__'+p.category;
+    if(!b.groups[key])b.groups[key]={key,name:p.name,category:p.category,imageUrl:p.imageUrl,listings:[]};
+    if(p.name.length<b.groups[key].name.length)b.groups[key].name=p.name;
+    if(p.imageUrl&&!b.groups[key].imageUrl)b.groups[key].imageUrl=p.imageUrl;
+    b.groups[key].listings.push(p);b.cats.add(p.category);b.retailers.add(p.retailer);
   }
   for(const b of Object.values(BRANDS)){
-    b.cats=[...b.cats];
-    b.retailers=[...b.retailers];
-    // Sort groups: multi-retailer first (most interesting), then by lowest price
+    b.cats=[...b.cats];b.retailers=[...b.retailers];
+    for(const g of Object.values(b.groups)){
+      // available===false means explicitly OOS; available===undefined (old scrape data) → treat as in stock
+      g.soldOut = g.listings.length > 0 && g.listings.every(l => l.available === false);
+      g.partialOos = !g.soldOut && g.listings.some(l => l.available === false);
+      // Pre-compute in-stock listings for performance
+      g.inStockListings = g.listings.filter(l => l.available !== false);
+    }
     b.groupList=Object.values(b.groups).sort((a,z)=>{
-      const ra=new Set(a.listings.map(l=>l.retailer)).size;
-      const rz=new Set(z.listings.map(l=>l.retailer)).size;
-      if(rz!==ra) return rz-ra; // more retailers first
-      return Math.min(...a.listings.map(l=>l.priceFrom)) - Math.min(...z.listings.map(l=>l.priceFrom));
+      // in-stock first, then sort by retailer count desc, then price asc
+      if(a.soldOut!==z.soldOut) return a.soldOut?1:-1;
+      const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;
+      const rz=new Set(z.inStockListings.map(l=>l.retailer)).size;
+      if(rz!==ra) return rz-ra;
+      const pa=a.inStockListings.length?Math.min(...a.inStockListings.map(l=>l.priceFrom)):9999;
+      const pz=z.inStockListings.length?Math.min(...z.inStockListings.map(l=>l.priceFrom)):9999;
+      return pa-pz;
     });
   }
-
-  const retailerCount=(META.retailers||[]).filter(r=>(META.retailerStats||{})[r]>0).length;
+  const rc=(META.retailers||[]).filter(r=>(META.retailerStats||{})[r]>0).length;
+  const inStockCount=ALL.filter(p=>p.available!==false).length;
   document.getElementById('hsBrands').textContent=Object.keys(BRANDS).length;
-  document.getElementById('hsProducts').textContent=ALL.length;
-  document.getElementById('hsRetailers').textContent=retailerCount||Object.keys(RETAILER_META).length;
-  setStatus('live',`${ALL.length} products across ${retailerCount} NZ retailers`,updatedAt);
-  buildTicker();
-  renderBrands();
+  // Show in-stock product count (more accurate/useful than total including OOS)
+  document.getElementById('hsProducts').textContent=inStockCount;
+  document.getElementById('hsRetailers').textContent=rc||Object.keys(RETAILER_META).length;
+  setStatus('live',`${inStockCount} products tracked across ${rc||Object.keys(RETAILER_META).length} NZ retailers`,updatedAt);
+  renderFeatured();renderBrands();
 }
 
-function buildTicker(){
-  const items=Object.values(BRANDS).slice(0,24).map(b=>{
-    const min=Math.min(...b.groupList.map(g=>Math.min(...g.listings.map(l=>l.priceFrom))));
-    const multiCount=b.groupList.filter(g=>new Set(g.listings.map(l=>l.retailer)).size>1).length;
-    return `<div class="ti">${b.name}<div class="ti-dot"></div>${b.groupList.length} products<div class="ti-dot"></div>from $${min.toFixed(2)}${multiCount?`<div class="ti-dot"></div>${multiCount} compared`:''}</div>`;
-  });
-  document.getElementById('tickerTrack').innerHTML=[...items,...items].join('');
+function renderFeatured(){
+  const featured=[];
+  for(const b of Object.values(BRANDS))for(const g of b.groupList){
+    if(!g.imageUrl||g.soldOut)continue;
+    const inStock=g.inStockListings;
+    if(!inStock.length)continue;
+    const rc=new Set(inStock.map(l=>l.retailer)).size;
+    const best=Math.min(...inStock.map(l=>l.priceFrom));
+    featured.push({brand:b.name,group:g,rc,best});
+  }
+  featured.sort((a,z)=>z.rc-a.rc||a.best-z.best);
+  const top=featured.slice(0,16);
+  document.getElementById('featCount').textContent=`${top.length} products`;
+  if(!top.length){document.getElementById('featRow').innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
+  document.getElementById('featRow').innerHTML=top.map((f,i)=>{
+    const d=Math.floor(f.best);const c=(f.best%1).toFixed(2).slice(1);
+    return `<div class="feat-card" style="animation-delay:${i*.04}s;position:relative" onclick="openDetail('${f.group.key.replace(/'/g,"\\'")}','${f.brand.replace(/'/g,"\\'")}')">
+      ${f.rc>1?`<div class="feat-retailers-badge">${f.rc} retailers</div>`:''}
+      <div class="feat-img"><img src="${f.group.imageUrl}" alt="${f.group.name}" onerror="this.parentElement.style.background='#f3f4f6'"></div>
+      <div class="feat-body">
+        <div class="feat-brand-lbl">${f.brand}</div>
+        <div class="feat-name">${f.group.name}</div>
+        <div class="feat-bottom">
+          <div class="feat-price"><sup>$</sup>${d}.${c}</div>
+          ${f.rc>1?`<div class="feat-badge">↓ compare</div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-// ── HOME ────────────────────────────────────────────────────────
-function filterCat(el,cat){
-  document.querySelectorAll('.ct').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active'); catFilter=cat;
-  document.getElementById('bsTitle').textContent=cat==='all'?'All brands':(CAT_META[cat]?.label+' brands');
-  renderBrands();
+function navFilterCat(el,cat){
+  document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));el.classList.add('active');
+  catFilter=cat;document.getElementById('bsTitle').textContent=cat==='all'?'All Brands':(CAT_META[cat]?.label||cat);
+  renderBrands();if(document.getElementById('viewHome').classList.contains('active'))document.querySelector('.brand-grid').scrollIntoView({behavior:'smooth'});
 }
-function onSearch(q){ searchQ=q.toLowerCase(); renderBrands(); }
+function onSearch(q){
+  searchQ=q.toLowerCase().trim();
+  renderSearchResults(q);
+  renderBrands();
+  if(currentBrand&&document.getElementById('viewBrand').classList.contains('active'))renderProducts();
+  if(document.getElementById('viewCategory').classList.contains('active'))renderCatProducts();
+}
 
 function renderBrands(){
   let brands=Object.values(BRANDS);
-  if(catFilter!=='all') brands=brands.filter(b=>b.cats.includes(catFilter));
-  if(searchQ) brands=brands.filter(b=>
-    b.name.toLowerCase().includes(searchQ)||
-    b.groupList.some(g=>g.name.toLowerCase().includes(searchQ))
-  );
-  brands.sort((a,b)=>b.groupList.length-a.groupList.length||a.name.localeCompare(b.name));
+  if(catFilter!=='all')brands=brands.filter(b=>b.cats.includes(catFilter));
+  if(searchQ){
+    brands=brands.filter(b=>{
+      if(b.name.toLowerCase().includes(searchQ))return true;
+      // Match on product names within the brand
+      if(b.groupList.some(g=>g.name.toLowerCase().includes(searchQ)))return true;
+      // Match on category labels (e.g. "collagen", "pre workout")
+      if(b.cats.some(cc=>(CAT_META[cc]?.label||cc).toLowerCase().includes(searchQ)))return true;
+      return false;
+    });
+  }
+  brands.sort((a,b)=>{
+    // If searching, put brands where the brand name itself matches first
+    if(searchQ){
+      const am=a.name.toLowerCase().includes(searchQ)?1:0;
+      const bm=b.name.toLowerCase().includes(searchQ)?1:0;
+      if(am!==bm)return bm-am;
+    }
+    return b.groupList.length-a.groupList.length||a.name.localeCompare(b.name);
+  });
+  document.getElementById('bsCount').textContent=`${brands.length} brand${brands.length!==1?'s':''}`;
   const grid=document.getElementById('brandGrid');
-  if(!brands.length){grid.innerHTML=`<div class="loading-state" style="grid-column:1/-1"><div class="load-text">No brands found</div></div>`;return;}
+  if(!brands.length){grid.innerHTML=`<div class="loading-wrap" style="grid-column:1/-1"><div class="load-txt">No brands found for "${searchQ}"</div></div>`;return;}
   grid.innerHTML=brands.map((b,i)=>{
     const c=brandColor(b.name);
-    const min=Math.min(...b.groupList.map(g=>Math.min(...g.listings.map(l=>l.priceFrom))));
-    const multiCount=b.groupList.filter(g=>new Set(g.listings.map(l=>l.retailer)).size>1).length;
+    const inStockPrices=b.groupList.flatMap(g=>g.inStockListings.map(l=>l.priceFrom)).filter(p=>!isNaN(p));
+    const min=inStockPrices.length?Math.min(...inStockPrices):null;
+    const mc=b.groupList.filter(g=>new Set(g.inStockListings.map(l=>l.retailer)).size>1).length;
     const catPills=b.cats.map(cc=>`<span class="bc-cat">${CAT_META[cc]?.label||cc}</span>`).join('');
-    return `<div class="brand-card" style="--ac:${c};animation:cardIn .4s ease ${i*.04}s both" onclick="openBrand('${b.name.replace(/'/g,"\\'")}')">
+    // Count matched products to show in card when searching
+    const matchedProducts=searchQ?b.groupList.filter(g=>g.name.toLowerCase().includes(searchQ)).length:0;
+    const matchNote=matchedProducts>0&&!b.name.toLowerCase().includes(searchQ)?`<div style="font-size:11px;color:var(--blue);margin-top:2px">${matchedProducts} matching product${matchedProducts!==1?'s':''}</div>`:'';
+    return `<div class="brand-card" style="--ac:${c};animation:fadeUp .35s ease ${i*.03}s both" onclick="openBrand('${b.name.replace(/'/g,"\\'")}')">
+      <div class="bc-bar"></div>
       <div class="bc-initial">${b.name[0]}</div>
       <div class="bc-name">${b.name}</div>
-      <div class="bc-meta">${b.groupList.length} products · from $${min.toFixed(2)}${multiCount?` · <span style="color:#4ade80">${multiCount} compared</span>`:''}</div>
+      <div class="bc-meta">${b.groupList.length} products${min!==null?` &middot; from $${min.toFixed(2)}`:''}${mc?` &middot; <span class="bc-meta-green">${mc} compared</span>`:''}</div>
+      ${matchNote}
       <div class="bc-cats">${catPills}</div>
       <div class="bc-arrow">→</div>
     </div>`;
   }).join('');
 }
 
-// ── BRAND VIEW ──────────────────────────────────────────────────
 function openBrand(name){
-  const b=BRANDS[name]; if(!b) return;
-  currentBrand=name; currentCat='all';
+  const b=BRANDS[name];if(!b)return;
+  currentBrand=name;currentCat='all';
   const c=brandColor(name);
-  const minPrice=Math.min(...b.groupList.map(g=>Math.min(...g.listings.map(l=>l.priceFrom))));
-  const retList=[...b.retailers].map(r=>rm(r).name).join(', ');
-  document.getElementById('bvName').textContent=name.toUpperCase();
-  document.getElementById('bvMeta').textContent=`${b.groupList.length} products · from $${minPrice.toFixed(2)} NZD · ${retList}`;
-  document.getElementById('bvLine').style.background=c;
+  const inStockPrices=b.groupList.flatMap(g=>g.inStockListings.map(l=>l.priceFrom)).filter(p=>!isNaN(p));
+  const minPrice=inStockPrices.length?Math.min(...inStockPrices):0;
+  document.getElementById('bvName').textContent=name;
+  document.getElementById('bvMeta').textContent=`${b.groupList.length} products · from $${minPrice.toFixed(2)} NZD · ${[...b.retailers].map(r=>rm(r).name).join(', ')}`;
   document.getElementById('bvDesc').textContent=brandDesc(name);
-  document.getElementById('bvBg').style.background=`radial-gradient(ellipse 50% 100% at 90% 50%,${c}18 0%,transparent 70%)`;
-  document.getElementById('viewBrand').style.setProperty('--bac',c);
+  document.getElementById('bvBg').style.background=`radial-gradient(ellipse 50% 100% at 100% 50%,${c}14 0%,transparent 65%)`;
+  const mc=b.groupList.filter(g=>new Set(g.inStockListings.map(l=>l.retailer)).size>1).length;
+  document.getElementById('bvStats').innerHTML=`<div class="bvs-item" style="text-align:right"><div class="bvs-n">${b.groupList.length}</div><div class="bvs-l">Products</div></div><div class="bvs-item" style="text-align:right"><div class="bvs-n" style="color:var(--green)">${mc}</div><div class="bvs-l">Compared</div></div><div class="bvs-item" style="text-align:right"><div class="bvs-n">$${minPrice.toFixed(0)}</div><div class="bvs-l">From</div></div>`;
   const cats=['all',...b.cats];
-  document.getElementById('bcf').innerHTML=cats.map(cc=>{
-    const lbl=cc==='all'?`All (${b.groupList.length})`:`${CAT_META[cc]?.label||cc} (${b.groupList.filter(g=>g.category===cc).length})`;
-    return `<button class="bcf-pill${cc==='all'?' active':''}" onclick="setBrandCat(this,'${cc}')">${lbl}</button>`;
-  }).join('');
-  document.getElementById('navBc').innerHTML=
-    `<span onclick="goHome()" style="cursor:pointer" onmouseover="this.style.color='var(--ink2)'" onmouseout="this.style.color=''">Brands</span>
-     <span class="sep">/</span><span class="cur">${name}</span>`;
-  showView('viewBrand');
-  renderProducts();
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('bcf').innerHTML=cats.map(cc=>{const lbl=cc==='all'?`All (${b.groupList.length})`:`${CAT_META[cc]?.label||cc} (${b.groupList.filter(g=>g.category===cc).length})`;return `<button class="bcf-pill${cc==='all'?' active':''}" onclick="setBrandCat(this,'${cc}')">${lbl}</button>`;}).join('');
+  showView('viewBrand');renderProducts();window.scrollTo({top:0,behavior:'smooth'});
+  setBreadcrumb([{label:'Home',fn:'goHome()'},{label:'All Brands',fn:'goHome()'},{label:name}]);
+  document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
 }
-
-function setBrandCat(el,cat){
-  document.querySelectorAll('.bcf-pill').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active'); currentCat=cat; renderProducts();
-}
+function setBrandCat(el,cat){document.querySelectorAll('.bcf-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentCat=cat;renderProducts();}
 
 function renderProducts(){
-  const b=BRANDS[currentBrand]; if(!b) return;
-  let groups=b.groupList;
-  if(currentCat!=='all') groups=groups.filter(g=>g.category===currentCat);
-  const c=brandColor(currentBrand);
-  const el=document.getElementById('plist');
-  if(!groups.length){el.innerHTML=`<div class="plist-empty">No products in this category</div>`;return;}
-
-  el.innerHTML=groups.map((g,i)=>{
+  const b=BRANDS[currentBrand];if(!b)return;
+  let groups=[...b.groupList];
+  if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
+  // Filter by search query if one is active
+  if(searchQ)groups=groups.filter(g=>g.name.toLowerCase().includes(searchQ)||g.category.toLowerCase().includes(searchQ)||(CAT_META[g.category]?.label||'').toLowerCase().includes(searchQ));
+  // Apply sort — use pre-computed inStockListings
+  const bestPriceOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
+  if(currentSort==='price-asc')groups.sort((a,z)=>bestPriceOf(a)-bestPriceOf(z));
+  else if(currentSort==='price-desc')groups.sort((a,z)=>bestPriceOf(z)-bestPriceOf(a));
+  else if(currentSort==='name')groups.sort((a,z)=>a.name.localeCompare(z.name));
+  else groups.sort((a,z)=>{
+    if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;
+    const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;
+    const rz=new Set(z.inStockListings.map(l=>l.retailer)).size;
+    return rz-ra||bestPriceOf(a)-bestPriceOf(z);
+  });
+  const showOos=document.getElementById('showOosToggle')?.checked||false;
+  const oosGroups=groups.filter(g=>g.soldOut);
+  const el=document.getElementById('oosCount');
+  if(el) el.textContent=oosGroups.length?`${oosGroups.length} out of stock hidden`:'';
+  if(!showOos) groups=groups.filter(g=>!g.soldOut);
+  const plist=document.getElementById('plist');
+  if(!groups.length){
+    const emptyMsg=searchQ
+      ?`No products matching "${searchQ}"${currentCat!=='all'?` in ${CAT_META[currentCat]?.label||currentCat}`:''}`
+      :showOos?'No products in this category':'No in-stock products — <a href="#" style="color:var(--blue)" onclick="event.preventDefault();document.getElementById(\'showOosToggle\').checked=true;renderProducts()">show out of stock</a>';
+    plist.innerHTML=`<div class="plist-empty">${emptyMsg}</div>`;return;
+  }
+  plist.innerHTML=groups.map((g,i)=>{
     const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-    // Deduplicate listings by retailer — take cheapest per retailer
-    const byRetailer={};
-    for(const l of g.listings){
-      if(!byRetailer[l.retailer]||l.priceFrom<byRetailer[l.retailer].priceFrom) byRetailer[l.retailer]=l;
-    }
-    const retailerListings=Object.values(byRetailer).sort((a,z)=>a.priceFrom-z.priceFrom);
-    const bestPrice=retailerListings[0].priceFrom;
-    const totalVariants=[...new Set(g.listings.flatMap(l=>l.variants.map(v=>v.title)))].length;
+    // One card per retailer — take cheapest listing per retailer
+    const byR={};
+    for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
+    const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
+    const inStockRl=rl.filter(l=>l.available!==false);
+    const best=inStockRl.length?inStockRl[0].priceFrom:null;
+    // Variant count across all listings
+    const tv=[...new Set(g.listings.flatMap(l=>l.variants.map(v=>v.title)))].length;
+    // Retailer count: show in-stock count, with total in parens if some are OOS
+    const oosRetailers=rl.length-inStockRl.length;
+    const retailerLabel=inStockRl.length
+      ? `${inStockRl.length} retailer${inStockRl.length!==1?'s':''}${oosRetailers?` (+${oosRetailers} OOS)`:''}`
+      : `${rl.length} retailer${rl.length!==1?'s':''} (all OOS)`;
     const img=g.imageUrl?`<div class="prow-img"><img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:'<div class="prow-img"></div>';
-    const pricecards=retailerListings.map(l=>{
-      const d=Math.floor(l.priceFrom); const cents=(l.priceFrom%1).toFixed(2).slice(1);
-      const isBest=l.priceFrom===bestPrice;
-      return `<div class="prc${isBest?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')">
-        <div class="prc-name">${rm(l.retailer).name}</div>
-        <div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">${cents}</sup></div>
-        ${isBest&&retailerListings.length>1?'<div class="prc-badge">✓ Best price</div>':''}
-      </div>`;
+    const cards=rl.map(l=>{
+      const isOos=l.available===false;
+      const d=Math.floor(l.priceFrom);const c=(l.priceFrom%1).toFixed(2).slice(1);
+      const ib=!isOos&&l.priceFrom===best;
+      if(isOos) return `<div class="prc oos" title="Out of stock at ${rm(l.retailer).name}"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price" style="color:var(--ink3)"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div><div class="prc-oos">Out of stock</div></div>`;
+      return `<div class="prc${ib?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div>${ib&&inStockRl.length>1?'<div class="prc-badge">✓ Best</div>':''}</div>`;
     }).join('');
-    return `<div class="prow" style="--bac:${c};animation-delay:${i*.025}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')">
+    const oosBadge=g.soldOut?`<div class="prow-oos-badge">Out of stock everywhere</div>`:g.partialOos?`<div class="prow-oos-badge">Out of stock at some retailers</div>`:'';
+    return `<div class="prow" style="animation-delay:${i*.02}s${g.soldOut?';opacity:.55':''}" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')">
       ${img}
       <div class="prow-body">
-        <div class="prow-top">
-          <div class="prow-title-area">
-            <div class="prow-cat" style="background:${cm.color}22;color:${cm.color};border:1px solid ${cm.color}44">${cm.label}</div>
-            <div class="prow-name">${g.name}</div>
-            <div class="prow-opts">${totalVariants} variant${totalVariants!==1?'s':''} · ${retailerListings.length} retailer${retailerListings.length!==1?'s':''}</div>
-          </div>
+        <div class="prow-left">
+          <div class="prow-cat" style="background:${cm.color}18;color:${cm.color};border:1px solid ${cm.color}35">${cm.label}</div>
+          <div class="prow-name">${g.name}</div>
+          <div class="prow-opts">${tv} variant${tv!==1?'s':''} · ${retailerLabel}</div>
+          ${oosBadge}
         </div>
-        <div class="prow-retailers">${pricecards}</div>
+        <div class="prow-right">${cards}</div>
       </div>
     </div>`;
   }).join('');
 }
 
-// ── DETAIL PANEL ────────────────────────────────────────────────
-function openDetail(groupKey, brandName){
-  const b=BRANDS[brandName]; if(!b) return;
-  const g=b.groups[groupKey]; if(!g) return;
-  currentProductKey=groupKey;
+function openDetail(groupKey,brandName){
+  const b=BRANDS[brandName];if(!b)return;
+  currentBrand=brandName;
+  // Support both old key format (normKey only) and new format (normKey__category).
+  // The card onclick passes g.key which is always the current format, but deep links
+  // from before the key change may omit the __category suffix.
+  let g=b.groups[groupKey];
+  if(!g){
+    // Fallback: find first group whose key starts with groupKey
+    g=Object.values(b.groups).find(gr=>gr.key.startsWith(groupKey));
+  }
+  if(!g)return;
   const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
+  const byR={};for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
+  const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
+  const inStockRl=rl.filter(l=>l.available!==false);
+  const bestPrice=inStockRl.length?Math.min(...inStockRl.map(l=>l.priceFrom)):Math.min(...rl.map(l=>l.priceFrom));
+  const d=Math.floor(bestPrice);const cents=(bestPrice%1).toFixed(2).slice(1);
+  const rb=rm(inStockRl.length?inStockRl[0].retailer:rl[0].retailer);
+  const allVariants=[];const seen=new Set();
+  for(const l of g.listings)for(const v of l.variants){const vk=v.title.toLowerCase().trim();if(!seen.has(vk)){seen.add(vk);allVariants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:l.available});}}
+  document.getElementById('mobileClose').style.display=window.innerWidth<=900?'block':'none';
+  document.getElementById('dpCatBadge').textContent=`${cm.label} · ${rl.length} retailer${rl.length!==1?'s':''}`;
+  document.getElementById('dpBrandLbl').textContent=brandName;
+  document.getElementById('dpPname').textContent=g.name;
+  document.getElementById('dpPopts').textContent=`${allVariants.length} variants · ${inStockRl.length} retailer${inStockRl.length!==1?'s':''} in stock`;
+  document.getElementById('dpImgArea').innerHTML=g.imageUrl
+    ?`<img src="${g.imageUrl}" alt="${g.name}" onerror="this.outerHTML='<div class=\\'dp-img-placeholder\\'>${brandName[0]}</div>'">`
+    :`<div class="dp-img-placeholder">${brandName[0]}</div>`;
 
-  // Best price across all listings
-  const bestPrice=Math.min(...g.listings.map(l=>l.priceFrom));
-  const d=Math.floor(bestPrice); const cents=(bestPrice%1).toFixed(2).slice(1);
-
-  // Deduplicate by retailer (cheapest per retailer)
-  const byRetailer={};
-  for(const l of g.listings){
-    if(!byRetailer[l.retailer]||l.priceFrom<byRetailer[l.retailer].priceFrom) byRetailer[l.retailer]=l;
+  // price hero — only show in-stock best price
+  if(inStockRl.length){
+    document.getElementById('dpBigPrice').innerHTML=`<sup>$</sup>${d}<sup class="cents">.${cents}</sup>`;
+    document.getElementById('dpBestNote').innerHTML=`<span>✓</span> Best price at ${rb.name}`;
+    document.getElementById('dpBestSub').textContent=`${rb.domain} · ${rb.shipping}`;
+  } else {
+    document.getElementById('dpBigPrice').innerHTML=`<span style="font-size:42px;color:var(--ink3)">Out of Stock</span>`;
+    document.getElementById('dpBestNote').innerHTML='';
+    document.getElementById('dpBestSub').textContent='Not currently available at any tracked retailer';
   }
-  const retailerListings=Object.values(byRetailer).sort((a,z)=>a.priceFrom-z.priceFrom);
-  const bestRetailer=retailerListings[0];
-  const rmBest=rm(bestRetailer.retailer);
 
-  // All unique variants across all retailers
-  const allVariants=[];
-  const seenVariants=new Set();
-  for(const l of g.listings){
-    for(const v of l.variants){
-      const vkey=v.title.toLowerCase().trim();
-      if(!seenVariants.has(vkey)){seenVariants.add(vkey);allVariants.push({...v,retailer:l.retailer,url:l.url});}
-    }
-  }
-
-  const imgHtml=g.imageUrl
-    ?`<div class="dp-img"><img src="${g.imageUrl}" alt="${g.name}" onerror="this.parentElement.style.display='none'"></div>`:'';
-
-  // Retailer comparison section
-  const retailerRows=retailerListings.map(l=>{
-    const r=rm(l.retailer); const isBest=l.priceFrom===bestPrice;
-    return `<div class="dp-var" style="${isBest?'background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.25)':''}">
+  // retailer cards — show all, mark oos
+  const retailerRows=rl.map(l=>{
+    const r=rm(l.retailer);const isOos=l.available===false;
+    const ib=!isOos&&l.priceFrom===bestPrice&&inStockRl.length>0;
+    const pd=Math.floor(l.priceFrom);const pc=(l.priceFrom%1).toFixed(2).slice(1);
+    return `<div class="dp-retailer-card${ib?' best':''}${isOos?' oos':''}">
       <div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="font-size:13px;font-weight:600;color:var(--ink)">${r.name}</div>
-          ${isBest&&retailerListings.length>1?'<span style="font-size:9px;font-family:Space Mono,monospace;color:#4ade80;letter-spacing:.06em;text-transform:uppercase">Best price</span>':''}
+        <div class="dp-r-name">${r.name}
+          ${ib&&inStockRl.length>1?'<span class="dp-r-best-tag">Best price</span>':''}
+          ${isOos?'<span class="dp-oos-tag">Out of stock</span>':''}
         </div>
-        <div style="font-size:11px;color:var(--ink3);margin-top:2px">${r.domain} · ${r.shipping}</div>
+        <div class="dp-r-domain">${r.domain} · ${r.shipping}</div>
       </div>
-      <div class="dp-var-right">
-        <div class="dp-var-price" style="${isBest?'color:#4ade80':''}">$${l.priceFrom.toFixed(2)}</div>
-        <button class="dp-var-btn" onclick="window.open('${l.url}','_blank')">Shop →</button>
+      <div class="dp-r-right">
+        <div class="dp-r-price" style="${isOos?'color:var(--ink3)':''}"><sup>$</sup>${pd}<sup style="font-size:12px">.${pc}</sup></div>
+        <button class="dp-r-btn${isOos?' oos':''}" ${isOos?'disabled':''} onclick="${isOos?'':'window.open(\''+l.url+'\',\'_blank\')'}">${isOos?'Out of Stock':'Shop at '+r.name+' →'}</button>
       </div>
     </div>`;
   }).join('');
 
-  // Variants section — show top 6
-  const varRows=allVariants.slice(0,6).map(v=>
-    `<div class="dp-var">
-      <div class="dp-var-title">${v.title||'Default'}</div>
+  // variant rows — mark oos variants
+  const varRows=allVariants.slice(0,6).map(v=>{
+    const isOos=v.available===false||v.listingAvailable===false;
+    return `<div class="dp-var${isOos?' oos':''}">
+      <div class="dp-var-title">${v.title||'Default'}${isOos?'':''}</div>
       <div class="dp-var-right">
-        <div class="dp-var-price">$${v.price.toFixed(2)}</div>
-        <button class="dp-var-btn" onclick="window.open('${v.url}','_blank')">Buy →</button>
+        ${isOos?`<div class="dp-var-oos">Out of stock</div>`:``}
+        <div class="dp-var-price" style="${isOos?'color:var(--ink3)':''}">$${v.price.toFixed(2)}</div>
+        ${isOos?'':'<button class="dp-var-btn" onclick="window.open(\''+v.url+'\',\'_blank\')">Buy →</button>'}
       </div>
-    </div>`
-  ).join('');
-  const moreVars=allVariants.length>6?`<div style="font-size:11px;color:var(--ink3);font-family:Space Mono,monospace;padding:8px 12px">+${allVariants.length-6} more variants available</div>`:'';
-
+    </div>`;
+  }).join('');
+  const moreVars=allVariants.length>6?`<div style="font-size:11px;color:var(--ink3);padding:4px 0;font-family:'Space Mono',monospace">+${allVariants.length-6} more variants</div>`:'';
   const desc=g.listings.find(l=>l.description)?.description||'';
 
-  document.getElementById('detailPanel').innerHTML=`
-    <div class="dp-bar">
-      <div class="dp-label" style="color:${cm.color}">${cm.label} · ${retailerListings.length} retailer${retailerListings.length!==1?'s':''}</div>
-      <button class="dp-x" onclick="closeDetail()">✕</button>
-    </div>
-    ${imgHtml}
-    <div class="dp-hero">
-      <div class="dp-brand-lbl">${brandName}</div>
-      <div class="dp-pname">${g.name}</div>
-      <div class="dp-popts">${allVariants.length} variants · available at ${retailerListings.length} retailer${retailerListings.length!==1?'s':''}</div>
-      <div class="dp-bigprice"><sup>$</sup>${d}<sup style="font-size:20px">.${cents}</sup></div>
-      <div class="dp-pnote">Best price · ${rmBest.name} · ${rmBest.domain}</div>
-    </div>
-    <div class="dp-body">
-      <div class="dp-sec">
-        <div class="dp-sec-title">Price comparison — ${retailerListings.length} retailer${retailerListings.length!==1?'s':''}</div>
-        ${retailerRows}
-      </div>
-      ${allVariants.length?`<div class="dp-sec"><div class="dp-sec-title">Available sizes & flavours</div>${varRows}${moreVars}</div>`:''}
-      ${desc?`<div class="dp-sec"><div class="dp-sec-title">About this product</div><div class="dp-desc">${desc}</div></div>`:''}
-    </div>`;
+  // oos note if fully sold out
+  const oosNote=g.soldOut?`<div class="dp-oos-hero"><div class="dp-oos-hero-icon">📭</div><div class="dp-oos-hero-text">This product is currently out of stock across all tracked retailers. Prices shown are the last recorded prices. <a href="#" style="color:var(--blue)" onclick="event.preventDefault();scrollToAlerts();closeDetail()">Set a price alert</a> to be notified when it's back in stock.</div></div>`:'';
 
+  // Price history chart — aggregate history from all listings for this group
+  const allHistory=[];
+  for(const l of g.listings){if(l.priceHistory&&l.priceHistory.length){for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date,retailer:l.retailer});}}
+  // Also add current prices as latest data point
+  for(const l of g.listings)if(l.available!==false)allHistory.push({price:l.priceFrom,date:new Date().toISOString().split('T')[0],retailer:l.retailer,current:true});
+  allHistory.sort((a,b)=>a.date.localeCompare(b.date));
+  let chartHtml='';
+  if(allHistory.length>=2){
+    const prices=allHistory.map(h=>h.price);
+    const mn=Math.min(...prices),mx=Math.max(...prices);
+    const range=mx-mn||1;
+    chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-title">Price history</div><div class="dp-chart">${
+      allHistory.slice(-12).map(h=>{
+        const pct=Math.round(((h.price-mn)/range)*70+10);
+        const isBest=h.price===mn;
+        const dt=h.date.slice(5);// MM-DD
+        return `<div class="dp-chart-bar-wrap"><div class="dp-chart-bar" style="height:${pct}%" data-best="${isBest?1:0}"><div class="dp-chart-price-lbl">$${h.price.toFixed(0)}</div></div><div class="dp-chart-date">${dt}</div></div>`;
+      }).join('')
+    }</div></div>`;
+  } else {
+    chartHtml='';
+  }
+
+  // Per-serve estimate (very rough — based on variant title keywords)
+  let perServe='';
+  const serveV=allVariants.find(v=>/\d+(g|kg|lb|lbs)/i.test(v.title));
+  if(serveV&&inStockRl.length){
+    const m=serveV.title.match(/(\d+\.?\d*)\s*(kg|g|lb|lbs)/i);
+    if(m){const grams=m[2].toLowerCase().startsWith('k')?parseFloat(m[1])*1000:m[2].toLowerCase().startsWith('l')?parseFloat(m[1])*453.6:parseFloat(m[1]);const serves=Math.round(grams/30);if(serves>1){const cpp=(bestPrice/serves).toFixed(2);perServe=`<div class="dp-per-serve">≈ ${serves} serves · <strong>$${cpp}/serve</strong></div>`;}}
+  }
+
+  // Share / copy link buttons
+  const shareUrl=window.location.origin+window.location.pathname+`?brand=${encodeURIComponent(currentBrand)}&product=${encodeURIComponent(g.key)}`;
+  const shareRow=`<div class="dp-share-row">
+    <button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>
+    ${navigator.share?`<button class="dp-share-btn" onclick="navigator.share({title:'${g.name} — ScoopScore',url:'${shareUrl}'})">↑ Share</button>`:''}
+    <button class="dp-share-btn" onclick="window.open('${inStockRl.length?inStockRl[0].url:rl[0].url}','_blank')">🛒 Cheapest →</button>
+  </div>`;
+
+  document.getElementById('dpBody').innerHTML=`
+    ${chartHtml}
+    ${shareRow}
+    <div class="dp-section"><div class="dp-sec-title">Compare prices — ${rl.length} retailer${rl.length!==1?'s':''}</div>${retailerRows}${oosNote}</div>
+    ${allVariants.length?`<div class="dp-section"><div class="dp-sec-title">Sizes & flavours</div>${varRows}${moreVars}${perServe}</div>`:''}
+    ${desc?`<div class="dp-section"><div class="dp-sec-title">About this product</div><div class="dp-desc">${desc}</div></div>`:''}
+  `;
   document.getElementById('detailOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
 
-function closeDetail(){
-  document.getElementById('detailOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
+function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.body.style.overflow='';}
 function handleDetailBg(e){if(e.target===document.getElementById('detailOverlay'))closeDetail();}
-
-// ── UTILS ───────────────────────────────────────────────────────
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function goHome(){closeDetail();showView('viewHome');currentBrand=null;document.getElementById('navBc').innerHTML='';window.scrollTo({top:0,behavior:'smooth'});}
-function setStatus(state,msg,updatedAt){
-  const dot=document.getElementById('sDot'),txt=document.getElementById('sTxt'),time=document.getElementById('sTime');
-  if(dot) dot.style.background=state==='live'?'var(--green)':state==='loading'?'#f59e0b':'var(--red)';
-  if(txt) txt.textContent=msg;
-  if(time&&updatedAt){const d=new Date(updatedAt);time.textContent=`Updated ${d.toLocaleDateString('en-NZ',{day:'numeric',month:'short'})} ${d.toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'})}`;}
-}
-function signupAlert(){
-  const e=document.getElementById('alertEmail').value;
-  if(!e||!e.includes('@')){showToast('Enter a valid email');return;}
-  document.getElementById('alertEmail').value='';showToast('Done — price drop alerts active');
-}
+function goHome(){closeDetail();showView('viewHome');currentBrand=null;setBreadcrumb([]);document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));document.querySelector('.nav-cat').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function navGoHome(el){document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));el.classList.add('active');goHome();}
+function scrollToAlerts(){if(!document.getElementById('viewHome').classList.contains('active')){goHome();setTimeout(()=>document.getElementById('alertBar').scrollIntoView({behavior:'smooth'}),100);}else{document.getElementById('alertBar').scrollIntoView({behavior:'smooth'});}}
+function setStatus(state,msg,updatedAt){const dot=document.getElementById('sDot'),txt=document.getElementById('sTxt'),time=document.getElementById('sTime');if(dot)dot.style.background=state==='live'?'var(--green)':state==='loading'?'#f59e0b':'var(--red)';if(txt)txt.textContent=msg;if(time&&updatedAt){const d=new Date(updatedAt);time.textContent=`Updated ${d.toLocaleDateString('en-NZ',{day:'numeric',month:'short'})} ${d.toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'})}`;}}
+function signupAlert(){const e=document.getElementById('alertEmail').value;if(!e||!e.includes('@')){showToast('Enter a valid email');return;}document.getElementById('alertEmail').value='';showToast('Done — you\'ll be notified of price drops');}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// Keyboard: Escape closes modal
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDetail();closeMega();}});
+
+// Back-to-top visibility
+window.addEventListener('scroll',()=>{document.getElementById('btt')?.classList.toggle('vis',window.scrollY>400);},{passive:true});
+
+// Footer year
+document.getElementById('footerYear').textContent=new Date().getFullYear();
+
+// Handle ?brand=&product= deep-link on load
+function checkDeepLink(){const p=new URLSearchParams(window.location.search);const b=p.get('brand'),k=p.get('product');if(b&&k&&BRANDS[b])openDetail(k,b);}
 
 loadData();
 </script>
