@@ -311,7 +311,47 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .dp-var-btn:hover{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
 .dp-desc{font-size:13px;color:var(--ink3);line-height:1.75;font-weight:300}
 
-/* LOADING */
+/* ── SIZE-SPLIT PRODUCT ROWS ── */
+.prow-size-group{border-bottom:1px solid var(--border);animation:fadeUp .25s ease both}
+.prow-size-group:last-child{border-bottom:none}
+.prow-product-header{display:grid;grid-template-columns:64px 1fr;cursor:pointer;transition:background .08s}
+.prow-product-header:hover{background:var(--bg2)}
+.prow-product-header .prow-img{padding:10px 0}
+.prow-product-header .prow-img img{width:48px;height:48px;object-fit:contain;background:var(--bg2);border-radius:6px;padding:2px}
+.prow-product-meta{display:flex;align-items:center;gap:12px;padding:12px 0 12px 12px;min-width:0;flex:1}
+.prow-product-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.prow-product-brand{font-size:11px;color:var(--ink3);font-weight:400;font-family:'Inter',sans-serif;margin-top:2px}
+.prow-product-cat{font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:100px;flex-shrink:0}
+.prow-size-rows{display:flex;flex-direction:column;gap:0}
+.prow-size-row{display:grid;grid-template-columns:64px 160px 1fr;align-items:center;border-top:1px solid var(--border);cursor:pointer;transition:background .08s;min-height:52px}
+.prow-size-row:hover{background:var(--bg2)}
+.prow-size-indent{} /* spacer */
+.prow-size-label{padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.psl-kg{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--ink)}
+.psl-sub{font-size:10px;color:var(--ink3);font-family:'Inter',sans-serif}
+.prow-size-prices{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0}
+.prc-sm{display:flex;flex-direction:column;gap:1px;padding:6px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;min-width:80px;cursor:pointer;transition:all .12s}
+.prc-sm:hover{border-color:var(--ink2)}
+.prc-sm.best{background:var(--green-bg);border-color:var(--green-border)}
+.prc-sm-name{font-size:10px;font-weight:500;color:var(--ink3);font-family:'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase}
+.prc-sm-price{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.03em;color:var(--ink);line-height:1}
+.prc-sm-badge{font-size:9px;font-weight:600;color:var(--green);font-family:'Inter',sans-serif}
+.prc-sm.oos{opacity:.4;border-style:dashed}
+
+/* ── MODAL SIZE TABS + FLAVOUR PICKER ── */
+.dp-size-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:20px 28px 16px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.dp-size-tab{padding:8px 16px;border-radius:100px;border:1px solid var(--border2);background:var(--bg);font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--ink2);cursor:pointer;transition:all .12s;display:flex;flex-direction:column;align-items:center;gap:2px}
+.dp-size-tab-sub{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:var(--ink3);letter-spacing:0}
+.dp-size-tab:hover{border-color:var(--ink2);background:var(--bg3)}
+.dp-size-tab.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
+.dp-size-tab.active .dp-size-tab-sub{color:rgba(248,247,245,.6)}
+
+.dp-flavour-wrap{padding:16px 28px;border-bottom:1px solid var(--border)}
+.dp-flavour-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-family:'Inter',sans-serif}
+.dp-flavour-pills{display:flex;gap:4px;flex-wrap:wrap}
+.dp-flavour-pill{padding:5px 12px;border-radius:100px;border:1px solid var(--border2);background:none;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink2);cursor:pointer;transition:all .1s}
+.dp-flavour-pill:hover{border-color:var(--ink2);background:var(--bg2)}
+.dp-flavour-pill.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
 .loading-wrap{padding:64px 32px;text-align:center}
 .spinner{width:24px;height:24px;border:2px solid var(--bg3);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -516,32 +556,32 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
             <!-- Left: category list -->
             <div class="mega-cats">
               <div class="mega-section-label">Browse by Category</div>
-              <button class="mega-cat-item active" data-cat="all" onclick="megaPickCat(this,'all')">
+              <button class="mega-cat-item active" data-cat="all" onclick="openCategoryView('all');closeMega()">
                 <span class="mci-icon">⊞</span>
                 <span class="mci-label">All Products</span>
                 <span class="mci-count" id="mciCount-all"></span>
               </button>
-              <button class="mega-cat-item" data-cat="protein" onclick="megaPickCat(this,'protein')">
+              <button class="mega-cat-item" data-cat="protein" onclick="openCategoryView('protein');closeMega()">
                 <span class="mci-icon">🥛</span>
                 <span class="mci-label">Protein</span>
                 <span class="mci-count" id="mciCount-protein"></span>
               </button>
-              <button class="mega-cat-item" data-cat="creatine" onclick="megaPickCat(this,'creatine')">
+              <button class="mega-cat-item" data-cat="creatine" onclick="openCategoryView('creatine');closeMega()">
                 <span class="mci-icon">⚡</span>
                 <span class="mci-label">Creatine</span>
                 <span class="mci-count" id="mciCount-creatine"></span>
               </button>
-              <button class="mega-cat-item" data-cat="preworkout" onclick="megaPickCat(this,'preworkout')">
+              <button class="mega-cat-item" data-cat="preworkout" onclick="openCategoryView('preworkout');closeMega()">
                 <span class="mci-icon">🔥</span>
                 <span class="mci-label">Pre-Workout</span>
                 <span class="mci-count" id="mciCount-preworkout"></span>
               </button>
-              <button class="mega-cat-item" data-cat="fatburner" onclick="megaPickCat(this,'fatburner')">
+              <button class="mega-cat-item" data-cat="fatburner" onclick="openCategoryView('fatburner');closeMega()">
                 <span class="mci-icon">💧</span>
                 <span class="mci-label">Fat Burners</span>
                 <span class="mci-count" id="mciCount-fatburner"></span>
               </button>
-              <button class="mega-cat-item" data-cat="bcaa" onclick="megaPickCat(this,'bcaa')">
+              <button class="mega-cat-item" data-cat="bcaa" onclick="openCategoryView('bcaa');closeMega()">
                 <span class="mci-icon">💊</span>
                 <span class="mci-label">BCAAs</span>
                 <span class="mci-count" id="mciCount-bcaa"></span>
@@ -1151,6 +1191,8 @@ const PRICE_BUCKETS=[
 function openCategoryView(cat){
   catViewCat=cat||'all';catViewBrandFilter='all';catViewRetailerFilter='all';
   catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceBucket=null;
+  showView('viewCategory');
+  window.scrollTo({top:0,behavior:'smooth'});
   const label=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
   document.getElementById('catViewTitle').textContent=label;
   document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
@@ -1168,8 +1210,10 @@ function renderCatFilterPills(){
 function setCatViewCat(el,cat){
   catViewCat=cat;catViewBrandFilter='all';catViewRetailerFilter='all';
   catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceBucket=null;
+  document.querySelectorAll('#catFilterPills .bcf-pill').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('catViewTitle').textContent=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
+  setBreadcrumb([{label:'Home',fn:'goHome()'},{label:document.getElementById('catViewTitle').textContent}]);
   renderCatSmartFilters();renderCatSidebar();renderCatProducts();
   document.getElementById('catActiveFiltersWrap').style.display='none';
 }
@@ -1281,33 +1325,47 @@ function renderCatProducts(){
   document.getElementById('catViewMeta').textContent=`${groups.length} product${groups.length!==1?'s':''}`;
   const plist=document.getElementById('catPlist');
   if(!groups.length){plist.innerHTML='<div class="plist-empty">No products match these filters</div>';return;}
+
   plist.innerHTML=groups.map(({brand,group:g},i)=>{
     const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-    const byR={};
-    for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
-    const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
-    const inStockRl=rl.filter(l=>l.available!==false);
-    const best=inStockRl.length?inStockRl[0].priceFrom:null;
-    const sizeRange=groupSizeRange(g);
-    const sizeLbl=sizeRange?(sizeRange.min===sizeRange.max?formatGrams(sizeRange.min):`${formatGrams(sizeRange.min)}–${formatGrams(sizeRange.max)}`):null;
-    const img=g.imageUrl?`<div class="prow-img"><img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:'<div class="prow-img"></div>';
-    const cards=rl.map(l=>{
-      const isOos=l.available===false;
-      const d=Math.floor(l.priceFrom);const c=(l.priceFrom%1).toFixed(2).slice(1);
-      const ib=!isOos&&l.priceFrom===best;
-      if(isOos)return`<div class="prc oos"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price" style="color:var(--ink3)"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div><div class="prc-oos">Out of stock</div></div>`;
-      return`<div class="prc${ib?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div>${ib&&inStockRl.length>1?'<div class="prc-badge">✓ Best</div>':''}</div>`;
-    }).join('');
-    return`<div class="prow" style="animation-delay:${i*.012}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
-      ${img}
-      <div class="prow-body">
-        <div class="prow-left">
-          <div class="prow-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</div>
-          <div class="prow-name">${g.name}</div>
-          <div class="prow-opts">${brand}${sizeLbl?' · '+sizeLbl:''} · ${inStockRl.length} retailer${inStockRl.length!==1?'s':''}</div>
+    const sizeMap=buildSizeMap(g);
+    const img=g.imageUrl?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=''">`:'';
+
+    const sizeRows=[...sizeMap.entries()].map(([sizeKey,sz])=>{
+      const retailers=[...sz.retailers.values()].sort((a,b)=>a.price-b.price);
+      const inStock=retailers.filter(r=>r.available);
+      const bestPrice=inStock.length?inStock[0].price:null;
+      const cards=retailers.map(r=>{
+        const d=Math.floor(r.price),c=(r.price%1).toFixed(2).slice(1);
+        const isBest=r.available&&r.price===bestPrice;
+        return`<div class="prc-sm${isBest?' best':''}${!r.available?' oos':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
+          <div class="prc-sm-name">${rm(r.retailer).name}</div>
+          <div class="prc-sm-price">$${d}.${c}</div>
+          ${isBest&&inStock.length>1?'<div class="prc-sm-badge">✓ Best</div>':''}
+        </div>`;
+      }).join('');
+      return`<div class="prow-size-row" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
+        <div class="prow-size-indent"></div>
+        <div class="prow-size-label">
+          <div class="psl-kg">${sz.label}</div>
+          <div class="psl-sub">${inStock.length?inStock.length+' retailer'+(inStock.length!==1?'s':''):'Out of stock'}</div>
         </div>
-        <div class="prow-right">${cards}</div>
+        <div class="prow-size-prices">${cards}</div>
+      </div>`;
+    }).join('');
+
+    return`<div class="prow-size-group" style="animation-delay:${i*.012}s">
+      <div class="prow-product-header" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
+        <div class="prow-img" style="padding:10px 0;display:flex;align-items:center;justify-content:center">${img}</div>
+        <div class="prow-product-meta">
+          <span class="prow-product-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</span>
+          <div>
+            <div class="prow-product-name">${g.name}</div>
+            <div class="prow-product-brand">${brand} · ${sizeMap.size} size${sizeMap.size!==1?'s':''}</div>
+          </div>
+        </div>
       </div>
+      ${sizeRows}
     </div>`;
   }).join('');
 }
@@ -1507,204 +1565,246 @@ function openBrand(name){
 }
 function setBrandCat(el,cat){document.querySelectorAll('.bcf-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentCat=cat;renderProducts();}
 
+// ── SIZE PARSING HELPERS (used by both list and modal) ──
+// Extract kg value from a variant title. Lbs → kg. Returns null if no size found.
+function variantToKg(title){
+  if(!title)return null;
+  const t=title.toLowerCase();
+  const kg=t.match(/(\d+\.?\d*)\s*kg/);if(kg)return Math.round(parseFloat(kg[1])*100)/100;
+  const lb=t.match(/(\d+\.?\d*)\s*lb/);if(lb)return Math.round(parseFloat(lb[1])*453.592/100)/10;
+  const g=t.match(/(\d+\.?\d*)\s*g(?!el|um|re|lass|reen)\b/);if(g)return Math.round(parseFloat(g[1]))/1000;
+  return null;
+}
+// Nicely display kg — round to 1 decimal only when needed
+function fmtKg(kg){
+  if(kg<1)return Math.round(kg*1000)+'g';
+  return(Number.isInteger(kg)||kg===Math.round(kg))?kg+'kg':kg.toFixed(1)+'kg';
+}
+// Strip size tokens from a variant title to get the flavour portion
+function variantFlavour(title){
+  if(!title)return'';
+  return title.replace(/\s*[\\/|·\-–]\s*/g,' / ')
+    .replace(/\d+\.?\d*\s*(kg|g|lb|lbs)\b/gi,'').replace(/\s+/g,' ').trim().replace(/^\s*\/\s*|\s*\/\s*$/g,'');
+}
+
+// ── BUILD SIZE MAP from a group: Map<kgString → {kg, listings[]}>
+function buildSizeMap(group){
+  const map=new Map();
+  for(const l of group.listings){
+    for(const v of l.variants){
+      const kg=variantToKg(v.title);
+      const key=kg!==null?fmtKg(kg):'unknown';
+      if(!map.has(key))map.set(key,{kg,label:key,variants:[],retailers:new Map()});
+      const entry=map.get(key);
+      entry.variants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:l.available});
+      // Track cheapest price per retailer for this size
+      const existing=entry.retailers.get(l.retailer);
+      if(!existing||v.price<existing.price){
+        entry.retailers.set(l.retailer,{retailer:l.retailer,price:v.price,url:l.url,available:v.available!==false&&l.available!==false});
+      }
+    }
+  }
+  // Sort by kg asc (unknown sizes last)
+  return new Map([...map.entries()].sort((a,b)=>{
+    const ka=a[1].kg??9999,kb=b[1].kg??9999;return ka-kb;
+  }));
+}
+
 function renderProducts(){
   const b=BRANDS[currentBrand];if(!b)return;
   let groups=[...b.groupList];
   if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
-  // Filter by search query if one is active
-  if(searchQ)groups=groups.filter(g=>g.name.toLowerCase().includes(searchQ)||g.category.toLowerCase().includes(searchQ)||(CAT_META[g.category]?.label||'').toLowerCase().includes(searchQ));
-  // Apply sort — use pre-computed inStockListings
+  if(searchQ)groups=groups.filter(g=>g.name.toLowerCase().includes(searchQ)||g.category.toLowerCase().includes(searchQ));
   const bestPriceOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
   if(currentSort==='price-asc')groups.sort((a,z)=>bestPriceOf(a)-bestPriceOf(z));
   else if(currentSort==='price-desc')groups.sort((a,z)=>bestPriceOf(z)-bestPriceOf(a));
   else if(currentSort==='name')groups.sort((a,z)=>a.name.localeCompare(z.name));
-  else groups.sort((a,z)=>{
-    if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;
-    const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;
-    const rz=new Set(z.inStockListings.map(l=>l.retailer)).size;
-    return rz-ra||bestPriceOf(a)-bestPriceOf(z);
-  });
+  else groups.sort((a,z)=>{if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;const ra=new Set(a.inStockListings.map(l=>l.retailer)).size,rz=new Set(z.inStockListings.map(l=>l.retailer)).size;return rz-ra||bestPriceOf(a)-bestPriceOf(z);});
   const showOos=document.getElementById('showOosToggle')?.checked||false;
   const oosGroups=groups.filter(g=>g.soldOut);
   const el=document.getElementById('oosCount');
-  if(el) el.textContent=oosGroups.length?`${oosGroups.length} out of stock hidden`:'';
-  if(!showOos) groups=groups.filter(g=>!g.soldOut);
+  if(el)el.textContent=oosGroups.length?`${oosGroups.length} out of stock hidden`:'';
+  if(!showOos)groups=groups.filter(g=>!g.soldOut);
   const plist=document.getElementById('plist');
-  if(!groups.length){
-    const emptyMsg=searchQ
-      ?`No products matching "${searchQ}"${currentCat!=='all'?` in ${CAT_META[currentCat]?.label||currentCat}`:''}`
-      :showOos?'No products in this category':'No in-stock products — <a href="#" style="color:var(--blue)" onclick="event.preventDefault();document.getElementById(\'showOosToggle\').checked=true;renderProducts()">show out of stock</a>';
-    plist.innerHTML=`<div class="plist-empty">${emptyMsg}</div>`;return;
-  }
+  if(!groups.length){plist.innerHTML=`<div class="plist-empty">${searchQ?`No products matching "${searchQ}"`:'No in-stock products'}</div>`;return;}
+
   plist.innerHTML=groups.map((g,i)=>{
     const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-    // One card per retailer — take cheapest listing per retailer
-    const byR={};
-    for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
-    const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
-    const inStockRl=rl.filter(l=>l.available!==false);
-    const best=inStockRl.length?inStockRl[0].priceFrom:null;
-    // Variant count across all listings
-    const tv=[...new Set(g.listings.flatMap(l=>l.variants.map(v=>v.title)))].length;
-    // Retailer count: show in-stock count, with total in parens if some are OOS
-    const oosRetailers=rl.length-inStockRl.length;
-    const retailerLabel=inStockRl.length
-      ? `${inStockRl.length} retailer${inStockRl.length!==1?'s':''}${oosRetailers?` (+${oosRetailers} OOS)`:''}`
-      : `${rl.length} retailer${rl.length!==1?'s':''} (all OOS)`;
-    const img=g.imageUrl?`<div class="prow-img"><img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:'<div class="prow-img"></div>';
-    const cards=rl.map(l=>{
-      const isOos=l.available===false;
-      const d=Math.floor(l.priceFrom);const c=(l.priceFrom%1).toFixed(2).slice(1);
-      const ib=!isOos&&l.priceFrom===best;
-      if(isOos) return `<div class="prc oos" title="Out of stock at ${rm(l.retailer).name}"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price" style="color:var(--ink3)"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div><div class="prc-oos">Out of stock</div></div>`;
-      return `<div class="prc${ib?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div>${ib&&inStockRl.length>1?'<div class="prc-badge">✓ Best</div>':''}</div>`;
-    }).join('');
-    const oosBadge=g.soldOut?`<div class="prow-oos-badge">Out of stock everywhere</div>`:g.partialOos?`<div class="prow-oos-badge">Out of stock at some retailers</div>`:'';
-    return `<div class="prow" style="animation-delay:${i*.02}s${g.soldOut?';opacity:.55':''}" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')">
-      ${img}
-      <div class="prow-body">
-        <div class="prow-left">
-          <div class="prow-cat" style="background:${cm.color}18;color:${cm.color};border:1px solid ${cm.color}35">${cm.label}</div>
-          <div class="prow-name">${g.name}</div>
-          <div class="prow-opts">${tv} variant${tv!==1?'s':''} · ${retailerLabel}</div>
-          ${oosBadge}
+    const sizeMap=buildSizeMap(g);
+    const img=g.imageUrl?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=''">`:'';
+
+    // Build one row per size
+    const sizeRows=[...sizeMap.entries()].map(([sizeKey,sz])=>{
+      const retailers=[...sz.retailers.values()].sort((a,b)=>a.price-b.price);
+      const inStock=retailers.filter(r=>r.available);
+      const bestPrice=inStock.length?inStock[0].price:null;
+      const cards=retailers.map(r=>{
+        const d=Math.floor(r.price),c=(r.price%1).toFixed(2).slice(1);
+        const isBest=r.available&&r.price===bestPrice;
+        const isOos=!r.available;
+        return`<div class="prc-sm${isBest?' best':''}${isOos?' oos':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
+          <div class="prc-sm-name">${rm(r.retailer).name}</div>
+          <div class="prc-sm-price">$${d}.${c}</div>
+          ${isBest&&inStock.length>1?'<div class="prc-sm-badge">✓ Best</div>':''}
+        </div>`;
+      }).join('');
+      return`<div class="prow-size-row" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
+        <div class="prow-size-indent"></div>
+        <div class="prow-size-label">
+          <div class="psl-kg">${sz.label}</div>
+          <div class="psl-sub">${inStock.length?inStock.length+' retailer'+(inStock.length!==1?'s':''):'Out of stock'}</div>
         </div>
-        <div class="prow-right">${cards}</div>
+        <div class="prow-size-prices">${cards}</div>
+      </div>`;
+    }).join('');
+
+    return`<div class="prow-size-group" style="animation-delay:${i*.02}s">
+      <div class="prow-product-header" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')">
+        <div class="prow-img" style="padding:10px 0;display:flex;align-items:center;justify-content:center">${img}</div>
+        <div class="prow-product-meta">
+          <span class="prow-product-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</span>
+          <div><div class="prow-product-name">${g.name}</div><div class="prow-product-brand">${sizeMap.size} size${sizeMap.size!==1?'s':''}</div></div>
+        </div>
       </div>
+      ${sizeRows}
     </div>`;
   }).join('');
 }
 
-function openDetail(groupKey,brandName){
+// ── MODAL STATE ──
+let _modalGroup=null,_modalBrand=null,_modalSizeKey=null,_modalFlavour=null;
+
+function openDetail(groupKey,brandName,sizeKey){
   const b=BRANDS[brandName];if(!b)return;
   currentBrand=brandName;
-  // Support both old key format (normKey only) and new format (normKey__category).
-  // The card onclick passes g.key which is always the current format, but deep links
-  // from before the key change may omit the __category suffix.
   let g=b.groups[groupKey];
-  if(!g){
-    // Fallback: find first group whose key starts with groupKey
-    g=Object.values(b.groups).find(gr=>gr.key.startsWith(groupKey));
-  }
+  if(!g)g=Object.values(b.groups).find(gr=>gr.key.startsWith(groupKey));
   if(!g)return;
-  const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-  const byR={};for(const l of g.listings)if(!byR[l.retailer]||l.priceFrom<byR[l.retailer].priceFrom)byR[l.retailer]=l;
-  const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
-  const inStockRl=rl.filter(l=>l.available!==false);
-  const bestPrice=inStockRl.length?Math.min(...inStockRl.map(l=>l.priceFrom)):Math.min(...rl.map(l=>l.priceFrom));
-  const d=Math.floor(bestPrice);const cents=(bestPrice%1).toFixed(2).slice(1);
-  const rb=rm(inStockRl.length?inStockRl[0].retailer:rl[0].retailer);
-  const allVariants=[];const seen=new Set();
-  for(const l of g.listings)for(const v of l.variants){const vk=v.title.toLowerCase().trim();if(!seen.has(vk)){seen.add(vk);allVariants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:l.available});}}
-  document.getElementById('mobileClose').style.display=window.innerWidth<=900?'block':'none';
-  document.getElementById('dpCatBadge').textContent=`${cm.label} · ${rl.length} retailer${rl.length!==1?'s':''}`;
-  document.getElementById('dpBrandLbl').textContent=brandName;
-  document.getElementById('dpPname').textContent=g.name;
-  document.getElementById('dpPopts').textContent=`${allVariants.length} variants · ${inStockRl.length} retailer${inStockRl.length!==1?'s':''} in stock`;
-  document.getElementById('dpImgArea').innerHTML=g.imageUrl
-    ?`<img src="${g.imageUrl}" alt="${g.name}" onerror="this.outerHTML='<div class=\\'dp-img-placeholder\\'>${brandName[0]}</div>'">`
-    :`<div class="dp-img-placeholder">${brandName[0]}</div>`;
-
-  // price hero — only show in-stock best price
-  if(inStockRl.length){
-    document.getElementById('dpBigPrice').innerHTML=`<sup>$</sup>${d}<sup class="cents">.${cents}</sup>`;
-    document.getElementById('dpBestNote').innerHTML=`<span>✓</span> Best price at ${rb.name}`;
-    document.getElementById('dpBestSub').textContent=`${rb.domain} · ${rb.shipping}`;
-  } else {
-    document.getElementById('dpBigPrice').innerHTML=`<span style="font-size:42px;color:var(--ink3)">Out of Stock</span>`;
-    document.getElementById('dpBestNote').innerHTML='';
-    document.getElementById('dpBestSub').textContent='Not currently available at any tracked retailer';
-  }
-
-  // retailer cards — show all, mark oos
-  const retailerRows=rl.map(l=>{
-    const r=rm(l.retailer);const isOos=l.available===false;
-    const ib=!isOos&&l.priceFrom===bestPrice&&inStockRl.length>0;
-    const pd=Math.floor(l.priceFrom);const pc=(l.priceFrom%1).toFixed(2).slice(1);
-    return `<div class="dp-retailer-card${ib?' best':''}${isOos?' oos':''}">
-      <div>
-        <div class="dp-r-name">${r.name}
-          ${ib&&inStockRl.length>1?'<span class="dp-r-best-tag">Best price</span>':''}
-          ${isOos?'<span class="dp-oos-tag">Out of stock</span>':''}
-        </div>
-        <div class="dp-r-domain">${r.domain} · ${r.shipping}</div>
-      </div>
-      <div class="dp-r-right">
-        <div class="dp-r-price" style="${isOos?'color:var(--ink3)':''}"><sup>$</sup>${pd}<sup style="font-size:12px">.${pc}</sup></div>
-        <button class="dp-r-btn${isOos?' oos':''}" ${isOos?'disabled':''} onclick="${isOos?'':'window.open(\''+l.url+'\',\'_blank\')'}">${isOos?'Out of Stock':'Shop at '+r.name+' →'}</button>
-      </div>
-    </div>`;
-  }).join('');
-
-  // variant rows — mark oos variants
-  const varRows=allVariants.slice(0,6).map(v=>{
-    const isOos=v.available===false||v.listingAvailable===false;
-    return `<div class="dp-var${isOos?' oos':''}">
-      <div class="dp-var-title">${v.title||'Default'}${isOos?'':''}</div>
-      <div class="dp-var-right">
-        ${isOos?`<div class="dp-var-oos">Out of stock</div>`:``}
-        <div class="dp-var-price" style="${isOos?'color:var(--ink3)':''}">$${v.price.toFixed(2)}</div>
-        ${isOos?'':'<button class="dp-var-btn" onclick="window.open(\''+v.url+'\',\'_blank\')">Buy →</button>'}
-      </div>
-    </div>`;
-  }).join('');
-  const moreVars=allVariants.length>6?`<div style="font-size:11px;color:var(--ink3);padding:4px 0;font-family:'Space Mono',monospace">+${allVariants.length-6} more variants</div>`:'';
-  const desc=g.listings.find(l=>l.description)?.description||'';
-
-  // oos note if fully sold out
-  const oosNote=g.soldOut?`<div class="dp-oos-hero"><div class="dp-oos-hero-icon">📭</div><div class="dp-oos-hero-text">This product is currently out of stock across all tracked retailers. Prices shown are the last recorded prices. <a href="#" style="color:var(--blue)" onclick="event.preventDefault();scrollToAlerts();closeDetail()">Set a price alert</a> to be notified when it's back in stock.</div></div>`:'';
-
-  // Price history chart — aggregate history from all listings for this group
-  const allHistory=[];
-  for(const l of g.listings){if(l.priceHistory&&l.priceHistory.length){for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date,retailer:l.retailer});}}
-  // Also add current prices as latest data point
-  for(const l of g.listings)if(l.available!==false)allHistory.push({price:l.priceFrom,date:new Date().toISOString().split('T')[0],retailer:l.retailer,current:true});
-  allHistory.sort((a,b)=>a.date.localeCompare(b.date));
-  let chartHtml='';
-  if(allHistory.length>=2){
-    const prices=allHistory.map(h=>h.price);
-    const mn=Math.min(...prices),mx=Math.max(...prices);
-    const range=mx-mn||1;
-    chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-title">Price history</div><div class="dp-chart">${
-      allHistory.slice(-12).map(h=>{
-        const pct=Math.round(((h.price-mn)/range)*70+10);
-        const isBest=h.price===mn;
-        const dt=h.date.slice(5);// MM-DD
-        return `<div class="dp-chart-bar-wrap"><div class="dp-chart-bar" style="height:${pct}%" data-best="${isBest?1:0}"><div class="dp-chart-price-lbl">$${h.price.toFixed(0)}</div></div><div class="dp-chart-date">${dt}</div></div>`;
-      }).join('')
-    }</div></div>`;
-  } else {
-    chartHtml='';
-  }
-
-  // Per-serve estimate (very rough — based on variant title keywords)
-  let perServe='';
-  const serveV=allVariants.find(v=>/\d+(g|kg|lb|lbs)/i.test(v.title));
-  if(serveV&&inStockRl.length){
-    const m=serveV.title.match(/(\d+\.?\d*)\s*(kg|g|lb|lbs)/i);
-    if(m){const grams=m[2].toLowerCase().startsWith('k')?parseFloat(m[1])*1000:m[2].toLowerCase().startsWith('l')?parseFloat(m[1])*453.6:parseFloat(m[1]);const serves=Math.round(grams/30);if(serves>1){const cpp=(bestPrice/serves).toFixed(2);perServe=`<div class="dp-per-serve">≈ ${serves} serves · <strong>$${cpp}/serve</strong></div>`;}}
-  }
-
-  // Share / copy link buttons
-  const shareUrl=window.location.origin+window.location.pathname+`?brand=${encodeURIComponent(currentBrand)}&product=${encodeURIComponent(g.key)}`;
-  const shareRow=`<div class="dp-share-row">
-    <button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>
-    ${navigator.share?`<button class="dp-share-btn" onclick="navigator.share({title:'${g.name} — ScoopScore',url:'${shareUrl}'})">↑ Share</button>`:''}
-    <button class="dp-share-btn" onclick="window.open('${inStockRl.length?inStockRl[0].url:rl[0].url}','_blank')">🛒 Cheapest →</button>
-  </div>`;
-
-  document.getElementById('dpBody').innerHTML=`
-    ${chartHtml}
-    ${shareRow}
-    <div class="dp-section"><div class="dp-sec-title">Compare prices — ${rl.length} retailer${rl.length!==1?'s':''}</div>${retailerRows}${oosNote}</div>
-    ${allVariants.length?`<div class="dp-section"><div class="dp-sec-title">Sizes & flavours</div>${varRows}${moreVars}${perServe}</div>`:''}
-    ${desc?`<div class="dp-section"><div class="dp-sec-title">About this product</div><div class="dp-desc">${desc}</div></div>`:''}
-  `;
+  _modalGroup=g;_modalBrand=brandName;
+  const sizeMap=buildSizeMap(g);
+  // Default to first size (smallest) or the one passed in
+  _modalSizeKey=sizeKey&&sizeMap.has(sizeKey)?sizeKey:[...sizeMap.keys()][0];
+  _modalFlavour=null;
+  renderModal();
   document.getElementById('detailOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
 
-function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.body.style.overflow='';}
+function renderModal(){
+  const g=_modalGroup,brandName=_modalBrand;
+  if(!g)return;
+  const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
+  const sizeMap=buildSizeMap(g);
+  const sz=sizeMap.get(_modalSizeKey)||[...sizeMap.values()][0];
+  if(!sz)return;
+
+  // ── LEFT PANEL ──
+  document.getElementById('mobileClose').style.display=window.innerWidth<=900?'block':'none';
+  document.getElementById('dpCatBadge').textContent=`${cm.label} · ${[...sz.retailers.values()].length} retailer${[...sz.retailers.values()].length!==1?'s':''}`;
+  document.getElementById('dpBrandLbl').textContent=brandName;
+  document.getElementById('dpPname').textContent=g.name;
+  document.getElementById('dpPopts').textContent=`${sizeMap.size} size${sizeMap.size!==1?'s':''} · ${_modalSizeKey}`;
+  document.getElementById('dpImgArea').innerHTML=g.imageUrl
+    ?`<img src="${g.imageUrl}" alt="${g.name}" onerror="this.outerHTML='<div class=\\'dp-img-placeholder\\'>${brandName[0]}</div>'">`
+    :`<div class="dp-img-placeholder">${brandName[0]}</div>`;
+
+  // ── SIZE TABS ──
+  const sizeTabs=[...sizeMap.entries()].map(([key,s])=>{
+    const inStockR=[...s.retailers.values()].filter(r=>r.available);
+    const bestP=inStockR.length?Math.min(...inStockR.map(r=>r.price)):null;
+    return`<button class="dp-size-tab${key===_modalSizeKey?' active':''}" onclick="_modalSizeKey='${key}';_modalFlavour=null;renderModal()">
+      ${key}
+      <span class="dp-size-tab-sub">${bestP!==null?'from $'+bestP.toFixed(2):'OOS'}</span>
+    </button>`;
+  }).join('');
+
+  // ── FLAVOURS for this size ──
+  const flavours=[...new Set(sz.variants.map(v=>variantFlavour(v.title)).filter(f=>f&&f.length>1))];
+  const flavourPicker=flavours.length>1?`<div class="dp-flavour-wrap">
+    <div class="dp-flavour-title">Flavour</div>
+    <div class="dp-flavour-pills">
+      <button class="dp-flavour-pill${!_modalFlavour?' active':''}" onclick="_modalFlavour=null;renderModal()">All flavours</button>
+      ${flavours.map(f=>`<button class="dp-flavour-pill${_modalFlavour===f?' active':''}" onclick="_modalFlavour='${f.replace(/'/g,"\\'")}';renderModal()">${f}</button>`).join('')}
+    </div>
+  </div>`:'';
+
+  // ── RETAILER CARDS for selected size (+optional flavour filter) ──
+  let retailers=[...sz.retailers.values()].sort((a,b)=>a.price-b.price);
+  if(_modalFlavour){
+    // Filter: only retailers that have this flavour in stock for this size
+    const matchRetailers=new Set(sz.variants.filter(v=>variantFlavour(v.title)===_modalFlavour&&v.available!==false&&v.listingAvailable!==false).map(v=>v.retailer));
+    retailers=retailers.map(r=>matchRetailers.has(r.retailer)?r:{...r,available:false});
+  }
+  const inStock=retailers.filter(r=>r.available);
+  const bestPrice=inStock.length?inStock[0].price:null;
+  const retailerRows=retailers.map(r=>{
+    const rm_=rm(r.retailer);const isOos=!r.available;
+    const ib=r.available&&r.price===bestPrice&&inStock.length>0;
+    const pd=Math.floor(r.price);const pc=(r.price%1).toFixed(2).slice(1);
+    return`<div class="dp-retailer-card${ib?' best':''}${isOos?' oos':''}">
+      <div>
+        <div class="dp-r-name">${rm_.name}${ib&&inStock.length>1?'<span class="dp-r-best-tag">Best price</span>':''}${isOos?'<span class="dp-oos-tag">Out of stock</span>':''}</div>
+        <div class="dp-r-domain">${rm_.domain} · ${rm_.shipping}</div>
+      </div>
+      <div class="dp-r-right">
+        <div class="dp-r-price" style="${isOos?'color:var(--ink3)':''}"><sup>$</sup>${pd}<sup style="font-size:12px">.${pc}</sup></div>
+        <button class="dp-r-btn${isOos?' oos':''}" ${isOos?'disabled':''} onclick="${isOos?'':'window.open(\''+r.url+'\',\'_blank\')'}">${isOos?'Out of Stock':'Buy at '+rm_.name+' →'}</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // ── PRICE HERO ──
+  if(bestPrice!==null){
+    const d=Math.floor(bestPrice),cents=(bestPrice%1).toFixed(2).slice(1);
+    const rb=rm(inStock[0].retailer);
+    document.getElementById('dpBigPrice').innerHTML=`<sup>$</sup>${d}<sup class="cents">.${cents}</sup>`;
+    document.getElementById('dpBestNote').innerHTML=`<span>✓</span> Best price at ${rb.name}`;
+    document.getElementById('dpBestSub').textContent=`${_modalSizeKey}${_modalFlavour?' · '+_modalFlavour:''} · ${rb.domain}`;
+  } else {
+    document.getElementById('dpBigPrice').innerHTML=`<span style="font-size:36px;color:var(--ink3)">Out of Stock</span>`;
+    document.getElementById('dpBestNote').innerHTML='';
+    document.getElementById('dpBestSub').textContent='Not available in this size at any tracked retailer';
+  }
+
+  // ── PER SERVE ──
+  const kg=sz.kg;
+  let perServe='';
+  if(kg&&bestPrice){const serves=Math.round(kg*1000/30);if(serves>1)perServe=`<div class="dp-per-serve">≈ ${serves} serves · <strong>$${(bestPrice/serves).toFixed(2)}/serve</strong> at best price</div>`;}
+
+  // ── DESCRIPTION ──
+  const desc=g.listings.find(l=>l.description)?.description||'';
+
+  // ── PRICE HISTORY ──
+  const allHistory=[];
+  for(const l of g.listings){if(l.priceHistory?.length)for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date});if(l.available!==false)allHistory.push({price:l.priceFrom,date:new Date().toISOString().split('T')[0]});}
+  allHistory.sort((a,b)=>a.date.localeCompare(b.date));
+  let chartHtml='';
+  if(allHistory.length>=2){const prices=allHistory.map(h=>h.price),mn=Math.min(...prices),mx=Math.max(...prices),range=mx-mn||1;chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-title">Price history</div><div class="dp-chart">${allHistory.slice(-12).map(h=>{const pct=Math.round(((h.price-mn)/range)*70+10);return`<div class="dp-chart-bar-wrap"><div class="dp-chart-bar" style="height:${pct}%" data-best="${h.price===mn?1:0}"><div class="dp-chart-price-lbl">$${h.price.toFixed(0)}</div></div><div class="dp-chart-date">${h.date.slice(5)}</div></div>`;}).join('')}</div></div>`;}
+
+  // ── SHARE ROW ──
+  const shareUrl=window.location.origin+window.location.pathname+`?brand=${encodeURIComponent(brandName)}&product=${encodeURIComponent(g.key)}`;
+  const shareRow=`<div class="dp-share-row">
+    <button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>
+    ${inStock.length?`<button class="dp-share-btn" onclick="window.open('${inStock[0].url}','_blank')">🛒 Cheapest →</button>`:''}
+  </div>`;
+
+  const oosNote=inStock.length===0?`<div class="dp-oos-hero"><div class="dp-oos-hero-icon">📭</div><div class="dp-oos-hero-text">This size is currently out of stock. <a href="#" style="color:var(--green)" onclick="event.preventDefault();scrollToAlerts();closeDetail()">Set a price alert</a> to be notified when it's back.</div></div>`:'';
+
+  document.getElementById('dpBody').innerHTML=`
+    <div class="dp-size-tabs">${sizeTabs}</div>
+    ${flavourPicker}
+    ${chartHtml}
+    ${shareRow}
+    <div class="dp-section">
+      <div class="dp-sec-title">Compare prices — ${_modalSizeKey}${_modalFlavour?' · '+_modalFlavour:''}</div>
+      ${retailerRows}${oosNote}
+      ${perServe}
+    </div>
+    ${desc?`<div class="dp-section"><div class="dp-sec-title">About this product</div><div class="dp-desc">${desc}</div></div>`:''}
+  `;
+}
+
+function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.body.style.overflow='';_modalGroup=null;}
 function handleDetailBg(e){if(e.target===document.getElementById('detailOverlay'))closeDetail();}
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goHome(){closeDetail();showView('viewHome');currentBrand=null;setBreadcrumb([]);document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));document.querySelector('.nav-cat').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
