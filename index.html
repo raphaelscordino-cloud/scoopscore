@@ -465,6 +465,36 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .cbf-count{font-size:11px;color:var(--ink3);margin-left:auto;font-family:'Inter',sans-serif}
 
 .cat-products{border-left:1px solid var(--border);min-height:60vh;padding-bottom:80px}
+
+/* ── SMART FILTER PANEL ── */
+.cat-sidebar-section{margin-bottom:24px}
+.cat-sidebar-title{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding:0 2px}
+.cat-filter-group{display:flex;flex-direction:column;gap:2px}
+.cfg-chip-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.cfc{padding:5px 11px;border-radius:100px;border:1px solid var(--border2);background:none;font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:var(--ink3);cursor:pointer;transition:all .1s;white-space:nowrap}
+.cfc:hover{border-color:var(--ink3);color:var(--ink);background:var(--bg2)}
+.cfc.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg);font-weight:500}
+.cat-active-filters{display:flex;flex-wrap:wrap;gap:6px;padding:0 32px 0;max-width:1320px;margin:0 auto}
+.caf-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink2)}
+.caf-tag button{background:none;border:none;cursor:pointer;color:var(--ink3);font-size:14px;line-height:1;padding:0;transition:color .1s}
+.caf-tag button:hover{color:var(--ink)}
+.cat-active-filters-wrap{padding:10px 0 0;border-bottom:1px solid var(--border);background:var(--bg)}
+.cat-active-filters-wrap:empty,.cat-active-filters:empty+*{display:none}
+
+/* ── SIZE RANGE SLIDER ── */
+.size-slider-wrap{padding:4px 2px 0}
+.size-slider-labels{display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:11px;color:var(--ink3);margin-bottom:10px}
+.size-slider-value{font-weight:600;color:var(--ink);font-size:12px}
+.size-range-track{position:relative;height:4px;background:var(--bg3);border-radius:100px;margin:18px 0 28px}
+.size-range-fill{position:absolute;top:0;height:100%;background:var(--ink2);border-radius:100px;pointer-events:none}
+.size-range-thumb{position:absolute;top:50%;width:18px;height:18px;background:var(--bg);border:2px solid var(--ink2);border-radius:50%;transform:translate(-50%,-50%);cursor:grab;transition:border-color .1s,box-shadow .1s;z-index:2}
+.size-range-thumb:hover,.size-range-thumb.dragging{border-color:var(--ink);box-shadow:0 0 0 4px rgba(44,43,40,.1)}
+.size-range-thumb:active{cursor:grabbing}
+.size-tick-row{display:flex;justify-content:space-between;margin-top:-20px;padding:0 0px}
+.size-tick{font-family:'Inter',sans-serif;font-size:10px;color:var(--ink4);text-align:center;width:0;white-space:nowrap;transform:translateX(-50%)}
+.size-tick:first-child{transform:none}
+.size-tick:last-child{transform:translateX(-100%)}
+.size-slider-active-label{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink);text-align:center;margin-top:6px;min-height:18px}
 </style>
 <body>
 
@@ -740,7 +770,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
     </div>
   </div>
 
-  <!-- Filter bar -->
+  <!-- Category pill tabs -->
   <div class="cat-filter-bar">
     <div class="cat-filter-bar-inner">
       <div class="cat-filter-pills" id="catFilterPills"></div>
@@ -754,17 +784,52 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
     </div>
   </div>
 
-  <!-- Brand sidebar + product list -->
+  <!-- Active filter tags -->
+  <div class="cat-active-filters-wrap" id="catActiveFiltersWrap">
+    <div class="cat-active-filters" id="catActiveFilters"></div>
+  </div>
+
+  <!-- Sidebar + products -->
   <div class="cat-layout">
     <aside class="cat-sidebar">
+
+      <!-- Protein sub-type (shown only when protein cat active) -->
+      <div class="cat-sidebar-section" id="sideProteinType" style="display:none">
+        <div class="cat-sidebar-title">Type</div>
+        <div class="cfg-chip-row" id="chipProteinType"></div>
+      </div>
+
+      <!-- Size / weight -->
+      <div class="cat-sidebar-section" id="sideSize" style="display:none">
+        <div class="cat-sidebar-title">Size <span id="sizeSliderLabel" style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);float:right"></span></div>
+        <div class="size-slider-wrap">
+          <div class="size-range-track" id="sizeTrack">
+            <div class="size-range-fill" id="sizeFill"></div>
+            <div class="size-range-thumb" id="sizeThumbLo" onmousedown="sliderDragStart(event,'lo')" ontouchstart="sliderDragStart(event,'lo')"></div>
+            <div class="size-range-thumb" id="sizeThumbHi" onmousedown="sliderDragStart(event,'hi')" ontouchstart="sliderDragStart(event,'hi')"></div>
+          </div>
+          <div class="size-tick-row" id="sizeTickRow"></div>
+        </div>
+      </div>
+
+      <!-- Price range -->
+      <div class="cat-sidebar-section">
+        <div class="cat-sidebar-title">Price range</div>
+        <div class="cfg-chip-row" id="chipPrice"></div>
+      </div>
+
+      <!-- Brand -->
       <div class="cat-sidebar-section">
         <div class="cat-sidebar-title">Brand</div>
         <div class="cat-brand-list" id="catBrandList"></div>
       </div>
-      <div class="cat-sidebar-section" style="margin-top:20px">
+
+      <!-- Retailer -->
+      <div class="cat-sidebar-section">
         <div class="cat-sidebar-title">Retailer</div>
         <div class="cat-brand-list" id="catRetailerList"></div>
       </div>
+
     </aside>
     <div class="cat-products">
       <div class="plist" id="catPlist"></div>
@@ -967,109 +1032,256 @@ function clearSearch(){
 }
 
 // ── CATEGORY VIEW ──
-let catViewCat='all', catViewBrandFilter='all', catViewRetailerFilter='all', catViewSort='price-asc';
+let catViewCat='all',catViewBrandFilter='all',catViewRetailerFilter='all',catViewSort='price-asc';
+let catViewSizeMin=null,catViewSizeMax=null,catViewProteinType=null,catViewPriceBucket=null;
+
+function parseVariantGrams(title){
+  if(!title)return null;const t=title.toLowerCase();
+  const kg=t.match(/(\d+\.?\d*)\s*kg/);if(kg)return parseFloat(kg[1])*1000;
+  const g=t.match(/(\d+\.?\d*)\s*g(?!el|um|re|lass|reen)\b/);if(g)return parseFloat(g[1]);
+  const lb=t.match(/(\d+\.?\d*)\s*lb/);if(lb)return parseFloat(lb[1])*453.592;
+  return null;
+}
+function groupSizeRange(group){
+  const grams=group.listings.flatMap(l=>l.variants.map(v=>parseVariantGrams(v.title))).filter(Boolean);
+  if(!grams.length)return null;return{min:Math.min(...grams),max:Math.max(...grams)};
+}
+function formatGrams(g){
+  const kg=g/1000;
+  if(kg>=1)return(Number.isInteger(kg)?kg:kg.toFixed(1))+'kg';
+  return Math.round(g)+'g';
+}
+// Size slider ticks — fixed kg steps shown on the slider
+// All sizes are normalised to kg (lbs converted). Slider snaps to these steps.
+const SIZE_TICKS=[0.25,0.5,1,1.5,2,2.5,3,4,5]; // in kg
+// Convert lbs to kg, round to nearest tick
+function gramsToKg(g){return g/1000;}
+function nearestTick(kg){return SIZE_TICKS.reduce((a,b)=>Math.abs(b-kg)<Math.abs(a-kg)?b:a);}
+function groupKgValues(group){
+  const grams=group.listings.flatMap(l=>l.variants.map(v=>parseVariantGrams(v.title))).filter(Boolean);
+  return grams.map(g=>gramsToKg(g));
+}
+function groupMinKg(group){const vals=groupKgValues(group);return vals.length?Math.min(...vals):null;}
+function groupMaxKg(group){const vals=groupKgValues(group);return vals.length?Math.max(...vals):null;}
+function formatKg(kg){return kg<1?(kg*1000)+'g':kg+'kg';}
+
+// Slider state
+let sliderLoIdx=0, sliderHiIdx=SIZE_TICKS.length-1;
+let catViewSizeMin=null, catViewSizeMax=null; // null = no filter
+
+function initSizeSlider(){
+  // Build tick labels
+  document.getElementById('sizeTickRow').innerHTML=SIZE_TICKS.map(t=>`<span class="size-tick">${formatKg(t)}</span>`).join('');
+  sliderLoIdx=0; sliderHiIdx=SIZE_TICKS.length-1;
+  updateSliderUI();
+}
+function pctOf(idx){return(idx/(SIZE_TICKS.length-1))*100;}
+function updateSliderUI(){
+  const lo=pctOf(sliderLoIdx), hi=pctOf(sliderHiIdx);
+  document.getElementById('sizeThumbLo').style.left=lo+'%';
+  document.getElementById('sizeThumbHi').style.left=hi+'%';
+  document.getElementById('sizeFill').style.left=lo+'%';
+  document.getElementById('sizeFill').style.width=(hi-lo)+'%';
+  const loKg=SIZE_TICKS[sliderLoIdx], hiKg=SIZE_TICKS[sliderHiIdx];
+  const isAll=sliderLoIdx===0&&sliderHiIdx===SIZE_TICKS.length-1;
+  document.getElementById('sizeSliderLabel').textContent=isAll?'Any':`${formatKg(loKg)} – ${formatKg(hiKg)}`;
+  catViewSizeMin=isAll?null:loKg;
+  catViewSizeMax=isAll?null:hiKg;
+}
+
+// Drag logic
+let _dragThumb=null,_dragTrackLeft=0,_dragTrackWidth=0;
+function sliderDragStart(e,thumb){
+  e.preventDefault();
+  _dragThumb=thumb;
+  const track=document.getElementById('sizeTrack');
+  const rect=track.getBoundingClientRect();
+  _dragTrackLeft=rect.left; _dragTrackWidth=rect.width;
+  document.getElementById('sizeThumb'+thumb[0].toUpperCase()+thumb.slice(1)).classList.add('dragging');
+  window.addEventListener('mousemove',sliderDragMove);
+  window.addEventListener('mouseup',sliderDragEnd);
+  window.addEventListener('touchmove',sliderDragMove,{passive:false});
+  window.addEventListener('touchend',sliderDragEnd);
+}
+function sliderDragMove(e){
+  if(!_dragThumb)return;
+  e.preventDefault();
+  const clientX=e.touches?e.touches[0].clientX:e.clientX;
+  const pct=Math.max(0,Math.min(1,(clientX-_dragTrackLeft)/_dragTrackWidth));
+  const rawIdx=pct*(SIZE_TICKS.length-1);
+  const idx=Math.round(rawIdx);
+  if(_dragThumb==='lo'){
+    sliderLoIdx=Math.min(idx,sliderHiIdx);
+  } else {
+    sliderHiIdx=Math.max(idx,sliderLoIdx);
+  }
+  updateSliderUI();
+  renderCatProducts();
+  renderActiveFilters();
+}
+function sliderDragEnd(){
+  if(_dragThumb){
+    document.getElementById('sizeThumb'+_dragThumb[0].toUpperCase()+_dragThumb.slice(1)).classList.remove('dragging');
+    _dragThumb=null;
+  }
+  window.removeEventListener('mousemove',sliderDragMove);
+  window.removeEventListener('mouseup',sliderDragEnd);
+  window.removeEventListener('touchmove',sliderDragMove);
+  window.removeEventListener('touchend',sliderDragEnd);
+}
+function resetSizeSlider(){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;updateSliderUI();}
+const PROTEIN_TYPES=[
+  {key:'whey',    label:'Whey',          match:/\bwhey\b(?!.*isolate)/i},
+  {key:'isolate', label:'Isolate / WPI', match:/\bisolate\b|\bwpi\b|\biso[0-9]/i},
+  {key:'casein',  label:'Casein',        match:/\bcasein\b/i},
+  {key:'plant',   label:'Plant / Vegan', match:/\bplant\b|\bvegan\b|\bpea\b|\bhemp\b/i},
+  {key:'mass',    label:'Mass Gainer',   match:/\bmass\b|\bgainer\b/i},
+  {key:'hydro',   label:'Hydrolysed',    match:/\bhydro/i},
+  {key:'bar',     label:'Bars & Snacks', match:/\bbar\b|\bsnack\b|\bcookie\b/i},
+  {key:'collagen',label:'Collagen',      match:/\bcollagen\b/i},
+];
+function detectProteinSubType(group){const text=group.name.toLowerCase();for(const t of PROTEIN_TYPES)if(t.match.test(text))return t.key;return'whey';}
+const PRICE_BUCKETS=[
+  {label:'Under $30',  key:'p1',min:0,  max:30},
+  {label:'$30 – $60',  key:'p2',min:30, max:60},
+  {label:'$60 – $100', key:'p3',min:60, max:100},
+  {label:'$100 – $150',key:'p4',min:100,max:150},
+  {label:'$150+',      key:'p5',min:150,max:Infinity},
+];
+
 function openCategoryView(cat){
-  catViewCat=cat||'all';
-  catViewBrandFilter='all';
-  catViewRetailerFilter='all';
-  showView('viewCategory');
-  window.scrollTo({top:0,behavior:'smooth'});
+  catViewCat=cat||'all';catViewBrandFilter='all';catViewRetailerFilter='all';
+  catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceBucket=null;
   const label=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
   document.getElementById('catViewTitle').textContent=label;
-  // active nav
   document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
   setBreadcrumb([{label:'Home',fn:'goHome()'},{label:label}]);
-  renderCatFilterPills();
-  renderCatSidebar();
-  renderCatProducts();
+  renderCatFilterPills();renderCatSmartFilters();renderCatSidebar();renderCatProducts();
+  document.getElementById('catActiveFiltersWrap').style.display='none';
 }
 function renderCatFilterPills(){
   const cats=['all','protein','creatine','preworkout','fatburner','bcaa'];
   document.getElementById('catFilterPills').innerHTML=cats.map(c=>{
     const label=c==='all'?'All':CAT_META[c]?.label||c;
-    return `<button class="bcf-pill${catViewCat===c?' active':''}" onclick="setCatViewCat(this,'${c}')">${label}</button>`;
+    return`<button class="bcf-pill${catViewCat===c?' active':''}" onclick="setCatViewCat(this,'${c}')">${label}</button>`;
   }).join('');
 }
 function setCatViewCat(el,cat){
   catViewCat=cat;catViewBrandFilter='all';catViewRetailerFilter='all';
-  document.querySelectorAll('#catFilterPills .bcf-pill').forEach(b=>b.classList.remove('active'));
+  catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceBucket=null;
   el.classList.add('active');
   document.getElementById('catViewTitle').textContent=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
-  renderCatSidebar();renderCatProducts();
+  renderCatSmartFilters();renderCatSidebar();renderCatProducts();
+  document.getElementById('catActiveFiltersWrap').style.display='none';
 }
 function setCatSort(el,s){
   catViewSort=s;
   document.querySelectorAll('.cat-sort-wrap .sort-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  renderCatProducts();
+  el.classList.add('active');renderCatProducts();
+}
+function renderCatSmartFilters(){
+  const groups=getBaseCatGroups();
+  const proteinWrap=document.getElementById('sideProteinType');
+  if(catViewCat==='protein'){
+    proteinWrap.style.display='';
+    const typeCounts={};
+    for(const{group}of groups){const k=detectProteinSubType(group);typeCounts[k]=(typeCounts[k]||0)+1;}
+    document.getElementById('chipProteinType').innerHTML=PROTEIN_TYPES
+      .filter(t=>typeCounts[t.key])
+      .map(t=>`<button class="cfc${catViewProteinType===t.key?' active':''}" onclick="setCatProteinType('${t.key}')">${t.label} <span style="opacity:.5;font-size:10px">${typeCounts[t.key]}</span></button>`)
+      .join('');
+  }else{proteinWrap.style.display='none';}
+  // Size slider — show if any product in this category has size data
+  const hasSize=groups.some(({group})=>groupMinKg(group)!==null);
+  const sizeWrap=document.getElementById('sideSize');
+  if(hasSize){sizeWrap.style.display='';initSizeSlider();}
+  else{sizeWrap.style.display='none';}
+  const priceCounts={};
+  for(const{group}of groups){
+    const best=group.inStockListings.length?Math.min(...group.inStockListings.map(l=>l.priceFrom)):null;
+    if(best===null)continue;
+    const bk=PRICE_BUCKETS.find(b=>best>=b.min&&best<b.max);
+    if(bk)priceCounts[bk.key]=(priceCounts[bk.key]||0)+1;
+  }
+  document.getElementById('chipPrice').innerHTML=PRICE_BUCKETS
+    .filter(b=>priceCounts[b.key])
+    .map(b=>`<button class="cfc${catViewPriceBucket===b.key?' active':''}" onclick="setCatPriceBucket('${b.key}')">${b.label} <span style="opacity:.5;font-size:10px">${priceCounts[b.key]}</span></button>`)
+    .join('');
+}
+function setCatProteinType(key){catViewProteinType=catViewProteinType===key?null:key;renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();}
+function setCatPriceBucket(key){catViewPriceBucket=catViewPriceBucket===key?null:key;renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();}
+function renderActiveFilters(){
+  const tags=[];
+  if(catViewSizeMin!==null||catViewSizeMax!==null){
+    const lo=catViewSizeMin??SIZE_TICKS[0],hi=catViewSizeMax??SIZE_TICKS[SIZE_TICKS.length-1];
+    const isAll=lo===SIZE_TICKS[0]&&hi===SIZE_TICKS[SIZE_TICKS.length-1];
+    if(!isAll)tags.push({label:`Size: ${formatKg(lo)} – ${formatKg(hi)}`,clear:'resetSizeSlider();renderCatProducts();renderActiveFilters()'});
+  }
+  if(catViewProteinType){const t=PROTEIN_TYPES.find(t=>t.key===catViewProteinType);if(t)tags.push({label:'Type: '+t.label,clear:`setCatProteinType('${catViewProteinType}')`});}
+  if(catViewPriceBucket){const b=PRICE_BUCKETS.find(b=>b.key===catViewPriceBucket);if(b)tags.push({label:b.label,clear:`setCatPriceBucket('${catViewPriceBucket}')`});}
+  if(catViewBrandFilter!=='all')tags.push({label:catViewBrandFilter,clear:"setCatBrandFilter('all')"});
+  if(catViewRetailerFilter!=='all')tags.push({label:rm(catViewRetailerFilter).name,clear:"setCatRetailerFilter('all')"});
+  const wrap=document.getElementById('catActiveFiltersWrap');
+  document.getElementById('catActiveFilters').innerHTML=tags.map(t=>`<span class="caf-tag">${t.label}<button onclick="${t.clear}">×</button></span>`).join('');
+  wrap.style.display=tags.length?'':'none';
 }
 function renderCatSidebar(){
-  // Brand list
-  const allGroups=getCatGroups();
+  const groups=getFilteredCatGroups();
   const brandCounts={};
-  for(const {brand,group} of allGroups){
-    if(!brandCounts[brand])brandCounts[brand]=0;
-    brandCounts[brand]++;
-  }
-  const brands=Object.entries(brandCounts).sort((a,b)=>b[1]-a[1]);
-  document.getElementById('catBrandList').innerHTML=brands.map(([name,count])=>`
-    <button class="cat-brand-filter${catViewBrandFilter===name?' active':''}" onclick="setCatBrandFilter('${name.replace(/'/g,"\\'")}')">
-      <span class="cbf-check">${catViewBrandFilter===name?'✓':''}</span>
-      <span class="cbf-label">${name}</span>
-      <span class="cbf-count">${count}</span>
+  for(const{brand}of groups)brandCounts[brand]=(brandCounts[brand]||0)+1;
+  document.getElementById('catBrandList').innerHTML=Object.entries(brandCounts).sort((a,b)=>b[1]-a[1])
+    .map(([name,count])=>`<button class="cat-brand-filter${catViewBrandFilter===name?' active':''}" onclick="setCatBrandFilter('${name.replace(/'/g,"\\'")}')">
+      <span class="cbf-check">${catViewBrandFilter===name?'✓':''}</span><span class="cbf-label">${name}</span><span class="cbf-count">${count}</span>
     </button>`).join('');
-  // Retailer list
   const retailerCounts={};
-  for(const {group} of allGroups){
-    for(const l of group.inStockListings){
-      if(!retailerCounts[l.retailer])retailerCounts[l.retailer]=0;
-      retailerCounts[l.retailer]++;
-    }
-  }
-  document.getElementById('catRetailerList').innerHTML=Object.entries(retailerCounts).sort((a,b)=>b[1]-a[1]).map(([r,count])=>`
-    <button class="cat-brand-filter${catViewRetailerFilter===r?' active':''}" onclick="setCatRetailerFilter('${r}')">
-      <span class="cbf-check">${catViewRetailerFilter===r?'✓':''}</span>
-      <span class="cbf-label">${rm(r).name}</span>
-      <span class="cbf-count">${count}</span>
+  for(const{group}of groups)for(const l of group.inStockListings)retailerCounts[l.retailer]=(retailerCounts[l.retailer]||0)+1;
+  document.getElementById('catRetailerList').innerHTML=Object.entries(retailerCounts).sort((a,b)=>b[1]-a[1])
+    .map(([r,count])=>`<button class="cat-brand-filter${catViewRetailerFilter===r?' active':''}" onclick="setCatRetailerFilter('${r}')">
+      <span class="cbf-check">${catViewRetailerFilter===r?'✓':''}</span><span class="cbf-label">${rm(r).name}</span><span class="cbf-count">${count}</span>
     </button>`).join('');
 }
-function getCatGroups(){
+function getBaseCatGroups(){
   const results=[];
-  for(const b of Object.values(BRANDS)){
-    for(const g of b.groupList){
-      if(catViewCat!=='all'&&g.category!==catViewCat)continue;
-      if(g.soldOut)continue;
-      results.push({brand:b.name,group:g});
-    }
+  for(const b of Object.values(BRANDS))for(const g of b.groupList){
+    if(catViewCat!=='all'&&g.category!==catViewCat)continue;
+    if(g.soldOut)continue;
+    results.push({brand:b.name,group:g});
   }
   return results;
 }
-function setCatBrandFilter(name){
-  catViewBrandFilter=catViewBrandFilter===name?'all':name;
-  renderCatSidebar();renderCatProducts();
+function getFilteredCatGroups(){
+  return getBaseCatGroups().filter(({group:g})=>{
+    if(catViewProteinType&&detectProteinSubType(g)!==catViewProteinType)return false;
+    if(catViewSizeMin!==null||catViewSizeMax!==null){
+      const lo=catViewSizeMin??0,hi=catViewSizeMax??999;
+      const vals=groupKgValues(g);
+      // Include product if any variant falls within the selected range
+      if(!vals.some(kg=>kg>=lo&&kg<=hi+0.01))return false;
+    }
+    if(catViewPriceBucket){
+      const best=g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):null;
+      if(best===null)return false;
+      const pb=PRICE_BUCKETS.find(b=>b.key===catViewPriceBucket);
+      if(!pb||best<pb.min||best>=pb.max)return false;
+    }
+    return true;
+  });
 }
-function setCatRetailerFilter(r){
-  catViewRetailerFilter=catViewRetailerFilter===r?'all':r;
-  renderCatSidebar();renderCatProducts();
-}
+function setCatBrandFilter(name){catViewBrandFilter=catViewBrandFilter===name?'all':name;renderCatSidebar();renderCatProducts();renderActiveFilters();}
+function setCatRetailerFilter(r){catViewRetailerFilter=catViewRetailerFilter===r?'all':r;renderCatSidebar();renderCatProducts();renderActiveFilters();}
 function renderCatProducts(){
-  let groups=getCatGroups();
+  let groups=getFilteredCatGroups();
   if(catViewBrandFilter!=='all')groups=groups.filter(({brand})=>brand===catViewBrandFilter);
   if(catViewRetailerFilter!=='all')groups=groups.filter(({group})=>group.inStockListings.some(l=>l.retailer===catViewRetailerFilter));
   if(searchQ)groups=groups.filter(({group,brand})=>group.name.toLowerCase().includes(searchQ)||brand.toLowerCase().includes(searchQ));
-  // Sort
   const bestOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
   if(catViewSort==='price-asc')groups.sort((a,z)=>bestOf(a.group)-bestOf(z.group));
   else if(catViewSort==='price-desc')groups.sort((a,z)=>bestOf(z.group)-bestOf(a.group));
   else if(catViewSort==='name')groups.sort((a,z)=>a.group.name.localeCompare(z.group.name));
-  else groups.sort((a,z)=>{
-    const ra=new Set(a.group.inStockListings.map(l=>l.retailer)).size;
-    const rz=new Set(z.group.inStockListings.map(l=>l.retailer)).size;
-    return rz-ra;
-  });
+  else groups.sort((a,z)=>new Set(z.group.inStockListings.map(l=>l.retailer)).size-new Set(a.group.inStockListings.map(l=>l.retailer)).size);
   document.getElementById('catViewMeta').textContent=`${groups.length} product${groups.length!==1?'s':''}`;
   const plist=document.getElementById('catPlist');
-  if(!groups.length){plist.innerHTML='<div class="plist-empty">No products found</div>';return;}
+  if(!groups.length){plist.innerHTML='<div class="plist-empty">No products match these filters</div>';return;}
   plist.innerHTML=groups.map(({brand,group:g},i)=>{
     const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
     const byR={};
@@ -1077,22 +1289,23 @@ function renderCatProducts(){
     const rl=Object.values(byR).sort((a,z)=>a.priceFrom-z.priceFrom);
     const inStockRl=rl.filter(l=>l.available!==false);
     const best=inStockRl.length?inStockRl[0].priceFrom:null;
-    const tv=[...new Set(g.listings.flatMap(l=>l.variants.map(v=>v.title)))].length;
+    const sizeRange=groupSizeRange(g);
+    const sizeLbl=sizeRange?(sizeRange.min===sizeRange.max?formatGrams(sizeRange.min):`${formatGrams(sizeRange.min)}–${formatGrams(sizeRange.max)}`):null;
     const img=g.imageUrl?`<div class="prow-img"><img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:'<div class="prow-img"></div>';
     const cards=rl.map(l=>{
       const isOos=l.available===false;
       const d=Math.floor(l.priceFrom);const c=(l.priceFrom%1).toFixed(2).slice(1);
       const ib=!isOos&&l.priceFrom===best;
-      if(isOos)return `<div class="prc oos"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price" style="color:var(--ink3)"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div><div class="prc-oos">Out of stock</div></div>`;
-      return `<div class="prc${ib?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div>${ib&&inStockRl.length>1?'<div class="prc-badge">✓ Best</div>':''}</div>`;
+      if(isOos)return`<div class="prc oos"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price" style="color:var(--ink3)"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div><div class="prc-oos">Out of stock</div></div>`;
+      return`<div class="prc${ib?' best':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')"><div class="prc-name">${rm(l.retailer).name}</div><div class="prc-price"><sup>$</sup>${d}<sup style="font-size:10px">.${c}</sup></div>${ib&&inStockRl.length>1?'<div class="prc-badge">✓ Best</div>':''}</div>`;
     }).join('');
-    return `<div class="prow" style="animation-delay:${i*.015}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
+    return`<div class="prow" style="animation-delay:${i*.012}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
       ${img}
       <div class="prow-body">
         <div class="prow-left">
           <div class="prow-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</div>
           <div class="prow-name">${g.name}</div>
-          <div class="prow-opts">${brand} · ${tv} variant${tv!==1?'s':''} · ${inStockRl.length} retailer${inStockRl.length!==1?'s':''}</div>
+          <div class="prow-opts">${brand}${sizeLbl?' · '+sizeLbl:''} · ${inStockRl.length} retailer${inStockRl.length!==1?'s':''}</div>
         </div>
         <div class="prow-right">${cards}</div>
       </div>
