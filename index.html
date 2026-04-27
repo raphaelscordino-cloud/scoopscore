@@ -311,21 +311,45 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .dp-var-btn:hover{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
 .dp-desc{font-size:13px;color:var(--ink3);line-height:1.75;font-weight:300}
 
-/* ── SIZE-SPLIT PRODUCT ROWS ── */
+/* ── PRODUCT CARD GRID (SportsFuel style) ── */
+.pcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:20px 0 80px}
+.pcard{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .18s;position:relative;display:flex;flex-direction:column}
+.pcard:hover{box-shadow:0 8px 32px rgba(44,43,40,.1);transform:translateY(-2px);border-color:var(--border2)}
+.pcard-badge{position:absolute;top:10px;left:10px;z-index:2;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;color:#fff}
+.pcard-badge.hot{background:#e53e3e}
+.pcard-badge.sale{background:#d97706}
+.pcard-badge.new{background:#3a7d52}
+.pcard-img{width:100%;aspect-ratio:1;background:var(--bg2);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border)}
+.pcard-img img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .25s}
+.pcard:hover .pcard-img img{transform:scale(1.05)}
+.pcard-img-placeholder{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--bg4);letter-spacing:.04em}
+.pcard-body{padding:12px 14px 14px;display:flex;flex-direction:column;flex:1}
+.pcard-cat{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--ink3);margin-bottom:4px}
+.pcard-name{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;margin-bottom:6px}
+.pcard-meta{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink3);margin-bottom:8px}
+.pcard-stars{display:flex;align-items:center;gap:4px;margin-bottom:6px}
+.pcard-star{color:#f59e0b;font-size:12px}
+.pcard-review-count{font-size:11px;color:var(--ink3);font-family:'Inter',sans-serif}
+.pcard-price-row{margin-top:auto;display:flex;align-items:baseline;gap:6px}
+.pcard-from{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--ink3)}
+.pcard-price{font-family:'Inter',sans-serif;font-size:20px;font-weight:700;color:var(--ink)}
+.pcard-was{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink4);text-decoration:line-through}
+
+/* ── SIZE-SPLIT PRODUCT ROWS (brand view) ── */
 .prow-size-group{border-bottom:1px solid var(--border);animation:fadeUp .25s ease both}
 .prow-size-group:last-child{border-bottom:none}
 .prow-product-header{display:grid;grid-template-columns:64px 1fr;cursor:pointer;transition:background .08s}
 .prow-product-header:hover{background:var(--bg2)}
-.prow-product-header .prow-img{padding:10px 0}
+.prow-product-header .prow-img{padding:10px 0;display:flex;align-items:center;justify-content:center}
 .prow-product-header .prow-img img{width:48px;height:48px;object-fit:contain;background:var(--bg2);border-radius:6px;padding:2px}
 .prow-product-meta{display:flex;align-items:center;gap:12px;padding:12px 0 12px 12px;min-width:0;flex:1}
-.prow-product-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.prow-product-name{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
 .prow-product-brand{font-size:11px;color:var(--ink3);font-weight:400;font-family:'Inter',sans-serif;margin-top:2px}
 .prow-product-cat{font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:100px;flex-shrink:0}
 .prow-size-rows{display:flex;flex-direction:column;gap:0}
 .prow-size-row{display:grid;grid-template-columns:64px 160px 1fr;align-items:center;border-top:1px solid var(--border);cursor:pointer;transition:background .08s;min-height:52px}
 .prow-size-row:hover{background:var(--bg2)}
-.prow-size-indent{} /* spacer */
+.prow-size-indent{}
 .prow-size-label{padding:10px 12px;display:flex;flex-direction:column;gap:2px}
 .psl-kg{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--ink)}
 .psl-sub{font-size:10px;color:var(--ink3);font-family:'Inter',sans-serif}
@@ -339,19 +363,20 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .prc-sm.oos{opacity:.4;border-style:dashed}
 
 /* ── MODAL SIZE TABS + FLAVOUR PICKER ── */
-.dp-size-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:20px 28px 16px;border-bottom:1px solid var(--border);background:var(--bg2)}
-.dp-size-tab{padding:8px 16px;border-radius:100px;border:1px solid var(--border2);background:var(--bg);font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--ink2);cursor:pointer;transition:all .12s;display:flex;flex-direction:column;align-items:center;gap:2px}
-.dp-size-tab-sub{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:var(--ink3);letter-spacing:0}
-.dp-size-tab:hover{border-color:var(--ink2);background:var(--bg3)}
+.dp-size-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--border)}
+.dp-size-tab{padding:8px 14px;border-radius:8px;border:1px solid var(--border2);background:var(--bg);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--ink2);cursor:pointer;transition:all .12s;text-align:center;min-width:60px}
+.dp-size-tab-price{font-size:11px;font-weight:400;color:var(--ink3);display:block;margin-top:2px}
+.dp-size-tab:hover{border-color:var(--ink2);background:var(--bg2)}
 .dp-size-tab.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
-.dp-size-tab.active .dp-size-tab-sub{color:rgba(248,247,245,.6)}
+.dp-size-tab.active .dp-size-tab-price{color:rgba(248,247,245,.65)}
 
-.dp-flavour-wrap{padding:16px 28px;border-bottom:1px solid var(--border)}
-.dp-flavour-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;font-family:'Inter',sans-serif}
-.dp-flavour-pills{display:flex;gap:4px;flex-wrap:wrap}
-.dp-flavour-pill{padding:5px 12px;border-radius:100px;border:1px solid var(--border2);background:none;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink2);cursor:pointer;transition:all .1s}
+.dp-flavour-wrap{padding:14px 20px;border-bottom:1px solid var(--border)}
+.dp-flavour-title{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:8px;font-family:'Inter',sans-serif}
+.dp-flavour-pills{display:flex;gap:6px;flex-wrap:wrap}
+.dp-flavour-pill{padding:6px 12px;border-radius:6px;border:1px solid var(--border2);background:none;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink2);cursor:pointer;transition:all .1s}
 .dp-flavour-pill:hover{border-color:var(--ink2);background:var(--bg2)}
-.dp-flavour-pill.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
+.dp-flavour-pill.active{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.dp-flavour-pill.oos{opacity:.45;text-decoration:line-through;cursor:default}
 .loading-wrap{padding:64px 32px;text-align:center}
 .spinner{width:24px;height:24px;border:2px solid var(--bg3);border-top-color:var(--ink);border-radius:50%;animation:spin .6s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -1325,49 +1350,7 @@ function renderCatProducts(){
   document.getElementById('catViewMeta').textContent=`${groups.length} product${groups.length!==1?'s':''}`;
   const plist=document.getElementById('catPlist');
   if(!groups.length){plist.innerHTML='<div class="plist-empty">No products match these filters</div>';return;}
-
-  plist.innerHTML=groups.map(({brand,group:g},i)=>{
-    const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-    const sizeMap=buildSizeMap(g);
-    const img=g.imageUrl?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=''">`:'';
-
-    const sizeRows=[...sizeMap.entries()].map(([sizeKey,sz])=>{
-      const retailers=[...sz.retailers.values()].sort((a,b)=>a.price-b.price);
-      const inStock=retailers.filter(r=>r.available);
-      const bestPrice=inStock.length?inStock[0].price:null;
-      const cards=retailers.map(r=>{
-        const d=Math.floor(r.price),c=(r.price%1).toFixed(2).slice(1);
-        const isBest=r.available&&r.price===bestPrice;
-        return`<div class="prc-sm${isBest?' best':''}${!r.available?' oos':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
-          <div class="prc-sm-name">${rm(r.retailer).name}</div>
-          <div class="prc-sm-price">$${d}.${c}</div>
-          ${isBest&&inStock.length>1?'<div class="prc-sm-badge">✓ Best</div>':''}
-        </div>`;
-      }).join('');
-      return`<div class="prow-size-row" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
-        <div class="prow-size-indent"></div>
-        <div class="prow-size-label">
-          <div class="psl-kg">${sz.label}</div>
-          <div class="psl-sub">${inStock.length?inStock.length+' retailer'+(inStock.length!==1?'s':''):'Out of stock'}</div>
-        </div>
-        <div class="prow-size-prices">${cards}</div>
-      </div>`;
-    }).join('');
-
-    return`<div class="prow-size-group" style="animation-delay:${i*.012}s">
-      <div class="prow-product-header" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
-        <div class="prow-img" style="padding:10px 0;display:flex;align-items:center;justify-content:center">${img}</div>
-        <div class="prow-product-meta">
-          <span class="prow-product-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</span>
-          <div>
-            <div class="prow-product-name">${g.name}</div>
-            <div class="prow-product-brand">${brand} · ${sizeMap.size} size${sizeMap.size!==1?'s':''}</div>
-          </div>
-        </div>
-      </div>
-      ${sizeRows}
-    </div>`;
-  }).join('');
+  plist.innerHTML=`<div class="pcard-grid" style="padding:20px 24px 80px">${groups.map(({brand,group:g},i)=>buildProductCard(g,brand,i)).join('')}</div>`;
 }
 
 // ── VIEW MANAGEMENT ──
@@ -1565,7 +1548,52 @@ function openBrand(name){
 }
 function setBrandCat(el,cat){document.querySelectorAll('.bcf-pill').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentCat=cat;renderProducts();}
 
-// ── SIZE PARSING HELPERS (used by both list and modal) ──
+function renderProducts(){
+  const b=BRANDS[currentBrand];if(!b)return;
+  let groups=[...b.groupList];
+  if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
+  if(searchQ)groups=groups.filter(g=>g.name.toLowerCase().includes(searchQ)||g.category.toLowerCase().includes(searchQ));
+  const bestPriceOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
+  if(currentSort==='price-asc')groups.sort((a,z)=>bestPriceOf(a)-bestPriceOf(z));
+  else if(currentSort==='price-desc')groups.sort((a,z)=>bestPriceOf(z)-bestPriceOf(a));
+  else if(currentSort==='name')groups.sort((a,z)=>a.name.localeCompare(z.name));
+  else groups.sort((a,z)=>{if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;const ra=new Set(a.inStockListings.map(l=>l.retailer)).size,rz=new Set(z.inStockListings.map(l=>l.retailer)).size;return rz-ra||bestPriceOf(a)-bestPriceOf(z);});
+  const showOos=document.getElementById('showOosToggle')?.checked||false;
+  if(!showOos)groups=groups.filter(g=>!g.soldOut);
+  const plist=document.getElementById('plist');
+  if(!groups.length){plist.innerHTML=`<div class="plist-empty">${searchQ?`No products matching "${searchQ}"`:'No in-stock products'}</div>`;return;}
+  plist.innerHTML=`<div class="pcard-grid">${groups.map((g,i)=>buildProductCard(g,currentBrand,i)).join('')}</div>`;
+}
+
+function buildProductCard(g,brand,i){
+  const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
+  const sizeMap=buildSizeMap(g);
+  const allRetailers=[...new Set([...sizeMap.values()].flatMap(sz=>[...sz.retailers.values()]))];
+  const inStock=allRetailers.filter(r=>r.available);
+  const bestPrice=inStock.length?Math.min(...inStock.map(r=>r.price)):null;
+  const numSizes=sizeMap.size;
+  const numFlavours=new Set([...sizeMap.values()].flatMap(sz=>sz.variants.map(v=>variantFlavour(v.title)).filter(f=>f.length>1))).size;
+  const img=g.imageUrl
+    ?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'pcard-img-placeholder\\'>${brand[0]}</div>'">`
+    :`<div class="pcard-img-placeholder">${brand[0]}</div>`;
+  // fake review data — replace with real when available
+  const reviewCount=0;
+  const badge=reviewCount>100?'hot':bestPrice&&bestPrice<40?'sale':'';
+  return`<div class="pcard" style="animation-delay:${i*.03}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
+    ${badge?`<div class="pcard-badge ${badge}">${badge==='hot'?'HOT':'SALE'}</div>`:''}
+    <div class="pcard-img">${img}</div>
+    <div class="pcard-body">
+      <div class="pcard-cat">${cm.label}</div>
+      <div class="pcard-name">${g.name}</div>
+      <div class="pcard-meta">${numSizes>1?numSizes+' Sizes | ':''}${numFlavours>0?numFlavours+' Flavour'+(numFlavours!==1?'s':''):''}</div>
+      <div class="pcard-price-row">
+        ${bestPrice!==null
+          ?`${numSizes>1?'<span class="pcard-from">From</span>':''}<span class="pcard-price">$${bestPrice.toFixed(2)}</span>`
+          :`<span class="pcard-price" style="color:var(--ink3);font-size:14px">Out of stock</span>`}
+      </div>
+    </div>
+  </div>`;
+}
 // Extract kg value from a variant title. Lbs → kg. Returns null if no size found.
 function variantToKg(title){
   if(!title)return null;
@@ -1708,32 +1736,34 @@ function renderModal(){
     ?`<img src="${g.imageUrl}" alt="${g.name}" onerror="this.outerHTML='<div class=\\'dp-img-placeholder\\'>${brandName[0]}</div>'">`
     :`<div class="dp-img-placeholder">${brandName[0]}</div>`;
 
-  // ── SIZE TABS ──
+  // ── SIZE TABS (Sportsfuel style: chip per size, price below) ──
   const sizeTabs=[...sizeMap.entries()].map(([key,s])=>{
     const inStockR=[...s.retailers.values()].filter(r=>r.available);
     const bestP=inStockR.length?Math.min(...inStockR.map(r=>r.price)):null;
     return`<button class="dp-size-tab${key===_modalSizeKey?' active':''}" onclick="_modalSizeKey='${key}';_modalFlavour=null;renderModal()">
       ${key}
-      <span class="dp-size-tab-sub">${bestP!==null?'from $'+bestP.toFixed(2):'OOS'}</span>
+      <span class="dp-size-tab-price">${bestP!==null?'$'+bestP.toFixed(2):'OOS'}</span>
     </button>`;
   }).join('');
 
-  // ── FLAVOURS for this size ──
+  // ── FLAVOURS — show all, cross out OOS ones ──
   const flavours=[...new Set(sz.variants.map(v=>variantFlavour(v.title)).filter(f=>f&&f.length>1))];
+  const inStockFlavours=new Set(sz.variants.filter(v=>v.available!==false&&v.listingAvailable!==false).map(v=>variantFlavour(v.title)).filter(f=>f&&f.length>1));
   const flavourPicker=flavours.length>1?`<div class="dp-flavour-wrap">
-    <div class="dp-flavour-title">Flavour</div>
+    <div class="dp-flavour-title">Choose a Flavour:${_modalFlavour?' <strong>'+_modalFlavour+'</strong>':' <span style="font-weight:400;color:var(--ink3)">All flavours</span>'}</div>
     <div class="dp-flavour-pills">
-      <button class="dp-flavour-pill${!_modalFlavour?' active':''}" onclick="_modalFlavour=null;renderModal()">All flavours</button>
-      ${flavours.map(f=>`<button class="dp-flavour-pill${_modalFlavour===f?' active':''}" onclick="_modalFlavour='${f.replace(/'/g,"\\'")}';renderModal()">${f}</button>`).join('')}
+      ${flavours.map(f=>{
+        const isOos=!inStockFlavours.has(f);
+        return`<button class="dp-flavour-pill${_modalFlavour===f?' active':''}${isOos?' oos':''}" ${isOos?'disabled':''} onclick="_modalFlavour='${f.replace(/'/g,"\\'").replace(/"/g,'&quot;')}';renderModal()">${f}</button>`;
+      }).join('')}
     </div>
   </div>`:'';
 
-  // ── RETAILER CARDS for selected size (+optional flavour filter) ──
+  // ── RETAILER CARDS for selected size + flavour ──
   let retailers=[...sz.retailers.values()].sort((a,b)=>a.price-b.price);
   if(_modalFlavour){
-    // Filter: only retailers that have this flavour in stock for this size
-    const matchRetailers=new Set(sz.variants.filter(v=>variantFlavour(v.title)===_modalFlavour&&v.available!==false&&v.listingAvailable!==false).map(v=>v.retailer));
-    retailers=retailers.map(r=>matchRetailers.has(r.retailer)?r:{...r,available:false});
+    const matchR=new Set(sz.variants.filter(v=>variantFlavour(v.title)===_modalFlavour&&v.available!==false&&v.listingAvailable!==false).map(v=>v.retailer));
+    retailers=retailers.map(r=>matchR.has(r.retailer)?r:{...r,available:false});
   }
   const inStock=retailers.filter(r=>r.available);
   const bestPrice=inStock.length?inStock[0].price:null;
@@ -1753,58 +1783,57 @@ function renderModal(){
     </div>`;
   }).join('');
 
-  // ── PRICE HERO ──
-  if(bestPrice!==null){
-    const d=Math.floor(bestPrice),cents=(bestPrice%1).toFixed(2).slice(1);
-    const rb=rm(inStock[0].retailer);
-    document.getElementById('dpBigPrice').innerHTML=`<sup>$</sup>${d}<sup class="cents">.${cents}</sup>`;
-    document.getElementById('dpBestNote').innerHTML=`<span>✓</span> Best price at ${rb.name}`;
-    document.getElementById('dpBestSub').textContent=`${_modalSizeKey}${_modalFlavour?' · '+_modalFlavour:''} · ${rb.domain}`;
-  } else {
-    document.getElementById('dpBigPrice').innerHTML=`<span style="font-size:36px;color:var(--ink3)">Out of Stock</span>`;
-    document.getElementById('dpBestNote').innerHTML='';
-    document.getElementById('dpBestSub').textContent='Not available in this size at any tracked retailer';
-  }
-
-  // ── PER SERVE ──
+  // ── PER SERVE, DESCRIPTION, HISTORY, SHARE ──
   const kg=sz.kg;
-  let perServe='';
-  if(kg&&bestPrice){const serves=Math.round(kg*1000/30);if(serves>1)perServe=`<div class="dp-per-serve">≈ ${serves} serves · <strong>$${(bestPrice/serves).toFixed(2)}/serve</strong> at best price</div>`;}
-
-  // ── DESCRIPTION ──
+  const perServe=_renderPerServe(kg,bestPrice);
   const desc=g.listings.find(l=>l.description)?.description||'';
-
-  // ── PRICE HISTORY ──
   const allHistory=[];
   for(const l of g.listings){if(l.priceHistory?.length)for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date});if(l.available!==false)allHistory.push({price:l.priceFrom,date:new Date().toISOString().split('T')[0]});}
   allHistory.sort((a,b)=>a.date.localeCompare(b.date));
   let chartHtml='';
   if(allHistory.length>=2){const prices=allHistory.map(h=>h.price),mn=Math.min(...prices),mx=Math.max(...prices),range=mx-mn||1;chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-title">Price history</div><div class="dp-chart">${allHistory.slice(-12).map(h=>{const pct=Math.round(((h.price-mn)/range)*70+10);return`<div class="dp-chart-bar-wrap"><div class="dp-chart-bar" style="height:${pct}%" data-best="${h.price===mn?1:0}"><div class="dp-chart-price-lbl">$${h.price.toFixed(0)}</div></div><div class="dp-chart-date">${h.date.slice(5)}</div></div>`;}).join('')}</div></div>`;}
-
-  // ── SHARE ROW ──
   const shareUrl=window.location.origin+window.location.pathname+`?brand=${encodeURIComponent(brandName)}&product=${encodeURIComponent(g.key)}`;
-  const shareRow=`<div class="dp-share-row">
-    <button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>
-    ${inStock.length?`<button class="dp-share-btn" onclick="window.open('${inStock[0].url}','_blank')">🛒 Cheapest →</button>`:''}
-  </div>`;
-
+  const shareRow=`<div class="dp-share-row"><button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>${inStock.length?`<button class="dp-share-btn" onclick="window.open('${inStock[0].url}','_blank')">🛒 Cheapest →</button>`:''}</div>`;
   const oosNote=inStock.length===0?`<div class="dp-oos-hero"><div class="dp-oos-hero-icon">📭</div><div class="dp-oos-hero-text">This size is currently out of stock. <a href="#" style="color:var(--green)" onclick="event.preventDefault();scrollToAlerts();closeDetail()">Set a price alert</a> to be notified when it's back.</div></div>`:'';
 
   document.getElementById('dpBody').innerHTML=`
     <div class="dp-size-tabs">${sizeTabs}</div>
     ${flavourPicker}
+    <div class="dp-price-hero">
+      <div class="dp-price-label">Best price${_modalFlavour?' · '+_modalFlavour:''} · ${_modalSizeKey}</div>
+      <div class="dp-bigprice" id="dpBigPrice2"></div>
+      <div class="dp-best-note" id="dpBestNote2"></div>
+      <div class="dp-best-sub" id="dpBestSub2"></div>
+      ${perServe}
+    </div>
     ${chartHtml}
     ${shareRow}
     <div class="dp-section">
-      <div class="dp-sec-title">Compare prices — ${_modalSizeKey}${_modalFlavour?' · '+_modalFlavour:''}</div>
+      <div class="dp-sec-title">Compare across ${retailers.length} retailer${retailers.length!==1?'s':''}</div>
       ${retailerRows}${oosNote}
-      ${perServe}
     </div>
     ${desc?`<div class="dp-section"><div class="dp-sec-title">About this product</div><div class="dp-desc">${desc}</div></div>`:''}
   `;
+  if(bestPrice!==null){
+    const d=Math.floor(bestPrice),cents=(bestPrice%1).toFixed(2).slice(1),rb=rm(inStock[0].retailer);
+    document.getElementById('dpBigPrice2').innerHTML=`<sup>$</sup>${d}<sup class="cents">.${cents}</sup>`;
+    document.getElementById('dpBestNote2').innerHTML=`<span>✓</span> Best price at ${rb.name}`;
+    document.getElementById('dpBestSub2').textContent=`${rb.domain} · ${rb.shipping}`;
+  } else {
+    document.getElementById('dpBigPrice2').innerHTML=`<span style="font-size:36px;color:var(--ink3)">Out of Stock</span>`;
+    document.getElementById('dpBestNote2').innerHTML='';
+    document.getElementById('dpBestSub2').textContent='Not available in this size at any tracked retailer';
+  }
 }
 
 function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.body.style.overflow='';_modalGroup=null;}
+
+function _renderPerServe(kg,bestPrice){
+  if(!kg||!bestPrice)return'';
+  const serves=Math.round(kg*1000/30);
+  if(serves<2)return'';
+  return`<div class="dp-per-serve">≈ ${serves} serves · <strong>$${(bestPrice/serves).toFixed(2)}/serve</strong> at best price</div>`;
+}
 function handleDetailBg(e){if(e.target===document.getElementById('detailOverlay'))closeDetail();}
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goHome(){closeDetail();showView('viewHome');currentBrand=null;setBreadcrumb([]);document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));document.querySelector('.nav-cat').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
