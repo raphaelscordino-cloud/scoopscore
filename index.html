@@ -40,7 +40,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--bg4)}
 
 /* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:400;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav{position:fixed;top:0;left:0;right:0;z-index:600;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 .nav.scrolled{background:rgba(248,247,245,.9);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-color:var(--border)}
 .nav-inner{max-width:1320px;margin:0 auto;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:20px}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px}
@@ -261,7 +261,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .dp-oos-hero-text{font-size:13px;color:var(--ink3);line-height:1.5}
 
 /* ── DETAIL MODAL ── */
-.detail-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.5);backdrop-filter:blur(12px)}
+.detail-overlay{display:none;position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.5);backdrop-filter:blur(12px)}
 .detail-overlay.open{display:flex;align-items:stretch}
 .detail-modal{display:flex;width:100%;height:100%;animation:modalIn .28s cubic-bezier(0.16,1,0.3,1)}
 @keyframes modalIn{from{opacity:0;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
@@ -464,7 +464,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .nav-mega-btn{display:flex;align-items:center;gap:5px}
 .nav-mega-chevron{font-size:10px;transition:transform .2s;display:inline-block}
 .nav-mega-wrap.open .nav-mega-chevron{transform:rotate(180deg)}
-.nav-mega{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:580px;background:var(--bg);border:1px solid var(--border2);border-radius:16px;box-shadow:0 16px 48px rgba(44,43,40,.12);z-index:500;overflow:hidden;animation:megaIn .18s ease}
+.nav-mega{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:580px;background:var(--bg);border:1px solid var(--border2);border-radius:16px;box-shadow:0 16px 48px rgba(44,43,40,.12);z-index:601;overflow:hidden;animation:megaIn .18s ease}
 @keyframes megaIn{from{opacity:0;transform:translateX(-50%) translateY(-6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .nav-mega-wrap.open .nav-mega{display:block}
 .mega-inner{display:grid;grid-template-columns:200px 1fr}
@@ -484,7 +484,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .mega-all-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink2);background:none;border:1px solid var(--border2);border-radius:100px;padding:7px 16px;cursor:pointer;transition:all .12s;align-self:flex-start;margin-top:auto}
 .mega-all-btn:hover{background:var(--bg2);color:var(--ink)}
 /* overlay to close mega on outside click */
-.mega-overlay{display:none;position:fixed;inset:0;z-index:499}
+.mega-overlay{display:none;position:fixed;inset:0;z-index:599}
 .mega-overlay.on{display:block}
 
 /* ── BREADCRUMB ── */
@@ -496,7 +496,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .bc-current{color:var(--ink);font-weight:500}
 
 /* ── NAV SEARCH RESULTS ── */
-.nav-search-results{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--bg);border:1px solid var(--border2);border-radius:12px;box-shadow:0 12px 32px rgba(44,43,40,.1);z-index:600;overflow:hidden;max-height:360px;overflow-y:auto}
+.nav-search-results{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--bg);border:1px solid var(--border2);border-radius:12px;box-shadow:0 12px 32px rgba(44,43,40,.1);z-index:602;overflow:hidden;max-height:360px;overflow-y:auto}
 .nav-search-results.open{display:block}
 .nsr-section{padding:8px 0}
 .nsr-section-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:4px 14px 6px}
@@ -551,19 +551,27 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .cat-active-filters-wrap{padding:10px 0 0;border-bottom:1px solid var(--border);background:var(--bg)}
 .cat-active-filters-wrap:empty,.cat-active-filters:empty+*{display:none}
 
-/* ── SIZE RANGE SLIDER ── */
-.size-slider-wrap{padding:4px 2px 0}
+/* ── RANGE SLIDER — shared by size + price ── */
+.size-slider-wrap{padding:8px 4px 0}
 .size-slider-labels{display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:11px;color:var(--ink3);margin-bottom:10px}
 .size-slider-value{font-weight:600;color:var(--ink);font-size:12px}
-.size-range-track{position:relative;height:4px;background:var(--bg3);border-radius:100px;margin:18px 0 28px}
+
+/* Track */
+.size-range-track{position:relative;height:6px;background:var(--bg3);border-radius:100px;margin:22px 8px 44px;cursor:pointer}
 .size-range-fill{position:absolute;top:0;height:100%;background:var(--ink2);border-radius:100px;pointer-events:none}
-.size-range-thumb{position:absolute;top:50%;width:18px;height:18px;background:var(--bg);border:2px solid var(--ink2);border-radius:50%;transform:translate(-50%,-50%);cursor:grab;transition:border-color .1s,box-shadow .1s;z-index:2}
-.size-range-thumb:hover,.size-range-thumb.dragging{border-color:var(--ink);box-shadow:0 0 0 4px rgba(44,43,40,.1)}
-.size-range-thumb:active{cursor:grabbing}
-.size-tick-row{display:flex;justify-content:space-between;margin-top:-20px;padding:0 0px}
-.size-tick{font-family:'Inter',sans-serif;font-size:10px;color:var(--ink4);text-align:center;width:0;white-space:nowrap;transform:translateX(-50%)}
-.size-tick:first-child{transform:none}
-.size-tick:last-child{transform:translateX(-100%)}
+
+/* Thumbs — bigger hit area */
+.size-range-thumb{position:absolute;top:50%;width:22px;height:22px;background:var(--bg);border:2.5px solid var(--ink2);border-radius:50%;transform:translate(-50%,-50%);cursor:grab;z-index:2;transition:box-shadow .15s,border-color .15s;box-shadow:0 1px 4px rgba(44,43,40,.15)}
+.size-range-thumb:hover{border-color:var(--ink);box-shadow:0 0 0 6px rgba(44,43,40,.08)}
+.size-range-thumb.dragging{border-color:var(--ink);box-shadow:0 0 0 8px rgba(44,43,40,.1);cursor:grabbing}
+
+/* Tick marks below the track */
+.size-tick-row{position:absolute;left:0;right:0;bottom:-32px;display:flex;justify-content:space-between;pointer-events:none}
+.size-tick{font-family:'Inter',sans-serif;font-size:11px;color:var(--ink4);white-space:nowrap;text-align:center;flex:1}
+.size-tick:first-child{text-align:left}
+.size-tick:last-child{text-align:right}
+
+/* Active value label above slider */
 .size-slider-active-label{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink);text-align:center;margin-top:6px;min-height:18px}
 </style>
 <body>
@@ -881,28 +889,28 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
       </div>
 
       <!-- Size / weight -->
-      <div class="cat-sidebar-section" id="sideSize" style="display:none">
+      <div class="cat-sidebar-section" id="sideSize" style="display:none;padding-bottom:8px">
         <div class="cat-sidebar-title">Size <span id="sizeSliderLabel" style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);float:right"></span></div>
         <div class="size-slider-wrap">
           <div class="size-range-track" id="sizeTrack">
             <div class="size-range-fill" id="sizeFill"></div>
             <div class="size-range-thumb" id="sizeThumbLo" onmousedown="sliderDragStart(event,'lo')" ontouchstart="sliderDragStart(event,'lo')"></div>
             <div class="size-range-thumb" id="sizeThumbHi" onmousedown="sliderDragStart(event,'hi')" ontouchstart="sliderDragStart(event,'hi')"></div>
+            <div class="size-tick-row" id="sizeTickRow"></div>
           </div>
-          <div class="size-tick-row" id="sizeTickRow"></div>
         </div>
       </div>
 
       <!-- Price range slider -->
-      <div class="cat-sidebar-section" id="sidePrice">
+      <div class="cat-sidebar-section" id="sidePrice" style="padding-bottom:8px">
         <div class="cat-sidebar-title">Price <span id="priceSliderLabel" style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);float:right"></span></div>
         <div class="size-slider-wrap">
           <div class="size-range-track" id="priceTrack">
             <div class="size-range-fill" id="priceFill"></div>
             <div class="size-range-thumb" id="priceThumbLo" onmousedown="priceSliderDragStart(event,'lo')" ontouchstart="priceSliderDragStart(event,'lo')"></div>
             <div class="size-range-thumb" id="priceThumbHi" onmousedown="priceSliderDragStart(event,'hi')" ontouchstart="priceSliderDragStart(event,'hi')"></div>
+            <div class="size-tick-row" id="priceTickRow"></div>
           </div>
-          <div class="size-tick-row" id="priceTickRow"></div>
         </div>
       </div>
 
@@ -1141,7 +1149,7 @@ function formatGrams(g){
 }
 // Size slider ticks — fixed kg steps shown on the slider
 // All sizes are normalised to kg (lbs converted). Slider snaps to these steps.
-const SIZE_TICKS=[0.25,0.5,1,1.5,2,2.5,3,4,5]; // in kg
+const SIZE_TICKS=[0.5,1,1.5,2,3,5]; // in kg — 6 clean steps
 // Convert lbs to kg, round to nearest tick
 function gramsToKg(g){return g/1000;}
 function nearestTick(kg){return SIZE_TICKS.reduce((a,b)=>Math.abs(b-kg)<Math.abs(a-kg)?b:a);}
@@ -1228,7 +1236,7 @@ const PROTEIN_TYPES=[
   {key:'collagen',label:'Collagen',      match:/\bcollagen\b/i},
 ];
 function detectProteinSubType(group){const text=group.name.toLowerCase();for(const t of PROTEIN_TYPES)if(t.match.test(text))return t.key;return'whey';}
-const PRICE_TICKS=[10,20,30,40,50,60,80,100,120,150,200];
+const PRICE_TICKS=[20,40,60,80,100,150,200]; // 7 clean steps
 let priceLoIdx=0,priceHiIdx=PRICE_TICKS.length-1;
 let catViewPriceMin=null,catViewPriceMax=null;
 
@@ -1298,7 +1306,6 @@ function openCategoryView(cat){
   setBreadcrumb([{label:'Home',fn:'goHome()'},{label:label}]);
   renderCatFilterPills();renderCatSmartFilters();renderCatSidebar();renderCatProducts();
   document.getElementById('catActiveFiltersWrap').style.display='none';
-  initPriceSlider();
 }
 function renderCatFilterPills(){
   const cats=['all','protein','creatine','preworkout','fatburner','bcaa'];
@@ -1310,6 +1317,8 @@ function renderCatFilterPills(){
 function setCatViewCat(el,cat){
   catViewCat=cat;catViewBrandFilter='all';catViewRetailerFilter='all';
   catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceMin=null;catViewPriceMax=null;
+  sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;
+  priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
   document.querySelectorAll('#catFilterPills .bcf-pill').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('catViewTitle').textContent=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
@@ -1337,10 +1346,12 @@ function renderCatSmartFilters(){
   // Size slider — show if any product in this category has size data
   const hasSize=groups.some(({group})=>groupMinKg(group)!==null);
   const sizeWrap=document.getElementById('sideSize');
-  if(hasSize){sizeWrap.style.display='';initSizeSlider();}
-  else{sizeWrap.style.display='none';}
+  if(sizeWrap){
+    if(hasSize){sizeWrap.style.display='';initSizeSlider();}
+    else{sizeWrap.style.display='none';}
+  }
   // Price slider — always show
-  initPriceSlider();
+  if(document.getElementById('priceTrack'))initPriceSlider();
 }
 function setCatProteinType(key){catViewProteinType=catViewProteinType===key?null:key;renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();}
 function renderActiveFilters(){
