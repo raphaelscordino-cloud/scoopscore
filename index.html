@@ -331,6 +331,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .pcard-star{color:#f59e0b;font-size:12px}
 .pcard-review-count{font-size:11px;color:var(--ink3);font-family:'Inter',sans-serif}
 .pcard-price-row{margin-top:auto;display:flex;align-items:baseline;gap:6px}
+.pcard-size-tag{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--ink2);background:var(--bg3);border:1px solid var(--border2);padding:2px 8px;border-radius:100px;margin-right:4px}
 .pcard-from{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--ink3)}
 .pcard-price{font-family:'Inter',sans-serif;font-size:20px;font-weight:700;color:var(--ink)}
 .pcard-was{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink4);text-decoration:line-through}
@@ -1342,15 +1343,35 @@ function renderCatProducts(){
   if(catViewBrandFilter!=='all')groups=groups.filter(({brand})=>brand===catViewBrandFilter);
   if(catViewRetailerFilter!=='all')groups=groups.filter(({group})=>group.inStockListings.some(l=>l.retailer===catViewRetailerFilter));
   if(searchQ)groups=groups.filter(({group,brand})=>group.name.toLowerCase().includes(searchQ)||brand.toLowerCase().includes(searchQ));
-  const bestOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
-  if(catViewSort==='price-asc')groups.sort((a,z)=>bestOf(a.group)-bestOf(z.group));
-  else if(catViewSort==='price-desc')groups.sort((a,z)=>bestOf(z.group)-bestOf(a.group));
+  // Sort using the price of the matched size (respects filter), not the cheapest size overall
+  const filteredBestOf=g=>{
+    const sizeMap=buildSizeMap(g);
+    const lo=catViewSizeMin??0,hi=catViewSizeMax??999;
+    const hasSizeFilter=catViewSizeMin!=null||catViewSizeMax!=null;
+    for(const sz of sizeMap.values()){
+      const kg=sz.kg;
+      if(hasSizeFilter&&(kg==null||kg<lo||kg>hi+0.01))continue;
+      const inStockR=[...sz.retailers.values()].filter(r=>r.available);
+      if(inStockR.length)return Math.min(...inStockR.map(r=>r.price));
+    }
+    return 9999;
+  };
+  if(catViewSort==='price-asc')groups.sort((a,z)=>filteredBestOf(a.group)-filteredBestOf(z.group));
+  else if(catViewSort==='price-desc')groups.sort((a,z)=>filteredBestOf(z.group)-filteredBestOf(a.group));
   else if(catViewSort==='name')groups.sort((a,z)=>a.group.name.localeCompare(z.group.name));
   else groups.sort((a,z)=>new Set(z.group.inStockListings.map(l=>l.retailer)).size-new Set(a.group.inStockListings.map(l=>l.retailer)).size);
   document.getElementById('catViewMeta').textContent=`${groups.length} product${groups.length!==1?'s':''}`;
   const plist=document.getElementById('catPlist');
   if(!groups.length){plist.innerHTML='<div class="plist-empty">No products match these filters</div>';return;}
-  plist.innerHTML=`<div class="pcard-grid" style="padding:20px 24px 80px">${groups.map(({brand,group:g},i)=>buildProductCard(g,brand,i)).join('')}</div>`;
+
+  // Build activeFilters to pass to cards so price shown matches what user filtered for
+  const activeFilters={
+    sizeMin: catViewSizeMin,
+    sizeMax: catViewSizeMax,
+    proteinType: catViewProteinType,
+  };
+
+  plist.innerHTML=`<div class="pcard-grid" style="padding:20px 24px 80px">${groups.map(({brand,group:g},i)=>buildProductCard(g,brand,i,activeFilters)).join('')}</div>`;
 }
 
 // ── VIEW MANAGEMENT ──
@@ -1565,30 +1586,75 @@ function renderProducts(){
   plist.innerHTML=`<div class="pcard-grid">${groups.map((g,i)=>buildProductCard(g,currentBrand,i)).join('')}</div>`;
 }
 
-function buildProductCard(g,brand,i){
+function buildProductCard(g, brand, i, activeFilters){
+  // activeFilters = { sizeKey: '2kg', proteinType: 'whey', ... } — passed from renderCatProducts
   const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
   const sizeMap=buildSizeMap(g);
-  const allRetailers=[...new Set([...sizeMap.values()].flatMap(sz=>[...sz.retailers.values()]))];
-  const inStock=allRetailers.filter(r=>r.available);
-  const bestPrice=inStock.length?Math.min(...inStock.map(r=>r.price)):null;
+
+  // ── Determine which size to show price for ──
+  // If a size filter is active, find the best matching size bucket in this product
+  let displaySizeKey=null;
+  let displaySz=null;
+
+  if(activeFilters?.sizeMin!=null||activeFilters?.sizeMax!=null){
+    const lo=activeFilters.sizeMin??0;
+    const hi=activeFilters.sizeMax??999;
+    // Find sizes that fall within the filtered range, pick the one closest to the midpoint
+    const mid=(lo+hi)/2;
+    let bestDist=Infinity;
+    for(const [key,sz] of sizeMap.entries()){
+      const kg=sz.kg;
+      if(kg==null)continue;
+      if(kg>=lo&&kg<=hi+0.01){
+        const dist=Math.abs(kg-mid);
+        if(dist<bestDist){bestDist=dist;displaySizeKey=key;displaySz=sz;}
+      }
+    }
+  }
+
+  // Fall back to cheapest in-stock size if no filter match
+  if(!displaySz){
+    let bestPrice=Infinity;
+    for(const [key,sz] of sizeMap.entries()){
+      const inStockR=[...sz.retailers.values()].filter(r=>r.available);
+      if(!inStockR.length)continue;
+      const p=Math.min(...inStockR.map(r=>r.price));
+      if(p<bestPrice){bestPrice=p;displaySizeKey=key;displaySz=sz;}
+    }
+  }
+
+  // ── Price for the display size ──
+  const displayRetailers=displaySz?[...displaySz.retailers.values()].filter(r=>r.available):[];
+  const displayPrice=displayRetailers.length?Math.min(...displayRetailers.map(r=>r.price)):null;
+
+  // ── Meta counts ──
   const numSizes=sizeMap.size;
-  const numFlavours=new Set([...sizeMap.values()].flatMap(sz=>sz.variants.map(v=>variantFlavour(v.title)).filter(f=>f.length>1))).size;
+  const numFlavours=displaySz
+    ?new Set(displaySz.variants.map(v=>variantFlavour(v.title)).filter(f=>f.length>1)).size
+    :new Set([...sizeMap.values()].flatMap(sz=>sz.variants.map(v=>variantFlavour(v.title)).filter(f=>f.length>1))).size;
+
+  // ── Filtered size label for the card ──
+  const sizeFiltered=activeFilters?.sizeMin!=null||activeFilters?.sizeMax!=null;
+  const priceLabel=sizeFiltered&&displaySizeKey
+    ?`<span class="pcard-size-tag">${displaySizeKey}</span>`
+    :numSizes>1?'<span class="pcard-from">From</span>':'';
+
   const img=g.imageUrl
     ?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'pcard-img-placeholder\\'>${brand[0]}</div>'">`
     :`<div class="pcard-img-placeholder">${brand[0]}</div>`;
-  // fake review data — replace with real when available
-  const reviewCount=0;
-  const badge=reviewCount>100?'hot':bestPrice&&bestPrice<40?'sale':'';
-  return`<div class="pcard" style="animation-delay:${i*.03}s" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}')">
-    ${badge?`<div class="pcard-badge ${badge}">${badge==='hot'?'HOT':'SALE'}</div>`:''}
+
+  // ── Open modal pre-selected to the matched size ──
+  const openCall=`openDetail('${g.key.replace(/'/g,"\\'")}','${brand.replace(/'/g,"\\'")}',${displaySizeKey?`'${displaySizeKey.replace(/'/g,"\\'")}'`:'undefined'})`;
+
+  return`<div class="pcard" style="animation-delay:${i*.03}s" onclick="${openCall}">
     <div class="pcard-img">${img}</div>
     <div class="pcard-body">
       <div class="pcard-cat">${cm.label}</div>
       <div class="pcard-name">${g.name}</div>
-      <div class="pcard-meta">${numSizes>1?numSizes+' Sizes | ':''}${numFlavours>0?numFlavours+' Flavour'+(numFlavours!==1?'s':''):''}</div>
+      <div class="pcard-meta">${brand}${numSizes>1&&!sizeFiltered?' · '+numSizes+' sizes':displaySizeKey&&sizeFiltered?' · '+displaySizeKey:''}${numFlavours>0?' · '+numFlavours+' flavour'+(numFlavours!==1?'s':''):''}</div>
       <div class="pcard-price-row">
-        ${bestPrice!==null
-          ?`${numSizes>1?'<span class="pcard-from">From</span>':''}<span class="pcard-price">$${bestPrice.toFixed(2)}</span>`
+        ${displayPrice!==null
+          ?`${priceLabel}<span class="pcard-price">$${displayPrice.toFixed(2)}</span>`
           :`<span class="pcard-price" style="color:var(--ink3);font-size:14px">Out of stock</span>`}
       </div>
     </div>
@@ -1636,67 +1702,6 @@ function buildSizeMap(group){
   return new Map([...map.entries()].sort((a,b)=>{
     const ka=a[1].kg??9999,kb=b[1].kg??9999;return ka-kb;
   }));
-}
-
-function renderProducts(){
-  const b=BRANDS[currentBrand];if(!b)return;
-  let groups=[...b.groupList];
-  if(currentCat!=='all')groups=groups.filter(g=>g.category===currentCat);
-  if(searchQ)groups=groups.filter(g=>g.name.toLowerCase().includes(searchQ)||g.category.toLowerCase().includes(searchQ));
-  const bestPriceOf=g=>g.inStockListings.length?Math.min(...g.inStockListings.map(l=>l.priceFrom)):9999;
-  if(currentSort==='price-asc')groups.sort((a,z)=>bestPriceOf(a)-bestPriceOf(z));
-  else if(currentSort==='price-desc')groups.sort((a,z)=>bestPriceOf(z)-bestPriceOf(a));
-  else if(currentSort==='name')groups.sort((a,z)=>a.name.localeCompare(z.name));
-  else groups.sort((a,z)=>{if(a.soldOut!==z.soldOut)return a.soldOut?1:-1;const ra=new Set(a.inStockListings.map(l=>l.retailer)).size,rz=new Set(z.inStockListings.map(l=>l.retailer)).size;return rz-ra||bestPriceOf(a)-bestPriceOf(z);});
-  const showOos=document.getElementById('showOosToggle')?.checked||false;
-  const oosGroups=groups.filter(g=>g.soldOut);
-  const el=document.getElementById('oosCount');
-  if(el)el.textContent=oosGroups.length?`${oosGroups.length} out of stock hidden`:'';
-  if(!showOos)groups=groups.filter(g=>!g.soldOut);
-  const plist=document.getElementById('plist');
-  if(!groups.length){plist.innerHTML=`<div class="plist-empty">${searchQ?`No products matching "${searchQ}"`:'No in-stock products'}</div>`;return;}
-
-  plist.innerHTML=groups.map((g,i)=>{
-    const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
-    const sizeMap=buildSizeMap(g);
-    const img=g.imageUrl?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.parentElement.innerHTML=''">`:'';
-
-    // Build one row per size
-    const sizeRows=[...sizeMap.entries()].map(([sizeKey,sz])=>{
-      const retailers=[...sz.retailers.values()].sort((a,b)=>a.price-b.price);
-      const inStock=retailers.filter(r=>r.available);
-      const bestPrice=inStock.length?inStock[0].price:null;
-      const cards=retailers.map(r=>{
-        const d=Math.floor(r.price),c=(r.price%1).toFixed(2).slice(1);
-        const isBest=r.available&&r.price===bestPrice;
-        const isOos=!r.available;
-        return`<div class="prc-sm${isBest?' best':''}${isOos?' oos':''}" onclick="event.stopPropagation();openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
-          <div class="prc-sm-name">${rm(r.retailer).name}</div>
-          <div class="prc-sm-price">$${d}.${c}</div>
-          ${isBest&&inStock.length>1?'<div class="prc-sm-badge">✓ Best</div>':''}
-        </div>`;
-      }).join('');
-      return`<div class="prow-size-row" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}','${sizeKey.replace(/'/g,"\\'")}')">
-        <div class="prow-size-indent"></div>
-        <div class="prow-size-label">
-          <div class="psl-kg">${sz.label}</div>
-          <div class="psl-sub">${inStock.length?inStock.length+' retailer'+(inStock.length!==1?'s':''):'Out of stock'}</div>
-        </div>
-        <div class="prow-size-prices">${cards}</div>
-      </div>`;
-    }).join('');
-
-    return`<div class="prow-size-group" style="animation-delay:${i*.02}s">
-      <div class="prow-product-header" onclick="openDetail('${g.key.replace(/'/g,"\\'")}','${currentBrand.replace(/'/g,"\\'")}')">
-        <div class="prow-img" style="padding:10px 0;display:flex;align-items:center;justify-content:center">${img}</div>
-        <div class="prow-product-meta">
-          <span class="prow-product-cat" style="background:${cm.color}15;color:${cm.color};border:1px solid ${cm.color}30">${cm.label}</span>
-          <div><div class="prow-product-name">${g.name}</div><div class="prow-product-brand">${sizeMap.size} size${sizeMap.size!==1?'s':''}</div></div>
-        </div>
-      </div>
-      ${sizeRows}
-    </div>`;
-  }).join('');
 }
 
 // ── MODAL STATE ──
