@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScoopScore — NZ Supplement Price Comparison</title>
-<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, ASN Online and others.">
-<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online">
+<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, Nutrition Warehouse, Elite Supps, Payless Supplements, GNC NZ and more.">
+<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online, Nutrition Warehouse, Elite Supps, Cheap Supps, Payless Supplements, GNC NZ, Maxum Nutrition">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://scoopscore.co.nz/">
 <!-- Open Graph -->
@@ -1455,7 +1455,7 @@ function renderCatProducts(){
 // ── VIEW MANAGEMENT ──
 
 const CAT_META={protein:{label:'Protein',color:'#3b82f6'},creatine:{label:'Creatine',color:'#22c55e'},preworkout:{label:'Pre-Workout',color:'#f59e0b'},fatburner:{label:'Fat Burner',color:'#ef4444'},bcaa:{label:'BCAA',color:'#a855f7'}};
-const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion',domain:'scorpionsupplements.co.nz',shipping:'Check site'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Check site'}};
+const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion',domain:'scorpionsupplements.co.nz',shipping:'Check site'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Check site'},nutritionwarehouse:{name:'Nutrition Warehouse',domain:'nutritionwarehouse.co.nz',shipping:'Free over $99'},elitesupps:{name:'Elite Supps',domain:'elitesupps.co.nz',shipping:'Free over $100'},cheapsupps:{name:'Cheap Supps',domain:'cheapsupps.co.nz',shipping:'Check site'},bodyandfitness:{name:'Body and Fitness',domain:'bodyandfitness.co.nz',shipping:'Check site'},maxum:{name:'Maxum Nutrition',domain:'maxum.co.nz',shipping:'Check site'},payless:{name:'Payless Supplements',domain:'paylesssupplements.co.nz',shipping:'Check site'},gnc:{name:'GNC',domain:'gnc.co.nz',shipping:'Check site'}};
 function rm(id){return RETAILER_META[id]||{name:id,domain:id,shipping:'Check site'};}
 
 let currentSort='retailers';

@@ -192,11 +192,62 @@ const RETAILERS = [
     categoryMap: SHARED_CATEGORY_MAP,
   },
 
+  {
+    id:          'nutritionwarehouse',
+    name:        'Nutrition Warehouse',
+    baseUrl:     'www.nutritionwarehouse.co.nz',
+    url:         'https://www.nutritionwarehouse.co.nz/products.json',
+    currency:    'NZD',
+    freeShipping: '$99+',
+    platform:    'shopify',
+    categoryMap: SHARED_CATEGORY_MAP,
+  },
+  {
+    id:          'elitesupps',
+    name:        'Elite Supps',
+    baseUrl:     'www.elitesupps.co.nz',
+    url:         'https://www.elitesupps.co.nz/products.json',
+    currency:    'NZD',
+    freeShipping: '$100+',
+    platform:    'shopify',
+    categoryMap: SHARED_CATEGORY_MAP,
+  },
+  {
+    id:          'cheapsupps',
+    name:        'Cheap Supps',
+    baseUrl:     'www.cheapsupps.co.nz',
+    url:         'https://www.cheapsupps.co.nz/products.json',
+    currency:    'NZD',
+    freeShipping: 'check site',
+    platform:    'shopify',
+    categoryMap: SHARED_CATEGORY_MAP,
+  },
+  {
+    id:          'bodyandfitness',
+    name:        'Body and Fitness',
+    baseUrl:     'www.bodyandfitness.co.nz',
+    url:         'https://www.bodyandfitness.co.nz/products.json',
+    currency:    'NZD',
+    freeShipping: 'check site',
+    platform:    'shopify',
+    categoryMap: SHARED_CATEGORY_MAP,
+  },
+  {
+    id:          'maxum',
+    name:        'Maxum Nutrition',
+    baseUrl:     'www.maxum.co.nz',
+    url:         'https://www.maxum.co.nz/products.json',
+    currency:    'NZD',
+    freeShipping: 'check site',
+    platform:    'shopify',
+    categoryMap: SHARED_CATEGORY_MAP,
+  },
+
   // ── NOT SHOPIFY — handled separately below ─────────────────
-  // Xplosiv   → Magento  → scraped via XPLOSIV_RETAILERS array
-  // Sprint Fit → custom  → scraped via SPRINTFIT_RETAILERS array
-  // Nutrition Warehouse → custom platform
-  // Payless Supplements → custom platform
+  // Xplosiv         → Magento  → scraped via scrapeXplosiv()
+  // Sprint Fit      → custom   → scraped via scrapeSprintFit()
+  // Payless Supps   → custom   → scraped via scrapePayless()
+  // GNC NZ          → custom   → scraped via scrapeGNC()
 ];
 
 // Supplement-relevant keywords — skip clothing, equipment etc.
@@ -435,7 +486,144 @@ async function scrapeSprintFit() {
   return products;
 }
 
-// ─── PAGE FETCHER (for non-JSON endpoints) ────────────────────
+// ─── PAYLESS SUPPLEMENTS SCRAPER (custom platform) ─────────────
+async function scrapePayless() {
+  log('Scraping Payless Supplements (custom platform)...');
+  const products = [];
+
+  const categories = [
+    { path: 'protein',          cat: 'protein'    },
+    { path: 'creatine',         cat: 'creatine'   },
+    { path: 'pre-workout',      cat: 'preworkout' },
+    { path: 'fat-burners',      cat: 'fatburner'  },
+    { path: 'amino-acids-bcaa', cat: 'bcaa'       },
+  ];
+
+  const suppKw = ['protein','creatine','pre-workout','preworkout','bcaa','eaa','amino','fat burner','whey','isolate','casein','thermogenic','mass gainer'];
+  const excluded = ['shaker','bottle','shirt','shorts','singlet','mat','glove','belt','rack','bench'];
+
+  for (const cat of categories) {
+    try {
+      await sleep(700);
+      const url = `https://www.paylesssupplements.co.nz/${cat.path}`;
+      const pageData = await fetchPage(url);
+
+      // Extract JSON-LD product listings
+      const jsonLdMatches = pageData.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [];
+      for (const match of jsonLdMatches) {
+        try {
+          const inner = match.replace(/<script[^>]*>/, '').replace('</script>', '');
+          const json = JSON.parse(inner);
+          const items = json['@type'] === 'ItemList' ? (json.itemListElement || []) :
+                        json['@type'] === 'Product'  ? [{ item: json }] : [];
+
+          for (const item of items) {
+            const p = item.item || item;
+            if (!p.name || !p.offers) continue;
+            const text = p.name.toLowerCase();
+            if (excluded.some(k => text.includes(k))) continue;
+            if (!suppKw.some(k => text.includes(k))) continue;
+            const price = parseFloat(p.offers.price || p.offers.lowPrice || '0');
+            if (!price) continue;
+
+            products.push({
+              id:           `payless_${(p.url||p.name).replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
+              retailer:     'payless',
+              retailerName: 'Payless Supplements',
+              brand:        p.brand?.name || 'Unknown',
+              name:         p.name,
+              category:     cat.cat,
+              description:  (p.description || '').slice(0, 280),
+              priceFrom:    price,
+              priceTo:      parseFloat(p.offers.highPrice || price) || price,
+              currency:     'NZD',
+              variants:     [{ id: 1, title: 'Default', price, available: true }],
+              url:          p.url || `https://www.paylesssupplements.co.nz/${cat.path}`,
+              imageUrl:     p.image || null,
+              updatedAt:    new Date().toISOString(),
+              priceHistory: []
+            });
+          }
+        } catch(e) { /* skip malformed JSON-LD */ }
+      }
+    } catch(e) {
+      log(`  Payless Supplements category ${cat.path} error: ${e.message}`);
+    }
+  }
+
+  log(`  Found ${products.length} products from Payless Supplements`);
+  return products;
+}
+
+// ─── GNC NZ SCRAPER (custom platform) ──────────────────────────
+async function scrapeGNC() {
+  log('Scraping GNC NZ (custom platform)...');
+  const products = [];
+
+  const categories = [
+    { path: 'protein',        cat: 'protein'    },
+    { path: 'creatine',       cat: 'creatine'   },
+    { path: 'pre-workout',    cat: 'preworkout' },
+    { path: 'fat-burners',    cat: 'fatburner'  },
+    { path: 'amino-acids',    cat: 'bcaa'       },
+  ];
+
+  const suppKw = ['protein','creatine','pre-workout','preworkout','bcaa','eaa','amino','fat burner','whey','isolate','casein','thermogenic','mass gainer'];
+  const excluded = ['shaker','bottle','shirt','shorts','singlet','mat','glove','belt','rack','bench'];
+
+  for (const cat of categories) {
+    try {
+      await sleep(700);
+      const url = `https://www.gnc.co.nz/${cat.path}`;
+      const pageData = await fetchPage(url);
+
+      const jsonLdMatches = pageData.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [];
+      for (const match of jsonLdMatches) {
+        try {
+          const inner = match.replace(/<script[^>]*>/, '').replace('</script>', '');
+          const json = JSON.parse(inner);
+          const items = json['@type'] === 'ItemList' ? (json.itemListElement || []) :
+                        json['@type'] === 'Product'  ? [{ item: json }] : [];
+
+          for (const item of items) {
+            const p = item.item || item;
+            if (!p.name || !p.offers) continue;
+            const text = p.name.toLowerCase();
+            if (excluded.some(k => text.includes(k))) continue;
+            if (!suppKw.some(k => text.includes(k))) continue;
+            const price = parseFloat(p.offers.price || p.offers.lowPrice || '0');
+            if (!price) continue;
+
+            products.push({
+              id:           `gnc_${(p.url||p.name).replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
+              retailer:     'gnc',
+              retailerName: 'GNC',
+              brand:        p.brand?.name || 'Unknown',
+              name:         p.name,
+              category:     cat.cat,
+              description:  (p.description || '').slice(0, 280),
+              priceFrom:    price,
+              priceTo:      parseFloat(p.offers.highPrice || price) || price,
+              currency:     'NZD',
+              variants:     [{ id: 1, title: 'Default', price, available: true }],
+              url:          p.url || `https://www.gnc.co.nz/${cat.path}`,
+              imageUrl:     p.image || null,
+              updatedAt:    new Date().toISOString(),
+              priceHistory: []
+            });
+          }
+        } catch(e) { /* skip malformed JSON-LD */ }
+      }
+    } catch(e) {
+      log(`  GNC NZ category ${cat.path} error: ${e.message}`);
+    }
+  }
+
+  log(`  Found ${products.length} products from GNC NZ`);
+  return products;
+}
+
+
 function fetchPage(url) {
   return new Promise((resolve, reject) => {
     https.get(url, {
@@ -682,7 +870,7 @@ async function scrapeRetailer(retailer) {
 // ─── MAIN ───────────────────────────────────────────────────────
 async function main() {
   log('=== ScoopScore scrape started ===');
-  log(`Retailers: ${RETAILERS.map(r => r.name).join(', ')} + Xplosiv + Sprint Fit`);
+  log(`Retailers: ${RETAILERS.map(r => r.name).join(', ')} + Xplosiv + Sprint Fit + Payless Supplements + GNC NZ`);
 
   // Load existing data to preserve price history
   let existingProducts = [];
@@ -726,6 +914,28 @@ async function main() {
   } catch(e) {
     log(`Sprint Fit scrape failed: ${e.message}`);
     retailerStats['Sprint Fit'] = 0;
+  }
+  await sleep(1500);
+
+  // ── Payless Supplements (custom platform) ──
+  try {
+    const paylessProducts = await scrapePayless();
+    allNew.push(...paylessProducts);
+    retailerStats['Payless Supplements'] = paylessProducts.length;
+  } catch(e) {
+    log(`Payless Supplements scrape failed: ${e.message}`);
+    retailerStats['Payless Supplements'] = 0;
+  }
+  await sleep(1500);
+
+  // ── GNC NZ (custom platform) ──
+  try {
+    const gncProducts = await scrapeGNC();
+    allNew.push(...gncProducts);
+    retailerStats['GNC NZ'] = gncProducts.length;
+  } catch(e) {
+    log(`GNC NZ scrape failed: ${e.message}`);
+    retailerStats['GNC NZ'] = 0;
   }
 
   // Deduplicate by id
