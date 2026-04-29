@@ -1187,3 +1187,354 @@ Output: C:\Users\rapha\scoopscore\data\products.json
 [2026-04-24T09:52:38.445Z]   bcaa            394
 [2026-04-24T09:52:38.446Z] 
 Output: C:\Users\rapha\scoopscore\data\products.json
+[2026-04-28T22:06:03.647Z] === ScoopScore scrape started ===
+[2026-04-28T22:06:03.660Z] Retailers: NZ Muscle, Sportsfuel, Scorpion Supplements, ASN Online, Supplement Solutions, Raisey's, Nutrition Warehouse, Elite Supps, Cheap Supps, Body and Fitness, Maxum Nutrition + Xplosiv + Sprint Fit + Payless Supplements + GNC NZ
+[2026-04-28T22:06:03.706Z] Loaded 2999 existing products (preserving price history)
+[2026-04-28T22:06:03.707Z] Scraping NZ Muscle...
+[2026-04-28T22:06:03.708Z]   Page 1...
+[2026-04-28T22:06:04.459Z]   [SKIPPED - no category] "Musashi GWP Protein Wafer Bars - 6 Assorted Bars" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:04.460Z]   [SKIPPED - no category] "C4 Energy + Amino" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:04.461Z]   [SKIPPED - not supplement] "Musashi Shred Energy 355ml" | product_type: "(blank)"
+[2026-04-28T22:06:04.461Z]   [SKIPPED - no category] "TriggerPoint MobiPoint Massage Ball" | product_type: "(blank)" | tags: yoga / rollers
+[2026-04-28T22:06:04.461Z]   [SKIPPED - no category] "TriggerPoint MB1 Massage Ball" | product_type: "(blank)" | tags: yoga / rollers
+[2026-04-28T22:06:04.462Z]   [SKIPPED - no category] "Optimum Nutrition Amino Energy Sparkling 355ml" | product_type: "(blank)" | tags: abc-a,energy drinks (RTDs)
+[2026-04-28T22:06:04.463Z]   [SKIPPED - no category] "Grenade Protein Bar Mixed Box" | product_type: "(blank)" | tags: abc-a
+[2026-04-28T22:06:04.974Z]   Page 2...
+[2026-04-28T22:06:05.541Z]   [SKIPPED - not supplement] "Musashi Shred Chewables 54 Tablets" | product_type: "(blank)"
+[2026-04-28T22:06:05.541Z]   [SKIPPED - no category] "Bundle with Optimum Nutrition Amino Energy" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:05.542Z]   [SKIPPED - no category] "LivePro Targeted Massage Ball" | product_type: "(blank)" | tags: yoga / rollers
+[2026-04-28T22:06:06.050Z]   Page 3...
+[2026-04-28T22:06:06.844Z]   [SKIPPED - no category] "Snackn WPI Protein" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:06.844Z]   [SKIPPED - no category] "Snackn Protein Nut Spread" | product_type: "(blank)" | tags: coffee & creamers
+[2026-04-28T22:06:07.360Z]   Page 4...
+[2026-04-28T22:06:08.768Z]   [SKIPPED - no category] "Bundle with NZ Muscle Mass" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:08.769Z]   [SKIPPED - not supplement] "Get Raw Nutrition Intra Workout - Lemon & Lime" | product_type: "(blank)"
+[2026-04-28T22:06:09.279Z]   Page 5...
+[2026-04-28T22:06:09.893Z]   [SKIPPED - no category] "Snackn Protein Breakfast Instant Porridge" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:09.893Z]   [SKIPPED - no category] "Snackn Protein Breakfast Bircher Muesli" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:10.399Z]   Page 6...
+[2026-04-28T22:06:10.851Z]   [SKIPPED - no category] "LCD Massage Gun - 6 Heads" | product_type: "(blank)" | tags: accessories,yoga / rollers
+[2026-04-28T22:06:10.856Z]   [SKIPPED - no category] "MyProtein FlavDrops" | product_type: "(blank)" | tags: 
+[2026-04-28T22:06:10.857Z]   Found 477 supplement products from NZ Muscle (6 pages fetched)
+[2026-04-28T22:06:12.367Z] Scraping Sportsfuel...
+[2026-04-28T22:06:12.367Z]   Page 1...
+[2026-04-28T22:06:13.303Z]   [SKIPPED - not supplement] "Inspired Shaker (Random Colour) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:13.304Z]   [SKIPPED - not supplement] "SmartShake Lite Shaker 1L" | product_type: "Protein Shakers"
+[2026-04-28T22:06:13.311Z]   [SKIPPED - not supplement] "Optimum Opti-lock™ Leakproof Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:13.314Z]   [SKIPPED - not supplement] "Optimum Nutrition Stainless Steel Black Shaker *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:13.317Z]   [SKIPPED - not supplement] "Muscle Recovery Bundle" | product_type: "Recovery"
+[2026-04-28T22:06:13.317Z]   [SKIPPED - not supplement] "SIS Rego Cherry Juice Concentrate Sachets" | product_type: "Recovery"
+[2026-04-28T22:06:13.818Z]   Page 2...
+[2026-04-28T22:06:14.781Z]   [SKIPPED - not supplement] "Sportsfuel x Switch Nutrition Breast Cancer Research Fundraising Loaded Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:14.783Z]   [SKIPPED - not supplement] "Vitalze KnotAway Cream" | product_type: "Recovery"
+[2026-04-28T22:06:14.783Z]   [SKIPPED - not supplement] "Vitalize Chill Restore Cream" | product_type: "Recovery"
+[2026-04-28T22:06:14.784Z]   [SKIPPED - not supplement] "2x Musashi Shred Energy Drink RTD 355ml (Random Flavour) *Gift*" | product_type: "(blank)"
+[2026-04-28T22:06:14.784Z]   [SKIPPED - not supplement] "1x Musashi Shred Energy Drink RTD 355ml (Random Flavour) *Gift*" | product_type: "(blank)"
+[2026-04-28T22:06:14.785Z]   [SKIPPED - no category] "1x Rule 1 Mass Sample Sachet (Random Flavour) *Gift*" | product_type: "(blank)" | tags: algolia-ignore,incoming,location-17947492419-instock,location-20189478979-outofstock,location-20853096515-outofstock
+[2026-04-28T22:06:14.786Z]   [SKIPPED - no category] "1x Rule 1 Essential Amino 9 Sample (Random Flavour) *Gift*" | product_type: "(blank)" | tags: algolia-ignore,location-17947492419-instock,location-20189478979-outofstock,location-20853096515-outofstock,location-35711352899-outofstock
+[2026-04-28T22:06:14.786Z]   [SKIPPED - not supplement] "Muscle Nation Shaker (Random Colour) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:14.787Z]   [SKIPPED - not supplement] "Red Bull Energy Drink Original 473ml" | product_type: "Energy Drinks"
+[2026-04-28T22:06:15.300Z]   Page 3...
+[2026-04-28T22:06:16.125Z]   [SKIPPED - not supplement] "Applied Nutrition Turk-X" | product_type: "Recovery"
+[2026-04-28T22:06:16.125Z]   [SKIPPED - not supplement] "Applied Nutrition HMB 500mg" | product_type: "Recovery"
+[2026-04-28T22:06:16.131Z]   [SKIPPED - not supplement] "Red Bull Energy Drink Sugarfree Original 473ml" | product_type: "Energy Drinks"
+[2026-04-28T22:06:16.646Z]   Page 4...
+[2026-04-28T22:06:17.529Z]   [SKIPPED - no category] "Rule 1 Energized Amino" | product_type: "Energy & Endurance" | tags: C-Grade,incoming,informed choice,location-17947492419-instock,location-20189478979-outofstock
+[2026-04-28T22:06:17.534Z]   [SKIPPED - not supplement] "Kill Cliff Recover - Single" | product_type: "Post-Workout"
+[2026-04-28T22:06:17.535Z]   [SKIPPED - not supplement] "Smart Shake Revive 750ml - Camo" | product_type: "Protein Shakers"
+[2026-04-28T22:06:17.535Z]   [SKIPPED - not supplement] "SciVation Xtend Energy RTD - Single" | product_type: "Energy Drinks"
+[2026-04-28T22:06:17.537Z]   [SKIPPED - not supplement] "Athletec ZMA 120 Caps Twin Pack" | product_type: "Recovery"
+[2026-04-28T22:06:18.041Z]   Page 5...
+[2026-04-28T22:06:18.888Z]   [SKIPPED - not supplement] "USN Anabolic Carb" | product_type: "Recovery"
+[2026-04-28T22:06:18.889Z]   [SKIPPED - not supplement] "iSatori Bio-Gro" | product_type: "Post-Workout"
+[2026-04-28T22:06:18.891Z]   [SKIPPED - not supplement] "Sportsfuel 400ml Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:18.894Z]   [SKIPPED - no category] "Vitafit Taurine Amino" | product_type: "General Health" | tags: general health,heart health,location-17947492419-instock,location-20189478979-outofstock,location-20853096515-outofstock
+[2026-04-28T22:06:18.894Z]   [SKIPPED - not supplement] "Muscletech Stainless Steel Shaker (Random Colour) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:19.397Z]   Page 6...
+[2026-04-28T22:06:20.346Z]   [SKIPPED - not supplement] "Mutant Born Hardcore Mega Jug 2.6L *Gift*" | product_type: "Workout Equipment"
+[2026-04-28T22:06:20.347Z]   [SKIPPED - not supplement] "LevlUp Shaker (Random Colour) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.347Z]   [SKIPPED - no category] "EQ Food Lowcal Protein Cracker Chips" | product_type: "Snacks" | tags: discontinued,discount-eligible,location-17947492419-outofstock,location-20189478979-outofstock,location-20853096515-outofstock
+[2026-04-28T22:06:20.348Z]   [SKIPPED - not supplement] "Get Raw Intra Workout" | product_type: "Intra-Workout"
+[2026-04-28T22:06:20.349Z]   [SKIPPED - not supplement] "Shakesphere Shaker Mixer Jug 1.3L" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.349Z]   [SKIPPED - not supplement] "Innerbloom Cold Brew Coffee Oat Milk + Adaptogens RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:20.349Z]   [SKIPPED - not supplement] "Innerbloom Cold Brew Coffee Maca Mocha RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:20.350Z]   [SKIPPED - not supplement] "Innerbloom Cold Brew Coffee Straight Up RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:20.350Z]   [SKIPPED - not supplement] "Snackn Shaker *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.350Z]   [SKIPPED - not supplement] "Muscle Nation Electric Hand Mixer" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.350Z]   [SKIPPED - no category] "Nothing Naughty Electrolytes + Protein Bars Stack" | product_type: "Electrolytes" | tags: bfcm_3,discount_works,electrolytes,endurance-sale,energy & endurance
+[2026-04-28T22:06:20.351Z]   [SKIPPED - not supplement] "Cellucor C4 Shaker (Random Colour) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.352Z]   [SKIPPED - not supplement] "G FUEL Energy RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:20.353Z]   [SKIPPED - not supplement] "Zen Liniment Sports Roll-On 75ml" | product_type: "Recovery"
+[2026-04-28T22:06:20.353Z]   [SKIPPED - not supplement] "Zen Herbal Liniment Spray 100mL" | product_type: "Recovery"
+[2026-04-28T22:06:20.353Z]   [SKIPPED - not supplement] "Zen Herbal Liniment Gel 75g" | product_type: "Recovery"
+[2026-04-28T22:06:20.354Z]   [SKIPPED - not supplement] "BSc Energy Drink RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:20.356Z]   [SKIPPED - not supplement] "Shakesphere Tumbler View Shaker 700ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.356Z]   [SKIPPED - not supplement] "Shakesphere Stainless Steel Shaker 700ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:20.868Z]   Page 7...
+[2026-04-28T22:06:21.713Z]   [SKIPPED - not supplement] "Radix Stainless Steel Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:21.714Z]   [SKIPPED - not supplement] "Muscle Nation Energy Drink" | product_type: "Energy Drinks"
+[2026-04-28T22:06:21.714Z]   [SKIPPED - not supplement] "SF Pro Loaded Shaker *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:21.715Z]   [SKIPPED - not supplement] "Bucked Up Deer Antler Velvet Spray - His" | product_type: "Post-Workout"
+[2026-04-28T22:06:21.716Z]   [SKIPPED - not supplement] "Mutant Deluxe 1L Shaker (Red/Black) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:21.718Z]   [SKIPPED - no category] "TriggerPoint Grid X Massage Ball" | product_type: "Accessories" | tags: discontinued,discount-eligible,fathers-day-2025,gift_under_100,location-17947492419-outofstock
+[2026-04-28T22:06:21.719Z]   [SKIPPED - no category] "TriggerPoint Mobi Point Massage Ball" | product_type: "Accessories" | tags: discount-eligible,fathers-day-2025,gift_under_50,location-17947492419-instock,location-20189478979-outofstock
+[2026-04-28T22:06:21.719Z]   [SKIPPED - no category] "TriggerPoint MB1 Massage Ball" | product_type: "Accessories" | tags: discount-eligible,fathers-day-2025,gift_under_50,location-17947492419-instock,location-20189478979-outofstock
+[2026-04-28T22:06:21.719Z]   [SKIPPED - no category] "TriggerPoint AcuCurve Self Massage Cane" | product_type: "Accessories" | tags: discount-eligible,fathers-day-2025,gift_under_100,location-17947492419-instock,location-20189478979-outofstock
+[2026-04-28T22:06:21.720Z]   [SKIPPED - no category] "TriggerPoint Impact Massage Vibrating Buffer" | product_type: "Accessories" | tags: discontinued,discount-eligible,fathers-day-2025,gift_under_200,location-17947492419-outofstock
+[2026-04-28T22:06:21.720Z]   [SKIPPED - not supplement] "ABE Energy + Performance RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:21.721Z]   [SKIPPED - not supplement] "Athletic Sport Kamikaze Energy RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:21.722Z]   [SKIPPED - not supplement] "Chaos Crew Shaker 600ml (Random Colour) *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:22.231Z]   Page 8...
+[2026-04-28T22:06:23.269Z]   [SKIPPED - not supplement] "MuscleTech Clear 1L Shaker *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:23.270Z]   [SKIPPED - not supplement] "Musashi Energy Drink 250ml" | product_type: "Energy Drinks"
+[2026-04-28T22:06:23.271Z]   [SKIPPED - no category] "Snackn Protein Nut Spread 265g" | product_type: "Snacks" | tags: discount-eligible,location-17947492419-instock,location-20189478979-outofstock,location-20853096515-outofstock,location-35711352899-outofstock
+[2026-04-28T22:06:23.271Z]   [SKIPPED - no category] "Massage Ball  (Random Colour) *Gift*" | product_type: "Workout Equipment" | tags: algolia-ignore,discount-eligible,location-17947492419-outofstock,location-20189478979-outofstock,location-20853096515-outofstock
+[2026-04-28T22:06:23.271Z]   [SKIPPED - not supplement] "Cellucor C4 Smart Energy Carbonated Can" | product_type: "Energy Drinks"
+[2026-04-28T22:06:23.272Z]   [SKIPPED - not supplement] "höm Energy Drink" | product_type: "Energy Drinks"
+[2026-04-28T22:06:23.273Z]   [SKIPPED - not supplement] "Optimum Nutrition Blender Bottle Shaker *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:23.273Z]   [SKIPPED - not supplement] "Sportsfuel 600ml Shaker *Gift*" | product_type: "Protein Shakers"
+[2026-04-28T22:06:23.273Z]   [SKIPPED - not supplement] "Ghost Energy Drink 500ml RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:23.275Z]   [SKIPPED - not supplement] "Cellucor C4 On The Go 346ml RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:23.782Z]   Page 9...
+[2026-04-28T22:06:24.755Z]   [SKIPPED - not supplement] "Alani Nu Energy RTD Cans" | product_type: "Energy Drinks"
+[2026-04-28T22:06:24.757Z]   [SKIPPED - not supplement] "Before You Speak High Performance Coffee 7 Pack" | product_type: "Energy & Endurance"
+[2026-04-28T22:06:24.757Z]   [SKIPPED - not supplement] "Before You Speak Adrenal Decaf Coffee 7 Pack" | product_type: "Recovery"
+[2026-04-28T22:06:24.758Z]   [SKIPPED - not supplement] "GU Roctane Recovery Drink Mix" | product_type: "Recovery"
+[2026-04-28T22:06:24.759Z]   [SKIPPED - not supplement] "Redcon1 Cluster Bomb" | product_type: "Post-Workout"
+[2026-04-28T22:06:25.264Z]   Page 10...
+[2026-04-28T22:06:26.279Z]   [SKIPPED - not supplement] "Pack Nutrition Arginine Caps" | product_type: "Recovery"
+[2026-04-28T22:06:26.279Z]   [SKIPPED - not supplement] "Muscletech Hydroxycut Energy RTDs" | product_type: "Energy Drinks"
+[2026-04-28T22:06:26.280Z]   [SKIPPED - not supplement] "Harker Herbals Recovery Tonic" | product_type: "Recovery"
+[2026-04-28T22:06:26.281Z]   [SKIPPED - not supplement] "Universal Carb Max" | product_type: "Post-Workout"
+[2026-04-28T22:06:26.281Z]   [SKIPPED - not supplement] "Switch Nutrition Adrenal Switch Capsules" | product_type: "Recovery"
+[2026-04-28T22:06:26.283Z]   [SKIPPED - not supplement] "FitAid Athletic Recovery Zero Sugar RTD" | product_type: "Recovery"
+[2026-04-28T22:06:26.284Z]   [SKIPPED - not supplement] "FitAid Athletic Recovery RTD" | product_type: "Recovery"
+[2026-04-28T22:06:26.284Z]   [SKIPPED - not supplement] "FitAid RX Zero Sugar Recovery RTD" | product_type: "Recovery"
+[2026-04-28T22:06:26.284Z]   [SKIPPED - not supplement] "FitAid RX Athletic Recovery RTD" | product_type: "Recovery"
+[2026-04-28T22:06:26.285Z]   [SKIPPED - not supplement] "VPX Synthesize Post Workout" | product_type: "Post-Workout"
+[2026-04-28T22:06:26.793Z]   Page 11...
+[2026-04-28T22:06:28.420Z]   [SKIPPED - not supplement] "Before You Speak Adrenal Decaf Coffee" | product_type: "Recovery"
+[2026-04-28T22:06:28.421Z]   [SKIPPED - not supplement] "Before You Speak High Performance Coffee" | product_type: "Energy & Endurance"
+[2026-04-28T22:06:28.425Z]   [SKIPPED - not supplement] "Inspired DVST8 Energy RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:28.426Z]   [SKIPPED - not supplement] "Switch Nutrition Essentials Carbs" | product_type: "Post-Workout"
+[2026-04-28T22:06:28.427Z]   [SKIPPED - not supplement] "Redcon1 RPG - Glucose Disposal" | product_type: "Intra-Workout"
+[2026-04-28T22:06:28.934Z]   Page 12...
+[2026-04-28T22:06:29.712Z]   [SKIPPED - not supplement] "Sportsfuel 600ml Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.713Z]   [SKIPPED - not supplement] "Smartshake DC Comics Whey2Go Powder Funnel" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.713Z]   [SKIPPED - not supplement] "SmartShake DC Comics Reforce Stainless Steel Shaker 900ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.713Z]   [SKIPPED - not supplement] "SmartShake DC Comics Lite Shaker 800ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.713Z]   [SKIPPED - not supplement] "SmartShake Revive Rock Band Series - 750ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.716Z]   [SKIPPED - not supplement] "Performa Activ Shaker Power Rangers Series 800ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.717Z]   [SKIPPED - not supplement] "Mystery Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.718Z]   [SKIPPED - not supplement] "Raze Energy RTD" | product_type: "Energy Drinks"
+[2026-04-28T22:06:29.720Z]   [SKIPPED - not supplement] "Alien Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:29.720Z]   [SKIPPED - not supplement] "PURE Energy Gels" | product_type: "Energy & Endurance"
+[2026-04-28T22:06:29.720Z]   [SKIPPED - not supplement] "PURE Exercise Recovery 740g" | product_type: "Post-Workout"
+[2026-04-28T22:06:29.722Z]   [SKIPPED - not supplement] "Olimp Dextrex Juice 1kg" | product_type: "Post-Workout"
+[2026-04-28T22:06:29.723Z]   [SKIPPED - not supplement] "Olimp Carbonox - Carbohydrate Formula 1kg" | product_type: "Intra-Workout"
+[2026-04-28T22:06:30.225Z]   Page 13...
+[2026-04-28T22:06:31.020Z]   [SKIPPED - not supplement] "Universal ZMA Pro" | product_type: "Post-Workout"
+[2026-04-28T22:06:31.021Z]   [SKIPPED - not supplement] "Nutrex Anabol Hardcore" | product_type: "Intra-Workout"
+[2026-04-28T22:06:31.022Z]   [SKIPPED - no category] "Mutant Pure Vitamin C Crystals - Massive 824 Serve" | product_type: "Multi-Vitamins" | tags: antioxidants,bfcm_2,discontinued,discount-eligible,discount_works
+[2026-04-28T22:06:31.023Z]   [SKIPPED - no category] "North Coast Naturals Pure Immuno-C- Massive 824 Serve" | product_type: "Immunity" | tags: bfcm_3,discontinued,discount-eligible,discount_works,general health
+[2026-04-28T22:06:31.023Z]   [SKIPPED - no category] "PVL Pure Vitamin C Crystals - Massive 824 Serve" | product_type: "Multi-Vitamins" | tags: antioxidants,bfcm_3,discontinued,discount-eligible,discount_works
+[2026-04-28T22:06:31.023Z]   [SKIPPED - not supplement] "Bang Energy Drink" | product_type: "Energy Drinks"
+[2026-04-28T22:06:31.025Z]   [SKIPPED - not supplement] "BSN Shred Stack" | product_type: "Stacks"
+[2026-04-28T22:06:31.026Z]   [SKIPPED - not supplement] "Zen Liniment Sports Spray 125mL" | product_type: "Recovery"
+[2026-04-28T22:06:31.026Z]   [SKIPPED - not supplement] "PEAKFUEL Hydration 500g" | product_type: "Intra-Workout"
+[2026-04-28T22:06:31.027Z]   [SKIPPED - not supplement] "Nutrex HMB 1000 120 Caps" | product_type: "Post-Workout"
+[2026-04-28T22:06:31.028Z]   [SKIPPED - not supplement] "Muscletech SX-7 Black Onyx Creabuild 30 Serve" | product_type: "Post-Workout"
+[2026-04-28T22:06:31.029Z]   [SKIPPED - not supplement] "Killer Labz Laxobulk" | product_type: "Post-Workout"
+[2026-04-28T22:06:31.030Z]   [SKIPPED - not supplement] "5% Nutrition Post gear PCT Support" | product_type: "Post-Workout"
+[2026-04-28T22:06:31.536Z]   Page 14...
+[2026-04-28T22:06:32.465Z]   [SKIPPED - not supplement] "Performa Transformers Collection Shaker 800ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:32.466Z]   [SKIPPED - not supplement] "Performa Shaker Comic Hero Series 800ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:32.466Z]   [SKIPPED - not supplement] "Performa Shaker Marvel Series 800ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:32.466Z]   [SKIPPED - not supplement] "SciVation Xtend Energy RTD 6 Pack" | product_type: "Energy Drinks"
+[2026-04-28T22:06:32.467Z]   [SKIPPED - not supplement] "SciVation Xtend Energy RTD 12 Pack" | product_type: "Energy Drinks"
+[2026-04-28T22:06:32.467Z]   [SKIPPED - not supplement] "PVL Total Reload" | product_type: "Intra-Workout"
+[2026-04-28T22:06:32.468Z]   [SKIPPED - not supplement] "Pro Supps Crash 30 Serve" | product_type: "Post-Workout"
+[2026-04-28T22:06:32.469Z]   [SKIPPED - not supplement] "PURE Beet Endurance 150g" | product_type: "Energy & Endurance"
+[2026-04-28T22:06:32.470Z]   [SKIPPED - no category] "Massage Ball Roller" | product_type: "Accessories" | tags: bfcm_2,discount-eligible,discount_works,location-17947492419-outofstock,location-20189478979-outofstock
+[2026-04-28T22:06:32.471Z]   [SKIPPED - not supplement] "Mutant Red Mega Jug 2.6L" | product_type: "Workout Equipment"
+[2026-04-28T22:06:32.471Z]   [SKIPPED - not supplement] "PURE Blackcurrant Recovery 200g" | product_type: "Post-Workout"
+[2026-04-28T22:06:32.972Z]   Page 15...
+[2026-04-28T22:06:33.806Z]   [SKIPPED - not supplement] "Outbreak Antidote Grape" | product_type: "Recovery"
+[2026-04-28T22:06:33.808Z]   [SKIPPED - not supplement] "Gaspari HMB 90 caps" | product_type: "Intra-Workout"
+[2026-04-28T22:06:33.808Z]   [SKIPPED - not supplement] "Outbreak Nutrition Adapt" | product_type: "Post-Workout"
+[2026-04-28T22:06:33.811Z]   [SKIPPED - not supplement] "Switch Nutrition Adrenal Switch 60 Serve" | product_type: "Post-Workout"
+[2026-04-28T22:06:33.811Z]   [SKIPPED - not supplement] "Switch Nutrition Adrenal Switch 30 Serve" | product_type: "Post-Workout"
+[2026-04-28T22:06:33.814Z]   [SKIPPED - not supplement] "Smartshake Original2Go 600ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:33.814Z]   [SKIPPED - not supplement] "Smartshake Retain Bottle Stainless Steel 500ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:33.815Z]   [SKIPPED - not supplement] "Smartshake Revive 750ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:34.328Z]   Page 16...
+[2026-04-28T22:06:35.398Z]   [SKIPPED - no category] "Massage Ball" | product_type: "Workout Equipment" | tags: accessories,bfcm_2,Color-Black,Color-Blue,Color-Purple
+[2026-04-28T22:06:35.400Z]   [SKIPPED - not supplement] "Dr Keto Ketones" | product_type: "Post-Workout"
+[2026-04-28T22:06:35.402Z]   [SKIPPED - not supplement] "GAT Arginine 180 Caps" | product_type: "Post-Workout"
+[2026-04-28T22:06:35.403Z]   [SKIPPED - not supplement] "Kill Cliff Recover 6 Pack" | product_type: "Recovery"
+[2026-04-28T22:06:35.921Z]   Page 17...
+[2026-04-28T22:06:36.863Z]   [SKIPPED - not supplement] "GAT Nitraflex 30 Serve" | product_type: "Intra-Workout"
+[2026-04-28T22:06:36.864Z]   [SKIPPED - not supplement] "SmartShake Original2Go ONE 800ml" | product_type: "Protein Shakers"
+[2026-04-28T22:06:36.864Z]   [SKIPPED - not supplement] "SmartShake 500ml Slim Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:36.864Z]   [SKIPPED - not supplement] "SmartShake 400ml Protein Shaker" | product_type: "Protein Shakers"
+[2026-04-28T22:06:36.866Z]   [SKIPPED - not supplement] "Universal Animal Advanced M Stak Accelerator" | product_type: "Post-Workout"
+[2026-04-28T22:06:37.370Z]   Page 18...
+[2026-04-28T22:06:37.750Z]   [SKIPPED - not supplement] "Optimum ZMA 90 caps" | product_type: "Post-Workout"
+[2026-04-28T22:06:37.750Z]   [SKIPPED - not supplement] "Optimum HMB" | product_type: "Post-Workout"
+[2026-04-28T22:06:37.750Z]   [SKIPPED - not supplement] "Optimum ZMA 180 caps" | product_type: "Post-Workout"
+[2026-04-28T22:06:37.751Z]   [SKIPPED - not supplement] "Mutant ZM8+" | product_type: "Post-Workout"
+[2026-04-28T22:06:37.752Z]   [SKIPPED - no category] "Trigger Point Muscle Massage Stick" | product_type: "Accessories" | tags: accessories,bfcm_4,discount-eligible,discount_works,location-17947492419-outofstock
+[2026-04-28T22:06:37.752Z]   Found 2161 supplement products from Sportsfuel (18 pages fetched)
+[2026-04-28T22:06:39.259Z] Scraping Scorpion Supplements...
+[2026-04-28T22:06:39.260Z]   Page 1...
+[2026-04-28T22:06:40.030Z]   [SKIPPED - no category] "SCORPION AMINO PRO 2 JAR" | product_type: "Product" | tags: 
+[2026-04-28T22:06:40.031Z]   [SKIPPED - no category] "SCORPION AMINO PRO 500g" | product_type: "Product" | tags: 
+[2026-04-28T22:06:40.032Z]   [SKIPPED - not supplement] "SCORPION SHRED EXTREME CAPSULES" | product_type: "Product"
+[2026-04-28T22:06:40.033Z]   [SKIPPED - no category] "SCORPION BIG MASS 3KG" | product_type: "Product" | tags: 
+[2026-04-28T22:06:40.034Z]   [SKIPPED - no category] "SCORPION MASS ATTACK 3KG" | product_type: "Product" | tags: 
+[2026-04-28T22:06:40.034Z]   [SKIPPED - no category] "SCORPION MASS ATTACK STACK" | product_type: "Product" | tags: 
+[2026-04-28T22:06:40.034Z]   [SKIPPED - not supplement] "SCORPION SHRED VENOM - 2 JAR COMBO" | product_type: "(blank)"
+[2026-04-28T22:06:40.034Z]   [SKIPPED - not supplement] "SCORPION SHRED VENOM 360g" | product_type: "(blank)"
+[2026-04-28T22:06:40.035Z]   Found 58 supplement products from Scorpion Supplements (1 page fetched)
+[2026-04-28T22:06:41.539Z] Scraping ASN Online...
+[2026-04-28T22:06:41.539Z]   Page 1...
+[2026-04-28T22:06:42.836Z]   [SKIPPED - not supplement] "AMF Shred Stack" | product_type: "(blank)"
+[2026-04-28T22:06:42.838Z]   [SKIPPED - no category] "Snackn White Choc Protein Spread" | product_type: "(blank)" | tags: Spreads
+[2026-04-28T22:06:42.838Z]   [SKIPPED - no category] "Snackn Milk Choc Protein Spread" | product_type: "(blank)" | tags: Spreads
+[2026-04-28T22:06:42.841Z]   [SKIPPED - no category] "Snackn Protein Breakfast Instant Porridge" | product_type: "(blank)" | tags: Meal Replacement
+[2026-04-28T22:06:42.841Z]   [SKIPPED - no category] "Snackn Protein Breakfast Bircher Muesli" | product_type: "(blank)" | tags: Meal Replacement
+[2026-04-28T22:06:43.348Z]   Page 2...
+[2026-04-28T22:06:43.863Z]   Found 201 supplement products from ASN Online (2 pages fetched)
+[2026-04-28T22:06:45.377Z] Scraping Supplement Solutions...
+[2026-04-28T22:06:45.378Z]   Page 1...
+[2026-04-28T22:06:46.053Z]   Found 74 supplement products from Supplement Solutions (1 page fetched)
+[2026-04-28T22:06:47.567Z] Scraping Raisey's...
+[2026-04-28T22:06:47.567Z]   Page 1...
+[2026-04-28T22:06:47.978Z]   Found 31 supplement products from Raisey's (1 page fetched)
+[2026-04-28T22:06:49.486Z] Scraping Nutrition Warehouse...
+[2026-04-28T22:06:49.487Z]   Page 1...
+[2026-04-28T22:06:50.681Z]   [SKIPPED - no category] "Massage Gun by Krupt" | product_type: "Promos" | tags: Locked,Promos
+[2026-04-28T22:06:50.684Z]   [SKIPPED - not supplement] "Iced Latte RTD Drink by Before You Speak" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:51.200Z]   Page 2...
+[2026-04-28T22:06:52.026Z]   [SKIPPED - not supplement] "Cluster Bomb by Redcon1" | product_type: "Intra Workout"
+[2026-04-28T22:06:52.029Z]   [SKIPPED - no category] "Hydration Aminos by Macro Mike" | product_type: "Hydration Powder" | tags: AfterPay'22,AI_DESCRIPTION,All Products,Build Endurance,Gain Muscle
+[2026-04-28T22:06:52.541Z]   Page 3...
+[2026-04-28T22:06:53.410Z]   [SKIPPED - no category] "Tortilla Style Protein Chips by Quest Nutrition" | product_type: "Healthy Snacks & Foods" | tags: AI_DESCRIPTION,Healthy Snacks & Foods,UPDATE_Imported
+[2026-04-28T22:06:53.411Z]   [SKIPPED - not supplement] "G Fuel Energy RTD Can by Gamma Labs" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:53.411Z]   [SKIPPED - not supplement] "Smart Energy by White Wolf Nutrition" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:53.413Z]   [SKIPPED - not supplement] "Big Noise RTD by Redcon1" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:53.413Z]   [SKIPPED - not supplement] "Beta Fuel Gel by Science in Sport" | product_type: "Intra Workout"
+[2026-04-28T22:06:53.413Z]   [SKIPPED - not supplement] "Beta Fuel Gel + Nootropics by Science in Sport" | product_type: "Intra Workout"
+[2026-04-28T22:06:53.414Z]   [SKIPPED - not supplement] "Go Plus Isotonic Energy Gel by Science in Sport" | product_type: "Intra Workout"
+[2026-04-28T22:06:53.415Z]   [SKIPPED - not supplement] "Beta Fuel by Science in Sport" | product_type: "Intra Workout"
+[2026-04-28T22:06:53.417Z]   [SKIPPED - not supplement] "Performance Race Fuel by Pure Sports Nutrition" | product_type: "Intra Workout"
+[2026-04-28T22:06:53.417Z]   [SKIPPED - not supplement] "Energy Drink by Lost & Found Energy" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:53.934Z]   Page 4...
+[2026-04-28T22:06:54.899Z]   [SKIPPED - no category] "R1 Multi-Source Collagen by Rule 1 Proteins" | product_type: "Health & Vitamins" | tags: AI_DESCRIPTION,All Products,General Health,Health & Vitamins,Health & Wellbeing
+[2026-04-28T22:06:55.415Z]   Page 5...
+[2026-04-28T22:06:56.352Z]   [SKIPPED - no category] "Fruits & Greens + Antioxidants by Rule 1 Proteins" | product_type: "Health & Vitamins" | tags: AI_DESCRIPTION,All Products,Antioxidants,General Health,Green Foods
+[2026-04-28T22:06:56.354Z]   [SKIPPED - no category] "Lytes + by Rule 1 Proteins" | product_type: "General Health" | tags: AI_DESCRIPTION,Build Endurance,Endurance,Hydration Formulas
+[2026-04-28T22:06:56.355Z]   [SKIPPED - not supplement] "Energy RTD by Ghost Lifestyle" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:56.355Z]   [SKIPPED - not supplement] "C4 Smart RTD by Cellucor/C4 Energy" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:56.356Z]   [SKIPPED - not supplement] "Disorder Energy Drink RTD by Faction Labs" | product_type: "Energy Drinks (RTD)"
+[2026-04-28T22:06:56.359Z]   [SKIPPED - not supplement] "Hydrate by Switch Nutrition" | product_type: "Intra Workout"
+[2026-04-28T22:06:56.359Z]   [SKIPPED - not supplement] "Hydrate Switch by Switch Nutrition" | product_type: "Intra Workout"
+[2026-04-28T22:06:56.360Z]   Found 698 supplement products from Nutrition Warehouse (5 pages fetched)
+[2026-04-28T22:06:57.875Z] Scraping Elite Supps...
+[2026-04-28T22:06:57.876Z]   Page 1...
+[2026-04-28T22:06:58.874Z]   Page 2...
+[2026-04-28T22:06:59.827Z]   Page 3...
+[2026-04-28T22:07:00.322Z]   [SKIPPED - no category] "Massage Ball" | product_type: "simple" | tags: a-feb-2025,accessories,add_data_to_csv,b2b-export-16-may,b2b-export-9-apr
+[2026-04-28T22:07:00.840Z]   Page 4...
+[2026-04-28T22:07:02.138Z]   [SKIPPED - not supplement] "Summer Shredz "Fat Burning Stack"" | product_type: "Stacks"
+[2026-04-28T22:07:02.142Z]   [SKIPPED - no category] "Massage Ball" | product_type: "DO NOT Remove - Exclusive Deals" | tags: a-feb-2025,deal-790,exclude-from-cc,exclusive-checkout-deals
+[2026-04-28T22:07:02.144Z]   Found 539 supplement products from Elite Supps (4 pages fetched)
+[2026-04-28T22:07:03.655Z] Scraping Cheap Supps...
+[2026-04-28T22:07:03.656Z]   Page 1...
+[2026-04-28T22:07:03.665Z]   Retry 1/2 after error: getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:05.675Z]   Retry 2/2 after error: getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:09.690Z]   ERROR on page 1 (attempt 1/3): getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:09.690Z]   Skipping page 1 and continuing to page 2...
+[2026-04-28T22:07:11.700Z]   Page 2...
+[2026-04-28T22:07:11.701Z]   Retry 1/2 after error: getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:13.716Z]   Retry 2/2 after error: getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:17.765Z]   ERROR on page 2 (attempt 2/3): getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:17.766Z]   Skipping page 2 and continuing to page 3...
+[2026-04-28T22:07:19.773Z]   Page 3...
+[2026-04-28T22:07:19.775Z]   Retry 1/2 after error: getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:21.788Z]   Retry 2/2 after error: getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:25.802Z]   ERROR on page 3 (attempt 3/3): getaddrinfo ENOTFOUND www.cheapsupps.co.nz
+[2026-04-28T22:07:25.802Z]   Stopping Cheap Supps after 3 consecutive page failures
+[2026-04-28T22:07:25.803Z]   Found 0 supplement products from Cheap Supps (2 pages fetched)
+[2026-04-28T22:07:27.311Z] Scraping Body and Fitness...
+[2026-04-28T22:07:27.312Z]   Page 1...
+[2026-04-28T22:07:27.319Z]   Retry 1/2 after error: getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:29.333Z]   Retry 2/2 after error: getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:33.339Z]   ERROR on page 1 (attempt 1/3): getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:33.340Z]   Skipping page 1 and continuing to page 2...
+[2026-04-28T22:07:35.346Z]   Page 2...
+[2026-04-28T22:07:35.347Z]   Retry 1/2 after error: getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:37.356Z]   Retry 2/2 after error: getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:41.372Z]   ERROR on page 2 (attempt 2/3): getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:41.373Z]   Skipping page 2 and continuing to page 3...
+[2026-04-28T22:07:43.381Z]   Page 3...
+[2026-04-28T22:07:43.383Z]   Retry 1/2 after error: getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:45.399Z]   Retry 2/2 after error: getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:49.408Z]   ERROR on page 3 (attempt 3/3): getaddrinfo ENOTFOUND www.bodyandfitness.co.nz
+[2026-04-28T22:07:49.408Z]   Stopping Body and Fitness after 3 consecutive page failures
+[2026-04-28T22:07:49.409Z]   Found 0 supplement products from Body and Fitness (2 pages fetched)
+[2026-04-28T22:07:50.921Z] Scraping Maxum Nutrition...
+[2026-04-28T22:07:50.921Z]   Page 1...
+[2026-04-28T22:07:52.210Z]   Retry 1/2 after error: Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:07:55.167Z]   Retry 2/2 after error: Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:00.127Z]   ERROR on page 1 (attempt 1/3): Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:00.127Z]   Skipping page 1 and continuing to page 2...
+[2026-04-28T22:08:02.133Z]   Page 2...
+[2026-04-28T22:08:03.120Z]   Retry 1/2 after error: Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:06.083Z]   Retry 2/2 after error: Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:11.055Z]   ERROR on page 2 (attempt 2/3): Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:11.055Z]   Skipping page 2 and continuing to page 3...
+[2026-04-28T22:08:13.057Z]   Page 3...
+[2026-04-28T22:08:14.084Z]   Retry 1/2 after error: Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:17.032Z]   Retry 2/2 after error: Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:22.000Z]   ERROR on page 3 (attempt 3/3): Parse error: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+[2026-04-28T22:08:22.000Z]   Stopping Maxum Nutrition after 3 consecutive page failures
+[2026-04-28T22:08:22.001Z]   Found 0 supplement products from Maxum Nutrition (2 pages fetched)
+[2026-04-28T22:08:23.517Z] Scraping Xplosiv (Magento)...
+[2026-04-28T22:08:30.553Z]   Found 0 products from Xplosiv
+[2026-04-28T22:08:32.065Z] Scraping Sprint Fit (custom platform)...
+[2026-04-28T22:08:35.222Z]   Found 0 products from Sprint Fit
+[2026-04-28T22:08:36.732Z] Scraping Payless Supplements (custom platform)...
+[2026-04-28T22:08:42.300Z]   Payless Supplements category fat-burners error: Invalid URL
+[2026-04-28T22:08:43.478Z]   Found 0 products from Payless Supplements
+[2026-04-28T22:08:44.980Z] Scraping GNC NZ (custom platform)...
+[2026-04-28T22:08:50.357Z]   Found 0 products from GNC NZ
+[2026-04-28T22:08:50.466Z] 
+[2026-04-28T22:08:50.466Z] === Scrape complete ===
+[2026-04-28T22:08:50.467Z] Total products: 4239
+[2026-04-28T22:08:50.467Z] 
+[2026-04-28T22:08:50.467Z] By retailer:
+[2026-04-28T22:08:50.467Z]   NZ Muscle                 477 products
+[2026-04-28T22:08:50.468Z]   Sportsfuel                2161 products
+[2026-04-28T22:08:50.468Z]   Scorpion Supplements      58 products
+[2026-04-28T22:08:50.468Z]   ASN Online                201 products
+[2026-04-28T22:08:50.469Z]   Supplement Solutions      74 products
+[2026-04-28T22:08:50.469Z]   Raisey's                  31 products
+[2026-04-28T22:08:50.469Z]   Nutrition Warehouse       698 products
+[2026-04-28T22:08:50.470Z]   Elite Supps               539 products
+[2026-04-28T22:08:50.470Z]   Cheap Supps               0 products
+[2026-04-28T22:08:50.470Z]   Body and Fitness          0 products
+[2026-04-28T22:08:50.470Z]   Maxum Nutrition           0 products
+[2026-04-28T22:08:50.471Z]   Xplosiv                   0 products
+[2026-04-28T22:08:50.471Z]   Sprint Fit                0 products
+[2026-04-28T22:08:50.471Z]   Payless Supplements       0 products
+[2026-04-28T22:08:50.472Z]   GNC NZ                    0 products
+[2026-04-28T22:08:50.472Z] 
+[2026-04-28T22:08:50.472Z] By category:
+[2026-04-28T22:08:50.473Z]   protein         1881
+[2026-04-28T22:08:50.473Z]   creatine        451
+[2026-04-28T22:08:50.473Z]   preworkout      757
+[2026-04-28T22:08:50.473Z]   fatburner       598
+[2026-04-28T22:08:50.474Z]   bcaa            552
+[2026-04-28T22:08:50.474Z] 
+Output: C:\Users\rapha\scoopscore\data\products.json
