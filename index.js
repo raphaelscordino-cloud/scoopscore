@@ -466,122 +466,112 @@ function fetchJSONDirect(url) {
   });
 }
 
-// ─── XPLOSIV SCRAPER (Magento — JS-rendered, parse HTML product cards) ─────
+// ─── XPLOSIV SCRAPER (Magento — sitemap XML approach) ──────────
+// Xplosiv is 100% JS-rendered — no product data in HTML.
+// Their sitemap lists every product URL; we fetch individual product pages
+// which DO serve JSON-LD for single products (confirmed by search results).
 async function scrapeXplosiv() {
-  log('Scraping Xplosiv (Magento HTML)...');
+  log('Scraping Xplosiv (sitemap)...');
   const products = [];
   const seen = new Set();
 
-  // Real Xplosiv URL structure confirmed from their live navigation
-  const categories = [
-    { slug: 'protein-powder.html',        cat: 'protein'      },
-    { slug: 'protein-bars-snacks.html',   cat: 'proteinbars'  },
-    { slug: 'ready-to-drink.html',        cat: 'rtd'          },
-    { slug: 'creatine.html',              cat: 'creatine'     },
-    { slug: 'pre-workout.html',           cat: 'preworkout'   },
-    { slug: 'fat-burners.html',           cat: 'fatburner'    },
-    { slug: 'amino-acids.html',           cat: 'bcaa'         },
-    { slug: 'vitamins-health.html',       cat: 'vitamins'     },
-    { slug: 'accessories.html',           cat: 'accessories'  },
-    { slug: 'clothing.html',              cat: 'clothing'     },
-  ];
+  // Category slug → our internal category
+  const slugToCat = {
+    'protein-powder':     'protein',
+    'protein-bars':       'proteinbars',
+    'snacks-drinks':      'proteinbars',
+    'ready-to-drink':     'rtd',
+    'pre-workout':        'preworkout',
+    'weight-loss':        'fatburner',
+    'growth-recovery':    'bcaa',
+    'creatine':           'creatine',
+    'aminos':             'bcaa',
+    'health-wellbeing':   'vitamins',
+    'accessories':        'accessories',
+    'clothing':           'clothing',
+  };
 
-  for (const cat of categories) {
-    try {
-      await sleep(800);
-      const url = `https://xplosiv.nz/${cat.slug}`;
-      const html = await fetchPage(url);
+  try {
+    // Fetch their product sitemap
+    const sitemapIndex = await fetchPage('https://xplosiv.nz/sitemap.xml');
+    // Find the product sitemap URL
+    const productSitemapMatch = sitemapIndex.match(/https:\/\/xplosiv\.nz\/[^<]*product[^<]*.xml/i)
+      || sitemapIndex.match(/https:\/\/xplosiv\.nz\/sitemap[^<]*\.xml/gi) || [];
 
-      // Xplosiv Magento pages embed product data in JSON-LD on some pages
-      // and also in meta tags. Try JSON-LD first.
-      const jsonLdMatches = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [];
-      let found = 0;
-      for (const match of jsonLdMatches) {
-        try {
-          const inner = match.replace(/<script[^>]*>/, '').replace('</script>', '');
-          const json = JSON.parse(inner);
-          const items = json['@type'] === 'ItemList'  ? (json.itemListElement || []) :
-                        json['@type'] === 'Product'   ? [{ item: json }] : [];
-          for (const item of items) {
-            const p = item.item || item;
-            if (!p.name || !p.offers) continue;
-            const price = parseFloat(p.offers.price || p.offers.lowPrice || '0');
-            if (!price) continue;
-            const key = `xplosiv_${p.name}`;
-            if (seen.has(key)) continue;
-            seen.add(key);
-            found++;
-            products.push({
-              id:           `xplosiv_${(p.url||p.name).replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
-              retailer:     'xplosiv',
-              retailerName: 'Xplosiv',
-              brand:        p.brand?.name || 'Xplosiv',
-              name:         p.name,
-              category:     cat.cat,
-              description:  (p.description || '').slice(0, 280),
-              priceFrom:    price,
-              priceTo:      parseFloat(p.offers.highPrice || price) || price,
-              currency:     'NZD',
-              variants:     [{ id: 1, title: 'Default', price, available: true }],
-              url:          p.url || url,
-              imageUrl:     Array.isArray(p.image) ? p.image[0] : (p.image || null),
-              updatedAt:    new Date().toISOString(),
-              priceHistory: []
-            });
+    const productSitemapUrl = productSitemapMatch[0] ||
+      (productSitemapMatch.length > 1 ? productSitemapMatch[1] : null) ||
+      'https://xplosiv.nz/sitemap/categories/1/products.xml';
+
+    log(`  Xplosiv: loading product sitemap: ${productSitemapUrl}`);
+    const sitemapXml = await fetchPage(productSitemapUrl);
+
+    // Extract all product URLs from the sitemap
+    const urlMatches = [...sitemapXml.matchAll(/<loc>(https:\/\/xplosiv\.nz\/[^<]+\.html)<\/loc>/g)];
+    log(`  Xplosiv: found ${urlMatches.length} product URLs in sitemap`);
+
+    // Limit to 300 products to avoid hammering the server
+    const productUrls = urlMatches.slice(0, 300).map(m => m[1]);
+
+    for (const productUrl of productUrls) {
+      try {
+        await sleep(300);
+        const html = await fetchPage(productUrl);
+
+        // Infer category from URL path
+        let cat = 'protein';
+        for (const [slug, c] of Object.entries(slugToCat)) {
+          if (productUrl.includes(`/${slug}/`) || productUrl.includes(`/${slug}.html`)) {
+            cat = c; break;
           }
-        } catch(e) { /* skip */ }
-      }
-
-      // Fallback: parse HTML product cards (class="product-item-info" or price data attrs)
-      if (found === 0) {
-        // Extract product name + price from HTML price spans and product name links
-        const nameMatches = [...html.matchAll(/class="product-item-link"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
-        const priceMatches = [...html.matchAll(/class="price">NZ\$?([\d,]+\.?\d*)</g)];
-        for (let i = 0; i < nameMatches.length; i++) {
-          const rawName = nameMatches[i][2].replace(/<[^>]+>/g, '').trim();
-          const productUrl = nameMatches[i][1];
-          const price = priceMatches[i] ? parseFloat(priceMatches[i][1].replace(',','')) : 0;
-          if (!rawName || !price) continue;
-          const key = `xplosiv_${rawName}`;
-          if (seen.has(key)) continue;
-          seen.add(key);
-          products.push({
-            id:           `xplosiv_${rawName.replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
-            retailer:     'xplosiv',
-            retailerName: 'Xplosiv',
-            brand:        'Unknown',
-            name:         rawName,
-            category:     cat.cat,
-            description:  '',
-            priceFrom:    price,
-            priceTo:      price,
-            currency:     'NZD',
-            variants:     [{ id: 1, title: 'Default', price, available: true }],
-            url:          productUrl || url,
-            imageUrl:     null,
-            updatedAt:    new Date().toISOString(),
-            priceHistory: []
-          });
         }
-      }
-      log(`  Xplosiv ${cat.slug}: ${found || 0} products`);
-    } catch(e) {
-      log(`  Xplosiv ${cat.slug} error: ${e.message}`);
+
+        // Single product pages DO serve JSON-LD
+        const ldMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+        if (!ldMatch) continue;
+        const json = JSON.parse(ldMatch[1]);
+        if (json['@type'] !== 'Product' || !json.name || !json.offers) continue;
+
+        const price = parseFloat(json.offers.price || json.offers.lowPrice || '0');
+        if (!price) continue;
+        const key = `xplosiv_${json.name}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+
+        products.push({
+          id:           `xplosiv_${productUrl.split('/').pop().replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
+          retailer:     'xplosiv',
+          retailerName: 'Xplosiv',
+          brand:        json.brand?.name || 'Unknown',
+          name:         json.name,
+          category:     cat,
+          description:  (json.description || '').slice(0, 280),
+          priceFrom:    price,
+          priceTo:      parseFloat(json.offers.highPrice || price) || price,
+          currency:     'NZD',
+          variants:     [{ id: 1, title: 'Default', price, available: true }],
+          url:          productUrl,
+          imageUrl:     Array.isArray(json.image) ? json.image[0] : (json.image || null),
+          updatedAt:    new Date().toISOString(),
+          priceHistory: []
+        });
+      } catch(e) { /* skip individual product errors */ }
     }
+  } catch(e) {
+    log(`  Xplosiv sitemap error: ${e.message}`);
   }
 
   log(`  Found ${products.length} products from Xplosiv`);
   return products;
 }
-// ─── SPRINT FIT SCRAPER (n2 ERP — HTML product cards) ──────────
-// Sprint Fit uses n2 ERP by First Software — NOT Shopify/Magento.
-// Products are server-rendered HTML. Category IDs confirmed from live nav.
+// ─── SPRINT FIT SCRAPER (n2 ERP — confirmed HTML patterns) ────────
+// Sprint Fit uses n2 ERP. Their category pages render products server-side.
+// Pattern confirmed from live page: product links href + <strong>NAME SIZE</strong> + $PRICE
 async function scrapeSprintFit() {
   log('Scraping Sprint Fit (n2 ERP HTML)...');
   const products = [];
   const seen = new Set();
 
-  // Real category IDs confirmed from https://www.sprintfit.co.nz/products/category/290/sports-supplements
+  // Real category IDs confirmed from live nav fetch
   const categories = [
     { id: 321,  slug: 'protein-powder',           cat: 'protein'      },
     { id: 322,  slug: 'protein-bars',             cat: 'proteinbars'  },
@@ -595,85 +585,50 @@ async function scrapeSprintFit() {
     { id: 317,  slug: 'testosterone-booster',     cat: 'vitamins'     },
     { id: 71,   slug: 'vitamins',                 cat: 'vitamins'     },
     { id: 286,  slug: 'super-greens-superfoods',  cat: 'vitamins'     },
-    { id: 547,  slug: 'gut-health',               cat: 'vitamins'     },
-    { id: 563,  slug: 'sleep-support',            cat: 'vitamins'     },
     { id: 15,   slug: 'accessories',              cat: 'accessories'  },
     { id: 76,   slug: 'shakers-water-bottles',    cat: 'accessories'  },
     { id: 285,  slug: 'gym-meal-bags',            cat: 'accessories'  },
-    { id: 288,  slug: 'straps-wraps-rehab',       cat: 'accessories'  },
     { id: 525,  slug: 'apparel-clothing',         cat: 'clothing'     },
   ];
 
   for (const cat of categories) {
-    try {
-      await sleep(700);
-      const url = `https://www.sprintfit.co.nz/products/category/${cat.id}/${cat.slug}?pgNmbr=1`;
-      const html = await fetchPage(url);
+    // Sprint Fit paginates — scrape up to 5 pages per category
+    for (let page = 1; page <= 5; page++) {
+      try {
+        await sleep(600);
+        const url = `https://www.sprintfit.co.nz/products/category/${cat.id}/${cat.slug}?pgNmbr=${page}`;
+        const html = await fetchPage(url);
 
-      // Sprint Fit n2 ERP embeds JSON-LD Product schema for each item on listing pages
-      const jsonLdMatches = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [];
-      let found = 0;
+        // Pattern from live page: product link → brand in one div, name+size in <strong>
+        // href="https://www.sprintfit.co.nz/product/NNN/slug"
+        // Followed by BRAND text then <strong>PRODUCT NAME\n  SIZE</strong>
+        // Followed by $XX.XX (optionally $OLD.XX\n$NEW.XX for sale)
 
-      for (const match of jsonLdMatches) {
-        try {
-          const inner = match.replace(/<script[^>]*>/, '').replace('</script>', '');
-          const json = JSON.parse(inner);
-          // Sprint Fit embeds individual Product objects per card
-          const items = json['@type'] === 'ItemList' ? (json.itemListElement || []) :
-                        json['@type'] === 'Product'  ? [{ item: json }] : [];
-          for (const item of items) {
-            const p = item.item || item;
-            if (!p.name || !p.offers) continue;
-            const price = parseFloat(p.offers.price || p.offers.lowPrice || '0');
-            if (!price) continue;
-            const key = `sf_${p.name}_${price}`;
-            if (seen.has(key)) continue;
-            seen.add(key);
-            found++;
-            products.push({
-              id:           `sprintfit_${(p.url||p.name).replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
-              retailer:     'sprintfit',
-              retailerName: 'Sprint Fit',
-              brand:        p.brand?.name || 'Unknown',
-              name:         p.name,
-              category:     cat.cat,
-              description:  (p.description || '').slice(0, 280),
-              priceFrom:    price,
-              priceTo:      parseFloat(p.offers.highPrice || price) || price,
-              currency:     'NZD',
-              variants:     [{ id: 1, title: 'Default', price, available: true }],
-              url:          p.url || url,
-              imageUrl:     Array.isArray(p.image) ? p.image[0] : (p.image || null),
-              updatedAt:    new Date().toISOString(),
-              priceHistory: []
-            });
-          }
-        } catch(e) { /* skip */ }
-      }
+        // Extract product blocks: each product card has a distinctive href pattern
+        const productBlockRx = /href="(https:\/\/www\.sprintfit\.co\.nz\/product\/\d+\/[^"]+)"[\s\S]{0,600}?<strong>([\s\S]{5,200}?)<\/strong>[\s\S]{0,300}?\$([\d,]+\.?\d*)/g;
+        let match;
+        let found = 0;
 
-      // Fallback: parse Sprint Fit HTML product cards directly
-      if (found === 0) {
-        // Product names appear in <a class="product-name"> or <strong> inside product cards
-        const nameRx = /href="(https:\/\/www\.sprintfit\.co\.nz\/product\/[^"]+)"[^>]*>\s*<img[^>]*>\s*[\s\S]*?<strong>([\s\S]*?)<\/strong>/g;
-        const priceRx = /\$(\d[\d,]*\.?\d*)/g;
-        const nameMatches = [...html.matchAll(/<a href="(https:\/\/www\.sprintfit\.co\.nz\/product\/[^"]+)"[^>]*class="[^"]*product[^"]*"[^>]*>([\s\S]{10,200}?)<\/a>/g)];
-        for (const m of nameMatches) {
-          const rawName = m[2].replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
-          if (!rawName || rawName.length < 4) continue;
-          // Try to find a price near this match
-          const excerpt = html.slice(Math.max(0, m.index - 100), m.index + 400);
-          const pm = excerpt.match(/\$([\d,]+\.?\d*)/);
-          const price = pm ? parseFloat(pm[1].replace(',','')) : 0;
-          if (!price) continue;
-          const key = `sf_${rawName}_${price}`;
+        while ((match = productBlockRx.exec(html)) !== null) {
+          const productUrl = match[1];
+          const rawName = match[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+          const price = parseFloat(match[3].replace(',', ''));
+
+          if (!rawName || rawName.length < 3 || !price || price > 2000) continue;
+          const key = `sf_${productUrl}`;
           if (seen.has(key)) continue;
           seen.add(key);
           found++;
+
+          // Extract brand from URL slug (first word usually)
+          const urlSlug = productUrl.split('/').pop() || '';
+          const brand = rawName.split(' ')[0] || 'Unknown';
+
           products.push({
-            id:           `sprintfit_${rawName.replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
+            id:           `sprintfit_${productUrl.split('/product/')[1]?.replace(/[^a-z0-9]/gi,'_').slice(0,60) || rawName.replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
             retailer:     'sprintfit',
             retailerName: 'Sprint Fit',
-            brand:        'Unknown',
+            brand,
             name:         rawName,
             category:     cat.cat,
             description:  '',
@@ -681,16 +636,20 @@ async function scrapeSprintFit() {
             priceTo:      price,
             currency:     'NZD',
             variants:     [{ id: 1, title: 'Default', price, available: true }],
-            url:          m[1],
+            url:          productUrl,
             imageUrl:     null,
             updatedAt:    new Date().toISOString(),
             priceHistory: []
           });
         }
+
+        log(`  Sprint Fit cat/${cat.id} page ${page}: ${found} products`);
+        // Stop paginating if no products found on this page
+        if (found === 0) break;
+      } catch(e) {
+        log(`  Sprint Fit cat/${cat.id} p${page} error: ${e.message}`);
+        break;
       }
-      log(`  Sprint Fit cat/${cat.id}: ${found} products`);
-    } catch(e) {
-      log(`  Sprint Fit cat/${cat.id} error: ${e.message}`);
     }
   }
 
@@ -698,7 +657,113 @@ async function scrapeSprintFit() {
   return products;
 }
 
-// ─── ELITE SUPPLEMENTS SCRAPER (Shopify — password-protected products.json) ─
+// ─── NUTRITION WAREHOUSE SCRAPER (sitemap + product page JSON-LD) ──
+// nutritionwarehouse.co.nz is a fully JS-rendered Vue app.
+// Their product pages DO serve JSON-LD for individual products.
+// Strategy: fetch sitemap → get product URLs → fetch each for JSON-LD.
+async function scrapeNutritionWarehouse() {
+  log('Scraping Nutrition Warehouse NZ (sitemap)...');
+  const products = [];
+  const seen = new Set();
+
+  // Map URL path segments to our internal categories
+  const slugToCat = {
+    'protein-powder':        'protein',
+    'protein-bars':          'proteinbars',
+    'protein-cookies':       'proteinbars',
+    'protein-water':         'rtd',
+    'creatine':              'creatine',
+    'pre-workout':           'preworkout',
+    'fat-burner':            'fatburner',
+    'weight-loss':           'fatburner',
+    'amino-acids':           'bcaa',
+    'bcaa':                  'bcaa',
+    'vitamins':              'vitamins',
+    'minerals':              'vitamins',
+    'greens':                'vitamins',
+    'gym-accessories':       'accessories',
+    'shakers':               'accessories',
+    'gym-clothing':          'clothing',
+    'apparel':               'clothing',
+    'protein':               'protein',
+    'mass-gainer':           'protein',
+    'weight-gainer':         'protein',
+    'casein':                'protein',
+    'meal-replacement':      'gymfood',
+    'healthy-food':          'gymfood',
+  };
+
+  try {
+    // Step 1: fetch sitemap index
+    const sitemapIndex = await fetchPage('https://www.nutritionwarehouse.co.nz/sitemap.xml');
+    // Find the products sitemap — NW Shopify-style sitemaps have /sitemap_products_1.xml
+    const productSitemapMatches = [...sitemapIndex.matchAll(/https:\/\/www\.nutritionwarehouse\.co\.nz\/[^<]*(product|sitemap)[^<]*\.xml/gi)];
+    let productSitemapUrl = productSitemapMatches.find(m => m[0].includes('product'))?.[0]
+      || 'https://www.nutritionwarehouse.co.nz/sitemap_products_1.xml';
+
+    log(`  NW: fetching product sitemap: ${productSitemapUrl}`);
+    const sitemapXml = await fetchPage(productSitemapUrl);
+
+    // Extract all /products/ URLs
+    const urlMatches = [...sitemapXml.matchAll(/<loc>(https:\/\/www\.nutritionwarehouse\.co\.nz\/products\/[^<]+)<\/loc>/g)];
+    log(`  NW: found ${urlMatches.length} product URLs`);
+
+    // Cap at 400 to keep run time reasonable
+    const productUrls = urlMatches.slice(0, 400).map(m => m[1]);
+
+    for (const productUrl of productUrls) {
+      try {
+        await sleep(250);
+        const html = await fetchPage(productUrl);
+
+        // Infer category from URL
+        let cat = 'protein'; // default
+        for (const [slug, c] of Object.entries(slugToCat)) {
+          if (productUrl.includes(slug)) { cat = c; break; }
+        }
+
+        // Look for JSON-LD Product schema
+        const ldMatches = [...(html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))];
+        let pushed = false;
+        for (const m of ldMatches) {
+          try {
+            const json = JSON.parse(m[1]);
+            if (json['@type'] !== 'Product' || !json.name) continue;
+            const price = parseFloat(json.offers?.price || json.offers?.lowPrice || '0');
+            if (!price) continue;
+            const key = `nw_${json.name}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            products.push({
+              id:           `nutritionwarehouse_${productUrl.split('/products/')[1]?.replace(/[^a-z0-9]/gi,'_').slice(0,60) || json.name.replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
+              retailer:     'nutritionwarehouse',
+              retailerName: 'Nutrition Warehouse',
+              brand:        json.brand?.name || 'Unknown',
+              name:         json.name,
+              category:     cat,
+              description:  (json.description || '').replace(/<[^>]+>/g,'').slice(0,280),
+              priceFrom:    price,
+              priceTo:      parseFloat(json.offers?.highPrice || price) || price,
+              currency:     'NZD',
+              variants:     [{ id: 1, title: 'Default', price, available: true }],
+              url:          productUrl,
+              imageUrl:     Array.isArray(json.image) ? json.image[0] : (json.image || null),
+              updatedAt:    new Date().toISOString(),
+              priceHistory: []
+            });
+            pushed = true;
+            break;
+          } catch(e2) { /* skip */ }
+        }
+      } catch(e) { /* skip individual product */ }
+    }
+  } catch(e) {
+    log(`  Nutrition Warehouse sitemap error: ${e.message}`);
+  }
+
+  log(`  Found ${products.length} products from Nutrition Warehouse`);
+  return products;
+}
 // products.json is locked. We scrape their collection HTML pages instead.
 async function scrapeEliteSupplements() {
   log('Scraping Elite Supplements (Shopify HTML)...');
@@ -775,169 +840,6 @@ async function scrapeEliteSupplements() {
   }
 
   log(`  Found ${products.length} products from Elite Supplements`);
-  return products;
-}
-
-// ─── CHEMIST WAREHOUSE SCRAPER (custom platform) ────────────────
-// chemistwarehouse.co.nz uses a custom .NET platform.
-// They expose a JSON search API used by their category pages.
-async function scrapeChemistWarehouse() {
-  log('Scraping Chemist Warehouse NZ (custom JSON API)...');
-  const products = [];
-  const seen = new Set();
-
-  // CW NZ uses /api/2.0/page/category/ endpoint that returns product JSON
-  const categories = [
-    { id: 'sports-nutrition',     cat: 'protein'     },
-    { id: 'protein-powders',      cat: 'protein'     },
-    { id: 'protein-bars-snacks',  cat: 'proteinbars' },
-    { id: 'pre-workout',          cat: 'preworkout'  },
-    { id: 'fat-burners',          cat: 'fatburner'   },
-    { id: 'amino-acids',          cat: 'bcaa'        },
-    { id: 'vitamins',             cat: 'vitamins'    },
-    { id: 'minerals',             cat: 'vitamins'    },
-    { id: 'creatine',             cat: 'creatine'    },
-  ];
-
-  for (const cat of categories) {
-    try {
-      await sleep(800);
-      // Try their JSON search API first
-      const apiUrl = `https://www.chemistwarehouse.co.nz/api/2.0/page/category?urlSemantics=${cat.id}&pageSize=48`;
-      const raw = await fetchPage(apiUrl);
-      let data;
-      try { data = JSON.parse(raw); } catch(e) {
-        // Fall back to JSON-LD on category HTML page
-        const html = await fetchPage(`https://www.chemistwarehouse.co.nz/shop-online/1255/${cat.id}`);
-        const matches = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [];
-        for (const m of matches) {
-          try {
-            const inner = m.replace(/<script[^>]*>/, '').replace('</script>','');
-            const json = JSON.parse(inner);
-            if (json['@type']==='ItemList'||json['@type']==='Product') { data = json; break; }
-          } catch(e2){}
-        }
-        if (!data) { log(`  Chemist Warehouse ${cat.id}: no data`); continue; }
-      }
-
-      // Handle both API response and JSON-LD formats
-      const items = data.products || data.Items || data.itemListElement
-        ? (data.products || data.Items || data.itemListElement || [])
-        : (data['@type']==='Product' ? [data] : []);
-
-      for (const item of items) {
-        const p = item.item || item;
-        const title = p.name || p.Name || p.title || '';
-        if (!title) continue;
-        const key = `cw_${title}`;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        const price = parseFloat(
-          p.price || p.Price || p.offers?.price || p.offers?.lowPrice || '0'
-        );
-        if (!price) continue;
-        products.push({
-          id:           `chemistwarehouse_${title.replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
-          retailer:     'chemistwarehouse',
-          retailerName: 'Chemist Warehouse',
-          brand:        p.brand?.name || p.Brand || p.brand || 'Unknown',
-          name:         title,
-          category:     cat.cat,
-          description:  (p.description || p.Description || '').replace(/<[^>]+>/g,'').slice(0,280),
-          priceFrom:    price,
-          priceTo:      parseFloat(p.offers?.highPrice || price) || price,
-          currency:     'NZD',
-          variants:     [{ id: 1, title: 'Default', price, available: true }],
-          url:          p.url || p.URL || `https://www.chemistwarehouse.co.nz/shop-online/1255/${cat.id}`,
-          imageUrl:     p.image || p.Image || null,
-          updatedAt:    new Date().toISOString(),
-          priceHistory: []
-        });
-      }
-      log(`  Chemist Warehouse ${cat.id}: ${products.length} total so far`);
-    } catch(e) {
-      log(`  Chemist Warehouse ${cat.id} error: ${e.message}`);
-    }
-  }
-
-  log(`  Found ${products.length} products from Chemist Warehouse`);
-  return products;
-}
-// ─── NUTRITION WAREHOUSE SCRAPER (custom platform — JSON-LD from collection pages) ──
-async function scrapeNutritionWarehouse() {
-  log('Scraping Nutrition Warehouse NZ...');
-  const products = [];
-  const seen = new Set();
-
-  const categories = [
-    { path: 'collections/protein-powder',  cat: 'protein'     },
-    { path: 'collections/protein-bars',    cat: 'proteinbars' },
-    { path: 'collections/creatine',        cat: 'creatine'    },
-    { path: 'collections/pre-workout',     cat: 'preworkout'  },
-    { path: 'collections/fat-burners',     cat: 'fatburner'   },
-    { path: 'collections/amino-acids',     cat: 'bcaa'        },
-    { path: 'collections/vitamins-minerals', cat: 'vitamins'  },
-    { path: 'collections/rtd',             cat: 'rtd'         },
-    { path: 'collections/accessories',     cat: 'accessories' },
-    { path: 'collections/gym-wear',        cat: 'clothing'    },
-    { path: 'collections/health-foods',    cat: 'gymfood'     },
-  ];
-
-  const suppKw = SUPP_KEYWORDS;
-  const excluded = ['treadmill','barbell','dumbbell','kettlebell','power rack','squat rack','bench press','perfume','fragrance','skincare'];
-
-  for (const cat of categories) {
-    try {
-      await sleep(700);
-      const url = `https://www.nutritionwarehouse.co.nz/${cat.path}`;
-      const pageData = await fetchPage(url);
-
-      const jsonLdMatches = pageData.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || [];
-      for (const match of jsonLdMatches) {
-        try {
-          const inner = match.replace(/<script[^>]*>/, '').replace('</script>', '');
-          const json = JSON.parse(inner);
-          const items = json['@type'] === 'ItemList' ? (json.itemListElement || []) :
-                        json['@type'] === 'Product'  ? [{ item: json }] : [];
-
-          for (const item of items) {
-            const p = item.item || item;
-            if (!p.name || !p.offers) continue;
-            const text = p.name.toLowerCase();
-            if (excluded.some(k => text.includes(k))) continue;
-            if (!suppKw.some(k => text.includes(k))) continue;
-            const price = parseFloat(p.offers.price || p.offers.lowPrice || '0');
-            if (!price) continue;
-            const key = `nw_${p.name}_${price}`;
-            if (seen.has(key)) continue;
-            seen.add(key);
-
-            products.push({
-              id:           `nutritionwarehouse_${(p.url||p.name).replace(/[^a-z0-9]/gi,'_').slice(0,60)}`,
-              retailer:     'nutritionwarehouse',
-              retailerName: 'Nutrition Warehouse',
-              brand:        p.brand?.name || 'Unknown',
-              name:         p.name,
-              category:     cat.cat,
-              description:  (p.description || '').slice(0, 280),
-              priceFrom:    price,
-              priceTo:      parseFloat(p.offers.highPrice || price) || price,
-              currency:     'NZD',
-              variants:     [{ id: 1, title: 'Default', price, available: true }],
-              url:          p.url || `https://www.nutritionwarehouse.co.nz/${cat.path}`,
-              imageUrl:     p.image || null,
-              updatedAt:    new Date().toISOString(),
-              priceHistory: []
-            });
-          }
-        } catch(e) { /* skip malformed JSON-LD */ }
-      }
-    } catch(e) {
-      log(`  Nutrition Warehouse category ${cat.path} error: ${e.message}`);
-    }
-  }
-
-  log(`  Found ${products.length} products from Nutrition Warehouse`);
   return products;
 }
 
@@ -1265,18 +1167,7 @@ async function main() {
   }
   await sleep(1500);
 
-  // ── Chemist Warehouse NZ (custom JSON API) ──
-  try {
-    const cwProducts = await scrapeChemistWarehouse();
-    allNew.push(...cwProducts);
-    retailerStats['Chemist Warehouse'] = cwProducts.length;
-  } catch(e) {
-    log(`Chemist Warehouse scrape failed: ${e.message}`);
-    retailerStats['Chemist Warehouse'] = 0;
-  }
-  await sleep(1500);
-
-  // ── Nutrition Warehouse NZ (custom platform) ──
+  // ── Nutrition Warehouse NZ (sitemap + product page JSON-LD) ──
   try {
     const nwProducts = await scrapeNutritionWarehouse();
     allNew.push(...nwProducts);
