@@ -1,0 +1,17 @@
+{
+  "name": "claude",
+  "version": "1.0.0",
+  "description": "ScoopScore NZ supplement price comparison scraper",
+  "main": "scraper.js",
+  "scripts": {
+    "scrape": "node scraper.js",
+    "install-browsers": "npx playwright install chromium"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "notes": "Run npm install then npm run install-browsers before first use"
+}
