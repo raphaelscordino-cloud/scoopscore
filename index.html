@@ -1547,31 +1547,43 @@ function init(updatedAt){
   for(const p of ALL){
     if(!BRANDS[p.brand])BRANDS[p.brand]={name:p.brand,groups:{},cats:new Set(),retailers:new Set()};
     const b=BRANDS[p.brand];
-    // Include category in the key so products with the same name but different
-    // category (e.g. "Collagen" vs a whey "Protein") don't collapse into one group
-    const key=normKey(p.name)+'__'+p.category;
-    if(!b.groups[key])b.groups[key]={key,name:p.name,category:p.category,imageUrl:p.imageUrl,listings:[]};
+    // Group by brand + normalised product name ONLY — deliberately exclude category
+    // from the key so the same product (e.g. Mutant Whey) groups together even if
+    // different retailers have tagged it with different categories
+    const key=normKey(p.name);
+    if(!b.groups[key]){
+      b.groups[key]={key,name:p.name,category:p.category,imageUrl:p.imageUrl,listings:[]};
+    }
+    // Prefer the shorter/cleaner name
     if(p.name.length<b.groups[key].name.length)b.groups[key].name=p.name;
     if(p.imageUrl&&!b.groups[key].imageUrl)b.groups[key].imageUrl=p.imageUrl;
-    b.groups[key].listings.push(p);b.cats.add(p.category);b.retailers.add(p.retailer);
+    // If multiple categories appear, pick the most common one (majority vote)
+    b.groups[key].listings.push(p);
+    b.cats.add(p.category);
+    b.retailers.add(p.retailer);
+  }
+  // After grouping, resolve category by majority vote across listings
+  for(const b of Object.values(BRANDS)){
+    for(const g of Object.values(b.groups)){
+      const catVotes={};
+      for(const l of g.listings) catVotes[l.category]=(catVotes[l.category]||0)+1;
+      g.category=Object.entries(catVotes).sort((a,z)=>z[1]-a[1])[0][0];
+    }
   }
   for(const b of Object.values(BRANDS)){
     b.cats=[...b.cats];b.retailers=[...b.retailers];
     for(const g of Object.values(b.groups)){
-      // available===false means explicitly OOS; available===undefined (old scrape data) → treat as in stock
-      g.soldOut = g.listings.length > 0 && g.listings.every(l => l.available === false);
-      g.partialOos = !g.soldOut && g.listings.some(l => l.available === false);
-      // Pre-compute in-stock listings for performance
-      g.inStockListings = g.listings.filter(l => l.available !== false);
+      // Treat all products as available — the Shopify public API available flag is unreliable
+      g.soldOut = false;
+      g.partialOos = false;
+      g.inStockListings = g.listings;
     }
     b.groupList=Object.values(b.groups).sort((a,z)=>{
-      // in-stock first, then sort by retailer count desc, then price asc
-      if(a.soldOut!==z.soldOut) return a.soldOut?1:-1;
       const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;
       const rz=new Set(z.inStockListings.map(l=>l.retailer)).size;
       if(rz!==ra) return rz-ra;
-      const pa=a.inStockListings.length?Math.min(...a.inStockListings.map(l=>l.priceFrom)):9999;
-      const pz=z.inStockListings.length?Math.min(...z.inStockListings.map(l=>l.priceFrom)):9999;
+      const pa=Math.min(...a.inStockListings.map(l=>l.priceFrom));
+      const pz=Math.min(...z.inStockListings.map(l=>l.priceFrom));
       return pa-pz;
     });
   }
@@ -1809,7 +1821,7 @@ function fmtKg(kg){
 }
 // Strip size tokens from a variant title to get the flavour portion
 function variantFlavour(title){
-  if(!title)return'';
+  if(!title||title==='Default Title')return'';
   return title.replace(/\s*[\\/|·\-–]\s*/g,' / ')
     .replace(/\d+\.?\d*\s*(kg|g|lb|lbs)\b/gi,'').replace(/\s+/g,' ').trim().replace(/^\s*\/\s*|\s*\/\s*$/g,'');
 }
@@ -1819,21 +1831,26 @@ function buildSizeMap(group){
   const map=new Map();
   for(const l of group.listings){
     for(const v of l.variants){
-      const kg=variantToKg(v.title);
-      const key=kg!==null?fmtKg(kg):'unknown';
+      // "Default Title" = Shopify's placeholder for single-variant products — treat as one size
+      const isDefault=!v.title||v.title==='Default Title';
+      const kg=isDefault?null:variantToKg(v.title);
+      const key=kg!==null?fmtKg(kg):isDefault?'Single Size':'unknown';
       if(!map.has(key))map.set(key,{kg,label:key,variants:[],retailers:new Map()});
       const entry=map.get(key);
-      entry.variants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:l.available});
+      entry.variants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:true});
       // Track cheapest price per retailer for this size
       const existing=entry.retailers.get(l.retailer);
       if(!existing||v.price<existing.price){
-        entry.retailers.set(l.retailer,{retailer:l.retailer,price:v.price,url:l.url,available:v.available!==false&&l.available!==false});
+        // Always mark as available — public API stock data is unreliable
+        entry.retailers.set(l.retailer,{retailer:l.retailer,price:v.price,url:l.url,available:true});
       }
     }
   }
-  // Sort by kg asc (unknown sizes last)
+  // Sort: known sizes by kg asc, then "Single Size", then "unknown" last
   return new Map([...map.entries()].sort((a,b)=>{
-    const ka=a[1].kg??9999,kb=b[1].kg??9999;return ka-kb;
+    const order=k=>k==='unknown'?9999:k==='Single Size'?9998:0;
+    const ka=(a[1].kg??order(a[0])),kb=(b[1].kg??order(b[0]));
+    return ka-kb;
   }));
 }
 
@@ -1869,20 +1886,22 @@ function renderModal(){
   document.getElementById('dpCatBadge').textContent=`${cm.label} · ${[...sz.retailers.values()].length} retailer${[...sz.retailers.values()].length!==1?'s':''}`;
   document.getElementById('dpBrandLbl').textContent=brandName;
   document.getElementById('dpPname').textContent=g.name;
-  document.getElementById('dpPopts').textContent=`${sizeMap.size} size${sizeMap.size!==1?'s':''} · ${_modalSizeKey}`;
+  document.getElementById('dpPopts').textContent=`${sizeMap.size} size${sizeMap.size!==1?'s':''} · ${_modalSizeKey==='Single Size'?'one size':_modalSizeKey}`;
   document.getElementById('dpImgArea').innerHTML=g.imageUrl
     ?`<img src="${g.imageUrl}" alt="${g.name}" onerror="this.outerHTML='<div class=\\'dp-img-placeholder\\'>${brandName[0]}</div>'">`
     :`<div class="dp-img-placeholder">${brandName[0]}</div>`;
 
-  // ── SIZE TABS (Sportsfuel style: chip per size, price below) ──
-  const sizeTabs=[...sizeMap.entries()].map(([key,s])=>{
+  // Hide size tabs if only one size and it's a single-variant product
+  const showSizeTabs = sizeMap.size > 1 || (_modalSizeKey !== 'Single Size' && _modalSizeKey !== 'unknown');
+  const sizeTabs=showSizeTabs?[...sizeMap.entries()].map(([key,s])=>{
     const inStockR=[...s.retailers.values()].filter(r=>r.available);
     const bestP=inStockR.length?Math.min(...inStockR.map(r=>r.price)):null;
+    const label=key==='Single Size'?'One Size':key;
     return`<button class="dp-size-tab${key===_modalSizeKey?' active':''}" onclick="_modalSizeKey='${key}';_modalFlavour=null;renderModal()">
-      ${key}
+      ${label}
       <span class="dp-size-tab-price">${bestP!==null?'$'+bestP.toFixed(2):'OOS'}</span>
     </button>`;
-  }).join('');
+  }).join(''):'';
 
   // ── FLAVOURS — show all, cross out OOS ones ──
   const flavours=[...new Set(sz.variants.map(v=>variantFlavour(v.title)).filter(f=>f&&f.length>1))];
