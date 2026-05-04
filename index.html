@@ -1807,11 +1807,17 @@ function buildProductCard(g, brand, i, activeFilters){
 }
 // Extract kg value from a variant title. Lbs → kg. Returns null if no size found.
 function variantToKg(title){
-  if(!title)return null;
+  if(!title||title==='Default Title')return null;
   const t=title.toLowerCase();
+  // kg formats: 1kg, 1.5kg, 1 kg
   const kg=t.match(/(\d+\.?\d*)\s*kg/);if(kg)return Math.round(parseFloat(kg[1])*100)/100;
-  const lb=t.match(/(\d+\.?\d*)\s*lb/);if(lb)return Math.round(parseFloat(lb[1])*453.592/100)/10;
-  const g=t.match(/(\d+\.?\d*)\s*g(?!el|um|re|lass|reen)\b/);if(g)return Math.round(parseFloat(g[1]))/1000;
+  // lb formats: 5lb, 5 lb, 5lbs, 5 lbs, 5LB
+  const lb=t.match(/(\d+\.?\d*)\s*lbs?\b/);if(lb)return Math.round(parseFloat(lb[1])*453.592/100)/10;
+  // oz formats: 32oz, 32 oz
+  const oz=t.match(/(\d+\.?\d*)\s*oz\b/);if(oz)return Math.round(parseFloat(oz[1])*28.3495/100)/10;
+  // g formats: 500g, 900g — exclude words like "gel", "gum", "green", "gram" text
+  const g=t.match(/(\d+\.?\d*)\s*g(?!el|um|re|lass|reen|ram)\b/);if(g)return Math.round(parseFloat(g[1]))/1000;
+  // serves / servings treated as single size (no weight) — return null so grouped as Single Size
   return null;
 }
 // Nicely display kg — round to 1 decimal only when needed
@@ -1831,26 +1837,24 @@ function buildSizeMap(group){
   const map=new Map();
   for(const l of group.listings){
     for(const v of l.variants){
-      // "Default Title" = Shopify's placeholder for single-variant products — treat as one size
+      // "Default Title" = Shopify single-variant placeholder
       const isDefault=!v.title||v.title==='Default Title';
       const kg=isDefault?null:variantToKg(v.title);
-      const key=kg!==null?fmtKg(kg):isDefault?'Single Size':'unknown';
+      // If no weight found (flavour-only title like "Chocolate" or "Unflavoured"),
+      // treat as "Single Size" — don't show as "unknown"
+      const key=kg!==null?fmtKg(kg):'Single Size';
       if(!map.has(key))map.set(key,{kg,label:key,variants:[],retailers:new Map()});
       const entry=map.get(key);
       entry.variants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:true});
-      // Track cheapest price per retailer for this size
       const existing=entry.retailers.get(l.retailer);
       if(!existing||v.price<existing.price){
-        // Always mark as available — public API stock data is unreliable
         entry.retailers.set(l.retailer,{retailer:l.retailer,price:v.price,url:l.url,available:true});
       }
     }
   }
-  // Sort: known sizes by kg asc, then "Single Size", then "unknown" last
+  // Sort: known sizes by kg asc, "Single Size" last
   return new Map([...map.entries()].sort((a,b)=>{
-    const order=k=>k==='unknown'?9999:k==='Single Size'?9998:0;
-    const ka=(a[1].kg??order(a[0])),kb=(b[1].kg??order(b[0]));
-    return ka-kb;
+    const ka=a[1].kg??9999,kb=b[1].kg??9999;return ka-kb;
   }));
 }
 
