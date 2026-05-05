@@ -316,7 +316,110 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .home-cat-pill{padding:7px 16px;border-radius:100px;border:1px solid var(--border2);background:var(--bg);font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--ink3);cursor:pointer;transition:all .12s}
 .home-cat-pill:hover{border-color:var(--ink3);color:var(--ink);background:var(--bg2)}
 .home-cat-pill.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg);font-weight:500}
-.pcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:20px 0 80px}
+/* ── BRANDS MEGA DROPDOWN ── */
+.nav-brands-mega{min-width:680px;left:auto}
+.brands-mega-inner{padding:24px}
+.brands-mega-search-wrap{margin-bottom:14px}
+.brands-mega-search{width:100%;padding:9px 14px;border:1.5px solid var(--border2);border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);background:var(--bg2);outline:none}
+.brands-mega-search:focus{border-color:var(--ink3)}
+.brands-mega-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.bmc-pill{padding:5px 12px;border-radius:100px;border:1px solid var(--border2);background:none;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink3);cursor:pointer;transition:all .1s}
+.bmc-pill:hover{color:var(--ink);border-color:var(--ink3)}
+.bmc-pill.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
+.brands-mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;max-height:340px;overflow-y:auto}
+.bmg-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:7px;cursor:pointer;transition:background .1s}
+.bmg-item:hover{background:var(--bg3)}
+.bmg-logo{width:28px;height:28px;border-radius:5px;object-fit:contain;background:var(--bg3);flex-shrink:0}
+.bmg-name{font-size:12px;font-weight:500;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bmg-count{font-size:10px;color:var(--ink4)}
+
+/* ── RETAILER STRIP ── */
+.retailer-strip-section{padding:28px 0 0;border-bottom:1px solid var(--border)}
+.retailer-strip-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:14px}
+.retailer-strip{display:flex;align-items:center;gap:0;flex-wrap:wrap;padding-bottom:24px}
+.retailer-logo-item{display:flex;align-items:center;justify-content:center;padding:6px 16px;border-right:1px solid var(--border);cursor:pointer;transition:opacity .15s;opacity:.55}
+.retailer-logo-item:first-child{padding-left:0}
+.retailer-logo-item:last-child{border-right:none}
+.retailer-logo-item:hover{opacity:1}
+.retailer-logo-img{height:22px;width:auto;object-fit:contain;max-width:100px}
+.retailer-logo-fallback{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:-.01em;white-space:nowrap}
+
+/* ── EDITORIAL CATEGORY TILES ── */
+.cat-tile-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px}
+/* big tiles span 2 rows */
+.cat-tile{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:auto;background:#1a1917;transition:transform .2s}
+.cat-tile:hover{transform:scale(1.02)}
+.cat-tile:hover .cat-tile-img{transform:scale(1.06)}
+.cat-tile-tall{grid-row:span 2}
+.cat-tile-wide{grid-column:span 2}
+.cat-tile-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.55;transition:transform .4s,opacity .2s}
+.cat-tile:hover .cat-tile-img{opacity:.65}
+.cat-tile-veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,8,.9) 0%,rgba(10,10,8,.3) 50%,rgba(10,10,8,.05) 100%)}
+.cat-tile-content{position:relative;z-index:2;padding:20px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:160px}
+.cat-tile-tall .cat-tile-content{min-height:320px}
+.cat-tile-wide .cat-tile-content{min-height:180px}
+.cat-tile-label{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:.04em;color:#fff;line-height:.95;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.cat-tile-tall .cat-tile-label{font-size:clamp(36px,4vw,64px)}
+.cat-tile-count{font-size:11px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:.03em;margin-top:5px}
+.cat-tile-arrow{position:absolute;top:16px;right:16px;width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.6);transition:all .15s;backdrop-filter:blur(8px)}
+.cat-tile:hover .cat-tile-arrow{background:rgba(255,255,255,.2);color:#fff}
+
+@media(max-width:900px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}}
+@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-strip{gap:0}.retailer-logo-item{padding:4px 10px}}
+.home-body{max-width:1320px;margin:0 auto;padding:0 32px 80px}
+.home-section{padding:56px 0 0}
+.home-section-dark{background:#1a1917;margin:56px -32px 0;padding:56px 32px;max-width:none;width:calc(100% + 64px);position:relative;left:-32px}
+.home-section-inner{max-width:1320px;margin:0 auto}
+.home-section-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:16px}
+.home-section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.home-section-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;color:var(--ink);line-height:1}
+.home-see-all{font-size:13px;font-weight:500;color:var(--ink3);background:none;border:1px solid var(--border2);border-radius:100px;padding:7px 16px;cursor:pointer;white-space:nowrap;transition:all .12s;flex-shrink:0}
+.home-see-all:hover{color:var(--ink);border-color:var(--ink3)}
+
+/* Category shortcut grid */
+.cat-shortcut-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.cat-shortcut{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;padding:20px 16px;cursor:pointer;transition:all .15s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;overflow:hidden}
+.cat-shortcut::before{content:'';position:absolute;inset:0;background:var(--cat-c);opacity:0;transition:opacity .15s}
+.cat-shortcut:hover{border-color:var(--cat-c);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.cat-shortcut:hover::before{opacity:.06}
+.cat-shortcut-icon{font-size:28px;line-height:1}
+.cat-shortcut-name{font-size:13px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.cat-shortcut-count{font-size:11px;color:var(--ink3);font-weight:400}
+.cat-shortcut-all{border-style:dashed}
+.cat-shortcut-all .cat-shortcut-icon{opacity:.5}
+
+/* Value picks grid */
+.value-picks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.vp-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.vp-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.vp-cat-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:12px;background:var(--badge-bg,var(--bg3));color:var(--badge-c,var(--ink2))}
+.vp-img{width:72px;height:72px;object-fit:contain;border-radius:10px;background:var(--bg3);margin-bottom:12px}
+.vp-img-placeholder{width:72px;height:72px;border-radius:10px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:12px}
+.vp-brand{font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.vp-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vp-price-row{display:flex;align-items:baseline;gap:4px}
+.vp-price{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.02em;color:var(--ink);line-height:1}
+.vp-from{font-size:11px;color:var(--ink3);font-weight:500}
+.vp-retailers{font-size:11px;color:var(--green);font-weight:600;margin-top:6px}
+.vp-arrow{position:absolute;top:20px;right:20px;font-size:18px;color:var(--ink4);transition:all .12s}
+.vp-card:hover .vp-arrow{color:var(--ink2);transform:translate(2px,-2px)}
+
+/* Most compared grid */
+.compared-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.cmp-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .15s;display:flex;gap:14px;align-items:center}
+.cmp-card:hover{border-color:var(--border2);background:var(--bg3)}
+.cmp-img{width:52px;height:52px;object-fit:contain;border-radius:8px;background:var(--bg3);flex-shrink:0}
+.cmp-img-ph{width:52px;height:52px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cmp-info{min-width:0}
+.cmp-brand{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.cmp-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 4px}
+.cmp-meta{display:flex;align-items:center;gap:8px}
+.cmp-price{font-size:14px;font-weight:700;color:var(--ink)}
+.cmp-badge{font-size:10px;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:100px;padding:2px 7px}
+
+@media(max-width:1024px){.cat-shortcut-grid{grid-template-columns:repeat(4,1fr)}.value-picks-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.cat-shortcut-grid{grid-template-columns:repeat(3,1fr)}.value-picks-grid{grid-template-columns:1fr 1fr}.compared-grid{grid-template-columns:1fr 1fr}.home-body{padding:0 16px 60px}.home-section-dark{margin:56px -16px 0;padding:56px 16px;left:-16px;width:calc(100% + 32px)}}align-items:center;gap:8px;padding:14px 32px;background:var(--surface);border:1.5px solid var(--border);border-radius:100px;font-size:15px;font-weight:500;color:var(--ink1);cursor:pointer;transition:all .15s;margin:8px 0 0}
+.load-more-btn:hover{background:var(--ink1);color:var(--bg);border-color:var(--ink1)}
 .pcard{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .18s;position:relative;display:flex;flex-direction:column}
 .pcard:hover{box-shadow:0 8px 32px rgba(44,43,40,.1);transform:translateY(-2px);border-color:var(--border2)}
 .pcard-badge{position:absolute;top:10px;left:10px;z-index:2;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;color:#fff}
@@ -464,8 +567,11 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .nav-mega-btn{display:flex;align-items:center;gap:5px}
 .nav-mega-chevron{font-size:10px;transition:transform .2s;display:inline-block}
 .nav-mega-wrap.open .nav-mega-chevron{transform:rotate(180deg)}
-.nav-mega{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:580px;background:var(--bg);border:1px solid var(--border2);border-radius:16px;box-shadow:0 16px 48px rgba(44,43,40,.12);z-index:601;overflow:hidden;animation:megaIn .18s ease}
+.nav-mega{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:580px;background:var(--bg);border:1px solid var(--border2);border-radius:16px;box-shadow:0 16px 48px rgba(44,43,40,.12);z-index:601;overflow:hidden}
+.nav-mega.open{display:block;animation:megaIn .18s ease}
+.nav-brands-mega.open{display:block;animation:megaBrandsIn .18s ease}
 @keyframes megaIn{from{opacity:0;transform:translateX(-50%) translateY(-6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes megaBrandsIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .nav-mega-wrap.open .nav-mega{display:block}
 .mega-inner{display:grid;grid-template-columns:200px 1fr}
 .mega-cats{background:var(--bg2);padding:16px 8px;display:flex;flex-direction:column;gap:2px}
@@ -591,71 +697,57 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
         </button>
         <div class="nav-mega" id="navMega">
           <div class="mega-inner">
-            <!-- Left: category list -->
             <div class="mega-cats">
               <div class="mega-section-label">Browse by Category</div>
               <button class="mega-cat-item active" data-cat="all" onclick="openCategoryView('all');closeMega()">
-                <span class="mci-icon">⊞</span>
                 <span class="mci-label">All Products</span>
                 <span class="mci-count" id="mciCount-all"></span>
               </button>
               <button class="mega-cat-item" data-cat="protein" onclick="openCategoryView('protein');closeMega()">
-                <span class="mci-icon">🥛</span>
                 <span class="mci-label">Protein Powder</span>
                 <span class="mci-count" id="mciCount-protein"></span>
               </button>
               <button class="mega-cat-item" data-cat="proteinbars" onclick="openCategoryView('proteinbars');closeMega()">
-                <span class="mci-icon">🍫</span>
-                <span class="mci-label">Protein Bars & Snacks</span>
+                <span class="mci-label">Protein Bars &amp; Snacks</span>
                 <span class="mci-count" id="mciCount-proteinbars"></span>
               </button>
               <button class="mega-cat-item" data-cat="rtd" onclick="openCategoryView('rtd');closeMega()">
-                <span class="mci-icon">🥤</span>
                 <span class="mci-label">RTD / Drinks</span>
                 <span class="mci-count" id="mciCount-rtd"></span>
               </button>
               <button class="mega-cat-item" data-cat="creatine" onclick="openCategoryView('creatine');closeMega()">
-                <span class="mci-icon">⚡</span>
                 <span class="mci-label">Creatine</span>
                 <span class="mci-count" id="mciCount-creatine"></span>
               </button>
               <button class="mega-cat-item" data-cat="preworkout" onclick="openCategoryView('preworkout');closeMega()">
-                <span class="mci-icon">🔥</span>
                 <span class="mci-label">Pre-Workout</span>
                 <span class="mci-count" id="mciCount-preworkout"></span>
               </button>
               <button class="mega-cat-item" data-cat="fatburner" onclick="openCategoryView('fatburner');closeMega()">
-                <span class="mci-icon">💧</span>
                 <span class="mci-label">Fat Burners</span>
                 <span class="mci-count" id="mciCount-fatburner"></span>
               </button>
               <button class="mega-cat-item" data-cat="bcaa" onclick="openCategoryView('bcaa');closeMega()">
-                <span class="mci-icon">💊</span>
-                <span class="mci-label">BCAAs & Aminos</span>
+                <span class="mci-label">BCAAs &amp; Aminos</span>
                 <span class="mci-count" id="mciCount-bcaa"></span>
               </button>
               <button class="mega-cat-item" data-cat="vitamins" onclick="openCategoryView('vitamins');closeMega()">
-                <span class="mci-icon">🌿</span>
-                <span class="mci-label">Vitamins & Health</span>
+                <span class="mci-label">Vitamins &amp; Health</span>
                 <span class="mci-count" id="mciCount-vitamins"></span>
               </button>
               <button class="mega-cat-item" data-cat="gymfood" onclick="openCategoryView('gymfood');closeMega()">
-                <span class="mci-icon">🥜</span>
                 <span class="mci-label">Gym Food</span>
                 <span class="mci-count" id="mciCount-gymfood"></span>
               </button>
               <button class="mega-cat-item" data-cat="accessories" onclick="openCategoryView('accessories');closeMega()">
-                <span class="mci-icon">🎒</span>
-                <span class="mci-label">Gym Accessories</span>
+                <span class="mci-label">Accessories</span>
                 <span class="mci-count" id="mciCount-accessories"></span>
               </button>
               <button class="mega-cat-item" data-cat="clothing" onclick="openCategoryView('clothing');closeMega()">
-                <span class="mci-icon">👕</span>
-                <span class="mci-label">Gym Clothing</span>
+                <span class="mci-label">Clothing</span>
                 <span class="mci-count" id="mciCount-clothing"></span>
               </button>
             </div>
-            <!-- Right: featured brands for hovered category -->
             <div class="mega-brands">
               <div class="mega-section-label">Top Brands</div>
               <div class="mega-brand-grid" id="megaBrandGrid"></div>
@@ -665,7 +757,30 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
         </div>
       </div>
 
-      <button class="nav-cat" onclick="openCategoryView('all');closeMega()">Compare All</button>
+      <!-- Brands dropdown -->
+      <div class="nav-mega-wrap" id="brandsMegaWrap">
+        <button class="nav-cat nav-mega-btn" id="brandsMegaBtn" onclick="toggleBrandsMega(event)">
+          Brands <span class="nav-mega-chevron" id="brandsMegaChevron">▾</span>
+        </button>
+        <div class="nav-mega nav-brands-mega" id="navBrandsMega">
+          <div class="brands-mega-inner">
+            <div class="brands-mega-search-wrap">
+              <input class="brands-mega-search" id="brandsMegaSearch" type="text" placeholder="Search brands…" oninput="filterBrandsMega(this.value)">
+            </div>
+            <div class="brands-mega-cats">
+              <button class="bmc-pill active" onclick="setBrandsMegaCat(this,'all')">All</button>
+              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'protein')">Protein</button>
+              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'creatine')">Creatine</button>
+              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'preworkout')">Pre-Workout</button>
+              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'fatburner')">Fat Burners</button>
+              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'bcaa')">BCAAs</button>
+              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'vitamins')">Vitamins</button>
+            </div>
+            <div class="brands-mega-grid" id="brandsMegaGrid"></div>
+          </div>
+        </div>
+      </div>
+
       <button class="nav-cat" onclick="scrollToAlerts();closeMega()">Price Alerts</button>
     </div>
 
@@ -690,31 +805,27 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 <!-- HOME VIEW -->
 <div class="view active" id="viewHome">
 
-  <!-- HERO — full bleed editorial -->
-  <div class="hero">
+  <!-- HERO — tighter, less tall, more focused -->
+  <div class="hero" style="max-height:620px;min-height:460px">
     <div class="hero-img">
       <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=85" alt="Gym">
     </div>
     <div class="hero-veil"></div>
     <div class="hero-veil2"></div>
-
-    <div class="hero-content">
+    <div class="hero-content" style="padding-bottom:120px">
       <div class="hero-overline"><div class="hero-overline-bar"></div>NZ supplement price comparison</div>
-      <h1 class="hero-h1">
-        <span class="hero-h1-plain">Stop</span><br>
-        Overpaying<br>
-        <span class="hero-h1-accent">For Supps.</span>
+      <h1 class="hero-h1" style="font-size:clamp(64px,10vw,150px)">
+        <span class="hero-h1-plain">Find</span> The<br>
+        <span class="hero-h1-accent">Best Deal.</span>
       </h1>
-      <div class="hero-row">
-        <p class="hero-sub">We compare prices across NZ's top supplement retailers every day. Find the lowest price — then click straight through to buy.</p>
+      <div class="hero-row" style="margin-top:24px">
+        <p class="hero-sub">We compare prices across NZ's top supplement retailers every day — so you don't have to.</p>
         <div class="hero-ctas">
-          <button class="hero-btn-p" onclick="document.querySelector('.status').scrollIntoView({behavior:'smooth'})">Compare Prices →</button>
-          <button class="hero-btn-s" onclick="scrollToAlerts()">Get Alerts</button>
+          <button class="hero-btn-p" onclick="openCategoryView('all')">Browse All Products →</button>
+          <button class="hero-btn-s" onclick="scrollToAlerts()">Price Alerts</button>
         </div>
       </div>
     </div>
-
-    <!-- Stats strip pinned to bottom of hero -->
     <div class="hero-stats">
       <div class="hero-stats-inner">
         <div class="hs-item"><div class="hs-n" id="hsBrands">—</div><div class="hs-l">Brands tracked</div></div>
@@ -733,114 +844,95 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
     </div>
   </div>
 
-  <!-- MAIN LAYOUT: content + sidebar -->
-  <div class="page-layout">
-    <div class="page-main">
-    <div class="wrap">
+  <!-- HOMEPAGE BODY -->
+  <div class="home-body">
+
+    <!-- RETAILER LOGO STRIP -->
+    <section class="retailer-strip-section">
+      <div class="retailer-strip-label">Prices compared from</div>
+      <div class="retailer-strip" id="retailerLogoStrip">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- SHOP BY CATEGORY — editorial image tiles -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Browse by Category</div>
+          <div class="home-section-title">Shop by Category</div>
+        </div>
+        <button class="home-see-all" onclick="openCategoryView('all')">All products →</button>
+      </div>
+      <div class="cat-tile-grid" id="catTileGrid">
+        <div class="loading-wrap" style="grid-column:1/-1;padding:40px 0"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- BEST DEALS -->
+    <section class="home-section home-section-dark">
+      <div class="home-section-inner">
+        <div class="home-section-hdr">
+          <div>
+            <div class="home-section-label" style="color:rgba(255,255,255,.4)">Best prices right now</div>
+            <div class="home-section-title" style="color:#fff">🔥 Today's Best Deals</div>
+          </div>
+          <button class="home-see-all" onclick="openCategoryView('all')" style="color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.15)">View all →</button>
+        </div>
+        <div class="feat-scroll">
+          <div class="feat-row" id="featRow">
+            <div class="loading-wrap" style="width:280px"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOWEST PRICE PER CATEGORY -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Lowest price per category</div>
+          <div class="home-section-title">Best Value Right Now</div>
+        </div>
+      </div>
+      <div class="value-picks-grid" id="valuePicksGrid">
+        <div class="loading-wrap" style="grid-column:1/-1;padding:40px 0"><div class="spinner"></div></div>
+      </div>
+    </section>
 
     <!-- MOST COMPARED -->
-    <div class="sec-hdr">
-      <div class="sec-hdr-l">
-        <div class="sec-title">Most Compared</div>
-        <div class="sec-count" id="featCount"></div>
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Tracked across the most NZ retailers</div>
+          <div class="home-section-title">Most Compared Products</div>
+        </div>
+        <button class="home-see-all" onclick="openCategoryView('all')">View all →</button>
       </div>
-      <button class="sec-link" onclick="document.querySelector('.brand-grid').scrollIntoView({behavior:'smooth'})">All brands →</button>
-    </div>
-    <div class="feat-scroll">
-      <div class="feat-row" id="featRow">
-        <div class="loading-wrap" style="width:280px"><div class="spinner"></div></div>
+      <div class="compared-grid" id="mostComparedGrid">
+        <div class="loading-wrap" style="grid-column:1/-1;padding:40px 0"><div class="spinner"></div></div>
       </div>
-    </div>
+    </section>
 
-    <!-- ALERT BANNER -->
-    <div class="alert-banner" id="alertBar">
-      <div>
-        <div class="ab-tag">Price drop alerts</div>
-        <div class="ab-title">Get notified when prices drop</div>
-        <div class="ab-sub">We watch NZ's retailers daily. Get an email the moment your product gets cheaper.</div>
-      </div>
-      <div class="ab-right">
-        <input class="ab-input" type="email" id="alertEmail" placeholder="your@email.com">
-        <button class="ab-btn" onclick="signupAlert()">Notify Me</button>
-      </div>
-    </div>
-
-    <!-- ALL BRANDS -->
-    <div class="sec-hdr" style="padding-top:0">
-      <div class="sec-hdr-l">
-        <div class="sec-title" id="bsTitle">All Brands</div>
-        <div class="sec-count" id="bsCount"></div>
-      </div>
-    </div>
-
-    <!-- Category filter strip -->
-    <div class="home-cat-strip">
-      <button class="home-cat-pill active" onclick="homeCatFilter(this,'all')">All</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'protein')">Protein</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'proteinbars')">Protein Bars</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'rtd')">RTD / Drinks</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'creatine')">Creatine</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'preworkout')">Pre-Workout</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'fatburner')">Fat Burners</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'bcaa')">BCAAs</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'vitamins')">Vitamins</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'gymfood')">Gym Food</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'accessories')">Accessories</button>
-      <button class="home-cat-pill" onclick="homeCatFilter(this,'clothing')">Clothing</button>
-    </div>
-
-    <div class="brand-grid" id="brandGrid">
-      <div class="loading-wrap" style="grid-column:1/-1"><div class="spinner"></div><div class="load-txt" style="margin-top:8px">Loading products…</div></div>
-    </div>
-
-  </div><!-- /wrap -->
-  </div><!-- /page-main -->
-
-  <!-- ADSENSE SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-sticky">
-
-      <!-- Ad slot 1 — 300x250 -->
-      <div class="ad-slot">
-        <div class="ad-label">Advertisement</div>
-        <div class="ad-box ad-300x250">
-          <!-- Replace with your AdSense code -->
-          <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
-          <div class="ad-placeholder">
-            <div class="ad-placeholder-icon">📢</div>
-            <div class="ad-placeholder-text">AdSense<br>300×250</div>
-          </div>
+    <!-- PRICE DROP ALERT -->
+    <section class="home-section">
+      <div class="alert-banner" id="alertBar">
+        <div>
+          <div class="ab-tag">Price drop alerts</div>
+          <div class="ab-title">Get notified when prices drop</div>
+          <div class="ab-sub">We watch NZ's retailers daily. Get an email the moment your product drops in price.</div>
+        </div>
+        <div class="ab-right">
+          <input class="ab-input" type="email" id="alertEmail" placeholder="your@email.com">
+          <button class="ab-btn" onclick="signupAlert()">Notify Me</button>
         </div>
       </div>
+    </section>
 
-      <!-- Ad slot 2 — 300x600 -->
-      <div class="ad-slot">
-        <div class="ad-label">Advertisement</div>
-        <div class="ad-box ad-300x600">
-          <!-- Replace with your AdSense code -->
-          <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
-          <div class="ad-placeholder">
-            <div class="ad-placeholder-icon">📢</div>
-            <div class="ad-placeholder-text">AdSense<br>300×600</div>
-          </div>
-        </div>
-      </div>
+    <!-- HIDDEN brand grid — still needed for openBrand() calls -->
+    <div id="brandGrid" style="display:none"></div>
 
-      <!-- Ad slot 3 — 300x250 -->
-      <div class="ad-slot">
-        <div class="ad-label">Advertisement</div>
-        <div class="ad-box ad-300x250">
-          <div class="ad-placeholder">
-            <div class="ad-placeholder-icon">📢</div>
-            <div class="ad-placeholder-text">AdSense<br>300×250</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </aside>
-
-  </div><!-- /page-layout -->
+  </div><!-- /home-body -->
 
   <div class="footer">
     <div class="footer-inner">
@@ -1050,6 +1142,7 @@ window.addEventListener('scroll',()=>{
 let megaActiveCat='all';
 function toggleMega(e){
   e.stopPropagation();
+  closeBrandsMega();
   const wrap=document.getElementById('megaWrap');
   const isOpen=wrap.classList.contains('open');
   isOpen?closeMega():openMega();
@@ -1057,6 +1150,7 @@ function toggleMega(e){
 function openMega(){
   const wrap=document.getElementById('megaWrap');
   wrap.classList.add('open');
+  document.getElementById('navMega').classList.add('open');
   document.getElementById('megaOverlay').classList.add('on');
   document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
   document.getElementById('megaBtn').classList.add('active');
@@ -1064,7 +1158,9 @@ function openMega(){
 }
 function closeMega(){
   document.getElementById('megaWrap').classList.remove('open');
+  document.getElementById('navMega').classList.remove('open');
   document.getElementById('megaOverlay').classList.remove('on');
+  closeBrandsMega();
 }
 function megaPickCat(el,cat){
   megaActiveCat=cat;
@@ -1478,17 +1574,157 @@ function renderCatProducts(){
   const plist=document.getElementById('catPlist');
   if(!groups.length){plist.innerHTML='<div class="plist-empty">No products match these filters</div>';return;}
 
-  // Build activeFilters to pass to cards so price shown matches what user filtered for
-  const activeFilters={
-    sizeMin: catViewSizeMin,
-    sizeMax: catViewSizeMax,
-    proteinType: catViewProteinType,
-  };
+  const activeFilters={sizeMin:catViewSizeMin,sizeMax:catViewSizeMax,proteinType:catViewProteinType};
 
-  plist.innerHTML=`<div class="pcard-grid" style="padding:20px 24px 80px">${groups.map(({brand,group:g},i)=>buildProductCard(g,brand,i,activeFilters)).join('')}</div>`;
+  // ── Pagination: render first PAGE_SIZE products, append more on demand ──
+  const PAGE_SIZE=96;
+  const firstBatch=groups.slice(0,PAGE_SIZE);
+  const remaining=groups.length-PAGE_SIZE;
+
+  const gridHtml=`<div class="pcard-grid" id="catProductGrid" style="padding:20px 24px 40px">${firstBatch.map(({brand,group:g},i)=>buildProductCard(g,brand,i,activeFilters)).join('')}</div>`;
+  const loadMoreHtml=remaining>0
+    ?`<div id="catLoadMoreWrap" style="text-align:center;padding:0 0 60px">
+        <button class="load-more-btn" onclick="catLoadMore()">Show ${Math.min(PAGE_SIZE,remaining)} more products <span style="opacity:.6;font-size:13px">(${remaining} remaining)</span></button>
+      </div>`
+    :'<div style="padding-bottom:60px"></div>';
+
+  plist.innerHTML=gridHtml+loadMoreHtml;
+
+  // Store pending groups for load more
+  window._catPendingGroups=groups.slice(PAGE_SIZE);
+  window._catActiveFilters=activeFilters;
 }
 
-// ── VIEW MANAGEMENT ──
+function catLoadMore(){
+  const pending=window._catPendingGroups||[];
+  if(!pending.length)return;
+  const activeFilters=window._catActiveFilters||{};
+  const PAGE_SIZE=96;
+  const grid=document.getElementById('catProductGrid');
+  const startIdx=grid.children.length;
+  const batch=pending.splice(0,PAGE_SIZE);
+  grid.insertAdjacentHTML('beforeend',batch.map(({brand,group:g},i)=>buildProductCard(g,brand,startIdx+i,activeFilters)).join(''));
+  window._catPendingGroups=pending;
+  const wrap=document.getElementById('catLoadMoreWrap');
+  if(!wrap)return;
+  if(pending.length===0){wrap.remove();}
+  else{wrap.innerHTML=`<button class="load-more-btn" onclick="catLoadMore()">Show ${Math.min(PAGE_SIZE,pending.length)} more products <span style="opacity:.6;font-size:13px">(${pending.length} remaining)</span></button>`;}
+}
+
+// ── BRANDS MEGA DROPDOWN ──────────────────────────────────────
+let _brandsMegaOpen=false,_brandsMegaCat='all',_brandsMegaQ='';
+function toggleBrandsMega(e){
+  e.stopPropagation();
+  _brandsMegaOpen=!_brandsMegaOpen;
+  document.getElementById('navBrandsMega').classList.toggle('open',_brandsMegaOpen);
+  document.getElementById('brandsMegaChevron').style.transform=_brandsMegaOpen?'rotate(180deg)':'';
+  document.getElementById('megaOverlay').classList.toggle('active',_brandsMegaOpen);
+  if(_brandsMegaOpen){renderBrandsMega();setTimeout(()=>document.getElementById('brandsMegaSearch')?.focus(),80);}
+}
+function closeBrandsMega(){
+  _brandsMegaOpen=false;
+  document.getElementById('navBrandsMega')?.classList.remove('open');
+  document.getElementById('brandsMegaChevron').style.transform='';
+}
+function setBrandsMegaCat(el,cat){
+  _brandsMegaCat=cat;
+  document.querySelectorAll('.bmc-pill').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderBrandsMega();
+}
+function filterBrandsMega(q){_brandsMegaQ=q.toLowerCase();renderBrandsMega();}
+function renderBrandsMega(){
+  const grid=document.getElementById('brandsMegaGrid');
+  if(!grid||!Object.keys(BRANDS).length)return;
+  let brands=Object.values(BRANDS);
+  if(_brandsMegaCat!=='all') brands=brands.filter(b=>b.cats.includes(_brandsMegaCat));
+  if(_brandsMegaQ) brands=brands.filter(b=>b.name.toLowerCase().includes(_brandsMegaQ));
+  brands.sort((a,z)=>a.name.localeCompare(z.name));
+  grid.innerHTML=brands.slice(0,60).map(b=>{
+    const count=b.groupList.length;
+    const logo=`https://logo.clearbit.com/${encodeURIComponent(b.name.toLowerCase().replace(/\s+/g,'')+'.com')}`;
+    return`<div class="bmg-item" onclick="openBrand('${b.name.replace(/'/g,"\\'")}');closeBrandsMega();closeMega()">
+      <img class="bmg-logo" src="${logo}" alt="${b.name}" onerror="this.outerHTML='<div class=\\'bmg-logo\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink3)\\'>${b.name[0]}</div>'">
+      <div><div class="bmg-name">${b.name}</div><div class="bmg-count">${count} products</div></div>
+    </div>`;
+  }).join('');
+}
+// Close brands mega on outside click
+document.addEventListener('click',e=>{
+  if(_brandsMegaOpen&&!e.target.closest('#brandsMegaWrap')){closeBrandsMega();document.getElementById('megaOverlay').classList.remove('active');}
+});
+
+// ── RETAILER LOGO STRIP ───────────────────────────────────────
+function renderRetailerStrip(){
+  const strip=document.getElementById('retailerLogoStrip');
+  if(!strip)return;
+  const retailers=Object.entries(RETAILER_META);
+  strip.innerHTML=retailers.map(([id,r])=>{
+    // Use Clearbit Logo API for real logos
+    const logoUrl=`https://logo.clearbit.com/${r.domain}`;
+    return`<div class="retailer-logo-item" onclick="filterByRetailer('${id}')" title="${r.name}">
+      <img class="retailer-logo-img" src="${logoUrl}" alt="${r.name}"
+        onerror="this.outerHTML='<span class=\\'retailer-logo-fallback\\'>${r.name}</span>'">
+    </div>`;
+  }).join('');
+}
+function filterByRetailer(retailerId){
+  openCategoryView('all');
+  // Filter to just this retailer's products in the category view
+  setTimeout(()=>{
+    catViewRetailer=retailerId;
+    renderCatProducts();
+  },100);
+}
+
+// ── EDITORIAL CATEGORY TILES ──────────────────────────────────
+const CAT_TILE_CONFIG=[
+  {key:'protein',    label:'Protein',       tall:true,  wide:false},
+  {key:'creatine',   label:'Creatine',      tall:false, wide:false},
+  {key:'preworkout', label:'Pre-Workout',   tall:false, wide:false},
+  {key:'proteinbars',label:'Protein Bars',  tall:false, wide:true },
+  {key:'fatburner',  label:'Fat Burners',   tall:false, wide:false},
+  {key:'bcaa',       label:'BCAAs',         tall:false, wide:false},
+  {key:'vitamins',   label:'Vitamins',      tall:false, wide:false},
+  {key:'rtd',        label:'Drinks',        tall:false, wide:false},
+];
+
+function renderCatTiles(){
+  const grid=document.getElementById('catTileGrid');
+  if(!grid)return;
+  // For each category, find the most-compared product with an image
+  const tiles=CAT_TILE_CONFIG.map(cfg=>{
+    let best=null,bestScore=0;
+    for(const b of Object.values(BRANDS)){
+      for(const g of b.groupList){
+        if(g.category!==cfg.key||!g.imageUrl)continue;
+        const rc=new Set(g.inStockListings.map(l=>l.retailer)).size;
+        if(rc>bestScore){bestScore=rc;best={group:g,brand:b.name,rc};}
+      }
+    }
+    const counts={};
+    for(const b of Object.values(BRANDS))for(const g of b.groupList)if(g.category===cfg.key)counts[cfg.key]=(counts[cfg.key]||0)+1;
+    return{...cfg,best,count:counts[cfg.key]||0};
+  });
+
+  grid.innerHTML=tiles.map(t=>{
+    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}`;
+    const img=t.best?.group.imageUrl
+      ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.style.display='none'">`
+      :`<div class="cat-tile-img" style="background:linear-gradient(135deg,#2a2926,#1a1917)"></div>`;
+    return`<div class="${cls}" onclick="openCategoryView('${t.key}')">
+      ${img}
+      <div class="cat-tile-veil"></div>
+      <div class="cat-tile-arrow">↗</div>
+      <div class="cat-tile-content">
+        <div class="cat-tile-label">${t.label}</div>
+        <div class="cat-tile-count">${t.count} products</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+
 
 const CAT_META={
   protein:      {label:'Protein Powder',    color:'#3b82f6'},
@@ -1594,7 +1830,92 @@ function init(updatedAt){
   document.getElementById('hsProducts').textContent=inStockCount;
   document.getElementById('hsRetailers').textContent=rc||Object.keys(RETAILER_META).length;
   setStatus('live',`${inStockCount} products tracked across ${rc||Object.keys(RETAILER_META).length} NZ retailers`,updatedAt);
-  renderFeatured();renderBrands();
+  renderFeatured();renderBrands();renderValuePicks();renderMostCompared();renderCatTiles();renderRetailerStrip();renderCatShortcutCounts();}
+
+function renderCatShortcutCounts(){
+  const cats=['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing','all'];
+  const counts={all:0};
+  for(const b of Object.values(BRANDS))for(const g of b.groupList){counts[g.category]=(counts[g.category]||0)+1;counts.all++;}
+  for(const c of cats){const el=document.getElementById('csc-'+c);if(el)el.textContent=((counts[c]||0).toLocaleString())+' products';}
+}
+
+function renderValuePicks(){
+  const cats=[
+    {key:'protein',    label:'Protein',    icon:'🥛',c:'#3b82f6',bg:'rgba(59,130,246,.1)'},
+    {key:'creatine',   label:'Creatine',   icon:'⚡',c:'#22c55e',bg:'rgba(34,197,94,.1)'},
+    {key:'preworkout', label:'Pre-Workout',icon:'🔥',c:'#f59e0b',bg:'rgba(245,158,11,.1)'},
+    {key:'fatburner',  label:'Fat Burner', icon:'💧',c:'#ef4444',bg:'rgba(239,68,68,.1)'},
+    {key:'bcaa',       label:'BCAAs',      icon:'💊',c:'#a855f7',bg:'rgba(168,85,247,.1)'},
+    {key:'vitamins',   label:'Vitamins',   icon:'🌿',c:'#10b981',bg:'rgba(16,185,129,.1)'},
+    {key:'proteinbars',label:'Protein Bars',icon:'🍫',c:'#f97316',bg:'rgba(249,115,22,.1)'},
+    {key:'rtd',        label:'RTD',        icon:'🥤',c:'#06b6d4',bg:'rgba(6,182,212,.1)'},
+  ];
+  const picks=[];
+  for(const cat of cats){
+    let best=null,bestPrice=Infinity;
+    for(const b of Object.values(BRANDS))for(const g of b.groupList){
+      if(g.category!==cat.key||!g.inStockListings.length)continue;
+      const p=Math.min(...g.inStockListings.map(l=>l.priceFrom));
+      if(p<bestPrice&&p>0){bestPrice=p;best={brand:b.name,group:g,price:p,rc:new Set(g.inStockListings.map(l=>l.retailer)).size,cat};}
+    }
+    if(best)picks.push(best);
+  }
+  const el=document.getElementById('valuePicksGrid');
+  if(!picks.length){el.innerHTML='<div class="plist-empty">No data yet</div>';return;}
+  el.innerHTML=picks.map(p=>{
+    const img=p.group.imageUrl
+      ?`<img class="vp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.outerHTML='<div class=\\'vp-img-placeholder\\'>${p.cat.icon}</div>'">`
+      :`<div class="vp-img-placeholder">${p.cat.icon}</div>`;
+    const d=Math.floor(p.price),c=(p.price%1).toFixed(2).slice(1);
+    return`<div class="vp-card" onclick="openDetail('${p.group.key.replace(/'/g,"\\'")}','${p.brand.replace(/'/g,"\\'")}')">
+      <div class="vp-cat-badge" style="--badge-bg:${p.cat.bg};--badge-c:${p.cat.c}">${p.cat.icon} ${p.cat.label}</div>
+      ${img}<div class="vp-brand">${p.brand}</div>
+      <div class="vp-name">${p.group.name}</div>
+      <div class="vp-price-row"><div class="vp-from">from</div><div class="vp-price">$${d}${c}</div></div>
+      ${p.rc>1?`<div class="vp-retailers">Sold at ${p.rc} retailers</div>`:''}
+      <div class="vp-arrow">↗</div>
+    </div>`;
+  }).join('');
+}
+
+function renderMostCompared(){
+  const all=[];
+  for(const b of Object.values(BRANDS))for(const g of b.groupList){
+    if(!g.inStockListings.length)continue;
+    const rc=new Set(g.inStockListings.map(l=>l.retailer)).size;
+    if(rc<2)continue;
+    const best=Math.min(...g.inStockListings.map(l=>l.priceFrom));
+    all.push({brand:b.name,group:g,rc,best});
+  }
+  all.sort((a,z)=>z.rc-a.rc||a.best-z.best);
+  const top=all.slice(0,18);
+  const el=document.getElementById('mostComparedGrid');
+  if(!top.length){el.innerHTML='<div class="plist-empty">No data yet</div>';return;}
+  el.innerHTML=top.map(p=>{
+    const img=p.group.imageUrl
+      ?`<img class="cmp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.style.display='none'">`
+      :`<div class="cmp-img-ph">${p.brand[0]}</div>`;
+    return`<div class="cmp-card" onclick="openDetail('${p.group.key.replace(/'/g,"\\'")}','${p.brand.replace(/'/g,"\\'")}')">
+      ${img}<div class="cmp-info">
+        <div class="cmp-brand">${p.brand}</div>
+        <div class="cmp-name">${p.group.name}</div>
+        <div class="cmp-meta">
+          <div class="cmp-price">$${p.best.toFixed(2)}</div>
+          <div class="cmp-badge">${p.rc} retailers</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+let _brandSectionOpen=false;
+function toggleBrandSection(){
+  _brandSectionOpen=!_brandSectionOpen;
+  document.getElementById('brandGrid').style.display=_brandSectionOpen?'grid':'none';
+  document.getElementById('brandCatStrip').style.display=_brandSectionOpen?'flex':'none';
+  document.getElementById('brandToggleBtn').textContent=_brandSectionOpen?'Hide brands ↑':'Show brands ↓';
+  if(_brandSectionOpen)document.getElementById('brandSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
 }
 
 function renderFeatured(){
@@ -1728,9 +2049,32 @@ function renderProducts(){
   if(!showOos)groups=groups.filter(g=>!g.soldOut);
   const plist=document.getElementById('plist');
   if(!groups.length){plist.innerHTML=`<div class="plist-empty">${searchQ?`No products matching "${searchQ}"`:'No in-stock products'}</div>`;return;}
-  plist.innerHTML=`<div class="pcard-grid">${groups.map((g,i)=>buildProductCard(g,currentBrand,i)).join('')}</div>`;
+  const PAGE_SIZE=96;
+  const first=groups.slice(0,PAGE_SIZE);
+  const rest=groups.slice(PAGE_SIZE);
+  const gridHtml=`<div class="pcard-grid" id="brandProductGrid">${first.map((g,i)=>buildProductCard(g,currentBrand,i)).join('')}</div>`;
+  const loadMoreHtml=rest.length>0
+    ?`<div id="brandLoadMoreWrap" style="text-align:center;padding:0 0 60px">
+        <button class="load-more-btn" onclick="brandLoadMore()">Show ${Math.min(PAGE_SIZE,rest.length)} more <span style="opacity:.6;font-size:13px">(${rest.length} remaining)</span></button>
+      </div>`:'<div style="padding-bottom:60px"></div>';
+  plist.innerHTML=gridHtml+loadMoreHtml;
+  window._brandPendingGroups=rest;
 }
 
+function brandLoadMore(){
+  const pending=window._brandPendingGroups||[];
+  if(!pending.length)return;
+  const PAGE_SIZE=96;
+  const grid=document.getElementById('brandProductGrid');
+  const startIdx=grid.children.length;
+  const batch=pending.splice(0,PAGE_SIZE);
+  grid.insertAdjacentHTML('beforeend',batch.map((g,i)=>buildProductCard(g,currentBrand,startIdx+i)).join(''));
+  window._brandPendingGroups=pending;
+  const wrap=document.getElementById('brandLoadMoreWrap');
+  if(!wrap)return;
+  if(pending.length===0){wrap.remove();}
+  else{wrap.innerHTML=`<button class="load-more-btn" onclick="brandLoadMore()">Show ${Math.min(PAGE_SIZE,pending.length)} more <span style="opacity:.6;font-size:13px">(${pending.length} remaining)</span></button>`;}
+}
 function buildProductCard(g, brand, i, activeFilters){
   // activeFilters = { sizeKey: '2kg', proteinType: 'whey', ... } — passed from renderCatProducts
   const cm=CAT_META[g.category]||{label:g.category,color:'#888'};
