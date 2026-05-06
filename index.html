@@ -1773,7 +1773,6 @@ let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',
 async function loadData(){
   // Show skeleton loaders while fetching
   document.getElementById('featRow').innerHTML=Array(6).fill('<div class="skel skel-card"></div>').join('');
-  document.getElementById('brandGrid').innerHTML=Array(8).fill('<div class="skel skel-brand"></div>').join('');
   try{const r=await fetch('data/products.json');if(r.ok){const d=await r.json();if(d.products?.length){ALL=d.products;META=d.meta||{};init(META.updatedAt);checkDeepLink();return;}}}catch(e){}
   setStatus('error','Could not load products.json — run node scraper.js first',null);
 }
@@ -1911,11 +1910,13 @@ function renderMostCompared(){
 let _brandSectionOpen=false;
 function toggleBrandSection(){
   _brandSectionOpen=!_brandSectionOpen;
-  document.getElementById('brandGrid').style.display=_brandSectionOpen?'grid':'none';
-  document.getElementById('brandCatStrip').style.display=_brandSectionOpen?'flex':'none';
-  document.getElementById('brandToggleBtn').textContent=_brandSectionOpen?'Hide brands ↑':'Show brands ↓';
-  if(_brandSectionOpen)document.getElementById('brandSection').scrollIntoView({behavior:'smooth',block:'start'});
-}
+  const grid=document.getElementById('brandGrid');
+  const strip=document.getElementById('brandCatStrip');
+  const btn=document.getElementById('brandToggleBtn');
+  if(grid)grid.style.display=_brandSectionOpen?'grid':'none';
+  if(strip)strip.style.display=_brandSectionOpen?'flex':'none';
+  if(btn)btn.textContent=_brandSectionOpen?'Hide brands ↑':'Show brands ↓';
+  if(_brandSectionOpen){const s=document.getElementById('brandSection');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});}
 }
 
 function renderFeatured(){
@@ -1930,7 +1931,8 @@ function renderFeatured(){
   }
   featured.sort((a,z)=>z.rc-a.rc||a.best-z.best);
   const top=featured.slice(0,16);
-  document.getElementById('featCount').textContent=`${top.length} products`;
+  const featCountEl=document.getElementById('featCount');
+  if(featCountEl)featCountEl.textContent=`${top.length} products`;
   if(!top.length){document.getElementById('featRow').innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
   document.getElementById('featRow').innerHTML=top.map((f,i)=>{
     const d=Math.floor(f.best);const c=(f.best%1).toFixed(2).slice(1);
@@ -1953,13 +1955,16 @@ function homeCatFilter(el,cat){
   document.querySelectorAll('.home-cat-pill').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   catFilter=cat;
-  document.getElementById('bsTitle').textContent=cat==='all'?'All Brands':(CAT_META[cat]?.label||cat)+' Brands';
+  const bsTitle=document.getElementById('bsTitle');
+  if(bsTitle)bsTitle.textContent=cat==='all'?'All Brands':(CAT_META[cat]?.label||cat)+' Brands';
   renderBrands();
 }
 function navFilterCat(el,cat){
   document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));el.classList.add('active');
-  catFilter=cat;document.getElementById('bsTitle').textContent=cat==='all'?'All Brands':(CAT_META[cat]?.label||cat);
-  renderBrands();if(document.getElementById('viewHome').classList.contains('active'))document.querySelector('.brand-grid').scrollIntoView({behavior:'smooth'});
+  catFilter=cat;
+  const bsTitle=document.getElementById('bsTitle');
+  if(bsTitle)bsTitle.textContent=cat==='all'?'All Brands':(CAT_META[cat]?.label||cat);
+  renderBrands();
 }
 function onSearch(q){
   searchQ=q.toLowerCase().trim();
@@ -1991,7 +1996,8 @@ function renderBrands(){
     }
     return b.groupList.length-a.groupList.length||a.name.localeCompare(b.name);
   });
-  document.getElementById('bsCount').textContent=`${brands.length} brand${brands.length!==1?'s':''}`;
+  const bsCount=document.getElementById('bsCount');
+  if(bsCount)bsCount.textContent=`${brands.length} brand${brands.length!==1?'s':''}`;
   const grid=document.getElementById('brandGrid');
   if(!brands.length){grid.innerHTML=`<div class="loading-wrap" style="grid-column:1/-1"><div class="load-txt">No brands found for "${searchQ}"</div></div>`;return;}
   grid.innerHTML=brands.map((b,i)=>{
