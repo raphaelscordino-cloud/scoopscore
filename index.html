@@ -735,9 +735,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
                 <span class="mci-label">BCAAs &amp; Aminos</span>
                 <span class="mci-count" id="mciCount-bcaa"></span>
               </button>
-              <button class="mega-cat-item" data-cat="vitamins" onclick="openCategoryView('vitamins');closeMega()">
-                <span class="mci-label">Vitamins &amp; Health</span>
-                <span class="mci-count" id="mciCount-vitamins"></span>
               </button>
               <button class="mega-cat-item" data-cat="gymfood" onclick="openCategoryView('gymfood');closeMega()">
                 <span class="mci-label">Gym Food</span>
@@ -747,9 +744,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
                 <span class="mci-label">Accessories</span>
                 <span class="mci-count" id="mciCount-accessories"></span>
               </button>
-              <button class="mega-cat-item" data-cat="clothing" onclick="openCategoryView('clothing');closeMega()">
-                <span class="mci-label">Clothing</span>
-                <span class="mci-count" id="mciCount-clothing"></span>
               </button>
             </div>
             <div class="mega-brands">
@@ -778,7 +772,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
               <button class="bmc-pill" onclick="setBrandsMegaCat(this,'preworkout')">Pre-Workout</button>
               <button class="bmc-pill" onclick="setBrandsMegaCat(this,'fatburner')">Fat Burners</button>
               <button class="bmc-pill" onclick="setBrandsMegaCat(this,'bcaa')">BCAAs</button>
-              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'vitamins')">Vitamins</button>
             </div>
             <div class="brands-mega-grid" id="brandsMegaGrid"></div>
           </div>
@@ -1184,7 +1177,7 @@ function renderMegaBrands(cat){
     </button>`;
   }).join('');
   // Update counts in cat list
-  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
+  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories'];
   cats.forEach(c=>{
     const el=document.getElementById('mciCount-'+c);
     if(!el)return;
@@ -1444,7 +1437,7 @@ function openCategoryView(cat){
   document.getElementById('catActiveFiltersWrap').style.display='none';
 }
 function renderCatFilterPills(){
-  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
+  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories'];
   document.getElementById('catFilterPills').innerHTML=cats.map(c=>{
     const label=c==='all'?'All':CAT_META[c]?.label||c;
     return`<button class="bcf-pill${catViewCat===c?' active':''}" onclick="setCatViewCat(this,'${c}')">${label}</button>`;
@@ -1683,7 +1676,6 @@ const CAT_TILE_CONFIG=[
   {key:'proteinbars',label:'Protein Bars',  tall:false, wide:true },
   {key:'fatburner',  label:'Fat Burners',   tall:false, wide:false},
   {key:'bcaa',       label:'BCAAs',         tall:false, wide:false},
-  {key:'vitamins',   label:'Vitamins',      tall:false, wide:false},
   {key:'rtd',        label:'Drinks',        tall:false, wide:false},
 ];
 
@@ -1732,10 +1724,8 @@ const CAT_META={
   preworkout:   {label:'Pre-Workout',       color:'#f59e0b'},
   fatburner:    {label:'Fat Burner',        color:'#ef4444'},
   bcaa:         {label:'BCAA / Aminos',     color:'#a855f7'},
-  vitamins:     {label:'Vitamins & Health', color:'#10b981'},
   gymfood:      {label:'Gym Food',          color:'#84cc16'},
   accessories:  {label:'Accessories',       color:'#6b7280'},
-  clothing:     {label:'Clothing',          color:'#8b5cf6'},
 };
 const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion Supplements',domain:'scorpionsupplements.co.nz',shipping:'Free over $75'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Free over $60'},elitesupplements:{name:'Elite Supplements',domain:'elitesupplements.co.nz',shipping:'Check site'},bodystrong:{name:'BodyStrong',domain:'bodystrong.co.nz',shipping:'Check site'},bargainchemist:{name:'Bargain Chemist',domain:'bargainchemist.co.nz',shipping:'Free shipping'},payless:{name:'Payless Supplements',domain:'paylesssupplements.co.nz',shipping:'Free shipping'},nutritionwarehouse:{name:'Nutrition Warehouse',domain:'nutritionwarehouse.co.nz',shipping:'Free over $60'},supplementsnz:{name:'Supplements NZ',domain:'supplements.co.nz',shipping:'Free shipping'},reactiv:{name:'Reactiv Supplements',domain:'reactivsupplements.co.nz',shipping:'Free NZ-wide'},eatme:{name:'Eat Me Supplements',domain:'eatmesupplements.co.nz',shipping:'Check site'},kiwinutrition:{name:'Kiwi Nutrition',domain:'kiwinutrition.co.nz',shipping:'Check site'}};
 function rm(id){return RETAILER_META[id]||{name:id,domain:id,shipping:'Check site'};}
@@ -1876,7 +1866,7 @@ function init(updatedAt){
   renderFeatured();renderBrands();renderValuePicks();renderMostCompared();renderCatTiles();renderRetailerStrip();renderCatShortcutCounts();}
 
 function renderCatShortcutCounts(){
-  const cats=['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing','all'];
+  const cats=['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories','all'];
   const counts={all:0};
   for(const b of Object.values(BRANDS))for(const g of b.groupList){counts[g.category]=(counts[g.category]||0)+1;counts.all++;}
   for(const c of cats){const el=document.getElementById('csc-'+c);if(el)el.textContent=((counts[c]||0).toLocaleString())+' products';}
@@ -1889,7 +1879,6 @@ function renderValuePicks(){
     {key:'preworkout', label:'Pre-Workout',icon:'🔥',c:'#f59e0b',bg:'rgba(245,158,11,.1)'},
     {key:'fatburner',  label:'Fat Burner', icon:'💧',c:'#ef4444',bg:'rgba(239,68,68,.1)'},
     {key:'bcaa',       label:'BCAAs',      icon:'💊',c:'#a855f7',bg:'rgba(168,85,247,.1)'},
-    {key:'vitamins',   label:'Vitamins',   icon:'🌿',c:'#10b981',bg:'rgba(16,185,129,.1)'},
     {key:'proteinbars',label:'Protein Bars',icon:'🍫',c:'#f97316',bg:'rgba(249,115,22,.1)'},
     {key:'rtd',        label:'RTD',        icon:'🥤',c:'#06b6d4',bg:'rgba(6,182,212,.1)'},
   ];

@@ -19672,3 +19672,277 @@ Output: C:\Users\rapha\scoopscore\data\products.json
 [2026-05-01T00:33:12.794Z]   clothing        18
 [2026-05-01T00:33:12.795Z] 
 Output: C:\Users\rapha\scoopscore\data\products.json
+[2026-05-09T02:39:24.193Z] 
+[2026-05-09T02:39:24.207Z] ═══════════════════════════════════════════
+[2026-05-09T02:39:24.208Z]   ScoopScore Scraper v2 — GraphQL Edition  
+[2026-05-09T02:39:24.209Z] ═══════════════════════════════════════════
+[2026-05-09T02:39:24.209Z]   Retailers: 15
+[2026-05-09T02:39:24.209Z]   Method: Shopify GraphQL → products.json fallback
+[2026-05-09T02:39:24.210Z] 
+[2026-05-09T02:39:24.347Z]   Loaded 11607 existing products for price history
+[2026-05-09T02:39:24.349Z] Scraping NZ Muscle...
+[2026-05-09T02:39:24.378Z] Scraping Sportsfuel...
+[2026-05-09T02:39:24.379Z] Scraping Scorpion Supplements...
+[2026-05-09T02:39:24.380Z] Scraping ASN Online...
+[2026-05-09T02:39:24.381Z] Scraping Supplement Solutions...
+[2026-05-09T02:39:24.570Z]   NZ Muscle GQL failed (GQL HTTP 401 for nzmuscle.co.nz), falling back to products.json...
+[2026-05-09T02:39:24.581Z]   Sportsfuel GQL failed (GQL HTTP 401 for www.sportsfuel.co.nz), falling back to products.json...
+[2026-05-09T02:39:24.734Z]   NZ Muscle products.json page 1 failed: HTTP 503: https://nzmuscle.co.nz/products.json?limit=250&page=1
+[2026-05-09T02:39:24.735Z]   NZ Muscle: 0 gym products total
+[2026-05-09T02:39:24.740Z]   Sportsfuel products.json page 1 failed: HTTP 503: https://www.sportsfuel.co.nz/products.json?limit=250&page=1
+[2026-05-09T02:39:24.741Z]   Sportsfuel: 0 gym products total
+[2026-05-09T02:39:24.750Z]   Scorpion Supplements GQL failed (GQL HTTP 401 for scorpionsupplements.co.nz), falling back to products.json...
+[2026-05-09T02:39:24.781Z]   ASN Online GQL failed (GQL HTTP 401 for asnonline.co.nz), falling back to products.json...
+[2026-05-09T02:39:24.804Z]   Supplement Solutions GQL failed (GQL HTTP 401 for www.supplementsolutions.co.nz), falling back to products.json...
+[2026-05-09T02:39:24.908Z]   Scorpion Supplements products.json page 1 failed: HTTP 503: https://scorpionsupplements.co.nz/products.json?limit=250&page=1
+[2026-05-09T02:39:24.908Z]   Scorpion Supplements: 0 gym products total
+[2026-05-09T02:39:24.968Z]   ASN Online products.json page 1 failed: HTTP 503: https://asnonline.co.nz/products.json?limit=250&page=1
+[2026-05-09T02:39:24.968Z]   ASN Online: 0 gym products total
+[2026-05-09T02:39:25.318Z]   Supplement Solutions page 1: 117 products (JSON)
+[2026-05-09T02:39:25.319Z]   Supplement Solutions: 116 gym products total
+[2026-05-09T02:39:26.334Z] Scraping Raisey's...
+[2026-05-09T02:39:26.336Z] Scraping BodyStrong...
+[2026-05-09T02:39:26.337Z] Scraping Bargain Chemist...
+[2026-05-09T02:39:26.338Z] Scraping Payless Supplements...
+[2026-05-09T02:39:26.338Z] Scraping Supplements NZ...
+[2026-05-09T02:39:26.551Z]   Bargain Chemist GQL failed (GQL HTTP 401 for www.bargainchemist.co.nz), falling back to products.json...
+[2026-05-09T02:39:26.748Z]   Supplements NZ GQL failed (GQL HTTP 401 for www.supplements.co.nz), falling back to products.json...
+[2026-05-09T02:39:26.789Z]   BodyStrong GQL failed (GQL HTTP 401 for bodystrong.co.nz), falling back to products.json...
+[2026-05-09T02:39:26.875Z]   Raisey's GQL failed (GQL HTTP 401 for raiseys.co.nz), falling back to products.json...
+[2026-05-09T02:39:27.014Z]   Payless Supplements GQL failed (GQL HTTP 401 for paylesssupplements.co.nz), falling back to products.json...
+[2026-05-09T02:39:27.230Z]   Raisey's page 1: 43 products (JSON)
+[2026-05-09T02:39:27.231Z]   Raisey's: 36 gym products total
+[2026-05-09T02:39:27.275Z]   Bargain Chemist page 1: 250 products (JSON)
+[2026-05-09T02:39:27.653Z]   Supplements NZ page 1: 250 products (JSON)
+[2026-05-09T02:39:27.666Z]   BodyStrong page 1: 137 products (JSON)
+[2026-05-09T02:39:27.667Z]   BodyStrong: 135 gym products total
+[2026-05-09T02:39:27.843Z]   Bargain Chemist products.json page 2 failed: HTTP 503: https://www.bargainchemist.co.nz/products.json?limit=250&page=2
+[2026-05-09T02:39:27.843Z]   Bargain Chemist: 79 gym products total
+[2026-05-09T02:39:28.325Z]   Payless Supplements page 1: 250 products (JSON)
+[2026-05-09T02:39:29.023Z]   Supplements NZ page 2: 250 products (JSON)
+[2026-05-09T02:39:30.288Z]   Payless Supplements page 2: 250 products (JSON)
+[2026-05-09T02:39:30.782Z]   Supplements NZ page 3: 250 products (JSON)
+[2026-05-09T02:39:31.286Z]   Payless Supplements page 3: 63 products (JSON)
+[2026-05-09T02:39:31.286Z]   Payless Supplements: 534 gym products total
+[2026-05-09T02:39:32.694Z]   Supplements NZ page 4: 250 products (JSON)
+[2026-05-09T02:39:34.797Z]   Supplements NZ page 5: 250 products (JSON)
+[2026-05-09T02:39:36.632Z]   Supplements NZ page 6: 250 products (JSON)
+[2026-05-09T02:39:38.157Z]   Supplements NZ page 7: 250 products (JSON)
+[2026-05-09T02:39:39.292Z]   Supplements NZ page 8: 250 products (JSON)
+[2026-05-09T02:39:40.531Z]   Supplements NZ page 9: 250 products (JSON)
+[2026-05-09T02:39:41.788Z]   Supplements NZ page 10: 250 products (JSON)
+[2026-05-09T02:39:43.169Z]   Supplements NZ page 11: 250 products (JSON)
+[2026-05-09T02:39:44.463Z]   Supplements NZ page 12: 250 products (JSON)
+[2026-05-09T02:39:45.750Z]   Supplements NZ page 13: 250 products (JSON)
+[2026-05-09T02:39:46.988Z]   Supplements NZ page 14: 250 products (JSON)
+[2026-05-09T02:39:48.182Z]   Supplements NZ page 15: 250 products (JSON)
+[2026-05-09T02:39:48.842Z]   Supplements NZ page 16: 49 products (JSON)
+[2026-05-09T02:39:48.843Z]   Supplements NZ: 2698 gym products total
+[2026-05-09T02:39:49.858Z] Scraping Reactiv Supplements...
+[2026-05-09T02:39:49.860Z] Scraping Eat Me Supplements...
+[2026-05-09T02:39:49.861Z] Scraping Kiwi Nutrition...
+[2026-05-09T02:39:49.862Z] Scraping Elite Supplements...
+[2026-05-09T02:39:49.862Z] Scraping Nutrition Warehouse...
+[2026-05-09T02:39:50.113Z]   Kiwi Nutrition GQL failed (GQL HTTP 401 for kiwinutrition.co.nz), falling back to products.json...
+[2026-05-09T02:39:50.283Z]   Reactiv Supplements GQL failed (GQL HTTP 401 for www.reactivsupplements.co.nz), falling back to products.json...
+[2026-05-09T02:39:50.425Z]   Kiwi Nutrition page 1: 18 products (JSON)
+[2026-05-09T02:39:50.425Z]   Kiwi Nutrition: 18 gym products total
+[2026-05-09T02:39:50.434Z]   Nutrition Warehouse GQL failed (GQL HTTP 401 for www.nutritionwarehouse.co.nz), falling back to products.json...
+[2026-05-09T02:39:50.513Z]   Eat Me Supplements GQL failed (GQL HTTP 401 for www.eatmesupplements.co.nz), falling back to products.json...
+[2026-05-09T02:39:50.652Z]   Elite Supplements GQL failed (GQL HTTP 401 for elitesupplements.co.nz), falling back to products.json...
+[2026-05-09T02:39:50.661Z]   Reactiv Supplements page 1: 55 products (JSON)
+[2026-05-09T02:39:50.661Z]   Reactiv Supplements: 41 gym products total
+[2026-05-09T02:39:51.034Z]   Elite Supplements page 1: 9 products (JSON)
+[2026-05-09T02:39:51.034Z]   Elite Supplements: 0 gym products total
+[2026-05-09T02:39:51.191Z]   Eat Me Supplements page 1: 94 products (JSON)
+[2026-05-09T02:39:51.192Z]   Eat Me Supplements: 89 gym products total
+[2026-05-09T02:39:51.565Z]   Nutrition Warehouse page 1: 250 products (JSON)
+[2026-05-09T02:39:52.855Z]   Nutrition Warehouse page 2: 250 products (JSON)
+[2026-05-09T02:39:54.465Z]   Nutrition Warehouse page 3: 250 products (JSON)
+[2026-05-09T02:39:55.891Z]   Nutrition Warehouse page 4: 250 products (JSON)
+[2026-05-09T02:39:57.336Z]   Nutrition Warehouse page 5: 249 products (JSON)
+[2026-05-09T02:39:57.336Z]   Nutrition Warehouse: 1219 gym products total
+[2026-05-09T02:39:57.423Z] 
+[2026-05-09T02:39:57.423Z] ═══════════════════ RESULTS ═══════════════════
+[2026-05-09T02:39:57.424Z]   Total products: 4965
+[2026-05-09T02:39:57.424Z]   Time: 33.0s
+[2026-05-09T02:39:57.424Z] 
+[2026-05-09T02:39:57.424Z]   ⚠️  SCRAPE WARNINGS — check these retailers manually:
+[2026-05-09T02:39:57.425Z]   ⚠️  NZ Muscle: 686 → 0 products (100% drop — possible scrape failure)
+[2026-05-09T02:39:57.425Z]   ⚠️  Sportsfuel: 3201 → 0 products (100% drop — possible scrape failure)
+[2026-05-09T02:39:57.425Z]   ⚠️  Scorpion Supplements: 63 → 0 products (100% drop — possible scrape failure)
+[2026-05-09T02:39:57.425Z]   ⚠️  ASN Online: 273 → 0 products (100% drop — possible scrape failure)
+[2026-05-09T02:39:57.426Z]   ⚠️  Bargain Chemist: 2168 → 79 products (96% drop — possible scrape failure)
+[2026-05-09T02:39:57.426Z] 
+[2026-05-09T02:39:57.426Z]   By retailer:
+[2026-05-09T02:39:57.426Z]     NZ Muscle                      0  
+[2026-05-09T02:39:57.427Z]     Sportsfuel                     0  
+[2026-05-09T02:39:57.427Z]     Scorpion Supplements           0  
+[2026-05-09T02:39:57.427Z]     ASN Online                     0  
+[2026-05-09T02:39:57.427Z]     Supplement Solutions         116  █
+[2026-05-09T02:39:57.428Z]     Raisey's                      36  
+[2026-05-09T02:39:57.428Z]     BodyStrong                   135  █
+[2026-05-09T02:39:57.428Z]     Bargain Chemist               79  █
+[2026-05-09T02:39:57.428Z]     Payless Supplements          534  █████
+[2026-05-09T02:39:57.429Z]     Supplements NZ              2698  ███████████████████████████
+[2026-05-09T02:39:57.429Z]     Reactiv Supplements           41  
+[2026-05-09T02:39:57.429Z]     Eat Me Supplements            89  █
+[2026-05-09T02:39:57.430Z]     Kiwi Nutrition                18  
+[2026-05-09T02:39:57.430Z]     Elite Supplements              0  
+[2026-05-09T02:39:57.430Z]     Nutrition Warehouse         1219  ████████████
+[2026-05-09T02:39:57.431Z] 
+[2026-05-09T02:39:57.431Z]   By category:
+[2026-05-09T02:39:57.431Z]     protein         969
+[2026-05-09T02:39:57.431Z]     proteinbars     46
+[2026-05-09T02:39:57.432Z]     rtd             62
+[2026-05-09T02:39:57.432Z]     creatine        172
+[2026-05-09T02:39:57.432Z]     preworkout      398
+[2026-05-09T02:39:57.433Z]     fatburner       348
+[2026-05-09T02:39:57.433Z]     bcaa            518
+[2026-05-09T02:39:57.433Z]     vitamins        2092
+[2026-05-09T02:39:57.434Z]     gymfood         43
+[2026-05-09T02:39:57.434Z]     accessories     274
+[2026-05-09T02:39:57.434Z]     clothing        43
+[2026-05-09T02:39:57.434Z] 
+  Output: C:\Users\rapha\scoopscore\data\products.json
+[2026-05-09T02:39:57.435Z] ═══════════════════════════════════════════════
+[2026-05-09T02:47:04.479Z] 
+[2026-05-09T02:47:04.482Z] ═══════════════════════════════════════════
+[2026-05-09T02:47:04.483Z]   ScoopScore Scraper v2 — products.json Edition  
+[2026-05-09T02:47:04.483Z] ═══════════════════════════════════════════
+[2026-05-09T02:47:04.483Z]   Retailers: 15
+[2026-05-09T02:47:04.483Z]   Method: products.json (primary)
+[2026-05-09T02:47:04.484Z] 
+[2026-05-09T02:47:04.520Z]   Loaded 4965 existing products for price history
+[2026-05-09T02:47:04.521Z] Scraping NZ Muscle...
+[2026-05-09T02:47:04.535Z] Scraping Sportsfuel...
+[2026-05-09T02:47:04.536Z] Scraping Scorpion Supplements...
+[2026-05-09T02:47:04.537Z] Scraping ASN Online...
+[2026-05-09T02:47:04.538Z] Scraping Supplement Solutions...
+[2026-05-09T02:47:05.088Z]   Supplement Solutions page 1: 117 total, 107 gym products
+[2026-05-09T02:47:05.088Z]   Supplement Solutions: 107 gym products total
+[2026-05-09T02:47:05.370Z]   NZ Muscle page 1: 250 total, 147 gym products
+[2026-05-09T02:47:05.435Z]   Scorpion Supplements page 1: 123 total, 81 gym products
+[2026-05-09T02:47:05.435Z]   Scorpion Supplements: 81 gym products total
+[2026-05-09T02:47:05.746Z]   Sportsfuel page 1: 250 total, 161 gym products
+[2026-05-09T02:47:06.368Z]   NZ Muscle page 2: 250 total, 113 gym products
+[2026-05-09T02:47:06.674Z]   ASN Online page 1: 250 total, 223 gym products
+[2026-05-09T02:47:07.185Z]   Sportsfuel page 2: 250 total, 184 gym products
+[2026-05-09T02:47:07.649Z]   NZ Muscle page 3: 250 total, 154 gym products
+[2026-05-09T02:47:07.708Z]   ASN Online page 2: 55 total, 49 gym products
+[2026-05-09T02:47:07.709Z]   ASN Online: 272 gym products total
+[2026-05-09T02:47:08.426Z]   Sportsfuel page 3: 250 total, 178 gym products
+[2026-05-09T02:47:08.652Z]   NZ Muscle page 4: 250 total, 127 gym products
+[2026-05-09T02:47:09.641Z]   Sportsfuel page 4: 250 total, 180 gym products
+[2026-05-09T02:47:10.164Z]   NZ Muscle page 5: 250 total, 171 gym products
+[2026-05-09T02:47:11.147Z]   Sportsfuel page 5: 250 total, 174 gym products
+[2026-05-09T02:47:11.411Z]   NZ Muscle page 6: 136 total, 73 gym products
+[2026-05-09T02:47:11.412Z]   NZ Muscle: 785 gym products total
+[2026-05-09T02:47:12.575Z]   Sportsfuel page 6: 250 total, 189 gym products
+[2026-05-09T02:47:13.940Z]   Sportsfuel page 7: 250 total, 171 gym products
+[2026-05-09T02:47:15.816Z]   Sportsfuel page 8: 250 total, 173 gym products
+[2026-05-09T02:47:17.212Z]   Sportsfuel page 9: 250 total, 194 gym products
+[2026-05-09T02:47:19.063Z]   Sportsfuel page 10: 250 total, 138 gym products
+[2026-05-09T02:47:20.557Z]   Sportsfuel page 11: 250 total, 191 gym products
+[2026-05-09T02:47:22.188Z]   Sportsfuel page 12: 250 total, 203 gym products
+[2026-05-09T02:47:23.601Z]   Sportsfuel page 13: 250 total, 222 gym products
+[2026-05-09T02:47:25.053Z]   Sportsfuel page 14: 250 total, 219 gym products
+[2026-05-09T02:47:26.388Z]   Sportsfuel page 15: 250 total, 214 gym products
+[2026-05-09T02:47:28.018Z]   Sportsfuel page 16: 250 total, 234 gym products
+[2026-05-09T02:47:29.720Z]   Sportsfuel page 17: 250 total, 225 gym products
+[2026-05-09T02:47:30.468Z]   Sportsfuel page 18: 65 total, 60 gym products
+[2026-05-09T02:47:30.469Z]   Sportsfuel: 3310 gym products total
+[2026-05-09T02:47:31.475Z] Scraping Raisey's...
+[2026-05-09T02:47:31.480Z] Scraping BodyStrong...
+[2026-05-09T02:47:31.480Z] Scraping Bargain Chemist...
+[2026-05-09T02:47:31.482Z] Scraping Payless Supplements...
+[2026-05-09T02:47:31.483Z] Scraping Supplements NZ...
+[2026-05-09T02:47:31.992Z]   BodyStrong page 1: 137 total, 127 gym products
+[2026-05-09T02:47:31.992Z]   BodyStrong: 127 gym products total
+[2026-05-09T02:47:32.010Z]   Payless Supplements page 1: 250 total, 213 gym products
+[2026-05-09T02:47:32.021Z]   Raisey's page 1: 43 total, 36 gym products
+[2026-05-09T02:47:32.022Z]   Raisey's: 36 gym products total
+[2026-05-09T02:47:32.124Z]   Bargain Chemist page 1: 250 total, 57 gym products
+[2026-05-09T02:47:32.388Z]   Supplements NZ page 1: 250 total, 133 gym products
+[2026-05-09T02:47:33.054Z]   Payless Supplements page 2: 250 total, 210 gym products
+[2026-05-09T02:47:33.334Z]   Supplements NZ page 2: 250 total, 136 gym products
+[2026-05-09T02:47:33.354Z]   Bargain Chemist page 2: 250 total, 102 gym products
+[2026-05-09T02:47:34.143Z]   Payless Supplements page 3: 63 total, 54 gym products
+[2026-05-09T02:47:34.143Z]   Payless Supplements: 477 gym products total
+[2026-05-09T02:47:34.237Z]   Supplements NZ page 3: 250 total, 133 gym products
+[2026-05-09T02:47:34.618Z]   Bargain Chemist page 3: 250 total, 46 gym products
+[2026-05-09T02:47:35.335Z]   Supplements NZ page 4: 250 total, 132 gym products
+[2026-05-09T02:47:36.208Z]   Bargain Chemist page 4: 250 total, 100 gym products
+[2026-05-09T02:47:37.350Z]   Supplements NZ page 5: 250 total, 137 gym products
+[2026-05-09T02:47:38.009Z]   Bargain Chemist page 5: 250 total, 63 gym products
+[2026-05-09T02:47:38.573Z]   Bargain Chemist page 6 failed: HTTP 503: https://www.bargainchemist.co.nz/products.json?limit=250&page=6
+[2026-05-09T02:47:39.020Z]   Supplements NZ page 6: 250 total, 107 gym products
+[2026-05-09T02:47:39.586Z]   Supplements NZ page 7 failed: HTTP 503: https://www.supplements.co.nz/products.json?limit=250&page=7
+[2026-05-09T02:47:40.753Z]   Bargain Chemist page 6 failed: HTTP 503: https://www.bargainchemist.co.nz/products.json?limit=250&page=6
+[2026-05-09T02:47:40.754Z]   Bargain Chemist aborting after 2 consecutive failures
+[2026-05-09T02:47:40.754Z]   Bargain Chemist: 368 gym products total
+[2026-05-09T02:47:42.010Z]   Supplements NZ page 7: 250 total, 84 gym products
+[2026-05-09T02:47:42.957Z]   Supplements NZ page 8: 250 total, 116 gym products
+[2026-05-09T02:47:43.867Z]   Supplements NZ page 9: 250 total, 108 gym products
+[2026-05-09T02:47:44.742Z]   Supplements NZ page 10: 250 total, 98 gym products
+[2026-05-09T02:47:45.603Z]   Supplements NZ page 11: 250 total, 88 gym products
+[2026-05-09T02:47:46.557Z]   Supplements NZ page 12: 250 total, 97 gym products
+[2026-05-09T02:47:47.384Z]   Supplements NZ page 13: 250 total, 102 gym products
+[2026-05-09T02:47:48.243Z]   Supplements NZ page 14: 250 total, 60 gym products
+[2026-05-09T02:47:49.115Z]   Supplements NZ page 15: 250 total, 87 gym products
+[2026-05-09T02:47:49.792Z]   Supplements NZ page 16: 49 total, 29 gym products
+[2026-05-09T02:47:49.793Z]   Supplements NZ: 1647 gym products total
+[2026-05-09T02:47:50.795Z] Scraping Reactiv Supplements...
+[2026-05-09T02:47:50.798Z] Scraping Eat Me Supplements...
+[2026-05-09T02:47:50.799Z] Scraping Kiwi Nutrition...
+[2026-05-09T02:47:50.799Z] Scraping Elite Supplements...
+[2026-05-09T02:47:50.800Z] Scraping Nutrition Warehouse...
+[2026-05-09T02:47:51.047Z]   Elite Supplements page 1: 9 total, 0 gym products
+[2026-05-09T02:47:51.048Z]   Elite Supplements: 0 gym products total
+[2026-05-09T02:47:51.119Z]   Kiwi Nutrition page 1: 18 total, 18 gym products
+[2026-05-09T02:47:51.120Z]   Kiwi Nutrition: 18 gym products total
+[2026-05-09T02:47:51.178Z]   Reactiv Supplements page 1: 55 total, 40 gym products
+[2026-05-09T02:47:51.178Z]   Reactiv Supplements: 40 gym products total
+[2026-05-09T02:47:51.372Z]   Eat Me Supplements page 1: 94 total, 84 gym products
+[2026-05-09T02:47:51.372Z]   Eat Me Supplements: 84 gym products total
+[2026-05-09T02:47:52.009Z]   Nutrition Warehouse page 1: 250 total, 187 gym products
+[2026-05-09T02:47:53.253Z]   Nutrition Warehouse page 2: 250 total, 211 gym products
+[2026-05-09T02:47:54.458Z]   Nutrition Warehouse page 3: 250 total, 212 gym products
+[2026-05-09T02:47:55.661Z]   Nutrition Warehouse page 4: 250 total, 233 gym products
+[2026-05-09T02:47:57.034Z]   Nutrition Warehouse page 5: 249 total, 216 gym products
+[2026-05-09T02:47:57.035Z]   Nutrition Warehouse: 1059 gym products total
+[2026-05-09T02:47:57.134Z] 
+[2026-05-09T02:47:57.134Z] ═══════════════════ RESULTS ═══════════════════
+[2026-05-09T02:47:57.134Z]   Total products: 8411
+[2026-05-09T02:47:57.135Z]   Time: 52.6s
+[2026-05-09T02:47:57.135Z] 
+[2026-05-09T02:47:57.135Z]   By retailer:
+[2026-05-09T02:47:57.135Z]     NZ Muscle                    785  ████████
+[2026-05-09T02:47:57.136Z]     Sportsfuel                  3310  ██████████████████████████████
+[2026-05-09T02:47:57.136Z]     Scorpion Supplements          81  █
+[2026-05-09T02:47:57.136Z]     ASN Online                   272  ███
+[2026-05-09T02:47:57.136Z]     Supplement Solutions         107  █
+[2026-05-09T02:47:57.137Z]     Raisey's                      36  
+[2026-05-09T02:47:57.137Z]     BodyStrong                   127  █
+[2026-05-09T02:47:57.137Z]     Bargain Chemist              368  ████
+[2026-05-09T02:47:57.138Z]     Payless Supplements          477  █████
+[2026-05-09T02:47:57.138Z]     Supplements NZ              1647  ████████████████
+[2026-05-09T02:47:57.138Z]     Reactiv Supplements           40  
+[2026-05-09T02:47:57.138Z]     Eat Me Supplements            84  █
+[2026-05-09T02:47:57.139Z]     Kiwi Nutrition                18  
+[2026-05-09T02:47:57.139Z]     Elite Supplements              0  
+[2026-05-09T02:47:57.139Z]     Nutrition Warehouse         1059  ███████████
+[2026-05-09T02:47:57.140Z] 
+[2026-05-09T02:47:57.140Z]   By category:
+[2026-05-09T02:47:57.140Z]     protein         3725
+[2026-05-09T02:47:57.141Z]     proteinbars     224
+[2026-05-09T02:47:57.141Z]     rtd             200
+[2026-05-09T02:47:57.141Z]     creatine        478
+[2026-05-09T02:47:57.142Z]     preworkout      929
+[2026-05-09T02:47:57.142Z]     fatburner       835
+[2026-05-09T02:47:57.142Z]     bcaa            1084
+[2026-05-09T02:47:57.142Z]     gymfood         95
+[2026-05-09T02:47:57.143Z]     accessories     841
+[2026-05-09T02:47:57.143Z] 
+  Output: C:\Users\rapha\scoopscore\data\products.json
+[2026-05-09T02:47:57.143Z] ═══════════════════════════════════════════════
