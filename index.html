@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScoopScore — NZ Supplement Price Comparison</title>
-<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, Nutrition Warehouse, Elite Supps, Payless Supplements, GNC NZ and more.">
-<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online, Nutrition Warehouse, Elite Supps, Cheap Supps, Payless Supplements, GNC NZ, Maxum Nutrition">
+<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, Nutrition Warehouse, Payless Supplements, Supplements NZ and more.">
+<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online, Nutrition Warehouse, Payless Supplements, Supplements NZ, Kiwi Nutrition">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://scoopscore.co.nz/">
 <!-- Open Graph -->
@@ -21,6 +21,9 @@
 <meta name="twitter:description" content="Compare supplement prices across NZ's top retailers daily.">
 <!-- Schema.org -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ScoopScore","url":"https://scoopscore.co.nz","description":"NZ supplement price comparison tool","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://scoopscore.co.nz/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+<meta name="theme-color" content="#f8f7f5">
+<meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -201,6 +204,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .bv-stats{display:flex;gap:28px;flex-shrink:0}
 .bvs-n{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:.02em;color:var(--ink);line-height:1}
 .bvs-l{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);margin-top:2px}
+.bvs-item{text-align:right}
 
 /* cat filter */
 .bcf-wrap{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:10;overflow-x:auto}
@@ -515,17 +519,16 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .sort-btn.active{background:var(--ink2);border-color:var(--ink2);color:var(--bg);font-weight:500}
 
 /* ── PRICE HISTORY CHART ── */
-.dp-chart-wrap{padding:24px 40px;border-bottom:1px solid var(--border)}
-.dp-chart-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
-.dp-chart{height:80px;display:flex;align-items:flex-end;gap:3px;padding-bottom:20px;position:relative}
-.dp-chart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
-.dp-chart-bar{width:100%;background:var(--ink);border-radius:2px 2px 0 0;transition:height .3s;min-height:4px;position:relative;opacity:.7}
-.dp-chart-bar:hover{opacity:1}
-.dp-chart-bar[data-best="1"]{background:var(--green);opacity:1}
-.dp-chart-date{font-family:'Space Mono',monospace;font-size:9px;color:var(--ink4);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;position:absolute;bottom:-18px;left:50%;transform:translateX(-50%)}
-.dp-chart-price-lbl{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;color:var(--ink3);position:absolute;top:-16px;left:50%;transform:translateX(-50%);white-space:nowrap;opacity:0;transition:opacity .12s}
-.dp-chart-bar:hover .dp-chart-price-lbl{opacity:1}
-.dp-chart-no-history{font-size:12px;color:var(--ink4);font-family:'Inter',sans-serif;padding:24px 0;text-align:center}
+.dp-chart-wrap{padding:20px 24px 4px;border-bottom:1px solid var(--border)}
+.dp-chart-title{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.dp-chart-meta{font-size:11px;font-weight:400;color:var(--ink4);text-transform:none;letter-spacing:0}
+.dp-line-chart{width:100%;overflow:visible;display:block}
+.dp-line-path{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.dp-line-area{opacity:.12}
+.dp-line-dot{fill:var(--green);stroke:var(--bg);stroke-width:2;cursor:pointer}
+.dp-line-dot.is-high{fill:#ef4444}
+.dp-chart-date-row{display:flex;justify-content:space-between;padding:4px 0 12px;font-size:10px;color:var(--ink4);font-family:'Space Mono',monospace}
+.dp-chart-no-history{font-size:12px;color:var(--ink4);font-family:'Inter',sans-serif;padding:20px 0;text-align:center}
 
 /* ── COPY LINK / SHARE ── */
 .dp-share-row{display:flex;gap:8px;padding:16px 40px;border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -566,6 +569,28 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
   .dp-section{padding:18px 20px}
   .dp-bigprice{font-size:60px}
 }
+
+/* ── DARK MODE ── */
+[data-theme="dark"] {
+  --bg:#1a1917;   --bg2:#222120;  --bg3:#2c2b28;  --bg4:#3d3b36;
+  --ink:#f0efe9;  --ink2:#c8c6be; --ink3:#8a8880; --ink4:#5c5a55;
+  --border:rgba(240,239,233,.07); --border2:rgba(240,239,233,.13);
+  --accent:#c8c6be; --accent2:#8a8880; --accent-dim:rgba(240,239,233,.06);
+  --blue:#a0c4ff; --blue2:#7ab3ff; --blue-dim:rgba(160,196,255,.06);
+  --green:#4caf6f; --green-bg:rgba(76,175,111,.1); --green-border:rgba(76,175,111,.2);
+  --red:#e05c4b;
+}
+[data-theme="dark"] .nav.scrolled{background:rgba(26,25,23,.92)}
+[data-theme="dark"] .hero{background:#111}
+[data-theme="dark"] .home-section-dark{background:#111}
+[data-theme="dark"] .feat-card{background:var(--bg2)}
+[data-theme="dark"] .alert-banner{background:#111}
+[data-theme="dark"] .detail-overlay{background:rgba(0,0,0,.7)}
+[data-theme="dark"] .dp-left{background:var(--bg2)}
+[data-theme="dark"] .prow-img img{background:var(--bg3)}
+.dark-toggle{background:none;border:1px solid var(--border2);color:var(--ink3);padding:6px 10px;border-radius:100px;cursor:pointer;font-size:14px;transition:all .12s;line-height:1}
+.dark-toggle:hover{background:var(--bg3);color:var(--ink)}
+
 /* ── MEGAMENU ── */
 .nav-mega-wrap{position:relative}
 .nav-mega-btn{display:flex;align-items:center;gap:5px}
@@ -683,6 +708,16 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 
 /* Active value label above slider */
 .size-slider-active-label{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--ink);text-align:center;margin-top:6px;min-height:18px}
+
+/* ── NEW ELEMENTS ── */
+.feat-drop-badge{position:absolute;top:8px;left:8px;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;background:#ef4444;color:#fff;padding:3px 9px;border-radius:100px;z-index:1}
+.feat-was-price{font-size:11px;color:var(--ink4);text-decoration:line-through;align-self:flex-end;padding-bottom:2px}
+.cmp-empty-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;gap:10px;text-align:center}
+.cmp-empty-icon{font-size:32px;opacity:.3}
+.cmp-empty-title{font-size:14px;font-weight:600;color:var(--ink2)}
+.cmp-empty-sub{font-size:12px;color:var(--ink4)}
+.vp-per-unit{font-size:12px;font-weight:400;color:var(--ink3)}
+.vp-sub-meta{font-size:11px;color:var(--ink4);margin-top:2px}
 </style>
 <body>
 
@@ -735,7 +770,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
                 <span class="mci-label">BCAAs &amp; Aminos</span>
                 <span class="mci-count" id="mciCount-bcaa"></span>
               </button>
-              </button>
               <button class="mega-cat-item" data-cat="gymfood" onclick="openCategoryView('gymfood');closeMega()">
                 <span class="mci-label">Gym Food</span>
                 <span class="mci-count" id="mciCount-gymfood"></span>
@@ -743,7 +777,6 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
               <button class="mega-cat-item" data-cat="accessories" onclick="openCategoryView('accessories');closeMega()">
                 <span class="mci-label">Accessories</span>
                 <span class="mci-count" id="mciCount-accessories"></span>
-              </button>
               </button>
             </div>
             <div class="mega-brands">
@@ -782,6 +815,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
     </div>
 
     <div class="nav-right">
+      <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" title="Toggle dark mode">🌙</button>
       <div class="nav-search-wrap" id="navSearchWrap">
         <span class="nav-search-icon">⌕</span>
         <input class="nav-search" id="navSearchInput" type="text" placeholder="Search brands or products…" oninput="onSearch(this.value)" onfocus="onSearchFocus()" onblur="onSearchBlur()">
@@ -871,8 +905,8 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
       <div class="home-section-inner">
         <div class="home-section-hdr">
           <div>
-            <div class="home-section-label" style="color:rgba(255,255,255,.4)">Best prices right now</div>
-            <div class="home-section-title" style="color:#fff">🔥 Today's Best Deals</div>
+            <div class="home-section-label" style="color:rgba(255,255,255,.4)">Biggest recent price drops</div>
+            <div class="home-section-title" style="color:#fff">🔥 Best Deals</div>
           </div>
           <button class="home-see-all" onclick="openCategoryView('all')" style="color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.15)">View all →</button>
         </div>
@@ -901,8 +935,8 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
     <section class="home-section">
       <div class="home-section-hdr">
         <div>
-          <div class="home-section-label">Tracked across the most NZ retailers</div>
-          <div class="home-section-title">Most Compared Products</div>
+          <div class="home-section-label">Most searched on ScoopScore</div>
+          <div class="home-section-title">Trending Searches</div>
         </div>
         <button class="home-see-all" onclick="openCategoryView('all')">View all →</button>
       </div>
@@ -1130,6 +1164,26 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
 <script>
+// ── DARK MODE ──
+function toggleDark(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('darkToggle').textContent=isDark?'🌙':'☀️';
+  try{localStorage.setItem('ss_theme',isDark?'light':'dark');}catch(e){}
+}
+// Apply saved theme immediately
+(function(){
+  try{
+    const t=localStorage.getItem('ss_theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    document.documentElement.setAttribute('data-theme',t);
+    // Button icon updated after DOM ready
+    window.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.getElementById('darkToggle');
+      if(btn)btn.textContent=t==='dark'?'☀️':'🌙';
+    });
+  }catch(e){}
+})();
+
 // nav scroll effect
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40);
@@ -1727,7 +1781,7 @@ const CAT_META={
   gymfood:      {label:'Gym Food',          color:'#84cc16'},
   accessories:  {label:'Accessories',       color:'#6b7280'},
 };
-const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion Supplements',domain:'scorpionsupplements.co.nz',shipping:'Free over $75'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Free over $60'},elitesupplements:{name:'Elite Supplements',domain:'elitesupplements.co.nz',shipping:'Check site'},bodystrong:{name:'BodyStrong',domain:'bodystrong.co.nz',shipping:'Check site'},bargainchemist:{name:'Bargain Chemist',domain:'bargainchemist.co.nz',shipping:'Free shipping'},payless:{name:'Payless Supplements',domain:'paylesssupplements.co.nz',shipping:'Free shipping'},nutritionwarehouse:{name:'Nutrition Warehouse',domain:'nutritionwarehouse.co.nz',shipping:'Free over $60'},supplementsnz:{name:'Supplements NZ',domain:'supplements.co.nz',shipping:'Free shipping'},reactiv:{name:'Reactiv Supplements',domain:'reactivsupplements.co.nz',shipping:'Free NZ-wide'},eatme:{name:'Eat Me Supplements',domain:'eatmesupplements.co.nz',shipping:'Check site'},kiwinutrition:{name:'Kiwi Nutrition',domain:'kiwinutrition.co.nz',shipping:'Check site'}};
+const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion Supplements',domain:'scorpionsupplements.co.nz',shipping:'Free over $75'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Free over $60'},bodystrong:{name:'BodyStrong',domain:'bodystrong.co.nz',shipping:'Check site'},bargainchemist:{name:'Bargain Chemist',domain:'bargainchemist.co.nz',shipping:'Free shipping'},payless:{name:'Payless Supplements',domain:'paylesssupplements.co.nz',shipping:'Free shipping'},nutritionwarehouse:{name:'Nutrition Warehouse',domain:'nutritionwarehouse.co.nz',shipping:'Free over $60'},supplementsnz:{name:'Supplements NZ',domain:'supplements.co.nz',shipping:'Free shipping'},reactiv:{name:'Reactiv Supplements',domain:'reactivsupplements.co.nz',shipping:'Free NZ-wide'},eatme:{name:'Eat Me Supplements',domain:'eatmesupplements.co.nz',shipping:'Check site'},kiwinutrition:{name:'Kiwi Nutrition',domain:'kiwinutrition.co.nz',shipping:'Check site'}};
 function rm(id){return RETAILER_META[id]||{name:id,domain:id,shipping:'Check site'};}
 
 let currentSort='retailers';
@@ -1910,79 +1964,100 @@ function renderValuePicks(){
   }).join('');
 }
 
-function renderMostCompared(){
-  const all=[];
-  for(const b of Object.values(BRANDS))for(const g of b.groupList){
-    if(!g.inStockListings.length)continue;
-    const rc=new Set(g.inStockListings.map(l=>l.retailer)).size;
-    if(rc<2)continue;
-    const best=Math.min(...g.inStockListings.map(l=>l.priceFrom));
-    all.push({brand:b.name,group:g,rc,best});
-  }
-  all.sort((a,z)=>z.rc-a.rc||a.best-z.best);
-  const top=all.slice(0,18);
-  const el=document.getElementById('mostComparedGrid');
-  if(!top.length){el.innerHTML='<div class="plist-empty">No data yet</div>';return;}
-  el.innerHTML=top.map(p=>{
-    const img=p.group.imageUrl
-      ?`<img class="cmp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.style.display='none'">`
-      :`<div class="cmp-img-ph">${p.brand[0]}</div>`;
-    return`<div class="cmp-card" onclick="openDetail('${p.group.key.replace(/'/g,"\\'")}','${p.brand.replace(/'/g,"\\'")}')">
-      ${img}<div class="cmp-info">
-        <div class="cmp-brand">${p.brand}</div>
-        <div class="cmp-name">${p.group.name}</div>
-        <div class="cmp-meta">
-          <div class="cmp-price">$${p.best.toFixed(2)}</div>
-          <div class="cmp-badge">${p.rc} retailers</div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+function trackSearch(groupKey,brandName){
+  try{
+    const raw=localStorage.getItem('ss_searches');
+    const searches=raw?JSON.parse(raw):{};
+    const k=`${brandName}||${groupKey}`;
+    searches[k]=(searches[k]||0)+1;
+    localStorage.setItem('ss_searches',JSON.stringify(searches));
+  }catch(e){}
+}
+function getSearchCounts(){
+  try{const raw=localStorage.getItem('ss_searches');return raw?JSON.parse(raw):{};}
+  catch(e){return{};}
 }
 
-let _brandSectionOpen=false;
-function toggleBrandSection(){
-  _brandSectionOpen=!_brandSectionOpen;
-  const grid=document.getElementById('brandGrid');
-  const strip=document.getElementById('brandCatStrip');
-  const btn=document.getElementById('brandToggleBtn');
-  if(grid)grid.style.display=_brandSectionOpen?'grid':'none';
-  if(strip)strip.style.display=_brandSectionOpen?'flex':'none';
-  if(btn)btn.textContent=_brandSectionOpen?'Hide brands ↑':'Show brands ↓';
-  if(_brandSectionOpen){const s=document.getElementById('brandSection');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});}
+function renderMostCompared(){
+  const el=document.getElementById('mostComparedGrid');
+  if(!el)return;
+  const counts=getSearchCounts();
+  const hasCounts=Object.keys(counts).length>0;
+  if(hasCounts){
+    const ranked=Object.entries(counts)
+      .sort((a,z)=>z[1]-a[1])
+      .slice(0,18)
+      .map(([k])=>{
+        const [brandName,groupKey]=k.split('||');
+        const b=BRANDS[brandName];
+        if(!b)return null;
+        const g=b.groups?.[groupKey]||b.groupList?.find(x=>x.key===groupKey);
+        if(!g||!g.inStockListings.length)return null;
+        const best=Math.min(...g.inStockListings.map(l=>l.priceFrom));
+        return{brand:brandName,group:g,best,count:counts[k]};
+      }).filter(Boolean);
+    if(!ranked.length){
+      el.innerHTML='<div class="cmp-empty-state"><div class="cmp-empty-icon">🔍</div><div class="cmp-empty-title">Trending searches will appear here</div><div class="cmp-empty-sub">Search for a product above to get started</div></div>';
+      return;
+    }
+    el.innerHTML=ranked.map(p=>{
+      const img=p.group.imageUrl
+        ?`<img class="cmp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.style.display='none'">`
+        :`<div class="cmp-img-ph">${p.brand[0]}</div>`;
+      return`<div class="cmp-card" onclick="openDetail('${p.group.key.replace(/'/g,"\'")}','${p.brand.replace(/'/g,"\'")}')">${img}<div class="cmp-info"><div class="cmp-brand">${p.brand}</div><div class="cmp-name">${p.group.name}</div><div class="cmp-meta"><div class="cmp-price">$${p.best.toFixed(2)}</div><div class="cmp-badge">${p.count} view${p.count!==1?'s':''}</div></div></div></div>`;
+    }).join('');
+  } else {
+    el.innerHTML='<div class="cmp-empty-state"><div class="cmp-empty-icon">🔍</div><div class="cmp-empty-title">Trending searches will appear here</div><div class="cmp-empty-sub">Search for a product or brand above to get started</div></div>';
+  }
 }
 
 function renderFeatured(){
-  const featured=[];
+  const drops=[];
   for(const b of Object.values(BRANDS))for(const g of b.groupList){
-    if(!g.imageUrl||g.soldOut)continue;
-    const inStock=g.inStockListings;
-    if(!inStock.length)continue;
-    const rc=new Set(inStock.map(l=>l.retailer)).size;
-    const best=Math.min(...inStock.map(l=>l.priceFrom));
-    featured.push({brand:b.name,group:g,rc,best});
+    if(!g.inStockListings.length)continue;
+    const hist=[];
+    for(const l of g.listings){
+      if(l.priceHistory?.length)for(const h of l.priceHistory)hist.push({price:h.price,date:h.date});
+      hist.push({price:l.priceFrom,date:l.updatedAt?.split('T')[0]||new Date().toISOString().split('T')[0]});
+    }
+    hist.sort((a,z)=>a.date.localeCompare(z.date));
+    if(hist.length<2)continue;
+    const latest=hist[hist.length-1].price;
+    const peak=Math.max(...hist.slice(0,-1).map(h=>h.price));
+    const drop=peak-latest;
+    const dropPct=Math.round((drop/peak)*100);
+    if(drop<=0||dropPct<3)continue;
+    const best=Math.min(...g.inStockListings.map(l=>l.priceFrom));
+    const rc=new Set(g.inStockListings.map(l=>l.retailer)).size;
+    drops.push({brand:b.name,group:g,drop,dropPct,peak,best,rc,imageUrl:g.imageUrl});
   }
-  featured.sort((a,z)=>z.rc-a.rc||a.best-z.best);
-  const top=featured.slice(0,16);
+  drops.sort((a,z)=>z.dropPct-a.dropPct||z.drop-a.drop);
+  let top=drops.slice(0,16);
+  if(!top.length){
+    const featured=[];
+    for(const b of Object.values(BRANDS))for(const g of b.groupList){
+      if(!g.imageUrl||!g.inStockListings.length)continue;
+      const rc=new Set(g.inStockListings.map(l=>l.retailer)).size;
+      const best=Math.min(...g.inStockListings.map(l=>l.priceFrom));
+      featured.push({brand:b.name,group:g,rc,best,dropPct:0,drop:0,peak:best,imageUrl:g.imageUrl});
+    }
+    featured.sort((a,z)=>z.rc-a.rc||a.best-z.best);
+    top=featured.slice(0,16);
+  }
   const featCountEl=document.getElementById('featCount');
   if(featCountEl)featCountEl.textContent=`${top.length} products`;
-  if(!top.length){document.getElementById('featRow').innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
+  if(!top.length){document.getElementById('featRow').innerHTML='<div class="load-txt" style="padding:40px 0">No products yet</div>';return;}
   document.getElementById('featRow').innerHTML=top.map((f,i)=>{
     const d=Math.floor(f.best);const c=(f.best%1).toFixed(2).slice(1);
-    return `<div class="feat-card" style="animation-delay:${i*.04}s;position:relative" onclick="openDetail('${f.group.key.replace(/'/g,"\\'")}','${f.brand.replace(/'/g,"\\'")}')">
-      ${f.rc>1?`<div class="feat-retailers-badge">${f.rc} retailers</div>`:''}
-      <div class="feat-img"><img src="${f.group.imageUrl}" alt="${f.group.name}" onerror="this.parentElement.style.background='#f3f4f6'"></div>
-      <div class="feat-body">
-        <div class="feat-brand-lbl">${f.brand}</div>
-        <div class="feat-name">${f.group.name}</div>
-        <div class="feat-bottom">
-          <div class="feat-price"><sup>$</sup>${d}.${c}</div>
-          ${f.rc>1?`<div class="feat-badge">↓ compare</div>`:''}
-        </div>
-      </div>
-    </div>`;
+    const badge=f.dropPct>0
+      ?`<div class="feat-drop-badge">↓ ${f.dropPct}% off</div>`
+      :(f.rc>1?`<div class="feat-retailers-badge">${f.rc} retailers</div>`:'');
+    return`<div class="feat-card" style="animation-delay:${i*.04}s;position:relative" onclick="openDetail('${f.group.key.replace(/'/g,"\'")}',' + "'" + '${f.brand.replace(/'/g,"\'")}')">${badge}<div class="feat-img">${f.imageUrl?`<img src="${f.imageUrl}" alt="${f.group.name}" onerror="this.parentElement.style.background='var(--bg3)'">`:''}
+    </div><div class="feat-body"><div class="feat-brand-lbl">${f.brand}</div><div class="feat-name">${f.group.name}</div><div class="feat-bottom"><div class="feat-price"><sup>$</sup>${d}<span style="font-size:16px;font-family:Inter,sans-serif;font-weight:600">.${c}</span></div>${f.dropPct>0?`<div class="feat-was-price">was $${f.peak.toFixed(0)}</div>`:(f.rc>1?`<div class="feat-badge">${f.rc} retailers</div>`:'')}
+    </div></div></div>`;
   }).join('');
 }
+
 
 function homeCatFilter(el,cat){
   document.querySelectorAll('.home-cat-pill').forEach(b=>b.classList.remove('active'));
@@ -2302,6 +2377,7 @@ function openDetail(groupKey,brandName,sizeKey){
   let g=b.groups[groupKey];
   if(!g)g=Object.values(b.groups).find(gr=>gr.key.startsWith(groupKey));
   if(!g)return;
+  trackSearch(g.key,brandName);
   _modalGroup=g;_modalBrand=brandName;
   const sizeMap=buildSizeMap(g);
   // Default to first size (smallest) or the one passed in
@@ -2384,10 +2460,38 @@ function renderModal(){
   const perServe=_renderPerServe(kg,bestPrice);
   const desc=g.listings.find(l=>l.description)?.description||'';
   const allHistory=[];
-  for(const l of g.listings){if(l.priceHistory?.length)for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date});if(l.available!==false)allHistory.push({price:l.priceFrom,date:new Date().toISOString().split('T')[0]});}
+  for(const l of g.listings){
+    if(l.priceHistory?.length)for(const h of l.priceHistory)allHistory.push({price:h.price,date:h.date});
+    allHistory.push({price:l.priceFrom,date:l.updatedAt?.split('T')[0]||new Date().toISOString().split('T')[0]});
+  }
   allHistory.sort((a,b)=>a.date.localeCompare(b.date));
+  // Dedupe by date, keep lowest price
+  const dateMap={};for(const h of allHistory)dateMap[h.date]=dateMap[h.date]?Math.min(dateMap[h.date],h.price):h.price;
+  const pts=Object.entries(dateMap).sort((a,z)=>a[0].localeCompare(z[0])).slice(-16);
   let chartHtml='';
-  if(allHistory.length>=2){const prices=allHistory.map(h=>h.price),mn=Math.min(...prices),mx=Math.max(...prices),range=mx-mn||1;chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-title">Price history</div><div class="dp-chart">${allHistory.slice(-12).map(h=>{const pct=Math.round(((h.price-mn)/range)*70+10);return`<div class="dp-chart-bar-wrap"><div class="dp-chart-bar" style="height:${pct}%" data-best="${h.price===mn?1:0}"><div class="dp-chart-price-lbl">$${h.price.toFixed(0)}</div></div><div class="dp-chart-date">${h.date.slice(5)}</div></div>`;}).join('')}</div></div>`;}
+  if(pts.length>=2){
+    const prices=pts.map(p=>p[1]),mn=Math.min(...prices),mx=Math.max(...prices),range=mx-mn||mn*0.05||1;
+    const W=400,H=80,PAD=6;
+    const cx=i=>PAD+i*(W-PAD*2)/(pts.length-1);
+    const cy=p=>H-PAD-(((p-mn)/range)*(H-PAD*2));
+    const pathD=pts.map((p,i)=>`${i===0?'M':'L'}${cx(i).toFixed(1)},${cy(p[1]).toFixed(1)}`).join(' ');
+    const areaD=pathD+` L${cx(pts.length-1).toFixed(1)},${H} L${cx(0).toFixed(1)},${H} Z`;
+    const dots=pts.map((p,i)=>`<circle class="dp-line-dot${p[1]===mx?' is-high':''}" cx="${cx(i).toFixed(1)}" cy="${cy(p[1]).toFixed(1)}" r="3.5"><title>$${p[1].toFixed(2)} · ${p[0]}</title></circle>`).join('');
+    const dateLabels=[pts[0][0],pts[Math.floor((pts.length-1)/2)][0],pts[pts.length-1][0]].map(d=>d.slice(5));
+    const metaNote=mn<mx?`<span class="dp-chart-meta">Low $${mn.toFixed(2)} · High $${mx.toFixed(2)}</span>`:'';
+    chartHtml=`<div class="dp-chart-wrap">
+      <div class="dp-chart-title">Price history ${metaNote}</div>
+      <svg class="dp-line-chart" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="height:${H}px">
+        <defs><linearGradient id="chartG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--green)" stop-opacity=".5"/><stop offset="100%" stop-color="var(--green)" stop-opacity="0"/></linearGradient></defs>
+        <path class="dp-line-area" d="${areaD}" fill="url(#chartG)"/>
+        <path class="dp-line-path" d="${pathD}"/>
+        ${dots}
+      </svg>
+      <div class="dp-chart-date-row"><span>${dateLabels[0]}</span><span>${dateLabels[1]}</span><span>${dateLabels[2]}</span></div>
+    </div>`;
+  } else {
+    chartHtml=`<div class="dp-chart-wrap"><div class="dp-chart-no-history">Price history will build up after a few scrape runs</div></div>`;
+  }
   const shareUrl=window.location.origin+window.location.pathname+`?brand=${encodeURIComponent(brandName)}&product=${encodeURIComponent(g.key)}`;
   const shareRow=`<div class="dp-share-row"><button class="dp-share-btn" onclick="navigator.clipboard.writeText('${shareUrl}').then(()=>showToast('Link copied!'))">🔗 Copy link</button>${inStock.length?`<button class="dp-share-btn" onclick="window.open('${inStock[0].url}','_blank')">🛒 Cheapest →</button>`:''}</div>`;
   const oosNote=inStock.length===0?`<div class="dp-oos-hero"><div class="dp-oos-hero-icon">📭</div><div class="dp-oos-hero-text">This size is currently out of stock. <a href="#" style="color:var(--green)" onclick="event.preventDefault();scrollToAlerts();closeDetail()">Set a price alert</a> to be notified when it's back.</div></div>`:'';
@@ -2436,7 +2540,20 @@ function goHome(){closeDetail();showView('viewHome');currentBrand=null;setBreadc
 function navGoHome(el){document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));el.classList.add('active');goHome();}
 function scrollToAlerts(){if(!document.getElementById('viewHome').classList.contains('active')){goHome();setTimeout(()=>document.getElementById('alertBar').scrollIntoView({behavior:'smooth'}),100);}else{document.getElementById('alertBar').scrollIntoView({behavior:'smooth'});}}
 function setStatus(state,msg,updatedAt){const dot=document.getElementById('sDot'),txt=document.getElementById('sTxt'),time=document.getElementById('sTime');if(dot)dot.style.background=state==='live'?'var(--green)':state==='loading'?'#f59e0b':'var(--red)';if(txt)txt.textContent=msg;if(time&&updatedAt){const d=new Date(updatedAt);time.textContent=`Updated ${d.toLocaleDateString('en-NZ',{day:'numeric',month:'short'})} ${d.toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'})}`;}}
-function signupAlert(){const e=document.getElementById('alertEmail').value;if(!e||!e.includes('@')){showToast('Enter a valid email');return;}document.getElementById('alertEmail').value='';showToast('Done — you\'ll be notified of price drops');}
+function signupAlert(){
+  const inp=document.getElementById('alertEmail');
+  const e=inp.value.trim();
+  if(!e||!e.includes('@')){showToast('Enter a valid email');return;}
+  // Save to localStorage so we don't lose it
+  try{
+    const saved=JSON.parse(localStorage.getItem('ss_alerts')||'[]');
+    if(!saved.includes(e)){saved.push(e);localStorage.setItem('ss_alerts',JSON.stringify(saved));}
+  }catch(err){}
+  inp.value='';
+  showToast('✓ You\'re on the list! We\'ll email you when prices drop.');
+  // POST to Formspree when you have an endpoint — replace YOUR_FORM_ID
+  // fetch('https://formspree.io/f/YOUR_FORM_ID',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,source:'price-alert'})});
+}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
 // Keyboard: Escape closes modal
