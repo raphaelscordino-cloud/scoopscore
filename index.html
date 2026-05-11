@@ -334,17 +334,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .bmg-name{font-size:12px;font-weight:500;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bmg-count{font-size:10px;color:var(--ink4)}
 
-.retailer-strip-section{padding:32px 0 0;border-bottom:1px solid var(--border)}
-.retailer-strip-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:18px}
-.retailer-strip{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding-bottom:32px}
-.retailer-logo-item{display:flex;align-items:center;gap:10px;padding:10px 20px;border:1.5px solid var(--border2);border-radius:100px;cursor:pointer;transition:all .18s;background:var(--bg2)}
-.retailer-logo-item:hover{border-color:var(--ink3);background:var(--bg3);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
-.retailer-logo-img{width:28px;height:28px;object-fit:contain;flex-shrink:0;border-radius:6px}
-.retailer-logo-name{font-size:13px;font-weight:600;color:var(--ink2);white-space:nowrap;letter-spacing:-.01em}
-.retailer-logo-fallback{font-size:13px;font-weight:700;color:var(--ink2);letter-spacing:-.01em;white-space:nowrap}
+.retailer-strip-section{padding:28px 0 0;border-bottom:1px solid var(--border)}
+.retailer-strip-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:14px}
+.retailer-strip{display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding-bottom:24px}
 
 /* ── EDITORIAL CATEGORY TILES ── */
-.cat-tile-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:12px}
+.cat-tile-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px}
 /* big tiles span 2 rows */
 .cat-tile{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:auto;background:#1a1917;transition:transform .2s}
 .cat-tile:hover{transform:scale(1.02)}
@@ -363,8 +358,8 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .cat-tile-arrow{position:absolute;top:16px;right:16px;width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.6);transition:all .15s;backdrop-filter:blur(8px)}
 .cat-tile:hover .cat-tile-arrow{background:rgba(255,255,255,.2);color:#fff}
 
-@media(max-width:700px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}}
-@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-strip{gap:6px}.retailer-logo-item{padding:8px 14px}.retailer-logo-img{width:22px;height:22px}.retailer-logo-name{font-size:12px}}
+@media(max-width:900px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}}
+@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-grid{grid-template-columns:repeat(3,1fr);gap:6px}}
 .home-body{max-width:1320px;margin:0 auto;padding:0 32px 80px}
 .home-section{padding:56px 0 0}
 .home-section-dark{background:#1a1917;margin:56px -32px 0;padding:56px 32px;max-width:none;width:calc(100% + 64px);position:relative;left:-32px}
@@ -1657,12 +1652,14 @@ function renderRetailerStrip(){
   const strip=document.getElementById('retailerLogoStrip');
   if(!strip)return;
   strip.innerHTML=Object.entries(RETAILER_META).map(([id,r])=>{
-    // Google's favicon service is highly reliable for any domain
-    const faviconUrl=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=64`;
-    return`<div class="retailer-logo-item" onclick="filterByRetailer('${id}')" title="${r.name}">
-      <img class="retailer-logo-img" src="${faviconUrl}" alt="${r.name}"
-        onerror="this.outerHTML='<span class=\\'retailer-logo-fallback\\'>${r.name}</span>'">
-      <span class="retailer-logo-name">${r.name}</span>
+    const logoUrl=`https://logo.clearbit.com/${r.domain}`;
+    const faviconUrl=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=128`;
+    return`<div class="retailer-tile" onclick="filterByRetailer('${id}')" title="${r.name}">
+      <div class="retailer-tile-veil"></div>
+      <div class="retailer-tile-logo">
+        <img src="${logoUrl}" alt="${r.name}"
+          onerror="this.src='${faviconUrl}';this.onerror=function(){this.outerHTML='<div class=\'retailer-tile-logo-fallback\'>${r.name}</div>';}">
+      </div>
     </div>`;
   }).join('');
 }
@@ -1680,9 +1677,10 @@ const CAT_TILE_CONFIG=[
   {key:'protein',    label:'Protein',       tall:true,  wide:false},
   {key:'creatine',   label:'Creatine',      tall:false, wide:false},
   {key:'preworkout', label:'Pre-Workout',   tall:false, wide:false},
+  {key:'proteinbars',label:'Protein Bars',  tall:false, wide:true },
   {key:'fatburner',  label:'Fat Burners',   tall:false, wide:false},
   {key:'bcaa',       label:'BCAAs',         tall:false, wide:false},
-  {key:'proteinbars',label:'Protein Bars',  tall:false, wide:true },
+  {key:'vitamins',   label:'Vitamins',      tall:false, wide:false},
   {key:'rtd',        label:'Drinks',        tall:false, wide:false},
 ];
 
