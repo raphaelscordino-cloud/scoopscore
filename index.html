@@ -337,6 +337,11 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .retailer-strip-section{padding:28px 0 0;border-bottom:1px solid var(--border)}
 .retailer-strip-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:14px}
 .retailer-strip{display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding-bottom:24px}
+.retailer-logo-item{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);border-radius:100px;cursor:pointer;transition:all .15s;opacity:.75}
+.retailer-logo-item:hover{opacity:1;border-color:var(--border2);background:var(--bg2)}
+.retailer-logo-img{width:16px;height:16px;object-fit:contain;flex-shrink:0}
+.retailer-logo-name{font-size:12px;font-weight:500;color:var(--ink2);white-space:nowrap}
+.retailer-logo-fallback{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:-.01em;white-space:nowrap}
 
 /* ── EDITORIAL CATEGORY TILES ── */
 .cat-tile-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px}
@@ -359,7 +364,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .cat-tile:hover .cat-tile-arrow{background:rgba(255,255,255,.2);color:#fff}
 
 @media(max-width:900px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}}
-@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-grid{grid-template-columns:repeat(3,1fr);gap:6px}}
+@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-strip{gap:0}.retailer-logo-item{padding:4px 10px}}
 .home-body{max-width:1320px;margin:0 auto;padding:0 32px 80px}
 .home-section{padding:56px 0 0}
 .home-section-dark{background:#1a1917;margin:56px -32px 0;padding:56px 32px;max-width:none;width:calc(100% + 64px);position:relative;left:-32px}
@@ -1030,7 +1035,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 
       <!-- Price range slider -->
       <div class="cat-sidebar-section" id="sidePrice" style="padding-bottom:8px">
-        <div class="cat-sidebar-title">Price <span id="priceSliderLabel" style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);float:right"></span></div>
+        <div class="cat-sidebar-title">Price</div>
         <div class="size-slider-wrap">
           <div class="size-range-track" id="priceTrack">
             <div class="size-range-fill" id="priceFill"></div>
@@ -1179,7 +1184,7 @@ function renderMegaBrands(cat){
     </button>`;
   }).join('');
   // Update counts in cat list
-  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
+  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories'];
   cats.forEach(c=>{
     const el=document.getElementById('mciCount-'+c);
     if(!el)return;
@@ -1295,10 +1300,9 @@ function formatKg(kg){return kg<1?(kg*1000)+'g':kg+'kg';}
 // Slider state
 let sliderLoIdx=0, sliderHiIdx=SIZE_TICKS.length-1;
 
-function initSizeSlider(){
-  // Build tick labels
+function initSizeSlider(forceReset){
   document.getElementById('sizeTickRow').innerHTML=SIZE_TICKS.map(t=>`<span class="size-tick">${formatKg(t)}</span>`).join('');
-  sliderLoIdx=0; sliderHiIdx=SIZE_TICKS.length-1;
+  if(forceReset){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;}
   updateSliderUI();
 }
 function pctOf(idx){return(idx/(SIZE_TICKS.length-1))*100;}
@@ -1355,7 +1359,7 @@ function sliderDragEnd(){
   window.removeEventListener('touchmove',sliderDragMove);
   window.removeEventListener('touchend',sliderDragEnd);
 }
-function resetSizeSlider(){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;updateSliderUI();}
+function resetSizeSlider(){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;catViewSizeMin=null;catViewSizeMax=null;updateSliderUI();}
 const PROTEIN_TYPES=[
   {key:'whey',    label:'Whey',          match:/\bwhey\b(?!.*isolate)/i},
   {key:'isolate', label:'Isolate / WPI', match:/\bisolate\b|\bwpi\b|\biso[0-9]/i},
@@ -1371,23 +1375,30 @@ const PRICE_TICKS=[20,40,60,80,100,150,200]; // 7 clean steps
 let priceLoIdx=0,priceHiIdx=PRICE_TICKS.length-1;
 let catViewPriceMin=null,catViewPriceMax=null;
 
-function initPriceSlider(){
-  document.getElementById('priceTickRow').innerHTML=PRICE_TICKS.map(t=>`<span class="size-tick">$${t}</span>`).join('');
-  priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
+function initPriceSlider(forceReset){
+  // Never reset slider position unless explicitly asked
+  if(forceReset){priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;}
   updatePriceSliderUI();
 }
 function pricePctOf(idx){return(idx/(PRICE_TICKS.length-1))*100;}
 function updatePriceSliderUI(){
   const lo=pricePctOf(priceLoIdx),hi=pricePctOf(priceHiIdx);
-  document.getElementById('priceThumbLo').style.left=lo+'%';
-  document.getElementById('priceThumbHi').style.left=hi+'%';
-  document.getElementById('priceFill').style.left=lo+'%';
-  document.getElementById('priceFill').style.width=(hi-lo)+'%';
+  const fill=document.getElementById('priceFill');
+  const thumbLo=document.getElementById('priceThumbLo');
+  const thumbHi=document.getElementById('priceThumbHi');
+  if(fill){fill.style.left=lo+'%';fill.style.right=(100-hi)+'%';}
+  if(thumbLo)thumbLo.style.left=lo+'%';
+  if(thumbHi)thumbHi.style.left=hi+'%';
   const loV=PRICE_TICKS[priceLoIdx],hiV=PRICE_TICKS[priceHiIdx];
   const isAll=priceLoIdx===0&&priceHiIdx===PRICE_TICKS.length-1;
-  document.getElementById('priceSliderLabel').textContent=isAll?'Any':'$'+loV+' – $'+hiV;
+  // Sync number inputs
+  const inLo=document.getElementById('priceInputLo');
+  const inHi=document.getElementById('priceInputHi');
+  if(inLo)inLo.value=loV;
+  if(inHi)inHi.value=hiV;
   catViewPriceMin=isAll?null:loV;
   catViewPriceMax=isAll?null:hiV;
+  renderActiveFilters();
 }
 let _pDragThumb=null,_pDragLeft=0,_pDragWidth=0;
 function priceSliderDragStart(e,thumb){
@@ -1412,7 +1423,6 @@ function priceSliderMove(e){
   else priceHiIdx=Math.max(idx,priceLoIdx);
   updatePriceSliderUI();
   renderCatProducts();
-  renderActiveFilters();
 }
 function priceSliderEnd(){
   if(_pDragThumb){
@@ -1424,38 +1434,57 @@ function priceSliderEnd(){
   window.removeEventListener('touchmove',priceSliderMove);
   window.removeEventListener('touchend',priceSliderEnd);
 }
-function resetPriceSlider(){priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;updatePriceSliderUI();}
+function resetPriceSlider(){priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;catViewPriceMin=null;catViewPriceMax=null;updatePriceSliderUI();}
+function onPriceInputChange(){
+  const loRaw=parseInt(document.getElementById('priceInputLo')?.value)||0;
+  const hiRaw=parseInt(document.getElementById('priceInputHi')?.value)||250;
+  const lo=Math.max(0,Math.min(loRaw,hiRaw));
+  const hi=Math.max(lo,Math.min(hiRaw,500));
+  function nearestPriceTick(v){return PRICE_TICKS.reduce((a,b)=>Math.abs(b-v)<Math.abs(a-v)?b:a);}
+  priceLoIdx=Math.max(0,PRICE_TICKS.indexOf(nearestPriceTick(lo)));
+  priceHiIdx=Math.max(0,PRICE_TICKS.indexOf(nearestPriceTick(hi)));
+  const isAll=priceLoIdx===0&&priceHiIdx===PRICE_TICKS.length-1;
+  catViewPriceMin=isAll?null:PRICE_TICKS[priceLoIdx];
+  catViewPriceMax=isAll?null:PRICE_TICKS[priceHiIdx];
+  updatePriceSliderUI();
+  renderCatProducts();
+  renderActiveFilters();
+}
 
-function openCategoryView(cat){
-  catViewCat=cat||'all';catViewBrandFilter='all';catViewRetailerFilter='all';
-  catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceMin=null;catViewPriceMax=null;
+
+function openCategoryView(cat,keepFilters){
+  const newCat=cat||'all';
+  catViewCat=newCat;
+  if(!keepFilters){
+    catViewBrandFilter='all';catViewRetailerFilter='all';
+    catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;
+    catViewPriceMin=null;catViewPriceMax=null;
+    priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
+    sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;
+  }
   showView('viewCategory');
   window.scrollTo({top:0,behavior:'smooth'});
-  const label=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
+  const label=newCat==='all'?'All Products':(CAT_META[newCat]?.label||newCat);
   document.getElementById('catViewTitle').textContent=label;
   document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
   setBreadcrumb([{label:'Home',fn:'goHome()'},{label:label}]);
-  renderCatFilterPills();renderCatSmartFilters();renderCatSidebar();renderCatProducts();
-  document.getElementById('catActiveFiltersWrap').style.display='none';
+  renderCatFilterPills();renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();
 }
 function renderCatFilterPills(){
-  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
+  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories'];
   document.getElementById('catFilterPills').innerHTML=cats.map(c=>{
     const label=c==='all'?'All':CAT_META[c]?.label||c;
     return`<button class="bcf-pill${catViewCat===c?' active':''}" onclick="setCatViewCat(this,'${c}')">${label}</button>`;
   }).join('');
 }
 function setCatViewCat(el,cat){
-  catViewCat=cat;catViewBrandFilter='all';catViewRetailerFilter='all';
-  catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceMin=null;catViewPriceMax=null;
-  sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;
-  priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
+  catViewCat=cat;
+  catViewProteinType=null; // only reset protein type (category-specific)
   document.querySelectorAll('#catFilterPills .bcf-pill').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('catViewTitle').textContent=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
   setBreadcrumb([{label:'Home',fn:'goHome()'},{label:document.getElementById('catViewTitle').textContent}]);
-  renderCatSmartFilters();renderCatSidebar();renderCatProducts();
-  document.getElementById('catActiveFiltersWrap').style.display='none';
+  renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();
 }
 function setCatSort(el,s){
   catViewSort=s;
@@ -1478,10 +1507,10 @@ function renderCatSmartFilters(){
   const hasSize=groups.some(({group})=>groupMinKg(group)!==null);
   const sizeWrap=document.getElementById('sideSize');
   if(sizeWrap){
-    if(hasSize){sizeWrap.style.display='';initSizeSlider();}
+    if(hasSize){sizeWrap.style.display='';initSizeSlider();} // preserves position
     else{sizeWrap.style.display='none';}
   }
-  // Price slider — always show
+  // Price slider — always show, never reset position
   if(document.getElementById('priceTrack'))initPriceSlider();
 }
 function setCatProteinType(key){catViewProteinType=catViewProteinType===key?null:key;renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();}
@@ -1505,15 +1534,15 @@ function renderActiveFilters(){
   wrap.style.display=tags.length?'':'none';
 }
 function renderCatSidebar(){
-  const items=getFilteredCatGroups();
+  const baseItems=getBaseCatGroups();
   const brandCounts={};
-  for(const{brand}of items)brandCounts[brand]=(brandCounts[brand]||0)+1;
+  for(const{brand}of baseItems)brandCounts[brand]=(brandCounts[brand]||0)+1;
   document.getElementById('catBrandList').innerHTML=Object.entries(brandCounts).sort((a,b)=>b[1]-a[1])
     .map(([name,count])=>`<button class="cat-brand-filter${catViewBrandFilter===name?' active':''}" onclick="setCatBrandFilter('${name.replace(/'/g,"\\'")}')">
       <span class="cbf-check">${catViewBrandFilter===name?'✓':''}</span><span class="cbf-label">${name}</span><span class="cbf-count">${count}</span>
     </button>`).join('');
   const retailerCounts={};
-  for(const{sz}of items)for(const r of sz.retailers.keys())retailerCounts[r]=(retailerCounts[r]||0)+1;
+  for(const{sz}of baseItems)for(const r of sz.retailers.keys())retailerCounts[r]=(retailerCounts[r]||0)+1;
   document.getElementById('catRetailerList').innerHTML=Object.entries(retailerCounts).sort((a,b)=>b[1]-a[1])
     .map(([r,count])=>`<button class="cat-brand-filter${catViewRetailerFilter===r?' active':''}" onclick="setCatRetailerFilter('${r}')">
       <span class="cbf-check">${catViewRetailerFilter===r?'✓':''}</span><span class="cbf-label">${rm(r).name}</span><span class="cbf-count">${count}</span>
@@ -1652,14 +1681,12 @@ function renderRetailerStrip(){
   const strip=document.getElementById('retailerLogoStrip');
   if(!strip)return;
   strip.innerHTML=Object.entries(RETAILER_META).map(([id,r])=>{
-    const logoUrl=`https://logo.clearbit.com/${r.domain}`;
-    const faviconUrl=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=128`;
-    return`<div class="retailer-tile" onclick="filterByRetailer('${id}')" title="${r.name}">
-      <div class="retailer-tile-veil"></div>
-      <div class="retailer-tile-logo">
-        <img src="${logoUrl}" alt="${r.name}"
-          onerror="this.src='${faviconUrl}';this.onerror=function(){this.outerHTML='<div class=\'retailer-tile-logo-fallback\'>${r.name}</div>';}">
-      </div>
+    // Google's favicon service is highly reliable for any domain
+    const faviconUrl=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=64`;
+    return`<div class="retailer-logo-item" onclick="filterByRetailer('${id}')" title="${r.name}">
+      <img class="retailer-logo-img" src="${faviconUrl}" alt="${r.name}"
+        onerror="this.outerHTML='<span class=\\'retailer-logo-fallback\\'>${r.name}</span>'">
+      <span class="retailer-logo-name">${r.name}</span>
     </div>`;
   }).join('');
 }
