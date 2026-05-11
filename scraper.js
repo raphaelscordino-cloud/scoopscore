@@ -154,6 +154,49 @@ function detectCategory(productType, tags, title) {
   return null;
 }
 
+
+// ── BRAND NORMALISATION ───────────────────────────────────────
+// Shopify vendor fields are inconsistent across stores.
+// "MUTANT", "Mutant", "Mutant Nutrition" all mean the same brand.
+const BRAND_ALIASES = {
+  'mutant nutrition':'Mutant','mutant':'Mutant','mutant supplements':'Mutant',
+  'optimum nutrition':'Optimum Nutrition','on':'Optimum Nutrition','optimum':'Optimum Nutrition',
+  'bsn':'BSN',
+  'dymatize':'Dymatize','dymatize nutrition':'Dymatize',
+  'muscletech':'MuscleTech','muscle tech':'MuscleTech',
+  'ghost':'Ghost','ghost lifestyle':'Ghost',
+  'ehp labs':'EHP Labs','ehplabs':'EHP Labs',
+  'myprotein':'Myprotein','my protein':'Myprotein',
+  'macro mike':'Macro Mike','macromike':'Macro Mike',
+  'faction labs':'Faction Labs','faction':'Faction Labs',
+  'rule 1':'Rule 1','rule one':'Rule 1','r1 proteins':'Rule 1',
+  "max's":"Max's",'maxs':"Max's",
+  'emrald labs':'Emrald Labs','emrald':'Emrald Labs',
+  'gen-tec':'Gen-Tec','gen tec':'Gen-Tec','gentec':'Gen-Tec',
+  'musashi':'Musashi',
+  'balance':'Balance','balance sports nutrition':'Balance',
+  'cellucor':'Cellucor',
+  'redcon1':'Redcon1','redcon 1':'Redcon1',
+  'ryse':'Ryse','ryse supps':'Ryse',
+  'atp science':'ATP Science',
+  'isopure':'Isopure','the isopure company':'Isopure',
+  'vpa':'VPA','vpa australia':'VPA',
+  'bulk nutrients':'Bulk Nutrients',
+  'true protein':'True Protein',
+  'prana on':'Prana ON','prana':'Prana ON',
+  'body science':'Body Science','bsc':'Body Science',
+  'calocurb':'Calocurb',
+  'science in sport':'Science in Sport','sis':'Science in Sport',
+};
+
+function normalizeBrand(raw) {
+  if (!raw || raw.trim() === '' || raw === 'Unknown') return 'Unknown';
+  const key = raw.toLowerCase().trim();
+  if (BRAND_ALIASES[key]) return BRAND_ALIASES[key];
+  // Title-case as fallback: "MUTANT NUTRITION" -> "Mutant Nutrition"
+  return raw.trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+}
+
 function isGymProduct(title, productType) {
   const t = (title + ' ' + (productType || '')).toLowerCase();
   if (EXCLUDE.some(rx => rx.test(t))) return false;
@@ -318,7 +361,7 @@ async function scrapeShopifyStore(retailer) {
           id:           `${retailer.id}_${node.handle}`,
           retailer:     retailer.id,
           retailerName: retailer.name,
-          brand:        node.vendor || 'Unknown',
+          brand:        normalizeBrand(node.vendor),
           name:         node.title,
           category:     finalCat,
           description:  (node.description || '').slice(0, 300),
@@ -364,7 +407,7 @@ async function scrapeShopifyStore(retailer) {
             id:           `${retailer.id}_${raw.handle || raw.id}`,
             retailer:     retailer.id,
             retailerName: retailer.name,
-            brand:        raw.vendor || 'Unknown',
+            brand:        normalizeBrand(raw.vendor),
             name:         raw.title,
             category:     finalCat,
             description:  (raw.body_html||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().slice(0,300),
@@ -417,6 +460,7 @@ const RETAILERS = [
   { id: 'reactiv',            name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide' },
   { id: 'eatme',              name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site' },
   { id: 'kiwinutrition',      name: 'Kiwi Nutrition',        baseUrl: 'kiwinutrition.co.nz',               freeShipping: 'Check site' },
+  { id: 'elitesupplements',   name: 'Elite Supplements',     baseUrl: 'elitesupplements.co.nz',            freeShipping: 'Check site' },
   { id: 'nutritionwarehouse', name: 'Nutrition Warehouse',   baseUrl: 'www.nutritionwarehouse.co.nz',      freeShipping: 'Free over $60' },
   // Xplosiv and Sprint Fit are not Shopify and require Playwright (see README)
 ];

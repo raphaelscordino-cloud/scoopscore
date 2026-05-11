@@ -1035,7 +1035,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 
       <!-- Price range slider -->
       <div class="cat-sidebar-section" id="sidePrice" style="padding-bottom:8px">
-        <div class="cat-sidebar-title">Price</div>
+        <div class="cat-sidebar-title">Price <span id="priceSliderLabel" style="font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);float:right"></span></div>
         <div class="size-slider-wrap">
           <div class="size-range-track" id="priceTrack">
             <div class="size-range-fill" id="priceFill"></div>
@@ -1184,7 +1184,7 @@ function renderMegaBrands(cat){
     </button>`;
   }).join('');
   // Update counts in cat list
-  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories'];
+  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
   cats.forEach(c=>{
     const el=document.getElementById('mciCount-'+c);
     if(!el)return;
@@ -1300,9 +1300,10 @@ function formatKg(kg){return kg<1?(kg*1000)+'g':kg+'kg';}
 // Slider state
 let sliderLoIdx=0, sliderHiIdx=SIZE_TICKS.length-1;
 
-function initSizeSlider(forceReset){
+function initSizeSlider(){
+  // Build tick labels
   document.getElementById('sizeTickRow').innerHTML=SIZE_TICKS.map(t=>`<span class="size-tick">${formatKg(t)}</span>`).join('');
-  if(forceReset){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;}
+  sliderLoIdx=0; sliderHiIdx=SIZE_TICKS.length-1;
   updateSliderUI();
 }
 function pctOf(idx){return(idx/(SIZE_TICKS.length-1))*100;}
@@ -1359,7 +1360,7 @@ function sliderDragEnd(){
   window.removeEventListener('touchmove',sliderDragMove);
   window.removeEventListener('touchend',sliderDragEnd);
 }
-function resetSizeSlider(){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;catViewSizeMin=null;catViewSizeMax=null;updateSliderUI();}
+function resetSizeSlider(){sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;updateSliderUI();}
 const PROTEIN_TYPES=[
   {key:'whey',    label:'Whey',          match:/\bwhey\b(?!.*isolate)/i},
   {key:'isolate', label:'Isolate / WPI', match:/\bisolate\b|\bwpi\b|\biso[0-9]/i},
@@ -1375,30 +1376,23 @@ const PRICE_TICKS=[20,40,60,80,100,150,200]; // 7 clean steps
 let priceLoIdx=0,priceHiIdx=PRICE_TICKS.length-1;
 let catViewPriceMin=null,catViewPriceMax=null;
 
-function initPriceSlider(forceReset){
-  // Never reset slider position unless explicitly asked
-  if(forceReset){priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;}
+function initPriceSlider(){
+  document.getElementById('priceTickRow').innerHTML=PRICE_TICKS.map(t=>`<span class="size-tick">$${t}</span>`).join('');
+  priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
   updatePriceSliderUI();
 }
 function pricePctOf(idx){return(idx/(PRICE_TICKS.length-1))*100;}
 function updatePriceSliderUI(){
   const lo=pricePctOf(priceLoIdx),hi=pricePctOf(priceHiIdx);
-  const fill=document.getElementById('priceFill');
-  const thumbLo=document.getElementById('priceThumbLo');
-  const thumbHi=document.getElementById('priceThumbHi');
-  if(fill){fill.style.left=lo+'%';fill.style.right=(100-hi)+'%';}
-  if(thumbLo)thumbLo.style.left=lo+'%';
-  if(thumbHi)thumbHi.style.left=hi+'%';
+  document.getElementById('priceThumbLo').style.left=lo+'%';
+  document.getElementById('priceThumbHi').style.left=hi+'%';
+  document.getElementById('priceFill').style.left=lo+'%';
+  document.getElementById('priceFill').style.width=(hi-lo)+'%';
   const loV=PRICE_TICKS[priceLoIdx],hiV=PRICE_TICKS[priceHiIdx];
   const isAll=priceLoIdx===0&&priceHiIdx===PRICE_TICKS.length-1;
-  // Sync number inputs
-  const inLo=document.getElementById('priceInputLo');
-  const inHi=document.getElementById('priceInputHi');
-  if(inLo)inLo.value=loV;
-  if(inHi)inHi.value=hiV;
+  document.getElementById('priceSliderLabel').textContent=isAll?'Any':'$'+loV+' – $'+hiV;
   catViewPriceMin=isAll?null:loV;
   catViewPriceMax=isAll?null:hiV;
-  renderActiveFilters();
 }
 let _pDragThumb=null,_pDragLeft=0,_pDragWidth=0;
 function priceSliderDragStart(e,thumb){
@@ -1423,6 +1417,7 @@ function priceSliderMove(e){
   else priceHiIdx=Math.max(idx,priceLoIdx);
   updatePriceSliderUI();
   renderCatProducts();
+  renderActiveFilters();
 }
 function priceSliderEnd(){
   if(_pDragThumb){
@@ -1434,57 +1429,38 @@ function priceSliderEnd(){
   window.removeEventListener('touchmove',priceSliderMove);
   window.removeEventListener('touchend',priceSliderEnd);
 }
-function resetPriceSlider(){priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;catViewPriceMin=null;catViewPriceMax=null;updatePriceSliderUI();}
-function onPriceInputChange(){
-  const loRaw=parseInt(document.getElementById('priceInputLo')?.value)||0;
-  const hiRaw=parseInt(document.getElementById('priceInputHi')?.value)||250;
-  const lo=Math.max(0,Math.min(loRaw,hiRaw));
-  const hi=Math.max(lo,Math.min(hiRaw,500));
-  function nearestPriceTick(v){return PRICE_TICKS.reduce((a,b)=>Math.abs(b-v)<Math.abs(a-v)?b:a);}
-  priceLoIdx=Math.max(0,PRICE_TICKS.indexOf(nearestPriceTick(lo)));
-  priceHiIdx=Math.max(0,PRICE_TICKS.indexOf(nearestPriceTick(hi)));
-  const isAll=priceLoIdx===0&&priceHiIdx===PRICE_TICKS.length-1;
-  catViewPriceMin=isAll?null:PRICE_TICKS[priceLoIdx];
-  catViewPriceMax=isAll?null:PRICE_TICKS[priceHiIdx];
-  updatePriceSliderUI();
-  renderCatProducts();
-  renderActiveFilters();
-}
+function resetPriceSlider(){priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;updatePriceSliderUI();}
 
-
-function openCategoryView(cat,keepFilters){
-  const newCat=cat||'all';
-  catViewCat=newCat;
-  if(!keepFilters){
-    catViewBrandFilter='all';catViewRetailerFilter='all';
-    catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;
-    catViewPriceMin=null;catViewPriceMax=null;
-    priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
-    sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;
-  }
+function openCategoryView(cat){
+  catViewCat=cat||'all';catViewBrandFilter='all';catViewRetailerFilter='all';
+  catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceMin=null;catViewPriceMax=null;
   showView('viewCategory');
   window.scrollTo({top:0,behavior:'smooth'});
-  const label=newCat==='all'?'All Products':(CAT_META[newCat]?.label||newCat);
+  const label=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
   document.getElementById('catViewTitle').textContent=label;
   document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));
   setBreadcrumb([{label:'Home',fn:'goHome()'},{label:label}]);
-  renderCatFilterPills();renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();
+  renderCatFilterPills();renderCatSmartFilters();renderCatSidebar();renderCatProducts();
+  document.getElementById('catActiveFiltersWrap').style.display='none';
 }
 function renderCatFilterPills(){
-  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','gymfood','accessories'];
+  const cats=['all','protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
   document.getElementById('catFilterPills').innerHTML=cats.map(c=>{
     const label=c==='all'?'All':CAT_META[c]?.label||c;
     return`<button class="bcf-pill${catViewCat===c?' active':''}" onclick="setCatViewCat(this,'${c}')">${label}</button>`;
   }).join('');
 }
 function setCatViewCat(el,cat){
-  catViewCat=cat;
-  catViewProteinType=null; // only reset protein type (category-specific)
+  catViewCat=cat;catViewBrandFilter='all';catViewRetailerFilter='all';
+  catViewSizeMin=null;catViewSizeMax=null;catViewProteinType=null;catViewPriceMin=null;catViewPriceMax=null;
+  sliderLoIdx=0;sliderHiIdx=SIZE_TICKS.length-1;
+  priceLoIdx=0;priceHiIdx=PRICE_TICKS.length-1;
   document.querySelectorAll('#catFilterPills .bcf-pill').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('catViewTitle').textContent=cat==='all'?'All Products':(CAT_META[cat]?.label||cat);
   setBreadcrumb([{label:'Home',fn:'goHome()'},{label:document.getElementById('catViewTitle').textContent}]);
-  renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();
+  renderCatSmartFilters();renderCatSidebar();renderCatProducts();
+  document.getElementById('catActiveFiltersWrap').style.display='none';
 }
 function setCatSort(el,s){
   catViewSort=s;
@@ -1507,10 +1483,10 @@ function renderCatSmartFilters(){
   const hasSize=groups.some(({group})=>groupMinKg(group)!==null);
   const sizeWrap=document.getElementById('sideSize');
   if(sizeWrap){
-    if(hasSize){sizeWrap.style.display='';initSizeSlider();} // preserves position
+    if(hasSize){sizeWrap.style.display='';initSizeSlider();}
     else{sizeWrap.style.display='none';}
   }
-  // Price slider — always show, never reset position
+  // Price slider — always show
   if(document.getElementById('priceTrack'))initPriceSlider();
 }
 function setCatProteinType(key){catViewProteinType=catViewProteinType===key?null:key;renderCatSmartFilters();renderCatSidebar();renderCatProducts();renderActiveFilters();}
@@ -1534,15 +1510,15 @@ function renderActiveFilters(){
   wrap.style.display=tags.length?'':'none';
 }
 function renderCatSidebar(){
-  const baseItems=getBaseCatGroups();
+  const items=getFilteredCatGroups();
   const brandCounts={};
-  for(const{brand}of baseItems)brandCounts[brand]=(brandCounts[brand]||0)+1;
+  for(const{brand}of items)brandCounts[brand]=(brandCounts[brand]||0)+1;
   document.getElementById('catBrandList').innerHTML=Object.entries(brandCounts).sort((a,b)=>b[1]-a[1])
     .map(([name,count])=>`<button class="cat-brand-filter${catViewBrandFilter===name?' active':''}" onclick="setCatBrandFilter('${name.replace(/'/g,"\\'")}')">
       <span class="cbf-check">${catViewBrandFilter===name?'✓':''}</span><span class="cbf-label">${name}</span><span class="cbf-count">${count}</span>
     </button>`).join('');
   const retailerCounts={};
-  for(const{sz}of baseItems)for(const r of sz.retailers.keys())retailerCounts[r]=(retailerCounts[r]||0)+1;
+  for(const{sz}of items)for(const r of sz.retailers.keys())retailerCounts[r]=(retailerCounts[r]||0)+1;
   document.getElementById('catRetailerList').innerHTML=Object.entries(retailerCounts).sort((a,b)=>b[1]-a[1])
     .map(([r,count])=>`<button class="cat-brand-filter${catViewRetailerFilter===r?' active':''}" onclick="setCatRetailerFilter('${r}')">
       <span class="cbf-check">${catViewRetailerFilter===r?'✓':''}</span><span class="cbf-label">${rm(r).name}</span><span class="cbf-count">${count}</span>
@@ -1769,6 +1745,40 @@ function setSort(el,s){document.querySelectorAll('.sort-btn').forEach(b=>b.class
 
 function brandColor(name){const K={'Optimum Nutrition':'#3b82f6','EHP Labs':'#ec4899','Ghost':'#a855f7','Cellucor':'#06b6d4','Myprotein':'#f97316','Dymatize':'#0ea5e9','NZ Muscle':'#22c55e','Musashi':'#f59e0b','Bulk Nutrients':'#10b981','BSN':'#6366f1','MuscleTech':'#ef4444','Rule 1':'#3b82f6','Faction Labs':'#f97316','ATP Science':'#a855f7','RedCon1':'#dc2626','Primabolics':'#d97706','Switch Nutrition':'#22c55e'};if(K[name])return K[name];let h=0;for(let i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))&0xffffff;return `hsl(${h%360},65%,55%)`;}
 function brandDesc(name){const K={'Optimum Nutrition':"The world's best-selling sports nutrition brand. Gold Standard whey has been the industry benchmark since 1994.",'EHP Labs':"Australia's #1 premium supplement brand. Known for OxyShred (world's #1 fat burner) and OxyWhey lean protein.",'Ghost':"The brand that redefined transparency. Full-label disclosure, legendary licensed flavours, athlete-formulated products.",'Cellucor':"Makers of C4, the world's best-selling pre-workout. Clean, effective formulas and iconic flavours.",'Myprotein':"Europe's #1 online sports nutrition brand. Unbeatable value per gram, massive range of proteins and supplements.",'Dymatize':"Precision-engineered sports nutrition. ISO100 hydrolyzed is a favourite of elite athletes for rapid absorption.",'NZ Muscle':"New Zealand's own supplement brand. Pharmaceutical grade ingredients at honest prices, made for Kiwi athletes.",'Musashi':"A trusted Australasian sports nutrition brand with 30+ years of experience. Clean formulas, no proprietary blends.",'Bulk Nutrients':"Australia's leading direct-to-consumer brand. Exceptional value with no middlemen. Massive range, honest labelling.",'BSN':"Pioneers of N.O.-Xplode. Premium formulas with over 20 years of performance nutrition expertise.",'MuscleTech':"Science-backed formulations with clinical doses. Nitro-Tech is one of the world's best-selling protein powders."};return K[name]||`Premium supplements from ${name}, available across NZ's top supplement retailers.`;}
+// ── BRAND NORMALISATION (frontend) ───────────────────────────
+// Ensures products.json data with inconsistent vendor names still groups correctly.
+const BRAND_ALIAS_MAP = {
+  'mutant nutrition':'Mutant','mutant supplements':'Mutant',
+  'optimum nutrition':'Optimum Nutrition','on':'Optimum Nutrition',
+  'dymatize nutrition':'Dymatize',
+  'ghost lifestyle':'Ghost',
+  'ehplabs':'EHP Labs','ehp labs':'EHP Labs',
+  'my protein':'Myprotein',
+  'macro mike':'Macro Mike','macromike':'Macro Mike',
+  'faction labs':'Faction Labs','faction':'Faction Labs',
+  'rule 1':'Rule 1','rule one':'Rule 1','r1 proteins':'Rule 1',
+  "max's":"Max's",'maxs':"Max's",
+  'emrald labs':'Emrald Labs','emrald':'Emrald Labs',
+  'gen-tec':'Gen-Tec','gen tec':'Gen-Tec','gentec':'Gen-Tec',
+  'balance sports nutrition':'Balance',
+  'redcon 1':'Redcon1',
+  'ryse supps':'Ryse',
+  'atp science':'ATP Science',
+  'the isopure company':'Isopure',
+  'vpa australia':'VPA',
+  'bulk nutrients':'Bulk Nutrients',
+  'prana on':'Prana ON',
+  'body science':'Body Science','bsc':'Body Science',
+  'science in sport':'Science in Sport','sis':'Science in Sport',
+};
+function normBrand(raw){
+  if(!raw||raw==='Unknown')return 'Unknown';
+  const k=raw.toLowerCase().trim();
+  if(BRAND_ALIAS_MAP[k])return BRAND_ALIAS_MAP[k];
+  // Title-case as fallback
+  return raw.trim().toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+}
+
 function normKey(s){
   return s.toLowerCase()
     // strip punctuation except spaces
@@ -1848,14 +1858,15 @@ async function loadData(){
 function init(updatedAt){
   BRANDS={};
   for(const p of ALL){
-    if(!BRANDS[p.brand])BRANDS[p.brand]={name:p.brand,groups:{},cats:new Set(),retailers:new Set()};
-    const b=BRANDS[p.brand];
+    const brandName=normBrand(p.brand);
+    if(!BRANDS[brandName])BRANDS[brandName]={name:brandName,groups:{},cats:new Set(),retailers:new Set()};
+    const b=BRANDS[brandName];
     // Group by brand + normalised product name ONLY — deliberately exclude category
     // from the key so the same product (e.g. Mutant Whey) groups together even if
     // different retailers have tagged it with different categories
     const key=normKey(p.name);
     if(!b.groups[key]){
-      b.groups[key]={key,name:p.name,category:p.category,imageUrl:p.imageUrl,listings:[]};
+      b.groups[key]={key,name:p.name,category:p.category,imageUrl:p.imageUrl,listings:[],brand:brandName};
     }
     // Prefer the shorter/cleaner name
     if(p.name.length<b.groups[key].name.length)b.groups[key].name=p.name;
