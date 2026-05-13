@@ -1,215 +1,197 @@
 # ScoopScore — NZ Supplement Price Tracker
 
-Scrapes supplement prices from NZ retailers daily and serves them on a clean comparison website.
+Scrapes supplement prices from NZ retailers daily and serves them via a static website hosted on Vercel.
+
+---
+
+## How it works
+
+```
+scraper.js  →  data/products.json  →  git push  →  Vercel auto-deploys  →  index.html
+```
+
+1. `scraper.js` runs on your machine (scheduled via cron at 3am)
+2. Fetches all products from each retailer's public `/products.json` endpoint
+3. Filters and categorises supplements, preserves price history
+4. Writes to `data/products.json`
+5. Git commits and pushes — Vercel picks it up automatically
+6. `index.html` fetches `data/products.json` on page load
+
+No server, no cloud functions, no cost.
 
 ---
 
 ## Retailers tracked
 
-| Store | Platform | Free shipping | Status |
-|---|---|---|---|
-| NZ Muscle | Shopify | Always free | ✅ Active |
-| Sportsfuel | Shopify | $60+ | ✅ Active |
-| Scorpion Supplements | Shopify | Check site | ✅ Active |
-| ASN Online | Shopify | $100+ | ✅ Active |
-| Supplement Solutions | Shopify | Check site | ✅ Active |
-| Raisey's | Shopify | Check site | ✅ Active |
-| Xplosiv | Magento | $100+ | ✅ Active (JSON-LD scraper) |
-| Sprint Fit | Custom | Check site | ✅ Active (JSON-LD scraper) |
-
-**To add more stores:** Shopify stores take 5 minutes — just add a line to the `RETAILERS` array. Non-Shopify stores need a custom scraper function.
-
----
-
-## How it works
-
-```
-scraper.js  →  data/products.json  →  index.html (reads on load)
-```
-
-1. **Shopify retailers** — hits `/products.json` endpoint, gets all products + prices in one API call per page
-2. **Xplosiv (Magento)** — fetches category pages, extracts JSON-LD structured data embedded in HTML
-3. **Sprint Fit (custom)** — same JSON-LD approach
-4. All results written to `data/products.json` with price history preserved
-5. `index.html` loads `data/products.json` on startup
+| Store | Method | Free shipping |
+|---|---|---|
+| NZ Muscle | products.json | Always free |
+| Sportsfuel | products.json | Free over $60 |
+| Scorpion Supplements | products.json | Check site |
+| ASN Online | products.json | Free over $100 |
+| Supplement Solutions | products.json | Check site |
+| Raisey's | products.json | Check site |
+| BodyStrong | products.json | Check site |
+| Bargain Chemist | products.json | Free shipping |
+| Payless Supplements | products.json | Free shipping |
+| Supplements NZ | products.json | Free shipping |
+| Reactiv Supplements | products.json | Free NZ-wide |
+| Eat Me Supplements | products.json | Check site |
+| Kiwi Nutrition | products.json | Check site |
+| Elite Supplements | products.json | Check site |
+| Nutrition Warehouse | products.json | Free over $60 |
 
 ---
 
-## Setup
+## Categories
 
-```bash
-# 1. Clone your repo
-git clone https://github.com/YOUR_USERNAME/scoopscore.git
-cd scoopscore
-
-# 2. Run scraper to generate data
-node scraper.js
-
-# 3. Check output
-cat data/products.json | head -50
-
-# 4. Commit and push
-git add data/products.json data/scrape.log
-git commit -m "initial price data"
-git push
-```
-
-Vercel auto-deploys on every push.
-
----
-
-## Daily automation
-
-`.github/workflows/daily-scrape.yml` runs every day at 6am NZT automatically. To trigger manually: **Actions → Daily Price Scrape → Run workflow**
-
----
-
-## Adding a Shopify store
-
-```javascript
-{
-  id:          'storeid',
-  name:        'Store Name',
-  baseUrl:     'storename.co.nz',
-  url:         'https://storename.co.nz/products.json',
-  currency:    'NZD',
-  freeShipping: '$100+',
-  platform:    'shopify',
-  categoryMap: SHARED_CATEGORY_MAP,  // reuses the shared map
-}
-```
-
-Any Shopify store exposes `yourstore.com/products.json` publicly. To check if a store is Shopify, look for "Powered by Shopify" in their page footer, or check aftership.com/brands/storename.
-
----
-
-## File structure
-
-```
-scoopscore/
-├── index.html          ← website
-├── scraper.js          ← price scraper
-├── package.json
-├── data/
-│   ├── products.json   ← generated daily
-│   └── scrape.log      ← scrape history
-└── .github/
-    └── workflows/
-        └── daily-scrape.yml
-```
-
-Automatically scrapes supplement prices from NZ retailers daily and
-serves them on a clean comparison website.
-
----
-
-## How it works
-
-```
-scraper.js  →  data/products.json  →  index.html (reads on load)
-```
-
-1. **scraper.js** hits NZ Muscle's public Shopify API (`/products.json`)
-2. Filters to supplements only, extracts prices and variants
-3. Writes everything to `data/products.json` (preserving price history)
-4. **index.html** fetches `data/products.json` when it loads
-5. If no local file exists, it falls back to hitting the Shopify API directly
+`protein` · `proteinbars` · `rtd` · `creatine` · `preworkout` · `fatburner` · `bcaa` · `vitamins`
 
 ---
 
 ## Setup
 
 ### Prerequisites
-- Node.js 18+ (https://nodejs.org)
-- Git + GitHub account
-- Vercel account (https://vercel.com)
+- Node.js 18+ — https://nodejs.org
+- Git with push access to your repo
 
-### First time setup
+### First run
 
 ```bash
-# 1. Clone your repo
+# Clone your repo and go into it
 git clone https://github.com/YOUR_USERNAME/scoopscore.git
 cd scoopscore
 
-# 2. Run the scraper manually to generate data/products.json
+# Run the scraper once manually to generate data/products.json
 node scraper.js
 
-# 3. Check what was scraped
-cat data/products.json | head -100
-
-# 4. Commit the data
+# Commit the data and push (Vercel auto-deploys)
 git add data/products.json data/scrape.log
 git commit -m "initial price data"
 git push
 ```
 
-Vercel will auto-deploy on every push.
+---
+
+## Scheduling — Mac (cron)
+
+This runs the scraper every day at 3am, commits, and pushes automatically.
+
+### 1. Create the run script
+
+Create a file called `run-scrape.sh` in your project folder:
+
+```bash
+#!/bin/bash
+cd /path/to/your/scoopscore   # ← change this to your actual folder path
+
+node scraper.js
+
+git add data/products.json data/scrape.log
+git diff --staged --quiet || git commit -m "chore: daily price update $(date +%Y-%m-%d)"
+git push
+```
+
+Make it executable:
+
+```bash
+chmod +x run-scrape.sh
+```
+
+### 2. Add to cron
+
+Open your crontab:
+
+```bash
+crontab -e
+```
+
+Add this line (replace the path):
+
+```
+0 3 * * * /path/to/your/scoopscore/run-scrape.sh >> /path/to/your/scoopscore/data/cron.log 2>&1
+```
+
+This runs at **3am every day**. To change the time, use https://crontab.guru.
+
+### 3. Make sure your Mac doesn't sleep
+
+Cron won't fire if your Mac is asleep. Two options:
+
+**Option A — Keep it awake at 3am:**
+System Settings → Battery → uncheck "Put hard disks to sleep when possible" and set "Prevent automatic sleeping" to Never (or just on Power Adapter).
+
+**Option B — Use `caffeinate` in the script:**
+Change the cron line to:
+
+```
+0 3 * * * caffeinate -i /path/to/your/scoopscore/run-scrape.sh >> /path/to/your/scoopscore/data/cron.log 2>&1
+```
+
+**Option C — Schedule your Mac to wake at 3am:**
+System Settings → Battery → Schedule → tick "Wake for network access" or set a custom wake time.
+
+### Verify it's working
+
+```bash
+# Check cron is registered
+crontab -l
+
+# After the first scheduled run, check the log
+cat data/cron.log
+
+# Check last scrape time
+node -e "const d=require('./data/products.json'); console.log(d.meta.updatedAt, d.meta.totalProducts, 'products')"
+```
 
 ---
 
-## Daily automation (GitHub Actions)
+## Scheduling — Windows (Task Scheduler)
 
-The `.github/workflows/daily-scrape.yml` runs the scraper every day at
-6am NZT. It:
-1. Checks out your repo
-2. Runs `node scraper.js`
-3. Commits the updated `data/products.json` back to the repo
-4. Vercel auto-deploys the updated data
+```
+1. Open Task Scheduler → Create Basic Task
+2. Name: ScoopScore Scrape
+3. Trigger: Daily at 3:00 AM
+4. Action: Start a program
+   Program: C:\path\to\node.exe  (find with: where node)
+   Arguments: scraper.js
+   Start in: C:\path\to\scoopscore\
+5. Finish
+```
 
-**To enable:**
-1. Push this repo to GitHub
-2. Go to Settings → Actions → General → Allow all actions
-3. That's it — it runs automatically every night
-
-**To trigger manually:**
-Go to Actions tab → "Daily Price Scrape" → "Run workflow"
+Then create a separate task or add a script to git commit/push after.
 
 ---
 
-## Adding more retailers
+## Scheduling — Linux (cron)
 
-Open `scraper.js` and add entries to the `RETAILERS` array:
+Same as Mac — `crontab -e` then:
+
+```
+0 3 * * * /path/to/scoopscore/run-scrape.sh >> /path/to/scoopscore/data/cron.log 2>&1
+```
+
+---
+
+## Running manually anytime
+
+```bash
+node scraper.js
+```
+
+Takes about 2–3 minutes. Uses minimal bandwidth (~5MB total).
+
+---
+
+## Adding a retailer
+
+In `scraper.js`, add a line to the `RETAILERS` array:
 
 ```javascript
-{
-  id:      'sprintfit',
-  name:    'Sprint Fit',
-  baseUrl: 'www.sprintfit.co.nz',
-  url:     'https://www.sprintfit.co.nz/products.json',
-  currency:'NZD',
-  categoryMap: {
-    'Pre-Workout': 'preworkout',
-    'Protein':     'protein',
-    // ... etc
-  }
-}
+{ id: 'storeid', name: 'Store Name', baseUrl: 'storename.co.nz', freeShipping: 'Free over $X' },
 ```
 
-Any Shopify store exposes `yourstore.com/products.json` publicly.
-Check if a store is on Shopify: look for "cdn.shopify.com" in their
-page source.
-
-**NZ stores on Shopify (confirmed):**
-- nzmuscle.co.nz ✓
-- sprintfit.co.nz ✓ (check their products.json)
-- sportsfuel.co.nz ✓ (check their products.json)
-
----
-
-## Price history
-
-Every time `scraper.js` runs, it checks if the price changed since
-last time. If it did, it appends to `priceHistory`:
-
-```json
-"priceHistory": [
-  { "price": 59.99, "date": "2026-04-01" },
-  { "price": 54.99, "date": "2026-04-08" },
-  { "price": 49.99, "date": "2026-04-15" }
-]
-```
-
-The website shows this as a bar chart in each product modal.
+Any Shopify store exposes `/products.json` publicly. To check if a store is on Shopify: look for "Powered by Shopify" in their footer, or try visiting `storename.co.nz/products.json` directly — if it returns JSON, it works.
 
 ---
 
@@ -217,23 +199,41 @@ The website shows this as a bar chart in each product modal.
 
 ```
 scoopscore/
-├── index.html          ← website (reads data/products.json)
-├── scraper.js          ← price scraper (runs daily)
+├── index.html              ← website
+├── scraper.js              ← price scraper (run this)
+├── run-scrape.sh           ← cron wrapper script (you create this)
 ├── package.json
 ├── data/
-│   ├── products.json   ← generated by scraper (committed to git)
-│   └── scrape.log      ← scrape history log
+│   ├── products.json       ← generated by scraper (committed to git)
+│   ├── scrape.log          ← scraper output log
+│   └── cron.log            ← cron run log (add to .gitignore)
 └── .github/
     └── workflows/
-        └── daily-scrape.yml  ← GitHub Actions automation
+        └── daily-scrape.yml  ← (disabled — kept for reference only)
 ```
 
 ---
 
-## Monetisation notes
+## Troubleshooting
 
-Once you have traffic:
-1. Sign up for NZ Muscle affiliate: email hello@nzmuscle.co.nz
-2. Sprint Fit affiliate: check their website footer
-3. Add `?ref=scoopscore` to outbound links once you have codes
-4. You earn 5–10% commission on every sale you refer
+**Scraper returns 0 products for a store**
+The store is rate-limiting. The scraper retries automatically (up to 3x with backoff). If it still fails, wait a few hours and run again — the next day's scheduled run will catch it.
+
+**Git push fails in cron**
+Make sure your SSH key or credential helper is set up for the terminal environment (not just the GUI). Test with: `cd /your/project && git push` in a plain terminal (not VS Code).
+
+**Mac doesn't run cron at 3am**
+Check System Settings → Privacy & Security → Full Disk Access — add Terminal or your shell (`/bin/bash`, `/bin/zsh`) to the list. macOS sometimes blocks cron from accessing files otherwise.
+
+**Check what was scraped**
+
+```bash
+node -e "
+  const d = require('./data/products.json');
+  const m = d.meta;
+  console.log('Updated:', m.updatedAt);
+  console.log('Total:', m.totalProducts);
+  console.log('By retailer:', JSON.stringify(m.retailerStats, null, 2));
+  console.log('By category:', JSON.stringify(m.categories, null, 2));
+"
+```

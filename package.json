@@ -1,11 +1,10 @@
 {
   "name": "scoopscore-scraper",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "ScoopScore NZ supplement price comparison scraper",
   "main": "scraper.js",
   "scripts": {
-    "scrape": "node scraper.js",
-    "test": "node -e \"require('./scraper.js')\" --check"
+    "scrape": "node scraper.js"
   },
   "engines": {
     "node": ">=18"

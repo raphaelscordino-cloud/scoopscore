@@ -20083,3 +20083,332 @@ Output: C:\Users\rapha\scoopscore\data\products.json
 [2026-05-11T21:47:39.614Z] 
   Output: C:\Users\rapha\scoopscore\data\products.json
 [2026-05-11T21:47:39.614Z] ═══════════════════════════════════════════════
+[2026-05-13T03:00:30.641Z] 
+[2026-05-13T03:00:40.175Z] ═══════════════════════════════════════════
+[2026-05-13T03:00:40.188Z]   ScoopScore Scraper v3 — Inclusive Edition
+[2026-05-13T03:00:40.188Z] ═══════════════════════════════════════════
+[2026-05-13T03:00:40.189Z]   Retailers: 15
+[2026-05-13T03:00:40.189Z]   Method: Shopify GraphQL → products.json fallback
+[2026-05-13T03:00:40.189Z]   Filter: Inclusive-first (drop only hard-excluded items)
+[2026-05-13T03:00:40.190Z] 
+[2026-05-13T03:00:40.440Z]   Loaded 6711 existing products for price history
+[2026-05-13T03:00:40.443Z] Scraping NZ Muscle...
+[2026-05-13T03:00:40.690Z] Scraping Sportsfuel...
+[2026-05-13T03:00:40.693Z] Scraping Scorpion Supplements...
+[2026-05-13T03:00:40.694Z] Scraping ASN Online...
+[2026-05-13T03:00:40.694Z] Scraping Supplement Solutions...
+[2026-05-13T03:00:41.011Z]   Sportsfuel GQL failed (GQL HTTP 401 for www.sportsfuel.co.nz), falling back to products.json...
+[2026-05-13T03:00:41.037Z]   NZ Muscle GQL failed (GQL HTTP 401 for nzmuscle.co.nz), falling back to products.json...
+[2026-05-13T03:00:41.140Z]   Scorpion Supplements GQL failed (GQL HTTP 401 for scorpionsupplements.co.nz), falling back to products.json...
+[2026-05-13T03:00:41.251Z]   Supplement Solutions GQL failed (GQL HTTP 401 for www.supplementsolutions.co.nz), falling back to products.json...
+[2026-05-13T03:00:41.321Z]   ASN Online GQL failed (GQL HTTP 401 for asnonline.co.nz), falling back to products.json...
+[2026-05-13T03:00:41.731Z]   NZ Muscle page 1: 250 fetched, 84 skipped so far (JSON)
+[2026-05-13T03:00:42.148Z]   Scorpion Supplements page 1: 121 fetched, 16 skipped so far (JSON)
+[2026-05-13T03:00:42.148Z]   Scorpion Supplements: 105 products kept, 16 skipped
+[2026-05-13T03:00:42.461Z]   Sportsfuel page 1: 250 fetched, 55 skipped so far (JSON)
+[2026-05-13T03:00:42.482Z]   Supplement Solutions page 1: 117 fetched, 3 skipped so far (JSON)
+[2026-05-13T03:00:42.483Z]   Supplement Solutions: 114 products kept, 3 skipped
+[2026-05-13T03:00:42.995Z]   NZ Muscle page 2: 250 fetched, 204 skipped so far (JSON)
+[2026-05-13T03:00:43.334Z]   ASN Online page 1: 250 fetched, 4 skipped so far (JSON)
+[2026-05-13T03:00:43.993Z]   Sportsfuel page 2: 250 fetched, 108 skipped so far (JSON)
+[2026-05-13T03:00:44.267Z]   NZ Muscle page 3: 250 fetched, 275 skipped so far (JSON)
+[2026-05-13T03:00:44.558Z]   ASN Online page 2: 54 fetched, 5 skipped so far (JSON)
+[2026-05-13T03:00:44.558Z]   ASN Online: 299 products kept, 5 skipped
+[2026-05-13T03:00:45.732Z]   Sportsfuel page 3: 250 fetched, 152 skipped so far (JSON)
+[2026-05-13T03:00:46.465Z]   NZ Muscle page 4: 250 fetched, 382 skipped so far (JSON)
+[2026-05-13T03:00:47.738Z]   Sportsfuel page 4: 250 fetched, 186 skipped so far (JSON)
+[2026-05-13T03:00:48.825Z]   Sportsfuel products.json page 5 failed: HTTP 503: https://www.sportsfuel.co.nz/products.json?limit=250&page=5
+[2026-05-13T03:00:48.825Z]   Sportsfuel: 814 products kept, 186 skipped
+[2026-05-13T03:00:48.839Z]   NZ Muscle page 5: 250 fetched, 436 skipped so far (JSON)
+[2026-05-13T03:00:50.033Z]   NZ Muscle page 6: 138 fetched, 480 skipped so far (JSON)
+[2026-05-13T03:00:50.034Z]   NZ Muscle: 908 products kept, 480 skipped
+[2026-05-13T03:00:51.048Z] Scraping Raisey's...
+[2026-05-13T03:00:51.203Z] Scraping BodyStrong...
+[2026-05-13T03:00:51.204Z] Scraping Bargain Chemist...
+[2026-05-13T03:00:51.205Z] Scraping Payless Supplements...
+[2026-05-13T03:00:51.205Z] Scraping Supplements NZ...
+[2026-05-13T03:00:51.457Z]   Bargain Chemist GQL failed (GQL HTTP 401 for www.bargainchemist.co.nz), falling back to products.json...
+[2026-05-13T03:00:51.508Z]   Supplements NZ GQL failed (GQL HTTP 401 for www.supplements.co.nz), falling back to products.json...
+[2026-05-13T03:00:51.637Z]   BodyStrong GQL failed (GQL HTTP 401 for bodystrong.co.nz), falling back to products.json...
+[2026-05-13T03:00:51.691Z]   Payless Supplements GQL failed (GQL HTTP 401 for paylesssupplements.co.nz), falling back to products.json...
+[2026-05-13T03:00:51.946Z]   Raisey's GQL failed (GQL HTTP 401 for raiseys.co.nz), falling back to products.json...
+[2026-05-13T03:00:52.568Z]   Bargain Chemist page 1: 250 fetched, 205 skipped so far (JSON)
+[2026-05-13T03:00:52.631Z]   Supplements NZ page 1: 250 fetched, 49 skipped so far (JSON)
+[2026-05-13T03:00:53.226Z]   Raisey's page 1: 43 fetched, 4 skipped so far (JSON)
+[2026-05-13T03:00:53.226Z]   Raisey's: 39 products kept, 4 skipped
+[2026-05-13T03:00:53.747Z]   BodyStrong page 1: 137 fetched, 0 skipped so far (JSON)
+[2026-05-13T03:00:54.246Z]   BodyStrong: 137 products kept, 0 skipped
+[2026-05-13T03:00:54.265Z]   Bargain Chemist page 2: 250 fetched, 431 skipped so far (JSON)
+[2026-05-13T03:00:54.498Z]   Payless Supplements page 1: 250 fetched, 13 skipped so far (JSON)
+[2026-05-13T03:00:54.527Z]   Supplements NZ page 2: 250 fetched, 71 skipped so far (JSON)
+[2026-05-13T03:00:55.314Z]   Bargain Chemist products.json page 3 failed: HTTP 429: https://www.bargainchemist.co.nz/products.json?limit=250&page=3
+[2026-05-13T03:00:55.722Z]   Bargain Chemist: 69 products kept, 431 skipped
+[2026-05-13T03:00:55.740Z]   Supplements NZ products.json page 3 failed: HTTP 429: https://www.supplements.co.nz/products.json?limit=250&page=3
+[2026-05-13T03:00:55.740Z]   Supplements NZ: 429 products kept, 71 skipped
+[2026-05-13T03:00:55.753Z]   Payless Supplements products.json page 2 failed: HTTP 429: https://paylesssupplements.co.nz/products.json?limit=250&page=2
+[2026-05-13T03:00:55.754Z]   Payless Supplements: 237 products kept, 13 skipped
+[2026-05-13T03:00:56.762Z] Scraping Reactiv Supplements...
+[2026-05-13T03:00:56.763Z] Scraping Eat Me Supplements...
+[2026-05-13T03:00:56.764Z] Scraping Kiwi Nutrition...
+[2026-05-13T03:00:56.765Z] Scraping Elite Supplements...
+[2026-05-13T03:00:56.765Z] Scraping Nutrition Warehouse...
+[2026-05-13T03:00:57.299Z]   Reactiv Supplements GQL failed (GQL HTTP 401 for www.reactivsupplements.co.nz), falling back to products.json...
+[2026-05-13T03:00:57.321Z]   Kiwi Nutrition GQL failed (GQL HTTP 401 for kiwinutrition.co.nz), falling back to products.json...
+[2026-05-13T03:00:57.323Z]   Reactiv Supplements products.json page 1 failed: HTTP 429: https://www.reactivsupplements.co.nz/products.json?limit=250&page=1
+[2026-05-13T03:00:57.323Z]   Reactiv Supplements: 0 products kept, 0 skipped
+[2026-05-13T03:00:57.343Z]   Kiwi Nutrition products.json page 1 failed: HTTP 429: https://kiwinutrition.co.nz/products.json?limit=250&page=1
+[2026-05-13T03:00:57.485Z]   Kiwi Nutrition: 0 products kept, 0 skipped
+[2026-05-13T03:00:57.486Z]   Eat Me Supplements GQL failed (GQL HTTP 401 for www.eatmesupplements.co.nz), falling back to products.json...
+[2026-05-13T03:00:57.487Z]   Nutrition Warehouse GQL failed (GQL HTTP 401 for www.nutritionwarehouse.co.nz), falling back to products.json...
+[2026-05-13T03:00:57.513Z]   Nutrition Warehouse products.json page 1 failed: HTTP 429: https://www.nutritionwarehouse.co.nz/products.json?limit=250&page=1
+[2026-05-13T03:00:57.514Z]   Nutrition Warehouse: 0 products kept, 0 skipped
+[2026-05-13T03:00:57.515Z]   Eat Me Supplements products.json page 1 failed: HTTP 429: https://www.eatmesupplements.co.nz/products.json?limit=250&page=1
+[2026-05-13T03:00:57.515Z]   Eat Me Supplements: 0 products kept, 0 skipped
+[2026-05-13T03:00:57.667Z]   Elite Supplements GQL failed (GQL HTTP 401 for elitesupplements.co.nz), falling back to products.json...
+[2026-05-13T03:00:57.686Z]   Elite Supplements products.json page 1 failed: HTTP 429: https://elitesupplements.co.nz/products.json?limit=250&page=1
+[2026-05-13T03:00:57.686Z]   Elite Supplements: 0 products kept, 0 skipped
+[2026-05-13T03:01:00.336Z] 
+[2026-05-13T03:01:00.337Z] ═══════════════════ RESULTS ═══════════════════
+[2026-05-13T03:01:00.337Z]   Total products: 3151
+[2026-05-13T03:01:00.337Z]   Time: 19.9s
+[2026-05-13T03:01:00.338Z] 
+[2026-05-13T03:01:00.338Z]   By retailer:
+[2026-05-13T03:01:00.338Z]     NZ Muscle                    908  ██████████████████████████████
+[2026-05-13T03:01:00.339Z]     Sportsfuel                   814  ██████████████████████████████
+[2026-05-13T03:01:00.339Z]     Scorpion Supplements         105  ███████████
+[2026-05-13T03:01:00.339Z]     ASN Online                   299  ██████████████████████████████
+[2026-05-13T03:01:00.340Z]     Supplement Solutions         114  ███████████
+[2026-05-13T03:01:00.340Z]     Raisey's                      39  ████
+[2026-05-13T03:01:00.340Z]     BodyStrong                   137  ██████████████
+[2026-05-13T03:01:00.341Z]     Bargain Chemist               69  ███████
+[2026-05-13T03:01:00.341Z]     Payless Supplements          237  ████████████████████████
+[2026-05-13T03:01:00.341Z]     Supplements NZ               429  ██████████████████████████████
+[2026-05-13T03:01:00.342Z]     Reactiv Supplements            0  
+[2026-05-13T03:01:00.342Z]     Eat Me Supplements             0  
+[2026-05-13T03:01:00.342Z]     Kiwi Nutrition                 0  
+[2026-05-13T03:01:00.343Z]     Elite Supplements              0  
+[2026-05-13T03:01:00.343Z]     Nutrition Warehouse            0  
+[2026-05-13T03:01:00.343Z] 
+[2026-05-13T03:01:00.344Z]   By category:
+[2026-05-13T03:01:00.344Z]     protein         308
+[2026-05-13T03:01:00.344Z]     proteinbars     208
+[2026-05-13T03:01:00.345Z]     rtd             239
+[2026-05-13T03:01:00.345Z]     creatine        267
+[2026-05-13T03:01:00.345Z]     preworkout      309
+[2026-05-13T03:01:00.346Z]     fatburner       293
+[2026-05-13T03:01:00.346Z]     bcaa            268
+[2026-05-13T03:01:00.346Z]     vitamins        1030
+[2026-05-13T03:01:00.346Z]     gymfood         37
+[2026-05-13T03:01:00.347Z]     accessories     170
+[2026-05-13T03:01:00.348Z]     clothing        22
+[2026-05-13T03:01:00.348Z] 
+  Output: C:\Users\rapha\scoopscore\data\products.json
+[2026-05-13T03:01:00.348Z] ═══════════════════════════════════════════════
+[2026-05-13T03:17:44.699Z] 
+[2026-05-13T03:17:44.701Z] ═══════════════════════════════════════════
+[2026-05-13T03:17:44.702Z]   ScoopScore Scraper v4 — Rate-Limit Safe  
+[2026-05-13T03:17:44.702Z] ═══════════════════════════════════════════
+[2026-05-13T03:17:44.702Z]   Retailers: 15
+[2026-05-13T03:17:44.703Z]   Method: Shopify GraphQL → products.json fallback
+[2026-05-13T03:17:44.703Z]   Categories: protein, proteinbars, rtd, creatine, preworkout, fatburner, bcaa, vitamins
+[2026-05-13T03:17:44.703Z]   Pacing: batch=3, page delay=1s, batch pause=3s, retry 429/503 x3
+[2026-05-13T03:17:44.703Z] 
+[2026-05-13T03:17:44.730Z]   Loaded 3151 existing products for price history
+[2026-05-13T03:17:44.731Z] Scraping NZ Muscle...
+[2026-05-13T03:17:44.745Z] Scraping Sportsfuel...
+[2026-05-13T03:17:44.746Z] Scraping Scorpion Supplements...
+[2026-05-13T03:17:44.944Z]   Sportsfuel GQL failed (GQL HTTP 401 for www.sportsfuel.co.nz), falling back to products.json...
+[2026-05-13T03:17:44.952Z]   Scorpion Supplements GQL failed (GQL HTTP 401 for scorpionsupplements.co.nz), falling back to products.json...
+[2026-05-13T03:17:44.958Z]   NZ Muscle GQL failed (GQL HTTP 401 for nzmuscle.co.nz), falling back to products.json...
+[2026-05-13T03:17:45.288Z]   Scorpion Supplements page 1: 121 fetched, 24 skipped so far (JSON)
+[2026-05-13T03:17:45.289Z]   Scorpion Supplements: 97 products kept, 24 skipped
+[2026-05-13T03:17:45.632Z]   NZ Muscle page 1: 250 fetched, 104 skipped so far (JSON)
+[2026-05-13T03:17:45.844Z]   Sportsfuel page 1: 250 fetched, 61 skipped so far (JSON)
+[2026-05-13T03:17:47.322Z]   NZ Muscle page 2: 250 fetched, 262 skipped so far (JSON)
+[2026-05-13T03:17:47.778Z]   Sportsfuel page 2: 250 fetched, 121 skipped so far (JSON)
+[2026-05-13T03:17:49.034Z]   NZ Muscle page 3: 250 fetched, 347 skipped so far (JSON)
+[2026-05-13T03:17:49.534Z]   Sportsfuel page 3: 250 fetched, 166 skipped so far (JSON)
+[2026-05-13T03:17:50.577Z]   NZ Muscle page 4: 250 fetched, 482 skipped so far (JSON)
+[2026-05-13T03:17:51.325Z]   Sportsfuel page 4: 250 fetched, 205 skipped so far (JSON)
+[2026-05-13T03:17:52.236Z]   NZ Muscle page 5: 250 fetched, 562 skipped so far (JSON)
+[2026-05-13T03:17:53.100Z]   Sportsfuel page 5: 250 fetched, 254 skipped so far (JSON)
+[2026-05-13T03:17:53.859Z]   NZ Muscle page 6: 138 fetched, 629 skipped so far (JSON)
+[2026-05-13T03:17:53.859Z]   NZ Muscle: 759 products kept, 629 skipped
+[2026-05-13T03:17:55.075Z]   Sportsfuel page 6: 250 fetched, 285 skipped so far (JSON)
+[2026-05-13T03:17:56.754Z]   Sportsfuel page 7: 250 fetched, 352 skipped so far (JSON)
+[2026-05-13T03:17:58.844Z]   Sportsfuel page 8: 250 fetched, 392 skipped so far (JSON)
+[2026-05-13T03:18:00.795Z]   Sportsfuel page 9: 250 fetched, 414 skipped so far (JSON)
+[2026-05-13T03:18:02.884Z]   Sportsfuel page 10: 250 fetched, 452 skipped so far (JSON)
+[2026-05-13T03:18:04.865Z]   Sportsfuel page 11: 250 fetched, 475 skipped so far (JSON)
+[2026-05-13T03:18:06.768Z]   Sportsfuel page 12: 250 fetched, 513 skipped so far (JSON)
+[2026-05-13T03:18:08.736Z]   Sportsfuel page 13: 250 fetched, 526 skipped so far (JSON)
+[2026-05-13T03:18:10.614Z]   Sportsfuel page 14: 250 fetched, 555 skipped so far (JSON)
+[2026-05-13T03:18:12.555Z]   Sportsfuel page 15: 250 fetched, 564 skipped so far (JSON)
+[2026-05-13T03:18:14.633Z]   Sportsfuel page 16: 250 fetched, 583 skipped so far (JSON)
+[2026-05-13T03:18:16.409Z]   Sportsfuel page 17: 250 fetched, 595 skipped so far (JSON)
+[2026-05-13T03:18:17.737Z]   Sportsfuel page 18: 61 fetched, 605 skipped so far (JSON)
+[2026-05-13T03:18:17.738Z]   Sportsfuel: 3706 products kept, 605 skipped
+[2026-05-13T03:18:20.742Z] Scraping ASN Online...
+[2026-05-13T03:18:20.749Z] Scraping Supplement Solutions...
+[2026-05-13T03:18:20.750Z] Scraping Raisey's...
+[2026-05-13T03:18:20.931Z]   Supplement Solutions GQL failed (GQL HTTP 401 for www.supplementsolutions.co.nz), falling back to products.json...
+[2026-05-13T03:18:20.962Z]   ASN Online GQL failed (GQL HTTP 401 for asnonline.co.nz), falling back to products.json...
+[2026-05-13T03:18:21.147Z]   Raisey's GQL failed (GQL HTTP 401 for raiseys.co.nz), falling back to products.json...
+[2026-05-13T03:18:21.224Z]   Supplement Solutions page 1: 117 fetched, 8 skipped so far (JSON)
+[2026-05-13T03:18:21.224Z]   Supplement Solutions: 109 products kept, 8 skipped
+[2026-05-13T03:18:21.479Z]   ASN Online page 1: 250 fetched, 38 skipped so far (JSON)
+[2026-05-13T03:18:21.531Z]   Raisey's page 1: 43 fetched, 6 skipped so far (JSON)
+[2026-05-13T03:18:21.531Z]   Raisey's: 37 products kept, 6 skipped
+[2026-05-13T03:18:22.723Z]   ASN Online page 2: 54 fetched, 49 skipped so far (JSON)
+[2026-05-13T03:18:22.724Z]   ASN Online: 255 products kept, 49 skipped
+[2026-05-13T03:18:25.735Z] Scraping BodyStrong...
+[2026-05-13T03:18:25.736Z] Scraping Bargain Chemist...
+[2026-05-13T03:18:25.737Z] Scraping Payless Supplements...
+[2026-05-13T03:18:25.928Z]   Bargain Chemist GQL failed (GQL HTTP 401 for www.bargainchemist.co.nz), falling back to products.json...
+[2026-05-13T03:18:25.931Z]   Payless Supplements GQL failed (GQL HTTP 401 for paylesssupplements.co.nz), falling back to products.json...
+[2026-05-13T03:18:25.953Z]   BodyStrong GQL failed (GQL HTTP 401 for bodystrong.co.nz), falling back to products.json...
+[2026-05-13T03:18:26.427Z]   BodyStrong page 1: 137 fetched, 3 skipped so far (JSON)
+[2026-05-13T03:18:26.427Z]   BodyStrong: 134 products kept, 3 skipped
+[2026-05-13T03:18:26.725Z]   Payless Supplements page 1: 250 fetched, 19 skipped so far (JSON)
+[2026-05-13T03:18:26.799Z]   Bargain Chemist page 1: 250 fetched, 209 skipped so far (JSON)
+[2026-05-13T03:18:28.407Z]   Bargain Chemist page 2: 250 fetched, 435 skipped so far (JSON)
+[2026-05-13T03:18:29.094Z]   Payless Supplements page 2: 250 fetched, 39 skipped so far (JSON)
+[2026-05-13T03:18:30.016Z]   Bargain Chemist page 3: 250 fetched, 665 skipped so far (JSON)
+[2026-05-13T03:18:30.642Z]   Payless Supplements page 3: 60 fetched, 42 skipped so far (JSON)
+[2026-05-13T03:18:30.642Z]   Payless Supplements: 518 products kept, 42 skipped
+[2026-05-13T03:18:31.874Z]   Bargain Chemist page 4: 250 fetched, 886 skipped so far (JSON)
+[2026-05-13T03:18:33.528Z]   Bargain Chemist page 5: 250 fetched, 1091 skipped so far (JSON)
+[2026-05-13T03:18:35.237Z]   Bargain Chemist page 6: 250 fetched, 1327 skipped so far (JSON)
+[2026-05-13T03:18:36.879Z]   Bargain Chemist page 7: 250 fetched, 1491 skipped so far (JSON)
+[2026-05-13T03:18:38.839Z]   Bargain Chemist page 8: 250 fetched, 1693 skipped so far (JSON)
+[2026-05-13T03:18:40.510Z]   Bargain Chemist page 9: 250 fetched, 1897 skipped so far (JSON)
+[2026-05-13T03:18:42.393Z]   Bargain Chemist page 10: 250 fetched, 2113 skipped so far (JSON)
+[2026-05-13T03:18:44.190Z]   Bargain Chemist page 11: 250 fetched, 2343 skipped so far (JSON)
+[2026-05-13T03:18:46.243Z]   Bargain Chemist page 12: 250 fetched, 2569 skipped so far (JSON)
+[2026-05-13T03:18:48.299Z]   Bargain Chemist page 13: 250 fetched, 2808 skipped so far (JSON)
+[2026-05-13T03:18:50.616Z]   Bargain Chemist page 14: 250 fetched, 3053 skipped so far (JSON)
+[2026-05-13T03:18:52.661Z]   Bargain Chemist page 15: 250 fetched, 3293 skipped so far (JSON)
+[2026-05-13T03:18:54.517Z]   Bargain Chemist page 16: 250 fetched, 3530 skipped so far (JSON)
+[2026-05-13T03:18:56.442Z]   Bargain Chemist page 17: 250 fetched, 3759 skipped so far (JSON)
+[2026-05-13T03:18:58.281Z]   Bargain Chemist page 18: 250 fetched, 3948 skipped so far (JSON)
+[2026-05-13T03:18:59.907Z]   Bargain Chemist page 19: 250 fetched, 4180 skipped so far (JSON)
+[2026-05-13T03:19:01.796Z]   Bargain Chemist page 20: 250 fetched, 4405 skipped so far (JSON)
+[2026-05-13T03:19:03.661Z]   Bargain Chemist page 21: 250 fetched, 4602 skipped so far (JSON)
+[2026-05-13T03:19:05.333Z]   Bargain Chemist page 22: 250 fetched, 4833 skipped so far (JSON)
+[2026-05-13T03:19:07.195Z]   Bargain Chemist page 23: 250 fetched, 5016 skipped so far (JSON)
+[2026-05-13T03:19:09.478Z]   Bargain Chemist page 24: 250 fetched, 5207 skipped so far (JSON)
+[2026-05-13T03:19:11.641Z]   Bargain Chemist page 25: 250 fetched, 5423 skipped so far (JSON)
+[2026-05-13T03:19:13.635Z]   Bargain Chemist page 26: 250 fetched, 5646 skipped so far (JSON)
+[2026-05-13T03:19:15.613Z]   Bargain Chemist page 27: 250 fetched, 5852 skipped so far (JSON)
+[2026-05-13T03:19:17.551Z]   Bargain Chemist page 28: 250 fetched, 6068 skipped so far (JSON)
+[2026-05-13T03:19:19.276Z]   Bargain Chemist page 29: 250 fetched, 6294 skipped so far (JSON)
+[2026-05-13T03:19:21.120Z]   Bargain Chemist page 30: 250 fetched, 6499 skipped so far (JSON)
+[2026-05-13T03:19:22.837Z]   Bargain Chemist page 31: 250 fetched, 6736 skipped so far (JSON)
+[2026-05-13T03:19:24.743Z]   Bargain Chemist page 32: 250 fetched, 6946 skipped so far (JSON)
+[2026-05-13T03:19:26.579Z]   Bargain Chemist page 33: 250 fetched, 7133 skipped so far (JSON)
+[2026-05-13T03:19:28.499Z]   Bargain Chemist page 34: 250 fetched, 7344 skipped so far (JSON)
+[2026-05-13T03:19:30.372Z]   Bargain Chemist page 35: 250 fetched, 7555 skipped so far (JSON)
+[2026-05-13T03:19:32.369Z]   Bargain Chemist page 36: 250 fetched, 7774 skipped so far (JSON)
+[2026-05-13T03:19:34.306Z]   Bargain Chemist page 37: 250 fetched, 7992 skipped so far (JSON)
+[2026-05-13T03:19:36.180Z]   Bargain Chemist page 38: 250 fetched, 8202 skipped so far (JSON)
+[2026-05-13T03:19:38.109Z]   Bargain Chemist page 39: 250 fetched, 8411 skipped so far (JSON)
+[2026-05-13T03:19:40.150Z]   Bargain Chemist page 40: 250 fetched, 8599 skipped so far (JSON)
+[2026-05-13T03:19:41.801Z]   Bargain Chemist page 41: 250 fetched, 8830 skipped so far (JSON)
+[2026-05-13T03:19:43.633Z]   Bargain Chemist page 42: 250 fetched, 9005 skipped so far (JSON)
+[2026-05-13T03:19:45.300Z]   Bargain Chemist page 43: 250 fetched, 9195 skipped so far (JSON)
+[2026-05-13T03:19:47.227Z]   Bargain Chemist page 44: 250 fetched, 9386 skipped so far (JSON)
+[2026-05-13T03:19:49.117Z]   Bargain Chemist page 45: 250 fetched, 9556 skipped so far (JSON)
+[2026-05-13T03:19:51.106Z]   Bargain Chemist page 46: 250 fetched, 9764 skipped so far (JSON)
+[2026-05-13T03:19:53.173Z]   Bargain Chemist page 47: 250 fetched, 9986 skipped so far (JSON)
+[2026-05-13T03:19:54.800Z]   Bargain Chemist page 48: 250 fetched, 10209 skipped so far (JSON)
+[2026-05-13T03:19:56.634Z]   Bargain Chemist page 49: 250 fetched, 10420 skipped so far (JSON)
+[2026-05-13T03:19:58.481Z]   Bargain Chemist page 50: 250 fetched, 10623 skipped so far (JSON)
+[2026-05-13T03:20:00.443Z]   Bargain Chemist page 51: 250 fetched, 10801 skipped so far (JSON)
+[2026-05-13T03:20:02.438Z]   Bargain Chemist page 52: 250 fetched, 10975 skipped so far (JSON)
+[2026-05-13T03:20:04.385Z]   Bargain Chemist page 53: 250 fetched, 11168 skipped so far (JSON)
+[2026-05-13T03:20:06.313Z]   Bargain Chemist page 54: 250 fetched, 11387 skipped so far (JSON)
+[2026-05-13T03:20:08.323Z]   Bargain Chemist page 55: 250 fetched, 11604 skipped so far (JSON)
+[2026-05-13T03:20:10.072Z]   Bargain Chemist page 56: 250 fetched, 11829 skipped so far (JSON)
+[2026-05-13T03:20:12.128Z]   Bargain Chemist page 57: 250 fetched, 12038 skipped so far (JSON)
+[2026-05-13T03:20:13.960Z]   Bargain Chemist page 58: 250 fetched, 12233 skipped so far (JSON)
+[2026-05-13T03:20:15.855Z]   Bargain Chemist page 59: 250 fetched, 12289 skipped so far (JSON)
+[2026-05-13T03:20:17.619Z]   Bargain Chemist page 60: 250 fetched, 12343 skipped so far (JSON)
+[2026-05-13T03:20:18.937Z]   Bargain Chemist page 61: 32 fetched, 12375 skipped so far (JSON)
+[2026-05-13T03:20:18.937Z]   Bargain Chemist: 2657 products kept, 12375 skipped
+[2026-05-13T03:20:21.948Z] Scraping Supplements NZ...
+[2026-05-13T03:20:21.949Z] Scraping Reactiv Supplements...
+[2026-05-13T03:20:21.950Z] Scraping Eat Me Supplements...
+[2026-05-13T03:20:22.140Z]   Reactiv Supplements GQL failed (GQL HTTP 401 for www.reactivsupplements.co.nz), falling back to products.json...
+[2026-05-13T03:20:22.164Z]   Supplements NZ GQL failed (GQL HTTP 401 for www.supplements.co.nz), falling back to products.json...
+[2026-05-13T03:20:22.530Z]   Eat Me Supplements GQL failed (GQL HTTP 401 for www.eatmesupplements.co.nz), falling back to products.json...
+[2026-05-13T03:20:22.797Z]   Reactiv Supplements page 1: 55 fetched, 12 skipped so far (JSON)
+[2026-05-13T03:20:22.798Z]   Reactiv Supplements: 43 products kept, 12 skipped
+[2026-05-13T03:20:23.238Z]   Eat Me Supplements page 1: 94 fetched, 2 skipped so far (JSON)
+[2026-05-13T03:20:23.239Z]   Eat Me Supplements: 92 products kept, 2 skipped
+[2026-05-13T03:20:23.273Z]   Supplements NZ page 1: 250 fetched, 52 skipped so far (JSON)
+[2026-05-13T03:20:25.665Z]   Supplements NZ page 2: 250 fetched, 76 skipped so far (JSON)
+[2026-05-13T03:20:28.292Z]   Supplements NZ page 3: 250 fetched, 88 skipped so far (JSON)
+[2026-05-13T03:20:31.176Z]   Supplements NZ page 4: 250 fetched, 89 skipped so far (JSON)
+[2026-05-13T03:20:34.185Z]   Supplements NZ page 5: 250 fetched, 91 skipped so far (JSON)
+[2026-05-13T03:20:36.923Z]   Supplements NZ page 6: 250 fetched, 92 skipped so far (JSON)
+[2026-05-13T03:20:39.254Z]   Supplements NZ page 7: 250 fetched, 93 skipped so far (JSON)
+[2026-05-13T03:20:41.556Z]   Supplements NZ page 8: 250 fetched, 94 skipped so far (JSON)
+[2026-05-13T03:20:43.647Z]   Supplements NZ page 9: 250 fetched, 97 skipped so far (JSON)
+[2026-05-13T03:20:45.670Z]   Supplements NZ page 10: 250 fetched, 98 skipped so far (JSON)
+[2026-05-13T03:20:47.787Z]   Supplements NZ page 11: 250 fetched, 100 skipped so far (JSON)
+[2026-05-13T03:20:49.982Z]   Supplements NZ page 12: 250 fetched, 102 skipped so far (JSON)
+[2026-05-13T03:20:51.950Z]   Supplements NZ page 13: 250 fetched, 104 skipped so far (JSON)
+[2026-05-13T03:20:53.848Z]   Supplements NZ page 14: 250 fetched, 105 skipped so far (JSON)
+[2026-05-13T03:20:55.811Z]   Supplements NZ page 15: 250 fetched, 110 skipped so far (JSON)
+[2026-05-13T03:20:57.196Z]   Supplements NZ page 16: 43 fetched, 110 skipped so far (JSON)
+[2026-05-13T03:20:57.197Z]   Supplements NZ: 3683 products kept, 110 skipped
+[2026-05-13T03:21:00.211Z] Scraping Kiwi Nutrition...
+[2026-05-13T03:21:00.212Z] Scraping Elite Supplements...
+[2026-05-13T03:21:00.213Z] Scraping Nutrition Warehouse...
+[2026-05-13T03:21:00.405Z]   Elite Supplements GQL failed (GQL HTTP 401 for elitesupplements.co.nz), falling back to products.json...
+[2026-05-13T03:21:00.480Z]   Kiwi Nutrition GQL failed (GQL HTTP 401 for kiwinutrition.co.nz), falling back to products.json...
+[2026-05-13T03:21:00.593Z]   Nutrition Warehouse GQL failed (GQL HTTP 401 for www.nutritionwarehouse.co.nz), falling back to products.json...
+[2026-05-13T03:21:00.769Z]   Kiwi Nutrition page 1: 18 fetched, 0 skipped so far (JSON)
+[2026-05-13T03:21:00.770Z]   Kiwi Nutrition: 18 products kept, 0 skipped
+[2026-05-13T03:21:00.811Z]   Elite Supplements page 1: 9 fetched, 2 skipped so far (JSON)
+[2026-05-13T03:21:00.811Z]   Elite Supplements: 7 products kept, 2 skipped
+[2026-05-13T03:21:02.374Z]   Nutrition Warehouse page 1: 250 fetched, 34 skipped so far (JSON)
+[2026-05-13T03:21:04.439Z]   Nutrition Warehouse page 2: 250 fetched, 115 skipped so far (JSON)
+[2026-05-13T03:21:06.610Z]   Nutrition Warehouse page 3: 250 fetched, 142 skipped so far (JSON)
+[2026-05-13T03:21:08.827Z]   Nutrition Warehouse page 4: 250 fetched, 161 skipped so far (JSON)
+[2026-05-13T03:21:11.058Z]   Nutrition Warehouse page 5: 249 fetched, 179 skipped so far (JSON)
+[2026-05-13T03:21:11.059Z]   Nutrition Warehouse: 1070 products kept, 179 skipped
+[2026-05-13T03:21:11.193Z] 
+[2026-05-13T03:21:11.193Z] ═══════════════════ RESULTS ═══════════════════
+[2026-05-13T03:21:11.193Z]   Total products: 13185
+[2026-05-13T03:21:11.194Z]   Time: 206.4s
+[2026-05-13T03:21:11.194Z] 
+[2026-05-13T03:21:11.194Z]   By retailer:
+[2026-05-13T03:21:11.195Z]     NZ Muscle                    759  ██████████████████████████████
+[2026-05-13T03:21:11.195Z]     Sportsfuel                  3706  ██████████████████████████████
+[2026-05-13T03:21:11.195Z]     Scorpion Supplements          97  ██████████
+[2026-05-13T03:21:11.195Z]     ASN Online                   255  ██████████████████████████
+[2026-05-13T03:21:11.196Z]     Supplement Solutions         109  ███████████
+[2026-05-13T03:21:11.196Z]     Raisey's                      37  ████
+[2026-05-13T03:21:11.196Z]     BodyStrong                   134  █████████████
+[2026-05-13T03:21:11.196Z]     Bargain Chemist             2657  ██████████████████████████████
+[2026-05-13T03:21:11.197Z]     Payless Supplements          518  ██████████████████████████████
+[2026-05-13T03:21:11.197Z]     Supplements NZ              3683  ██████████████████████████████
+[2026-05-13T03:21:11.197Z]     Reactiv Supplements           43  ████
+[2026-05-13T03:21:11.197Z]     Eat Me Supplements            92  █████████
+[2026-05-13T03:21:11.198Z]     Kiwi Nutrition                18  ██
+[2026-05-13T03:21:11.198Z]     Elite Supplements              7  █
+[2026-05-13T03:21:11.198Z]     Nutrition Warehouse         1070  ██████████████████████████████
+[2026-05-13T03:21:11.199Z] 
+[2026-05-13T03:21:11.199Z]   By category:
+[2026-05-13T03:21:11.199Z]     protein         1103
+[2026-05-13T03:21:11.199Z]     proteinbars     624
+[2026-05-13T03:21:11.200Z]     rtd             573
+[2026-05-13T03:21:11.200Z]     creatine        603
+[2026-05-13T03:21:11.200Z]     preworkout      950
+[2026-05-13T03:21:11.200Z]     fatburner       1067
+[2026-05-13T03:21:11.201Z]     bcaa            1068
+[2026-05-13T03:21:11.201Z]     vitamins        7197
+[2026-05-13T03:21:11.201Z] 
+  Output: C:\Users\rapha\scoopscore\data\products.json
+[2026-05-13T03:21:11.202Z] ═══════════════════════════════════════════════

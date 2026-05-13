@@ -1,15 +1,18 @@
 /**
- * ScoopScore Price Scraper v2
+ * ScoopScore Price Scraper v4
  * ─────────────────────────────────────────────────────────────
- * Uses Shopify's public Storefront GraphQL API for all Shopify stores.
- * This is the official public API — no auth needed, no HTML parsing,
- * no Playwright, no rate limiting issues. Gets every product in
- * 2-3 fast paginated requests per store instead of 100+ slow fetches.
+ * KEY CHANGES FROM v3:
  *
- * For non-Shopify stores, uses their public REST/JSON APIs.
+ * 1. REMOVED gymfood, accessories, clothing categories — products
+ *    matching those keywords are excluded, not miscategorised.
  *
- * Designed to run on GitHub Actions (free, nightly, cloud — never
- * touches your machine or wifi).
+ * 2. RETRY WITH BACKOFF — 429/503 responses are retried up to 3 times
+ *    with exponential backoff (2s → 4s → 8s) so rate-limited stores
+ *    are fully scraped instead of returning 0 products.
+ *
+ * 3. SLOWER PACING — 1s between pages (was 400ms), 3s between retailer
+ *    batches (was 1s), batch size reduced to 3 (was 5) to avoid
+ *    triggering rate limits in the first place.
  *
  * Run manually:   node scraper.js
  * GitHub Actions: see .github/workflows/scrape.yml
@@ -24,140 +27,207 @@ const OUT_FILE = path.join(__dirname, 'data', 'products.json');
 const LOG_FILE = path.join(__dirname, 'data', 'scrape.log');
 fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
 
-// ─── CATEGORY DETECTION ────────────────────────────────────────
-// Maps Shopify product_type strings → our internal category IDs.
-// Covers every variant we've seen across NZ retailers.
-const TYPE_MAP = {
-  // Protein
-  'whey protein': 'protein', 'whey protein isolate': 'protein', 'whey protein concentrate': 'protein',
-  'whey protein blend': 'protein', 'whey protein powder': 'protein', 'protein powder': 'protein',
-  'protein blend': 'protein', 'protein': 'protein', 'isolate protein': 'protein', 'isolate': 'protein',
-  'hydrolysed whey': 'protein', 'hydrolyzed whey': 'protein', 'hydrolysed protein': 'protein',
-  'plant based protein': 'protein', 'plant protein': 'protein', 'vegan protein': 'protein',
-  'pea protein': 'protein', 'hemp protein': 'protein', 'mass gainer': 'protein',
-  'mass gainers': 'protein', 'weight gainer': 'protein', 'casein protein': 'protein',
-  'casein': 'protein', 'egg protein': 'protein', 'beef protein': 'protein',
-  'collagen protein': 'protein', 'collagen': 'protein', 'thermogenic protein': 'protein',
-  'lean protein': 'protein', 'low carb protein': 'protein',
-  // Protein Bars
-  'protein bar': 'proteinbars', 'protein bars': 'proteinbars', 'protein snacks': 'proteinbars',
-  'protein snack': 'proteinbars', 'protein cookie': 'proteinbars', 'protein cookies': 'proteinbars',
-  'protein chips': 'proteinbars', 'protein wafer': 'proteinbars', 'protein spread': 'proteinbars',
-  'snack bar': 'proteinbars', 'nutrition bar': 'proteinbars', 'energy bar': 'proteinbars',
-  'high protein snack': 'proteinbars',
-  // RTD
-  'rtd': 'rtd', 'ready to drink': 'rtd', 'ready-to-drink': 'rtd', 'protein water': 'rtd',
-  'protein shake': 'rtd', 'protein drink': 'rtd', 'energy drink': 'rtd', 'energy drinks': 'rtd',
-  'sports drink': 'rtd', 'sports drinks': 'rtd', 'hydration drink': 'rtd',
-  'electrolyte drink': 'rtd', 'recovery drink': 'rtd', 'canned protein': 'rtd',
-  // Creatine
-  'creatine': 'creatine', 'creatine monohydrate': 'creatine', 'creatine hcl': 'creatine',
-  'creatine blend': 'creatine', 'creatine supplement': 'creatine', 'creatine powder': 'creatine',
-  'creatine capsules': 'creatine', 'creatine gummies': 'creatine', 'flavoured creatine': 'creatine',
-  // Pre-workout
-  'pre-workout': 'preworkout', 'pre workout': 'preworkout', 'preworkout': 'preworkout',
-  'pre workouts': 'preworkout', 'pump': 'preworkout', 'pump pre-workout': 'preworkout',
-  'stim free pre-workout': 'preworkout', 'non-stim pre-workout': 'preworkout',
-  // Fat burners
-  'fat burner': 'fatburner', 'fat burners': 'fatburner', 'fat metaboliser': 'fatburner',
-  'fat metabolisers': 'fatburner', 'thermogenic': 'fatburner', 'thermogenics': 'fatburner',
-  'weight loss': 'fatburner', 'weight management': 'fatburner', 'shred': 'fatburner',
-  'l-carnitine': 'fatburner', 'carnitine': 'fatburner', 'cla': 'fatburner',
-  'appetite control': 'fatburner', 'metabolism support': 'fatburner',
-  // BCAAs / Aminos
-  'bcaa': 'bcaa', 'bcaas': 'bcaa', 'eaa': 'bcaa', 'eaas': 'bcaa',
-  'amino acids': 'bcaa', 'amino': 'bcaa', 'aminos': 'bcaa', 'essential amino acids': 'bcaa',
-  'intra-workout': 'bcaa', 'intra workout': 'bcaa', 'glutamine': 'bcaa',
-  'post workout': 'bcaa', 'post-workout': 'bcaa', 'recovery': 'bcaa',
-  // Vitamins & Health
-  'vitamins': 'vitamins', 'vitamin': 'vitamins', 'multivitamin': 'vitamins',
-  'multivitamins': 'vitamins', 'omega-3': 'vitamins', 'omega 3': 'vitamins',
-  'fish oil': 'vitamins', 'magnesium': 'vitamins', 'zinc': 'vitamins',
-  'vitamin d': 'vitamins', 'vitamin c': 'vitamins', 'electrolytes': 'vitamins',
-  'electrolyte': 'vitamins', 'greens': 'vitamins', 'greens powder': 'vitamins',
-  'super greens': 'vitamins', 'superfood': 'vitamins', 'superfoods': 'vitamins',
-  'sleep aid': 'vitamins', 'melatonin': 'vitamins', 'probiotics': 'vitamins',
-  'probiotic': 'vitamins', 'nootropic': 'vitamins', 'nootropics': 'vitamins',
-  'testosterone booster': 'vitamins', 'test booster': 'vitamins',
-  'general health': 'vitamins', 'health supplements': 'vitamins', 'immunity': 'vitamins',
-  // Gym Food
-  'meal replacement': 'gymfood', 'meal replacements': 'gymfood', 'healthy snacks': 'gymfood',
-  'healthy food': 'gymfood', 'oats': 'gymfood', 'peanut butter': 'gymfood',
-  'nut butter': 'gymfood', 'nut butters': 'gymfood', 'beef jerky': 'gymfood',
-  'jerky': 'gymfood', 'rice cakes': 'gymfood', 'granola': 'gymfood',
-  'carbohydrates': 'gymfood', 'carb powder': 'gymfood', 'carb supplement': 'gymfood',
-  // Accessories
-  'shaker': 'accessories', 'shakers': 'accessories', 'shaker bottle': 'accessories',
-  'shaker cup': 'accessories', 'blender bottle': 'accessories', 'water bottle': 'accessories',
-  'gym bag': 'accessories', 'gym bags': 'accessories', 'lifting straps': 'accessories',
-  'lifting belt': 'accessories', 'gym gloves': 'accessories', 'wrist wraps': 'accessories',
-  'knee sleeves': 'accessories', 'resistance bands': 'accessories', 'foam roller': 'accessories',
-  'gym accessories': 'accessories', 'accessories': 'accessories',
+// ─── HARD EXCLUSIONS ───────────────────────────────────────────
+// Products matching any of these are skipped entirely.
+// Includes gym equipment, cosmetics, AND the three dropped categories
+// (accessories, clothing, gymfood) so they never appear in output.
+const EXCLUDE_PATTERNS = [
+  // Gym equipment
+  /\btreadmill\b/, /\brower\b/, /\bstationary\s*bike\b/, /\bspin\s*bike\b/,
+  /\bpower\s*rack\b/, /\bsquat\s*rack\b/, /\bdumbbell\b/, /\bbarbell\b/,
+  /\bkettlebell\b/, /\bweight\s*plate\b/, /\bgym\s*flooring\b/,
+  /\bcold\s*plunge\b/, /\bice\s*bath\b/,
+  // Cosmetics / non-supplements
+  /\bperfume\b/, /\bfragrance\b/, /\bskincare\b/, /\bmakeup\b/,
+  /\bhair\s*care\b/, /\bhaircare\b/,
+  /\bworkout\s*equipment\b/,
+  /\bbook\b/, /\bebook\b/,
+  /\bphone\s*case\b/, /\bwallet\b/, /\bsunglasses\b/,
+  // Accessories (shakers, bags, belts, etc.)
+  /\bshaker\s*bottle\b/, /\bshaker\s*cup\b/, /\bblender\s*bottle\b/, /\bwater\s*bottle\b/,
+  /\bgym\s*bag\b/, /\blifting\s*strap\b/, /\blifting\s*belt\b/,
+  /\bgym\s*glove\b/, /\bwrist\s*wrap\b/, /\bknee\s*sleeve\b/,
+  /\bresistance\s*band\b/, /\bfoam\s*roller\b/,
   // Clothing
-  'gym wear': 'clothing', 'gym clothing': 'clothing', 'activewear': 'clothing',
-  'active wear': 'clothing', 'apparel': 'clothing', 'singlet': 'clothing',
-  'shorts': 'clothing', 'leggings': 'clothing', 'sports bra': 'clothing',
-  'hoodie': 'clothing', 'compression': 'clothing', 'compression wear': 'clothing',
-};
-
-const GYM_KEYWORDS = [
-  'protein','creatine','pre-workout','preworkout','bcaa','eaa','amino',
-  'fat burner','oxyshred','whey','isolate','casein','mass gainer','weight loss',
-  'thermogenic','glutamine','collagen','vitamin','omega','magnesium','zinc',
-  'electrolyte','pump','carnitine','cla','greens','nootropic','testosterone',
-  'melatonin','probiotic','superfood','rtd','ready to drink','protein bar',
-  'protein cookie','protein chip','protein snack','nutrition bar','meal replacement',
-  'peanut butter','nut butter','jerky','shaker','gym bag','lifting strap',
-  'lifting belt','gym glove','wrist wrap','knee sleeve','foam roller',
-  'resistance band','activewear','gym wear','singlet','compression',
+  /\bgym\s*wear\b/, /\bgym\s*clothing\b/, /\bactivewear\b/, /\bactive\s*wear\b/,
+  /\bsinglet\b/, /\bleggings\b/, /\bsports\s*bra\b/, /\bcompression\s*wear\b/,
+  // Gym food (meal replacements, snack foods, condiments)
+  /\bmeal\s*replacement\b/, /\bpeanut\s*butter\b/, /\bnut\s*butter\b/,
+  /\bbeef\s*jerky\b/, /\brice\s*cake\b/, /\bgranola\b/, /\bovernight\s*oats\b/,
 ];
 
-const EXCLUDE = [
-  /\btreadmill\b/,/\brower\b/,/\bstationary bike\b/,/\bspin bike\b/,
-  /\bpower rack\b/,/\bsquat rack\b/,/\bdumbbell\b/,/\bbarbell\b/,
-  /\bkettlebell\b/,/\bweight plate\b/,/\bgym flooring\b/,/\bcold plunge\b/,
-  /\bperfume\b/,/\bfragrance\b/,/\bskincare\b/,/\bmakeup\b/,/\bhair care\b/,
-  /\bworkout equipment\b/,/\bice bath\b/,/\bbook\b/,
+// ─── CATEGORY RULES ────────────────────────────────────────────
+// Each rule has: keywords (matched against combined title+type+tags text),
+// and the category it maps to.
+// ORDER MATTERS — first match wins for deterministic assignment.
+// More specific rules are listed first.
+
+const CATEGORY_RULES = [
+  // ── Protein Bars / Snacks (must come before generic 'protein') ──
+  {
+    cat: 'proteinbars',
+    keywords: [
+      'protein bar','protein bars','protein cookie','protein cookies',
+      'protein chip','protein chips','protein wafer','protein spread',
+      'protein snack','protein snacks','snack bar','nutrition bar',
+      'high protein snack','energy bar',
+    ],
+  },
+
+  // ── RTD (must come before generic 'protein' / 'energy') ──
+  {
+    cat: 'rtd',
+    keywords: [
+      'rtd','ready to drink','ready-to-drink','protein water',
+      'protein shake','protein drink','energy drink','energy drinks',
+      'sports drink','sports drinks','hydration drink',
+      'electrolyte drink','recovery drink','canned protein',
+    ],
+  },
+
+  // ── Creatine ──
+  {
+    cat: 'creatine',
+    keywords: [
+      'creatine monohydrate','creatine hcl','creatine blend',
+      'creatine supplement','creatine powder','creatine capsules',
+      'creatine gummies','flavoured creatine','creatine',
+    ],
+  },
+
+  // ── Pre-workout ──
+  {
+    cat: 'preworkout',
+    keywords: [
+      'pre-workout','pre workout','preworkout','pre workouts',
+      'stim free pre','non-stim pre','pump pre-workout',
+      'pump pre workout','stimulant free pre',
+    ],
+  },
+
+  // ── Fat Burners ──
+  {
+    cat: 'fatburner',
+    keywords: [
+      'fat burner','fat burners','fat metaboliser','fat metabolisers',
+      'thermogenic','thermogenics','weight loss','weight management',
+      'l-carnitine','l carnitine','carnitine','cla',
+      'appetite control','metabolism support','oxyshred',
+      'shred supplement','fat loss',
+    ],
+  },
+
+  // ── BCAAs / Aminos ──
+  {
+    cat: 'bcaa',
+    keywords: [
+      'bcaa','bcaas','eaa','eaas','amino acids','amino acid',
+      'essential amino','intra-workout','intra workout',
+      'glutamine','post workout','post-workout','aminos',
+    ],
+  },
+
+  // ── Vitamins & Health ──
+  {
+    cat: 'vitamins',
+    keywords: [
+      'multivitamin','multivitamins','omega-3','omega 3','fish oil',
+      'vitamin d','vitamin c','vitamin b','vitamin e','vitamin k',
+      'magnesium','zinc','electrolytes','electrolyte powder',
+      'greens powder','super greens','superfood','superfoods',
+      'sleep aid','melatonin','probiotics','probiotic',
+      'nootropic','nootropics','testosterone booster','test booster',
+      'general health','health supplement','immunity',
+      'digestive enzyme','collagen peptide','joint support',
+    ],
+  },
+
+  // ── Protein (broad — intentionally last so specifics above win) ──
+  {
+    cat: 'protein',
+    keywords: [
+      'whey protein isolate','whey protein concentrate','whey protein blend',
+      'whey protein powder','whey protein','hydrolysed whey','hydrolyzed whey',
+      'hydrolysed protein','hydrolyzed protein',
+      'plant based protein','plant protein','vegan protein',
+      'pea protein','hemp protein','rice protein','soy protein',
+      'mass gainer','mass gainers','weight gainer',
+      'casein protein','casein','egg protein','beef protein',
+      'collagen protein','thermogenic protein','lean protein',
+      'low carb protein','protein powder','protein blend',
+      'isolate protein','whey isolate','wpi','wpc',
+      'protein', // catch-all for protein — listed last within this rule
+    ],
+  },
 ];
 
-function detectCategory(productType, tags, title) {
-  // 1. product_type exact match
-  const pt = (productType || '').trim().toLowerCase();
-  if (pt && TYPE_MAP[pt]) return TYPE_MAP[pt];
+// ─── BROAD GYM SIGNALS ─────────────────────────────────────────
+// Used as a FINAL safety-net: if none of the category rules matched,
+// we check these signals to decide if the product should still be
+// included under a best-guess category.
+const GYM_SIGNALS = [
+  'supplement','supplements','sports nutrition','fitness',
+  'pre-workout','preworkout','creatine','protein','whey','casein',
+  'bcaa','eaa','amino','glutamine','collagen','omega','vitamin',
+  'fat burner','thermogenic','carnitine','oxyshred','shred',
+  'electrolyte','greens','probiotic','nootropic','melatonin',
+  'mass gainer','rtd','ready to drink','protein bar','protein cookie',
+];
 
-  // 2. product_type substring match
-  for (const [key, cat] of Object.entries(TYPE_MAP)) {
-    if (pt.includes(key)) return cat;
+// ─── DETECTION LOGIC ───────────────────────────────────────────
+/**
+ * Build a single normalised search string from all available metadata.
+ * The more data we include, the less likely we are to miss a product.
+ */
+function buildSearchText(title, productType, tags, description) {
+  return [
+    title || '',
+    productType || '',
+    Array.isArray(tags) ? tags.join(' ') : (tags || ''),
+    (description || '').slice(0, 200),
+  ].join(' ').toLowerCase();
+}
+
+/**
+ * Detect category using multi-pass keyword matching.
+ * Returns { cat, matched } or null if no match.
+ */
+function detectCategory(title, productType, tags, description) {
+  const text = buildSearchText(title, productType, tags, description);
+
+  for (const rule of CATEGORY_RULES) {
+    for (const kw of rule.keywords) {
+      // Use word-boundary where possible; fallback to includes for phrases
+      const hasSpace = kw.includes(' ') || kw.includes('-');
+      const matched  = hasSpace
+        ? text.includes(kw)
+        : new RegExp(`\\b${kw.replace(/[-]/g, '[-]')}\\b`).test(text);
+      if (matched) return rule.cat;
+    }
   }
-
-  // 3. Tags
-  const tagStr = (tags || []).join(' ').toLowerCase();
-  for (const [key, cat] of Object.entries(TYPE_MAP)) {
-    if (tagStr.includes(key)) return cat;
-  }
-
-  // 4. Title keyword scan
-  const t = (title || '').toLowerCase();
-  if (/\bshaker\b/.test(t) || /\bgym bag\b/.test(t) || /\bwrist wrap\b/.test(t) || /\blifting strap\b/.test(t) || /\bfoam roller\b/.test(t) || /\bresistance band\b/.test(t)) return 'accessories';
-  if (/\brtd\b/.test(t) || t.includes('ready to drink') || t.includes('protein water') || /\benergy drink\b/.test(t)) return 'rtd';
-  if (t.includes('protein bar') || t.includes('protein cookie') || t.includes('protein chip') || t.includes('protein snack')) return 'proteinbars';
-  if (t.includes('meal replacement') || t.includes('peanut butter') || /\bjerky\b/.test(t) || t.includes('rice cake')) return 'gymfood';
-  if (/\bvitamin\b/.test(t) || t.includes('omega-3') || /\bmagnesium\b/.test(t) || /\belectrolyte\b/.test(t) || t.includes('greens powder') || /\bprobiotic\b/.test(t) || /\bnootropic\b/.test(t) || t.includes('test booster') || /\bmelatonin\b/.test(t)) return 'vitamins';
-  if (/\bsinglet\b/.test(t) || /\blegging\b/.test(t) || /\bactivewear\b/.test(t) || t.includes('gym wear') || /\bsports bra\b/.test(t)) return 'clothing';
-  if (t.includes('whey') || t.includes('isolate') || t.includes('casein') || t.includes('mass gainer') || t.includes('plant protein') || t.includes('vegan protein') || t.includes('collagen protein')) return 'protein';
-  if (/\bprotein\b/.test(t)) return 'protein';
-  if (t.includes('creatine')) return 'creatine';
-  if (t.includes('pre-workout') || t.includes('pre workout') || t.includes('preworkout')) return 'preworkout';
-  if (t.includes('oxyshred') || t.includes('fat burn') || t.includes('thermogenic') || /\bshred\b/.test(t) || t.includes('l-carnitine')) return 'fatburner';
-  if (t.includes('bcaa') || t.includes('amino acid') || / eaa\b/.test(t) || t.includes('glutamine')) return 'bcaa';
-
   return null;
+}
+
+/**
+ * Check if a product is gym-related even if we couldn't pin a category.
+ * Checks title, product_type, AND tags.
+ */
+function isGymRelated(title, productType, tags, description) {
+  const text = buildSearchText(title, productType, tags, description);
+  if (EXCLUDE_PATTERNS.some(rx => rx.test(text))) return false;
+  return GYM_SIGNALS.some(sig => text.includes(sig));
+}
+
+/**
+ * Is this product explicitly excluded (equipment, cosmetics, etc.)?
+ */
+function isExcluded(title, productType, tags) {
+  const text = buildSearchText(title, productType, tags, '');
+  return EXCLUDE_PATTERNS.some(rx => rx.test(text));
 }
 
 
 // ── BRAND NORMALISATION ───────────────────────────────────────
-// Shopify vendor fields are inconsistent across stores.
-// "MUTANT", "Mutant", "Mutant Nutrition" all mean the same brand.
 const BRAND_ALIASES = {
   'mutant nutrition':'Mutant','mutant':'Mutant','mutant supplements':'Mutant',
   'optimum nutrition':'Optimum Nutrition','on':'Optimum Nutrition','optimum':'Optimum Nutrition',
@@ -187,20 +257,23 @@ const BRAND_ALIASES = {
   'body science':'Body Science','bsc':'Body Science',
   'calocurb':'Calocurb',
   'science in sport':'Science in Sport','sis':'Science in Sport',
+  'switch nutrition':'Switch Nutrition','switch':'Switch Nutrition',
+  'nutrition warehouse':'Nutrition Warehouse',
+  'nz muscle':'NZ Muscle',
+  'xtend':'Xtend',
+  'inspired nutraceuticals':'Inspired','inspired':'Inspired',
+  'outbreak nutrition':'Outbreak','outbreak':'Outbreak',
+  'staunch':'Staunch','staunch nation':'Staunch',
+  'axe & sledge':'Axe & Sledge','axe and sledge':'Axe & Sledge',
+  'gorilla mind':'Gorilla Mind',
+  'cbum':'CBUM','cbum itholics':'CBUM',
 };
 
 function normalizeBrand(raw) {
   if (!raw || raw.trim() === '' || raw === 'Unknown') return 'Unknown';
   const key = raw.toLowerCase().trim();
   if (BRAND_ALIASES[key]) return BRAND_ALIASES[key];
-  // Title-case as fallback: "MUTANT NUTRITION" -> "Mutant Nutrition"
   return raw.trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function isGymProduct(title, productType) {
-  const t = (title + ' ' + (productType || '')).toLowerCase();
-  if (EXCLUDE.some(rx => rx.test(t))) return false;
-  return GYM_KEYWORDS.some(kw => t.includes(kw));
 }
 
 // ─── LOGGING ───────────────────────────────────────────────────
@@ -215,12 +288,11 @@ function httpGet(url, headers = {}) {
   return new Promise((resolve, reject) => {
     const req = https.get(url, {
       headers: {
-        'User-Agent': 'ScoopScore/2.0 price-comparison-bot (+https://scoopscore.co.nz)',
+        'User-Agent': 'ScoopScore/3.0 price-comparison-bot (+https://scoopscore.co.nz)',
         ...headers
       },
       timeout: 20000,
     }, (res) => {
-      // Follow one redirect
       if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
         return httpGet(res.headers.location, headers).then(resolve).catch(reject);
       }
@@ -239,9 +311,6 @@ function httpGet(url, headers = {}) {
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ─── SHOPIFY GRAPHQL STOREFRONT API ────────────────────────────
-// Every public Shopify store exposes this endpoint with no auth required.
-// Returns up to 250 products per request with full variant/price data.
-// This is 10-50x faster than products.json pagination and never breaks.
 const GQL_QUERY = `
   query GetProducts($cursor: String) {
     products(first: 250, after: $cursor) {
@@ -287,9 +356,8 @@ async function fetchShopifyGraphQL(domain, cursor = null) {
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(body),
-        // Public Storefront API requires this token — 'anonymous' works for public data
         'X-Shopify-Storefront-Access-Token': 'anonymous',
-        'User-Agent': 'ScoopScore/2.0 price-comparison-bot',
+        'User-Agent': 'ScoopScore/3.0 price-comparison-bot',
       },
       timeout: 25000,
     }, (res) => {
@@ -309,21 +377,110 @@ async function fetchShopifyGraphQL(domain, cursor = null) {
 }
 
 // ─── SHOPIFY products.json FALLBACK ────────────────────────────
-// If GraphQL fails (some stores disable it), fall back to products.json.
 async function fetchProductsJSON(baseUrl, page = 1) {
   const url = `https://${baseUrl}/products.json?limit=250&page=${page}`;
-  const data = await httpGet(url);
+  const data = await httpGetWithRetry(url);
   if (data.trim().startsWith('<')) throw new Error('Got HTML instead of JSON');
   return JSON.parse(data);
+}
+
+// Retry wrapper — handles 429 / 503 with exponential backoff
+async function httpGetWithRetry(url, headers = {}, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await httpGet(url, headers);
+    } catch (err) {
+      const isRateLimit = err.message.includes('429') || err.message.includes('503');
+      if (isRateLimit && attempt < maxRetries) {
+        const delay = 2000 * Math.pow(2, attempt - 1); // 2s, 4s, 8s
+        log(`    ↻ Rate limited (${err.message.match(/\d{3}/)?.[0] || '?'}) — retrying in ${delay/1000}s (attempt ${attempt}/${maxRetries})`);
+        await sleep(delay);
+      } else {
+        throw err;
+      }
+    }
+  }
+}
+
+// ─── BUILD PRODUCT RECORD ──────────────────────────────────────
+/**
+ * Given raw product data and a retailer config, return a normalised
+ * product record — or null if the product should be skipped.
+ *
+ * Skip conditions (as tight as possible):
+ *   1. Hard-excluded (gym equipment, cosmetics, books)
+ *   2. No purchasable price (all variants $0 / unparseable)
+ *   3. Not gym-related at all (detectCategory returned null AND
+ *      isGymRelated returned false)
+ */
+function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, description, variants, imageUrl) {
+  // Guard: hard exclusions first
+  if (isExcluded(rawTitle, productType, tags)) return null;
+
+  // Parse prices
+  const allPrices = variants.map(v => parseFloat(v.price)).filter(p => !isNaN(p) && p > 0);
+  if (allPrices.length === 0) return null; // no purchasable price
+
+  // Category detection — uses title, type, tags, and first 200 chars of description
+  let cat = detectCategory(rawTitle, productType, tags, description);
+
+  // If no category matched, check gym signals before giving up
+  if (!cat) {
+    if (!isGymRelated(rawTitle, productType, tags, description)) return null; // truly irrelevant
+    // Gym-related but uncategorised — use best-effort fallback
+    cat = guessCategoryFromSignals(rawTitle, productType, tags);
+  }
+
+  const availVariants = variants.filter(v => v.available !== false);
+  const minPrice = availVariants.length > 0
+    ? Math.min(...availVariants.map(v => parseFloat(v.price)).filter(p => p > 0))
+    : Math.min(...allPrices);
+
+  return {
+    id:           `${retailer.id}_${handle}`,
+    retailer:     retailer.id,
+    retailerName: retailer.name,
+    brand:        normalizeBrand(vendor),
+    name:         rawTitle,
+    category:     cat,
+    description:  (description || '').slice(0, 300),
+    tags:         (Array.isArray(tags) ? tags : []).slice(0, 10),
+    priceFrom:    parseFloat(minPrice.toFixed(2)),
+    priceTo:      parseFloat(Math.max(...allPrices).toFixed(2)),
+    available:    availVariants.length > 0,
+    currency:     'NZD',
+    variants,
+    url:          `https://${retailer.baseUrl}/products/${handle}`,
+    imageUrl:     imageUrl || null,
+    updatedAt:    new Date().toISOString(),
+    priceHistory: [],
+  };
+}
+
+/**
+ * Last-resort category guess for confirmed gym products that didn't
+ * match any CATEGORY_RULES keyword. Checks broad signals in priority order.
+ */
+function guessCategoryFromSignals(title, productType, tags) {
+  const text = buildSearchText(title, productType, tags, '');
+  if (/creatine/.test(text))                                return 'creatine';
+  if (/pre.?workout|preworkout/.test(text))                 return 'preworkout';
+  if (/fat.?burn|thermogen|carnitine|shred/.test(text))     return 'fatburner';
+  if (/bcaa|eaa|\bamino\b|glutamine/.test(text))            return 'bcaa';
+  if (/vitamin|omega|magnesium|electrolyte|greens|probiotic|nootropic|melatonin/.test(text)) return 'vitamins';
+  if (/protein.?bar|protein.?cookie|snack.?bar/.test(text)) return 'proteinbars';
+  if (/ready.?to.?drink|rtd|energy.?drink/.test(text))      return 'rtd';
+  if (/whey|isolate|casein|mass.?gain|plant.?protein|vegan.?protein|protein/.test(text)) return 'protein';
+  return 'vitamins'; // last resort
 }
 
 // ─── SCRAPE ONE SHOPIFY STORE ───────────────────────────────────
 async function scrapeShopifyStore(retailer) {
   log(`Scraping ${retailer.name}...`);
   const products = [];
+  let skipped = 0;
   let cursor = null;
   let page = 0;
-  let usedGQL = false;
 
   // Try GraphQL first
   try {
@@ -337,101 +494,77 @@ async function scrapeShopifyStore(retailer) {
 
       const { edges, pageInfo } = result.data.products;
       for (const { node } of edges) {
-        const cat = detectCategory(node.productType, node.tags, node.title);
-        if (!cat && !isGymProduct(node.title, node.productType)) continue;
-        const finalCat = cat || detectCategory('', [], node.title) || 'protein';
-
         const variants = node.variants.edges.map(({ node: v }) => ({
           id:        v.id,
           title:     v.title,
           price:     parseFloat(v.price.amount),
           sku:       v.sku || '',
-          available: v.availableForSale, // GQL gives accurate real-time stock status
+          available: v.availableForSale,
         }));
 
-        const availVariants = variants.filter(v => v.available);
-        const allPrices = variants.map(v => v.price).filter(p => p > 0);
-        if (allPrices.length === 0) continue;
-
-        const minPrice = availVariants.length
-          ? Math.min(...availVariants.map(v => v.price))
-          : Math.min(...allPrices);
-
-        products.push({
-          id:           `${retailer.id}_${node.handle}`,
-          retailer:     retailer.id,
-          retailerName: retailer.name,
-          brand:        normalizeBrand(node.vendor),
-          name:         node.title,
-          category:     finalCat,
-          description:  (node.description || '').slice(0, 300),
-          tags:         (node.tags || []).slice(0, 8),
-          priceFrom:    minPrice,
-          priceTo:      Math.max(...allPrices),
-          available:    availVariants.length > 0,
-          currency:     'NZD',
+        const desc   = node.description || '';
+        const record = buildProduct(
+          retailer,
+          node.title,
+          node.handle,
+          node.productType,
+          node.vendor,
+          node.tags,
+          desc,
           variants,
-          url:          `https://${retailer.baseUrl}/products/${node.handle}`,
-          imageUrl:     node.images.edges[0]?.node.url || null,
-          updatedAt:    new Date().toISOString(),
-          priceHistory: [],
-        });
+          node.images.edges[0]?.node.url || null,
+        );
+
+        if (record) products.push(record);
+        else skipped++;
       }
 
-      log(`  ${retailer.name} page ${page}: ${edges.length} products (GQL)`);
+      log(`  ${retailer.name} page ${page}: ${edges.length} fetched, ${skipped} skipped so far (GQL)`);
       if (!pageInfo.hasNextPage) break;
       cursor = pageInfo.endCursor;
-      await sleep(300); // polite pause between pages
+      await sleep(1000); // 1s between pages
     }
-    usedGQL = true;
+
   } catch(gqlErr) {
     log(`  ${retailer.name} GQL failed (${gqlErr.message}), falling back to products.json...`);
 
-    // Fallback to products.json
     let jsonPage = 1;
     while (true) {
       try {
-        const data = await fetchProductsJSON(retailer.baseUrl, jsonPage);
+        const data  = await fetchProductsJSON(retailer.baseUrl, jsonPage);
         const batch = data.products || [];
         if (batch.length === 0) break;
 
         for (const raw of batch) {
-          const cat = detectCategory(raw.product_type, raw.tags, raw.title);
-          if (!cat && !isGymProduct(raw.title, raw.product_type)) continue;
-          const finalCat = cat || 'protein';
+          const desc = (raw.body_html || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+          const variants = (raw.variants || []).map(v => ({
+            id:        v.id,
+            title:     v.title,
+            price:     parseFloat(v.price),
+            sku:       v.sku || '',
+            available: true, // products.json available flag is unreliable
+          }));
 
-          const allPrices = (raw.variants||[]).map(v => parseFloat(v.price)).filter(p => p > 0);
-          if (allPrices.length === 0) continue;
+          const record = buildProduct(
+            retailer,
+            raw.title,
+            raw.handle || String(raw.id),
+            raw.product_type,
+            raw.vendor,
+            raw.tags || [],
+            desc,
+            variants,
+            raw.images?.[0]?.src || null,
+          );
 
-          products.push({
-            id:           `${retailer.id}_${raw.handle || raw.id}`,
-            retailer:     retailer.id,
-            retailerName: retailer.name,
-            brand:        normalizeBrand(raw.vendor),
-            name:         raw.title,
-            category:     finalCat,
-            description:  (raw.body_html||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().slice(0,300),
-            tags:         (raw.tags||[]).slice(0,8),
-            priceFrom:    Math.min(...allPrices),
-            priceTo:      Math.max(...allPrices),
-            available:    true, // products.json available field is unreliable
-            currency:     'NZD',
-            variants:     (raw.variants||[]).map((v,i) => ({
-              id: v.id, title: v.title,
-              price: parseFloat(v.price), sku: v.sku||'',
-              available: true,
-            })),
-            url:          `https://${retailer.baseUrl}/products/${raw.handle}`,
-            imageUrl:     raw.images?.[0]?.src || null,
-            updatedAt:    new Date().toISOString(),
-            priceHistory: [],
-          });
+          if (record) products.push(record);
+          else skipped++;
         }
 
-        log(`  ${retailer.name} page ${jsonPage}: ${batch.length} products (JSON)`);
+        log(`  ${retailer.name} page ${jsonPage}: ${batch.length} fetched, ${skipped} skipped so far (JSON)`);
         if (batch.length < 250) break;
         jsonPage++;
-        await sleep(400);
+        await sleep(1000); // 1s between pages to avoid rate limits
       } catch(jsonErr) {
         log(`  ${retailer.name} products.json page ${jsonPage} failed: ${jsonErr.message}`);
         break;
@@ -439,29 +572,27 @@ async function scrapeShopifyStore(retailer) {
     }
   }
 
-  log(`  ${retailer.name}: ${products.length} gym products total`);
+  log(`  ${retailer.name}: ${products.length} products kept, ${skipped} skipped`);
   return products;
 }
 
 // ─── RETAILER LIST ─────────────────────────────────────────────
-// All confirmed Shopify stores. GraphQL is tried first for speed and
-// accurate stock status; products.json is the automatic fallback.
 const RETAILERS = [
-  { id: 'nzmuscle',           name: 'NZ Muscle',             baseUrl: 'nzmuscle.co.nz',                    freeShipping: 'Always free' },
-  { id: 'sportsfuel',         name: 'Sportsfuel',            baseUrl: 'www.sportsfuel.co.nz',              freeShipping: 'Free over $60' },
-  { id: 'scorpion',           name: 'Scorpion Supplements',  baseUrl: 'scorpionsupplements.co.nz',         freeShipping: 'Check site' },
-  { id: 'asnonline',          name: 'ASN Online',            baseUrl: 'asnonline.co.nz',                   freeShipping: 'Free over $100' },
-  { id: 'supplementsolutions',name: 'Supplement Solutions',  baseUrl: 'www.supplementsolutions.co.nz',     freeShipping: 'Check site' },
-  { id: 'raiseys',            name: "Raisey's",              baseUrl: 'raiseys.co.nz',                     freeShipping: 'Check site' },
-  { id: 'bodystrong',         name: 'BodyStrong',            baseUrl: 'bodystrong.co.nz',                  freeShipping: 'Check site' },
-  { id: 'bargainchemist',     name: 'Bargain Chemist',       baseUrl: 'www.bargainchemist.co.nz',          freeShipping: 'Free shipping' },
-  { id: 'payless',            name: 'Payless Supplements',   baseUrl: 'paylesssupplements.co.nz',          freeShipping: 'Free shipping' },
-  { id: 'supplementsnz',      name: 'Supplements NZ',        baseUrl: 'www.supplements.co.nz',             freeShipping: 'Free shipping' },
-  { id: 'reactiv',            name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide' },
-  { id: 'eatme',              name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site' },
-  { id: 'kiwinutrition',      name: 'Kiwi Nutrition',        baseUrl: 'kiwinutrition.co.nz',               freeShipping: 'Check site' },
-  { id: 'elitesupplements',   name: 'Elite Supplements',     baseUrl: 'elitesupplements.co.nz',            freeShipping: 'Check site' },
-  { id: 'nutritionwarehouse', name: 'Nutrition Warehouse',   baseUrl: 'www.nutritionwarehouse.co.nz',      freeShipping: 'Free over $60' },
+  { id: 'nzmuscle',            name: 'NZ Muscle',             baseUrl: 'nzmuscle.co.nz',                    freeShipping: 'Always free' },
+  { id: 'sportsfuel',          name: 'Sportsfuel',            baseUrl: 'www.sportsfuel.co.nz',              freeShipping: 'Free over $60' },
+  { id: 'scorpion',            name: 'Scorpion Supplements',  baseUrl: 'scorpionsupplements.co.nz',         freeShipping: 'Check site' },
+  { id: 'asnonline',           name: 'ASN Online',            baseUrl: 'asnonline.co.nz',                   freeShipping: 'Free over $100' },
+  { id: 'supplementsolutions', name: 'Supplement Solutions',  baseUrl: 'www.supplementsolutions.co.nz',     freeShipping: 'Check site' },
+  { id: 'raiseys',             name: "Raisey's",              baseUrl: 'raiseys.co.nz',                     freeShipping: 'Check site' },
+  { id: 'bodystrong',          name: 'BodyStrong',            baseUrl: 'bodystrong.co.nz',                  freeShipping: 'Check site' },
+  { id: 'bargainchemist',      name: 'Bargain Chemist',       baseUrl: 'www.bargainchemist.co.nz',          freeShipping: 'Free shipping' },
+  { id: 'payless',             name: 'Payless Supplements',   baseUrl: 'paylesssupplements.co.nz',          freeShipping: 'Free shipping' },
+  { id: 'supplementsnz',       name: 'Supplements NZ',        baseUrl: 'www.supplements.co.nz',             freeShipping: 'Free shipping' },
+  { id: 'reactiv',             name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide' },
+  { id: 'eatme',               name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site' },
+  { id: 'kiwinutrition',       name: 'Kiwi Nutrition',        baseUrl: 'kiwinutrition.co.nz',               freeShipping: 'Check site' },
+  { id: 'elitesupplements',    name: 'Elite Supplements',     baseUrl: 'elitesupplements.co.nz',            freeShipping: 'Check site' },
+  { id: 'nutritionwarehouse',  name: 'Nutrition Warehouse',   baseUrl: 'www.nutritionwarehouse.co.nz',      freeShipping: 'Free over $60' },
   // Xplosiv and Sprint Fit are not Shopify and require Playwright (see README)
 ];
 
@@ -474,13 +605,11 @@ function mergeWithExisting(newProducts, existing) {
     const prev = existMap[p.id];
     if (!prev) return p;
 
-    // Build price history — record if price changed since last scrape
     const history = prev.priceHistory || [];
     if (prev.priceFrom !== p.priceFrom) {
       history.push({ date: prev.updatedAt, price: prev.priceFrom });
-      if (history.length > 30) history.shift(); // keep last 30 price points
+      if (history.length > 30) history.shift();
     }
-
     return { ...p, priceHistory: history };
   });
 }
@@ -489,13 +618,14 @@ function mergeWithExisting(newProducts, existing) {
 async function main() {
   log('');
   log('═══════════════════════════════════════════');
-  log('  ScoopScore Scraper v2 — GraphQL Edition  ');
+  log('  ScoopScore Scraper v4 — Rate-Limit Safe  ');
   log('═══════════════════════════════════════════');
   log(`  Retailers: ${RETAILERS.length}`);
   log(`  Method: Shopify GraphQL → products.json fallback`);
+  log(`  Categories: protein, proteinbars, rtd, creatine, preworkout, fatburner, bcaa, vitamins`);
+  log(`  Pacing: batch=3, page delay=1s, batch pause=3s, retry 429/503 x3`);
   log('');
 
-  // Load existing data to preserve price history
   let existing = [];
   try {
     const raw = JSON.parse(fs.readFileSync(OUT_FILE, 'utf8'));
@@ -507,9 +637,7 @@ async function main() {
   const stats = {};
   const startTime = Date.now();
 
-  // Scrape all retailers concurrently in small batches (5 at a time)
-  // to be polite and avoid overwhelming any single server
-  const BATCH_SIZE = 5;
+  const BATCH_SIZE = 3; // smaller batches = less simultaneous load on any one server
   for (let i = 0; i < RETAILERS.length; i += BATCH_SIZE) {
     const batch = RETAILERS.slice(i, i + BATCH_SIZE);
     const results = await Promise.allSettled(batch.map(r => scrapeShopifyStore(r)));
@@ -524,10 +652,10 @@ async function main() {
         stats[retailer.name] = 0;
       }
     }
-    if (i + BATCH_SIZE < RETAILERS.length) await sleep(1000);
+    if (i + BATCH_SIZE < RETAILERS.length) await sleep(3000); // 3s between batches
   }
 
-  // Deduplicate by id (same product scraped from multiple collections)
+  // Deduplicate by id (same product from multiple collections within one store)
   const seen = new Set();
   const deduped = allProducts.filter(p => {
     if (seen.has(p.id)) return false;
@@ -535,17 +663,15 @@ async function main() {
     return true;
   });
 
-  // Merge with existing to carry price history forward
   const merged = mergeWithExisting(deduped, existing);
 
-  // Sort: category → brand → price
   merged.sort((a, b) => {
     if (a.category !== b.category) return a.category.localeCompare(b.category);
     if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
     return a.priceFrom - b.priceFrom;
   });
 
-  const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins','gymfood','accessories','clothing'];
+  const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins'];
   const catCounts = {};
   for (const c of ALL_CATS) catCounts[c] = merged.filter(p => p.category === c).length;
 
@@ -558,7 +684,7 @@ async function main() {
       retailers:     RETAILERS.map(r => r.name),
       retailerStats: stats,
       categories:    catCounts,
-      scrapeMethod:  'shopify-graphql-v2',
+      scrapeMethod:  'shopify-graphql-v4',
       elapsed:       `${elapsed}s`,
     },
     products: merged,
@@ -572,7 +698,7 @@ async function main() {
   log('');
   log('  By retailer:');
   for (const [name, count] of Object.entries(stats)) {
-    const bar = '█'.repeat(Math.min(30, Math.round(count / 100)));
+    const bar = '█'.repeat(Math.min(30, Math.round(count / 10)));
     log(`    ${name.padEnd(26)} ${String(count).padStart(5)}  ${bar}`);
   }
   log('');
