@@ -334,14 +334,26 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .bmg-name{font-size:12px;font-weight:500;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bmg-count{font-size:10px;color:var(--ink4)}
 
-.retailer-strip-section{padding:28px 0 0;border-bottom:1px solid var(--border)}
-.retailer-strip-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:14px}
-.retailer-strip{display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding-bottom:24px}
-.retailer-logo-item{display:flex;align-items:center;gap:7px;padding:7px 14px;border:1px solid var(--border);border-radius:100px;cursor:pointer;transition:all .15s;opacity:.75}
-.retailer-logo-item:hover{opacity:1;border-color:var(--border2);background:var(--bg2)}
-.retailer-logo-img{width:16px;height:16px;object-fit:contain;flex-shrink:0}
-.retailer-logo-name{font-size:12px;font-weight:500;color:var(--ink2);white-space:nowrap}
-.retailer-logo-fallback{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:-.01em;white-space:nowrap}
+.retailer-cards-section{padding:48px 0 56px;border-bottom:1px solid var(--border)}
+.retailer-cards-header{display:flex;align-items:baseline;gap:12px;margin-bottom:28px}
+.retailer-cards-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4)}
+.retailer-cards-count{font-size:10px;font-weight:500;color:var(--ink4);opacity:.6}
+.retailer-cards-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.rc-card{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px 18px 18px;cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-height:110px}
+.rc-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 60%);opacity:0;transition:opacity .2s;pointer-events:none}
+.rc-card:hover{transform:translateY(-3px);border-color:var(--border2);background:var(--bg3);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.rc-card:hover::before{opacity:1}
+.rc-card::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ink);opacity:0;transform:scaleX(0);transform-origin:left;transition:transform .22s ease,opacity .22s ease;border-radius:0 0 14px 14px}
+.rc-card:hover::after{opacity:.18;transform:scaleX(1)}
+.rc-logo-wrap{width:40px;height:40px;border-radius:10px;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.rc-logo-img{width:26px;height:26px;object-fit:contain;display:block}
+.rc-logo-initials{width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.03em;color:var(--ink2);line-height:1}
+.rc-text{display:flex;flex-direction:column;gap:3px}
+.rc-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.04em;color:var(--ink);line-height:1;text-transform:uppercase}
+.rc-shipping{font-size:10px;font-weight:500;color:var(--ink4);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-shipping.free{color:var(--green)}
+.rc-arrow{position:absolute;top:14px;right:14px;font-size:11px;color:var(--ink4);opacity:0;transform:translate(0,0);transition:opacity .15s,transform .15s}
+.rc-card:hover .rc-arrow{opacity:1;transform:translate(2px,-2px)}
 
 /* ── EDITORIAL CATEGORY TILES ── */
 .cat-tile-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px}
@@ -364,7 +376,9 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .cat-tile:hover .cat-tile-arrow{background:rgba(255,255,255,.2);color:#fff}
 
 @media(max-width:900px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}}
-@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-strip{gap:0}.retailer-logo-item{padding:4px 10px}}
+@media(max-width:1100px){.retailer-cards-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:800px){.retailer-cards-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-cards-grid{grid-template-columns:repeat(2,1fr);gap:7px}.retailer-cards-section{padding:32px 0 40px}}
 .home-body{max-width:1320px;margin:0 auto;padding:0 32px 80px}
 .home-section{padding:56px 0 0}
 .home-section-dark{background:#1a1917;margin:56px -32px 0;padding:56px 32px;max-width:none;width:calc(100% + 64px);position:relative;left:-32px}
@@ -851,10 +865,13 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
   <!-- HOMEPAGE BODY -->
   <div class="home-body">
 
-    <!-- RETAILER LOGO STRIP -->
-    <section class="retailer-strip-section">
-      <div class="retailer-strip-label">Prices compared from</div>
-      <div class="retailer-strip" id="retailerLogoStrip">
+    <!-- RETAILER CARDS -->
+    <section class="retailer-cards-section">
+      <div class="retailer-cards-header">
+        <span class="retailer-cards-label">Prices compared from</span>
+        <span class="retailer-cards-count" id="retailerCardsCount"></span>
+      </div>
+      <div class="retailer-cards-grid" id="retailerLogoStrip">
         <!-- populated by JS -->
       </div>
     </section>
@@ -1652,17 +1669,29 @@ document.addEventListener('click',e=>{
   if(_brandsMegaOpen&&!e.target.closest('#brandsMegaWrap')){closeBrandsMega();document.getElementById('megaOverlay').classList.remove('active');}
 });
 
-// ── RETAILER LOGO STRIP ───────────────────────────────────────
+// ── RETAILER CARDS ────────────────────────────────────────────
 function renderRetailerStrip(){
   const strip=document.getElementById('retailerLogoStrip');
   if(!strip)return;
-  strip.innerHTML=Object.entries(RETAILER_META).map(([id,r])=>{
-    // Google's favicon service is highly reliable for any domain
-    const faviconUrl=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=64`;
-    return`<div class="retailer-logo-item" onclick="filterByRetailer('${id}')" title="${r.name}">
-      <img class="retailer-logo-img" src="${faviconUrl}" alt="${r.name}"
-        onerror="this.outerHTML='<span class=\\'retailer-logo-fallback\\'>${r.name}</span>'">
-      <span class="retailer-logo-name">${r.name}</span>
+  const entries=Object.entries(RETAILER_META);
+  const countEl=document.getElementById('retailerCardsCount');
+  if(countEl)countEl.textContent=`${entries.length} retailers`;
+  strip.innerHTML=entries.map(([id,r])=>{
+    const faviconUrl=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=128`;
+    const initials=r.name.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const isFree=/always free|free shipping|free nz/i.test(r.shipping);
+    const shipClass=isFree?'rc-shipping free':'rc-shipping';
+    return`<div class="rc-card" onclick="filterByRetailer('${id}')" title="Browse ${r.name} products">
+      <div class="rc-logo-wrap">
+        <img class="rc-logo-img" src="${faviconUrl}" alt="${r.name}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <span class="rc-logo-initials" style="display:none">${initials}</span>
+      </div>
+      <div class="rc-text">
+        <div class="rc-name">${r.name}</div>
+        <div class="${shipClass}">${r.shipping}</div>
+      </div>
+      <span class="rc-arrow">\u2197</span>
     </div>`;
   }).join('');
 }
