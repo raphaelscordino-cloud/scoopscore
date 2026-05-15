@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScoopScore — NZ Supplement Price Comparison</title>
-<meta name="description" content="Compare supplement prices across NZ's top retailers daily. Find the cheapest whey protein, creatine, pre-workout and more from NZ Muscle, Sportsfuel, Nutrition Warehouse, Elite Supps, Payless Supplements, GNC NZ and more.">
-<meta name="keywords" content="NZ supplements, protein powder NZ, cheap supplements NZ, supplement price comparison, whey protein NZ, creatine NZ, pre-workout NZ, NZ Muscle, Sportsfuel, ASN Online, Nutrition Warehouse, Elite Supps, Cheap Supps, Payless Supplements, GNC NZ, Maxum Nutrition">
+<meta name="description" content="Compare supplement prices across NZ's top supplement retailers daily. Find the best deals on protein powder, creatine, pre-workout, BCAAs, protein bars and RTDs in NZ.">
+<meta name="keywords" content="NZ supplements, protein powder NZ, creatine NZ, pre-workout NZ, BCAA NZ, supplement price comparison, whey protein NZ, cheap supplements NZ, NZ Muscle, Sportsfuel, Payless Supplements, Supplements NZ, Nutrition Warehouse, ASN Online">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://scoopscore.co.nz/">
 <!-- Open Graph -->
@@ -1739,16 +1739,15 @@ function renderCatTiles(){
 
 
 const CAT_META={
-  protein:      {label:'Protein Powder',    color:'#3b82f6'},
-  proteinbars:  {label:'Protein Bars',      color:'#f97316'},
-  rtd:          {label:'RTD / Drinks',      color:'#06b6d4'},
-  creatine:     {label:'Creatine',          color:'#22c55e'},
-  preworkout:   {label:'Pre-Workout',       color:'#f59e0b'},
-  fatburner:    {label:'Fat Burner',        color:'#ef4444'},
-  bcaa:         {label:'BCAA / Aminos',     color:'#a855f7'},
-
+  protein:     {label:'Protein Powder', color:'#3b82f6'},
+  proteinbars: {label:'Protein Bars',   color:'#f97316'},
+  rtd:         {label:'RTD / Drinks',   color:'#06b6d4'},
+  creatine:    {label:'Creatine',       color:'#22c55e'},
+  preworkout:  {label:'Pre-Workout',    color:'#f59e0b'},
+  fatburner:   {label:'Fat Burners',    color:'#ef4444'},
+  bcaa:        {label:'BCAA / Aminos',  color:'#a855f7'},
 };
-const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion Supplements',domain:'scorpionsupplements.co.nz',shipping:'Free over $75'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supp Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},xplosiv:{name:'Xplosiv',domain:'xplosiv.nz',shipping:'Free over $100'},sprintfit:{name:'Sprint Fit',domain:'sprintfit.co.nz',shipping:'Free over $60'},elitesupplements:{name:'Elite Supplements',domain:'elitesupplements.co.nz',shipping:'Check site'},bodystrong:{name:'BodyStrong',domain:'bodystrong.co.nz',shipping:'Check site'},bargainchemist:{name:'Bargain Chemist',domain:'bargainchemist.co.nz',shipping:'Free shipping'},payless:{name:'Payless Supplements',domain:'paylesssupplements.co.nz',shipping:'Free shipping'},nutritionwarehouse:{name:'Nutrition Warehouse',domain:'nutritionwarehouse.co.nz',shipping:'Free over $60'},supplementsnz:{name:'Supplements NZ',domain:'supplements.co.nz',shipping:'Free shipping'},reactiv:{name:'Reactiv Supplements',domain:'reactivsupplements.co.nz',shipping:'Free NZ-wide'},eatme:{name:'Eat Me Supplements',domain:'eatmesupplements.co.nz',shipping:'Check site'},kiwinutrition:{name:'Kiwi Nutrition',domain:'kiwinutrition.co.nz',shipping:'Check site'}};
+const RETAILER_META={nzmuscle:{name:'NZ Muscle',domain:'nzmuscle.co.nz',shipping:'Always free'},sportsfuel:{name:'Sportsfuel',domain:'sportsfuel.co.nz',shipping:'Free over $60'},scorpion:{name:'Scorpion Supplements',domain:'scorpionsupplements.co.nz',shipping:'Free over $75'},asnonline:{name:'ASN Online',domain:'asnonline.co.nz',shipping:'Free over $100'},supplementsolutions:{name:'Supplement Solutions',domain:'supplementsolutions.co.nz',shipping:'Check site'},raiseys:{name:"Raisey's",domain:'raiseys.co.nz',shipping:'Check site'},bodystrong:{name:'BodyStrong',domain:'bodystrong.co.nz',shipping:'Check site'},payless:{name:'Payless Supplements',domain:'paylesssupplements.co.nz',shipping:'Free shipping'},nutritionwarehouse:{name:'Nutrition Warehouse',domain:'nutritionwarehouse.co.nz',shipping:'Free over $60'},supplementsnz:{name:'Supplements NZ',domain:'supplements.co.nz',shipping:'Free shipping'},reactiv:{name:'Reactiv Supplements',domain:'reactivsupplements.co.nz',shipping:'Free NZ-wide'},eatme:{name:'Eat Me Supplements',domain:'eatmesupplements.co.nz',shipping:'Check site'}};
 function rm(id){return RETAILER_META[id]||{name:id,domain:id,shipping:'Check site'};}
 
 let currentSort='retailers';
@@ -1792,34 +1791,23 @@ function normBrand(raw){
 
 function normKey(s){
   return s.toLowerCase()
-    // strip punctuation except spaces
     .replace(/[^a-z0-9 ]/g,' ')
-    // strip weights, sizes, counts (5lb, 1kg, 500g, 90caps, etc.)
     .replace(/\b\d+\s*(g|kg|lb|lbs|mg|ml|l|caps?|capsules?|tablets?|tabs?|serves?|servings?|pack|x\d+)\b/g,' ')
-    // strip all standalone numbers (100% Whey -> whey, etc.)
     .replace(/\b\d+\b/g,' ')
-    // strip flavour noise — retailers often append flavour/variety to the product name
     .replace(/\b(chocolate|vanilla|strawberry|banana|caramel|cookies|cream|rocky|road|choc|mint|mocha|coffee|birthday|cake|cinnamon|unflavoured|unflavored|natural|salted|peanut|milk|ice|wafer|fudge|brownie|lemon|mango|watermelon|grape|berry|peach|apple|candy|bubblegum|tropical|punch|fruit)\b/g,' ')
-    // strip reformulation/edition/marketing noise
     .replace(/\b(new|improved|original|classic|advanced|ultra|plus|pro|elite|premium|edition|version|v\d+|best|pure|clean|lean|raw|true|real)\b/g,' ')
-    // strip generic product-form words that carry no identity info
     .replace(/\b(powder|supplement|formula|blend|complex|matrix|series|nutrition|nutritional|sport|sports)\b/g,' ')
-    // collapse "X protein" -> "X" for common types
     .replace(/\b(whey|casein|isolate|pea|plant|vegan|egg|beef|collagen|rice|soy)\s+protein\b/g,(_,p1)=>p1)
-    // collapse "protein powder/blend/complex" -> "protein"
     .replace(/\bprotein\s+(powder|blend|complex|matrix|formula)\b/g,'protein')
-    // collapse whitespace
     .replace(/\s+/g,' ').trim();
 }
 
-// After exact-key grouping, merge groups within the same brand whose
-// normKey tokens overlap significantly (Jaccard similarity >= 75%).
-// Catches: "Gold Standard Whey" vs "Gold Standard 100% Whey", etc.
+// Fuzzy-merge groups within the same brand whose normKey tokens overlap ≥75%.
+// Catches "Gold Standard 100% Whey" vs "Gold Standard Whey Protein", etc.
 function fuzzyMergeGroups(groups){
   const keys=Object.keys(groups);
   if(keys.length<2)return groups;
-  const merged={};
-  const assigned=new Set();
+  const merged={},assigned=new Set();
   for(let i=0;i<keys.length;i++){
     if(assigned.has(keys[i]))continue;
     merged[keys[i]]=groups[keys[i]];
@@ -1830,10 +1818,9 @@ function fuzzyMergeGroups(groups){
       if(assigned.has(keys[j]))continue;
       const tokB=new Set(keys[j].split(' ').filter(t=>t.length>2));
       if(tokB.size===0)continue;
-      const intersection=new Set([...tokA].filter(t=>tokB.has(t)));
+      const inter=new Set([...tokA].filter(t=>tokB.has(t)));
       const union=new Set([...tokA,...tokB]);
-      const similarity=intersection.size/union.size;
-      if(similarity>=0.75&&intersection.size>=2){
+      if(inter.size/union.size>=0.75&&inter.size>=2){
         merged[keys[i]].listings.push(...groups[keys[j]].listings);
         if(groups[keys[j]].name.length<merged[keys[i]].name.length)merged[keys[i]].name=groups[keys[j]].name;
         if(groups[keys[j]].imageUrl&&!merged[keys[i]].imageUrl)merged[keys[i]].imageUrl=groups[keys[j]].imageUrl;
@@ -1929,19 +1916,12 @@ function init(updatedAt){
     }
   }
   for(const b of Object.values(BRANDS)){
-    // Fuzzy-merge groups within the same brand that are likely the same product
-    // (different retailer naming conventions, e.g. "Gold Standard Whey" vs "Gold Standard 100% Whey")
     b.groups=fuzzyMergeGroups(b.groups);
     b.cats=[...b.cats];b.retailers=[...b.retailers];
     for(const g of Object.values(b.groups)){
-      // Re-resolve category by majority vote after fuzzy merge
-      const catVotes={};
-      for(const l of g.listings) catVotes[l.category]=(catVotes[l.category]||0)+1;
-      g.category=Object.entries(catVotes).sort((a,z)=>z[1]-a[1])[0][0];
-      // Treat all products as available — the Shopify public API available flag is unreliable
-      g.soldOut = false;
-      g.partialOos = false;
-      g.inStockListings = g.listings;
+      const cv={};for(const l of g.listings)cv[l.category]=(cv[l.category]||0)+1;
+      g.category=Object.entries(cv).sort((a,z)=>z[1]-a[1])[0][0];
+      g.soldOut=false;g.partialOos=false;g.inStockListings=g.listings;
     }
     b.groupList=Object.values(b.groups).sort((a,z)=>{
       const ra=new Set(a.inStockListings.map(l=>l.retailer)).size;

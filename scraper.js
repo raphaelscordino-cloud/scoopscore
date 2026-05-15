@@ -426,6 +426,9 @@ function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, des
     cat = guessCategoryFromSignals(rawTitle, productType, tags);
   }
 
+  // Final guard — if still no category, skip the product
+  if (!cat) return null;
+
   const availVariants = variants.filter(v => v.available !== false);
   const minPrice = availVariants.length > 0
     ? Math.min(...availVariants.map(v => parseFloat(v.price)).filter(p => p > 0))
@@ -579,13 +582,10 @@ const RETAILERS = [
   { id: 'supplementsolutions', name: 'Supplement Solutions',  baseUrl: 'www.supplementsolutions.co.nz',     freeShipping: 'Check site' },
   { id: 'raiseys',             name: "Raisey's",              baseUrl: 'raiseys.co.nz',                     freeShipping: 'Check site' },
   { id: 'bodystrong',          name: 'BodyStrong',            baseUrl: 'bodystrong.co.nz',                  freeShipping: 'Check site' },
-  { id: 'bargainchemist',      name: 'Bargain Chemist',       baseUrl: 'www.bargainchemist.co.nz',          freeShipping: 'Free shipping' },
   { id: 'payless',             name: 'Payless Supplements',   baseUrl: 'paylesssupplements.co.nz',          freeShipping: 'Free shipping' },
   { id: 'supplementsnz',       name: 'Supplements NZ',        baseUrl: 'www.supplements.co.nz',             freeShipping: 'Free shipping' },
   { id: 'reactiv',             name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide' },
   { id: 'eatme',               name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site' },
-  { id: 'kiwinutrition',       name: 'Kiwi Nutrition',        baseUrl: 'kiwinutrition.co.nz',               freeShipping: 'Check site' },
-  { id: 'elitesupplements',    name: 'Elite Supplements',     baseUrl: 'elitesupplements.co.nz',            freeShipping: 'Check site' },
   { id: 'nutritionwarehouse',  name: 'Nutrition Warehouse',   baseUrl: 'www.nutritionwarehouse.co.nz',      freeShipping: 'Free over $60' },
   // Xplosiv and Sprint Fit are not Shopify and require Playwright (see README)
 ];
@@ -660,9 +660,13 @@ async function main() {
   const merged = mergeWithExisting(deduped, existing);
 
   merged.sort((a, b) => {
-    if (a.category !== b.category) return a.category.localeCompare(b.category);
-    if (a.brand !== b.brand) return a.brand.localeCompare(b.brand);
-    return a.priceFrom - b.priceFrom;
+    const ca = a.category || 'zzz';
+    const cb = b.category || 'zzz';
+    if (ca !== cb) return ca.localeCompare(cb);
+    const ba = a.brand || '';
+    const bb = b.brand || '';
+    if (ba !== bb) return ba.localeCompare(bb);
+    return (a.priceFrom || 0) - (b.priceFrom || 0);
   });
 
   const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa'];
