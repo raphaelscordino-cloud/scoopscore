@@ -54,6 +54,17 @@ const EXCLUDE_PATTERNS = [
   // Gym food (meal replacements, snack foods, condiments)
   /\bmeal\s*replacement\b/, /\bpeanut\s*butter\b/, /\bnut\s*butter\b/,
   /\bbeef\s*jerky\b/, /\brice\s*cake\b/, /\bgranola\b/, /\bovernight\s*oats\b/,
+  // Generic pharmacy / chemist vitamins — not gym goods
+  /\bvitamin\s*c\b/, /\bvitamin\s*b12\b/, /\bvitamin\s*b\s*complex\b/,
+  /\bzinc\s*(tablet|lozenge|capsule)\b/,
+  /\biron\s*(supplement|tablet)\b/,
+  /\bfolate\b/, /\bfolic\s*acid\b/,
+  /\bcalcium\s*(supplement|tablet)\b/,
+  /\bimmunity\b/, /\bimmune\s*support\b/,
+  /\bcold\s*(and|&)\s*flu\b/, /\bhayfever\b/, /\ballergy\b/,
+  /\bprenatal\b/, /\bpregnancy\s*vitamin\b/,
+  /\bkids?\s*vitamin\b/, /\bchildren.s\s*vitamin\b/,
+  /\bcoenzyme\s*q10\b/, /\bcoq10\b/,
 ];
 
 // ─── CATEGORY RULES ────────────────────────────────────────────
@@ -127,21 +138,6 @@ const CATEGORY_RULES = [
     ],
   },
 
-  // ── Vitamins & Health ──
-  {
-    cat: 'vitamins',
-    keywords: [
-      'multivitamin','multivitamins','omega-3','omega 3','fish oil',
-      'vitamin d','vitamin c','vitamin b','vitamin e','vitamin k',
-      'magnesium','zinc','electrolytes','electrolyte powder',
-      'greens powder','super greens','superfood','superfoods',
-      'sleep aid','melatonin','probiotics','probiotic',
-      'nootropic','nootropics','testosterone booster','test booster',
-      'general health','health supplement','immunity',
-      'digestive enzyme','collagen peptide','joint support',
-    ],
-  },
-
   // ── Protein (broad — intentionally last so specifics above win) ──
   {
     cat: 'protein',
@@ -166,11 +162,10 @@ const CATEGORY_RULES = [
 // we check these signals to decide if the product should still be
 // included under a best-guess category.
 const GYM_SIGNALS = [
-  'supplement','supplements','sports nutrition','fitness',
+  'supplement','supplements','sports nutrition','sports supplement',
   'pre-workout','preworkout','creatine','protein','whey','casein',
-  'bcaa','eaa','amino','glutamine','collagen','omega','vitamin',
+  'bcaa','eaa','amino','glutamine','collagen','omega',
   'fat burner','thermogenic','carnitine','oxyshred','shred',
-  'electrolyte','greens','probiotic','nootropic','melatonin',
   'mass gainer','rtd','ready to drink','protein bar','protein cookie',
 ];
 
@@ -467,11 +462,10 @@ function guessCategoryFromSignals(title, productType, tags) {
   if (/pre.?workout|preworkout/.test(text))                 return 'preworkout';
   if (/fat.?burn|thermogen|carnitine|shred/.test(text))     return 'fatburner';
   if (/bcaa|eaa|\bamino\b|glutamine/.test(text))            return 'bcaa';
-  if (/vitamin|omega|magnesium|electrolyte|greens|probiotic|nootropic|melatonin/.test(text)) return 'vitamins';
   if (/protein.?bar|protein.?cookie|snack.?bar/.test(text)) return 'proteinbars';
   if (/ready.?to.?drink|rtd|energy.?drink/.test(text))      return 'rtd';
   if (/whey|isolate|casein|mass.?gain|plant.?protein|vegan.?protein|protein/.test(text)) return 'protein';
-  return 'vitamins'; // last resort
+  return null; // can't categorise — will be excluded
 }
 
 // ─── SCRAPE ONE SHOPIFY STORE ───────────────────────────────────
@@ -622,7 +616,7 @@ async function main() {
   log('═══════════════════════════════════════════');
   log(`  Retailers: ${RETAILERS.length}`);
   log(`  Method: Shopify GraphQL → products.json fallback`);
-  log(`  Categories: protein, proteinbars, rtd, creatine, preworkout, fatburner, bcaa, vitamins`);
+  log(`  Categories: protein, proteinbars, rtd, creatine, preworkout, fatburner, bcaa`);
   log(`  Pacing: batch=3, page delay=1s, batch pause=3s, retry 429/503 x3`);
   log('');
 
@@ -671,7 +665,7 @@ async function main() {
     return a.priceFrom - b.priceFrom;
   });
 
-  const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins'];
+  const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa'];
   const catCounts = {};
   for (const c of ALL_CATS) catCounts[c] = merged.filter(p => p.category === c).length;
 
