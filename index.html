@@ -1761,28 +1761,95 @@ function brandDesc(name){const K={'Optimum Nutrition':"The world's best-selling 
 // ── BRAND NORMALISATION (frontend) ───────────────────────────
 // Ensures products.json data with inconsistent vendor names still groups correctly.
 const BRAND_ALIAS_MAP = {
-  'mutant nutrition':'Mutant','mutant supplements':'Mutant',
-  'optimum nutrition':'Optimum Nutrition','on':'Optimum Nutrition',
-  'dymatize nutrition':'Dymatize',
-  'ghost lifestyle':'Ghost',
-  'ehplabs':'EHP Labs','ehp labs':'EHP Labs',
-  'my protein':'Myprotein',
+  // Mutant
+  'mutant':'Mutant','mutant nutrition':'Mutant','mutant supplements':'Mutant',
+  // Optimum Nutrition
+  'optimum nutrition':'Optimum Nutrition','optimum':'Optimum Nutrition','on':'Optimum Nutrition',
+  'on nutrition':'Optimum Nutrition',
+  // Dymatize
+  'dymatize':'Dymatize','dymatize nutrition':'Dymatize','dymatize elite':'Dymatize',
+  // Ghost
+  'ghost':'Ghost','ghost lifestyle':'Ghost','ghost whey':'Ghost',
+  // EHP Labs
+  'ehp labs':'EHP Labs','ehplabs':'EHP Labs','ehp':'EHP Labs',
+  // Myprotein
+  'myprotein':'Myprotein','my protein':'Myprotein','mp':'Myprotein',
+  // Macro Mike
   'macro mike':'Macro Mike','macromike':'Macro Mike',
+  // Faction Labs
   'faction labs':'Faction Labs','faction':'Faction Labs',
-  'rule 1':'Rule 1','rule one':'Rule 1','r1 proteins':'Rule 1',
-  "max's":"Max's",'maxs':"Max's",
+  // Rule 1
+  'rule 1':'Rule 1','rule one':'Rule 1','r1 proteins':'Rule 1','r1':'Rule 1',
+  // Max's
+  "max's":"Max's",'maxs':"Max's",'max s':"Max's",
+  // Emrald Labs
   'emrald labs':'Emrald Labs','emrald':'Emrald Labs',
-  'gen-tec':'Gen-Tec','gen tec':'Gen-Tec','gentec':'Gen-Tec',
-  'balance sports nutrition':'Balance',
-  'redcon 1':'Redcon1',
-  'ryse supps':'Ryse',
-  'atp science':'ATP Science',
-  'the isopure company':'Isopure',
-  'vpa australia':'VPA',
-  'bulk nutrients':'Bulk Nutrients',
-  'prana on':'Prana ON',
-  'body science':'Body Science','bsc':'Body Science',
+  // Gen-Tec
+  'gen-tec':'Gen-Tec','gen tec':'Gen-Tec','gentec':'Gen-Tec','gen tec nutrition':'Gen-Tec',
+  // Balance
+  'balance':'Balance','balance sports nutrition':'Balance','balance sports':'Balance',
+  // Redcon1
+  'redcon1':'Redcon1','redcon 1':'Redcon1','redcon':'Redcon1',
+  // Ryse
+  'ryse':'Ryse','ryse supps':'Ryse','ryse supplements':'Ryse',
+  // ATP Science
+  'atp science':'ATP Science','atp':'ATP Science',
+  // Isopure
+  'isopure':'Isopure','the isopure company':'Isopure',
+  // VPA
+  'vpa':'VPA','vpa australia':'VPA','vpa protein':'VPA',
+  // Bulk Nutrients
+  'bulk nutrients':'Bulk Nutrients','bulk':'Bulk Nutrients',
+  // Prana ON
+  'prana on':'Prana ON','prana':'Prana ON',
+  // Body Science / BSc
+  'body science':'Body Science','bsc':'Body Science','bsc bodyscience':'Body Science',
+  // Science in Sport
   'science in sport':'Science in Sport','sis':'Science in Sport',
+  // Switch Nutrition
+  'switch nutrition':'Switch Nutrition','switch':'Switch Nutrition',
+  // Cellucor
+  'cellucor':'Cellucor','c4':'Cellucor',
+  // MuscleTech
+  'muscletech':'MuscleTech','muscle tech':'MuscleTech',
+  // BSN
+  'bsn':'BSN','bsn nutrition':'BSN',
+  // Inspired Nutraceuticals
+  'inspired nutraceuticals':'Inspired','inspired':'Inspired',
+  // Staunch
+  'staunch':'Staunch','staunch nation':'Staunch',
+  // Axe & Sledge
+  'axe & sledge':'Axe & Sledge','axe and sledge':'Axe & Sledge','axe sledge':'Axe & Sledge',
+  // Gorilla Mind
+  'gorilla mind':'Gorilla Mind','gorilla':'Gorilla Mind',
+  // Outbreak Nutrition
+  'outbreak nutrition':'Outbreak','outbreak':'Outbreak',
+  // NZ Muscle house brand
+  'nz muscle':'NZ Muscle','nzmuscle':'NZ Muscle',
+  // Nutrition Warehouse house brand
+  'nutrition warehouse':'Nutrition Warehouse',
+  // True Protein
+  'true protein':'True Protein','true':'True Protein',
+  // Musashi
+  'musashi':'Musashi',
+  // Xtend
+  'xtend':'Xtend','scivation xtend':'Xtend','scivation':'Xtend',
+  // PEScience
+  'pescience':'PEScience','pes science':'PEScience',
+  // Performix
+  'performix':'Performix',
+  // MusclePharm
+  'musclepharm':'MusclePharm','muscle pharm':'MusclePharm',
+  // Universal Nutrition
+  'universal nutrition':'Universal','universal':'Universal',
+  // NOW Foods
+  'now foods':'NOW Foods','now sports':'NOW Foods','now':'NOW Foods',
+  // Calocurb
+  'calocurb':'Calocurb',
+  // Horleys
+  'horleys':'Horleys',
+  // Hammer Nutrition
+  'hammer nutrition':'Hammer','hammer':'Hammer',
 };
 function normBrand(raw){
   if(!raw||raw==='Unknown')return 'Unknown';
@@ -1832,6 +1899,55 @@ function fuzzyMergeGroups(groups){
     }
   }
   return merged;
+}
+
+// Cross-brand merge: same normalised product name appearing under different brand buckets
+// (e.g. retailer A uses vendor "ON", retailer B uses "Optimum Nutrition" → both map to
+// "Optimum Nutrition" via alias map, BUT some vendors slip through as separate brands).
+// Only merges when normKey is specific (≥3 tokens) and retailers don't overlap.
+function crossBrandMerge(brands){
+  // Index: normKey → [{brandName, groupKey, group}]
+  const idx={};
+  for(const [bn,b] of Object.entries(brands)){
+    for(const [gk,g] of Object.entries(b.groups)){
+      if(!idx[gk])idx[gk]=[];
+      idx[gk].push({bn,gk,g,b});
+    }
+  }
+  for(const [nk,entries] of Object.entries(idx)){
+    if(entries.length<2)continue;
+    // Require ≥3 meaningful tokens — prevents merging generic keys like "whey protein"
+    const tokens=nk.split(' ').filter(t=>t.length>2);
+    if(tokens.length<3)continue;
+    // Find all retailers across all entries for this key
+    const retailerCount={};
+    for(const e of entries)
+      for(const l of e.g.listings)
+        retailerCount[l.retailer]=(retailerCount[l.retailer]||0)+1;
+    // Only merge if no single retailer appears in more than one entry
+    // (overlap = truly different products at same retailer)
+    const hasOverlap=Object.values(retailerCount).some(n=>n>entries.length-1&&entries.length>1);
+    if(hasOverlap)continue;
+    // Merge all into the entry with the most listings (canonical)
+    entries.sort((a,z)=>z.g.listings.length-a.g.listings.length);
+    const canon=entries[0];
+    for(let i=1;i<entries.length;i++){
+      const other=entries[i];
+      canon.g.listings.push(...other.g.listings);
+      if(!canon.g.imageUrl&&other.g.imageUrl)canon.g.imageUrl=other.g.imageUrl;
+      // Remove the merged group from its brand
+      delete brands[other.bn].groups[other.gk];
+      // Re-add its cats/retailers to the canonical brand
+      for(const l of other.g.listings){
+        canon.b.cats.add(l.category);
+        canon.b.retailers.add(l.retailer);
+      }
+    }
+  }
+  // Remove brands that have become empty after merging
+  for(const bn of Object.keys(brands)){
+    if(Object.keys(brands[bn].groups).length===0)delete brands[bn];
+  }
 }
 
 let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
@@ -1918,6 +2034,8 @@ function init(updatedAt){
       g.category=Object.entries(catVotes).sort((a,z)=>z[1]-a[1])[0][0];
     }
   }
+  // Cross-brand merge: collapse same product listed under different vendor names
+  crossBrandMerge(BRANDS);
   for(const b of Object.values(BRANDS)){
     b.groups=fuzzyMergeGroups(b.groups);
     b.cats=[...b.cats];b.retailers=[...b.retailers];
@@ -2212,7 +2330,7 @@ function buildSizeCard({brand, group:g, sizeKey, sz, bestPrice}, i){
   const retailers=[...sz.retailers.values()];
   const numRetailers=retailers.length;
   const isMultiSize=buildSizeMap(g).size>1;
-  const showSize=isMultiSize&&sizeKey&&sizeKey!=='Single Size';
+  const showSize=isMultiSize&&sizeKey&&sizeKey!=='nosize';
 
   const img=g.imageUrl
     ?`<img src="${g.imageUrl}" alt="${g.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'pcard-img-placeholder\\'>${brand[0]}</div>'">`
@@ -2332,7 +2450,7 @@ function variantToKg(title){
   const oz=t.match(/(\d+\.?\d*)\s*oz\b/);if(oz)return Math.round(parseFloat(oz[1])*28.3495/100)/10;
   // g formats: 500g, 900g — exclude words like "gel", "gum", "green", "gram" text
   const g=t.match(/(\d+\.?\d*)\s*g(?!el|um|re|lass|reen|ram)\b/);if(g)return Math.round(parseFloat(g[1]))/1000;
-  // serves / servings treated as single size (no weight) — return null so grouped as Single Size
+  // serves / servings have no usable weight — return null, will group as nosize
   return null;
 }
 // Nicely display kg — round to 1 decimal only when needed
@@ -2349,15 +2467,17 @@ function variantFlavour(title){
 
 // ── BUILD SIZE MAP from a group: Map<kgString → {kg, listings[]}>
 function buildSizeMap(group){
+  // Try to extract a size from the product name as a fallback for flavour-only variants
+  const nameKg=variantToKg(group.name);
   const map=new Map();
   for(const l of group.listings){
     for(const v of l.variants){
       // "Default Title" = Shopify single-variant placeholder
       const isDefault=!v.title||v.title==='Default Title';
-      const kg=isDefault?null:variantToKg(v.title);
-      // If no weight found (flavour-only title like "Chocolate" or "Unflavoured"),
-      // treat as "Single Size" — don't show as "unknown"
-      const key=kg!==null?fmtKg(kg):'Single Size';
+      const varKg=isDefault?null:variantToKg(v.title);
+      // Prefer variant size, fall back to product name size, then no-size
+      const kg=varKg!==null?varKg:nameKg;
+      const key=kg!==null?fmtKg(kg):'nosize';
       if(!map.has(key))map.set(key,{kg,label:key,variants:[],retailers:new Map()});
       const entry=map.get(key);
       entry.variants.push({...v,retailer:l.retailer,url:l.url,listingAvailable:true});
@@ -2367,7 +2487,7 @@ function buildSizeMap(group){
       }
     }
   }
-  // Sort: known sizes by kg asc, "Single Size" last
+  // Sort: known sizes by kg asc, nosize last
   return new Map([...map.entries()].sort((a,b)=>{
     const ka=a[1].kg??9999,kb=b[1].kg??9999;return ka-kb;
   }));
@@ -2405,17 +2525,17 @@ function renderModal(){
   document.getElementById('dpCatBadge').textContent=`${cm.label} · ${[...sz.retailers.values()].length} retailer${[...sz.retailers.values()].length!==1?'s':''}`;
   document.getElementById('dpBrandLbl').textContent=brandName;
   document.getElementById('dpPname').textContent=g.name;
-  document.getElementById('dpPopts').textContent=`${sizeMap.size} size${sizeMap.size!==1?'s':''} · ${_modalSizeKey==='Single Size'?'one size':_modalSizeKey}`;
+  document.getElementById('dpPopts').textContent=`${sizeMap.size} size${sizeMap.size!==1?'s':''}${_modalSizeKey&&_modalSizeKey!=='nosize'?' · '+_modalSizeKey:''}`;
   document.getElementById('dpImgArea').innerHTML=g.imageUrl
     ?`<img src="${g.imageUrl}" alt="${g.name}" onerror="this.outerHTML='<div class=\\'dp-img-placeholder\\'>${brandName[0]}</div>'">`
     :`<div class="dp-img-placeholder">${brandName[0]}</div>`;
 
   // Hide size tabs if only one size and it's a single-variant product
-  const showSizeTabs = sizeMap.size > 1 || (_modalSizeKey !== 'Single Size' && _modalSizeKey !== 'unknown');
+  const showSizeTabs = sizeMap.size > 1 || (_modalSizeKey !== 'nosize' && _modalSizeKey !== 'unknown');
   const sizeTabs=showSizeTabs?[...sizeMap.entries()].map(([key,s])=>{
     const inStockR=[...s.retailers.values()].filter(r=>r.available);
     const bestP=inStockR.length?Math.min(...inStockR.map(r=>r.price)):null;
-    const label=key==='Single Size'?'One Size':key;
+    const label=key==='nosize'?'View Product':key;
     return`<button class="dp-size-tab${key===_modalSizeKey?' active':''}" onclick="_modalSizeKey='${key}';_modalFlavour=null;renderModal()">
       ${label}
       <span class="dp-size-tab-price">${bestP!==null?'$'+bestP.toFixed(2):'OOS'}</span>
