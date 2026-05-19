@@ -143,12 +143,12 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .ab-btn:hover{background:rgba(255,255,255,.75)}
 
 /* ── BRAND GRID ── */
-.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:10px;padding-bottom:80px}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;padding-bottom:80px}
 .brand-card{background:var(--bg2);border:1px solid var(--border);padding:20px 18px 16px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden;border-radius:12px}
 .brand-card:hover{border-color:var(--border2);background:var(--bg3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
 .bc-bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac,var(--green));transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .brand-card:hover .bc-bar{transform:scaleX(1)}
-.bc-img{width:72px;height:72px;object-fit:contain;border-radius:10px;background:var(--bg3);margin-bottom:12px;border:1px solid var(--border)}
+.bc-img{width:100%;height:110px;object-fit:contain;border-radius:8px;background:var(--bg3);margin-bottom:14px;border:1px solid var(--border);padding:10px;box-sizing:border-box}
 .bc-initial{font-family:'Bebas Neue',sans-serif;font-size:72px;letter-spacing:-.02em;color:var(--ink);opacity:.04;position:absolute;right:8px;top:0;line-height:1;pointer-events:none}
 .bc-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:5px;line-height:1}
 .bc-meta{font-size:12px;color:var(--ink3);font-weight:400}
@@ -356,7 +356,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .rc-card:hover .rc-arrow{opacity:1;transform:translate(2px,-2px)}
 
 /* ── EDITORIAL CATEGORY TILES ── */
-.cat-tile-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px}
+.cat-tile-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:12px}
 /* big tiles span 2 rows */
 .cat-tile{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:auto;background:#1a1917;transition:transform .2s}
 .cat-tile:hover{transform:scale(1.02)}
@@ -375,10 +375,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
 .cat-tile-arrow{position:absolute;top:16px;right:16px;width:32px;height:32px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.6);transition:all .15s;backdrop-filter:blur(8px)}
 .cat-tile:hover .cat-tile-arrow{background:rgba(255,255,255,.2);color:#fff}
 
-@media(max-width:900px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}}
+@media(max-width:900px){.cat-tile-grid{grid-template-columns:repeat(2,1fr)}.cat-tile-tall{grid-row:span 1}.cat-tile-wide{grid-column:span 2}.cat-tile-wide-3{grid-column:span 2}}
 @media(max-width:1100px){.retailer-cards-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:800px){.retailer-cards-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.retailer-cards-grid{grid-template-columns:repeat(2,1fr);gap:7px}.retailer-cards-section{padding:32px 0 40px}}
+@media(max-width:560px){.cat-tile-grid{grid-template-columns:1fr 1fr}.cat-tile-wide{grid-column:span 2}.cat-tile-tall{grid-row:span 1}.retailer-cards-grid{grid-template-columns:repeat(2,1fr);gap:7px}.retailer-cards-section{padding:32px 0 40px}}
 .home-body{max-width:1320px;margin:0 auto;padding:0 32px 80px}
 .home-section{padding:56px 0 0}
 .home-section-dark{background:#1a1917;margin:56px -32px 0;padding:56px 32px;max-width:none;width:calc(100% + 64px);position:relative;left:-32px}
@@ -571,7 +571,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webki
   .footer-cols{grid-template-columns:1fr 1fr;gap:24px}
   .ab-right{flex-direction:column;width:100%}
   .ab-input{width:100%}
-  .brand-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:6px}
+  .brand-grid{grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:6px}
   .alert-banner{flex-direction:column;align-items:flex-start;padding:22px 22px}
   .bv-inner{flex-direction:column;align-items:flex-start}
   .bv-stats{display:none}
@@ -1691,14 +1691,17 @@ function filterByRetailer(retailerId){
 
 // ── EDITORIAL CATEGORY TILES ──────────────────────────────────
 const CAT_TILE_CONFIG=[
-  {key:'protein',    label:'Protein',       tall:true,  wide:false},
-  {key:'creatine',   label:'Creatine',      tall:false, wide:false},
-  {key:'preworkout', label:'Pre-Workout',   tall:false, wide:false},
-  {key:'proteinbars',label:'Protein Bars',  tall:false, wide:true },
-  {key:'fatburner',  label:'Fat Burners',   tall:false, wide:false},
-  {key:'bcaa',       label:'BCAAs',         tall:false, wide:false},
-
-  {key:'rtd',        label:'Drinks',        tall:false, wide:false},
+  // 3-col grid — fills perfectly with zero gaps:
+  // Row 1: protein(tall) | creatine | preworkout
+  // Row 2: protein(tall) | proteinbars(wide 2-col)
+  // Row 3: fatburner | bcaa | rtd
+  {key:'protein',    label:'Protein',       tall:true,  wide:false, wide3:false},
+  {key:'creatine',   label:'Creatine',      tall:false, wide:false, wide3:false},
+  {key:'preworkout', label:'Pre-Workout',   tall:false, wide:false, wide3:false},
+  {key:'proteinbars',label:'Protein Bars',  tall:false, wide:false, wide3:true },
+  {key:'fatburner',  label:'Fat Burners',   tall:false, wide:false, wide3:false},
+  {key:'bcaa',       label:'BCAAs',         tall:false, wide:false, wide3:false},
+  {key:'rtd',        label:'Drinks',        tall:false, wide:false, wide3:false},
 ];
 
 function renderCatTiles(){
@@ -1720,7 +1723,7 @@ function renderCatTiles(){
   });
 
   grid.innerHTML=tiles.map(t=>{
-    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}`;
+    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}${t.wide3?' cat-tile-wide':''}`;
     const img=t.best?.group.imageUrl
       ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.style.display='none'">`
       :`<div class="cat-tile-img" style="background:linear-gradient(135deg,#2a2926,#1a1917)"></div>`;

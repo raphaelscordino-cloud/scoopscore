@@ -1,0 +1,8011 @@
+{
+  "summary": {
+    "not-gym-related": 720,
+    "hard-excluded": 65,
+    "no-category-after-fallback": 49
+  },
+  "skipped": [
+    {
+      "retailer": "nzmuscle",
+      "title": "Pharmafreak Ripped Freak",
+      "productType": "",
+      "vendor": "PharmaFreak",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Shaker 600ml",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Muscletech AlphaTest Extreme",
+      "productType": "",
+      "vendor": "MuscleTech",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Almond Shake Meal Replacement",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "meal replacement",
+        "plant based protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Gut Health",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pack Nutrition Rabid Pump Single Serve",
+      "productType": "",
+      "vendor": "Pack Nutrition",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Inspired Wolf Shaker 600ml",
+      "productType": "",
+      "vendor": "Inspired",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Easy Sleep",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SmartShake Bohtal Insulated Travel Mug 600ml",
+      "productType": "",
+      "vendor": "Smartshake",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SmartShake Bohtal Insulated Sports Bottle 960ML",
+      "productType": "",
+      "vendor": "Smartshake",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Pro Berberine",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "multi vitamins",
+        "vitamins"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Essential Cyclic Dextrin",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "carbohydrates"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Essentials D3+K2",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "multi vitamins",
+        "vitamins"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Nitraflex Glycerol",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Nitraflex Hydration",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste Sauce (Dated 04/26)",
+      "productType": "",
+      "vendor": "Mrs Taste",
+      "tags": [
+        "abc-c"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Tumbler 650ml",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Motion Leggings",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "leggings"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Motion Shorts",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shorts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Motion Crop",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "singlets / sports bras"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Bone Broth Collagen",
+      "productType": "",
+      "vendor": "Gaspari Nutrition",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Superpump Aggression",
+      "productType": "",
+      "vendor": "Gaspari Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "CBUM Thupper Pump",
+      "productType": "",
+      "vendor": "CBUM",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Revive Supplements Fiber",
+      "productType": "",
+      "vendor": "Revive",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ronnie Coleman Tribulus XS",
+      "productType": "",
+      "vendor": "Ronnie Coleman SS",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Vitasport 99% Sugar Free Electrolyte Rehydration Pouch",
+      "productType": "",
+      "vendor": "Vitasport",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Knee Wraps",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Performance + Race Energy Gels",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Angled Plyometric Box",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "boxes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Lifting Chain 10Kg",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Mid Grip Handle",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials Tongkat Ali 60 Caps",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials NMN 60 Caps",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials Shilajit 60 caps",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials Triple Magnesium Powder",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials NAC 100% Pure N-Acetyl L-Cysteine",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials L-Citrulline Malate",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Performance Hydration 150g",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials Alpha-GPC",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Before You Speak Discovery Pack",
+      "productType": "",
+      "vendor": "Before You Speak",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gat Sport Testrol Gold ES Cap",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Vitasport Electrolyte Sachets",
+      "productType": "",
+      "vendor": "Vitasport",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Greens",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Proven Pump",
+      "productType": "",
+      "vendor": "Gaspari Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Basic Hydration",
+      "productType": "",
+      "vendor": "Basic Supplements",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Pro Knee Sleeves 5mm",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Pro Knee Sleeves 7mm",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pharmafreak Test Freak Testosterone Booster",
+      "productType": "",
+      "vendor": "PharmaFreak",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Multi MagX4 100 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 30 Serve Twinpack",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Alphalab Ecdy / Turk Bundle",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Block Hoody",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Obvi Goodbye 120 Capsules",
+      "productType": "",
+      "vendor": "Obvi",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "AlphaLab Smilax 60 Capsules",
+      "productType": "",
+      "vendor": "Alphalab",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "AlphaLab Ecdysterone 60 Capsules",
+      "productType": "",
+      "vendor": "Alphalab",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "AlphaLab D-Aspartic Testosterone Complex 120 Capsules",
+      "productType": "",
+      "vendor": "Alphalab",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "AlphaLab Turkesterone 60 Capsules",
+      "productType": "",
+      "vendor": "Alphalab",
+      "tags": [
+        "abc-a",
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rechargeable Hand Mixer",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Shaker 600ml",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 Shaker 600ml",
+      "productType": "",
+      "vendor": "Cellucor",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Gift Card",
+      "productType": "",
+      "vendor": "NZ Muscle Gift Card",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Pak Gold - Limited Edition",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Omega 30 Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal M-Stak 21 Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Immune 30 Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Greens",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Energy 60 Capsules",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Flex 44 Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "TriggerPoint MobiPoint Massage Ball",
+      "productType": "",
+      "vendor": "TriggerPoint",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "TriggerPoint MB1 Massage Ball",
+      "productType": "",
+      "vendor": "TriggerPoint",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita UM-075",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-400",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita HD-384 Digital Scale",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Fibre+",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Power Pro Lifting Grips",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Heavy Duty Lifting Straps",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Lifting Wrist Wrap",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Lifting Knee Wrap",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snow White Test 120 Capsules",
+      "productType": "",
+      "vendor": "Snow White",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snow White Premium Hydrolysed Collagen",
+      "productType": "",
+      "vendor": "Snow White",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Scone - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 L-Citrulline",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 Boom Stick",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 11 Bravo",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Optimum Nutrition Tribulus 625 Caps",
+      "productType": "",
+      "vendor": "Optimum Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Optimum Nutrition HMB 1000",
+      "productType": "",
+      "vendor": "Optimum Nutrition",
+      "tags": [
+        "hmb"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Olympic Spring Collars - pair",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Obvi Collagen Detox 90 Capsules",
+      "productType": "",
+      "vendor": "Obvi",
+      "tags": [
+        "collagen",
+        "digestion"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle ZMA 60 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Immune Amie",
+      "productType": "",
+      "vendor": "Nuzest",
+      "tags": [
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Glowing All Over",
+      "productType": "",
+      "vendor": "Nuzest",
+      "tags": [
+        "collagen",
+        "hair / skin / nails"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Vitrix 80 Capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex T-UP Max 60 capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex NIOX 90 Capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Caffeine 60 Capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [
+        "caffeine pills"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester-C Echinacea 60 Chewables",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Maca 500mg, 100 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Inulin Prebiotic 227g",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Melrose MCT Oil 500ml",
+      "productType": "",
+      "vendor": "Melrose",
+      "tags": [
+        "fatty acids / oils",
+        "mct oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Melrose MCT Oil 250ml",
+      "productType": "",
+      "vendor": "Melrose",
+      "tags": [
+        "fatty acids / oils",
+        "mct oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Medium Wide Grip Handle",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Swivel Push Up Pro",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "push up"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Yoga Mat",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Liveup Sports Weighted Jump Rope",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports Gym Towel",
+      "productType": "",
+      "vendor": "JNX Sports",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports Drawstring Bag",
+      "productType": "",
+      "vendor": "JNX Sports",
+      "tags": [
+        "meal & gym bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports Air Freshener",
+      "productType": "",
+      "vendor": "JNX Sports",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ice Bath Thermometer",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Home Gym Resistance Band Set",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Zinc Plus",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Vit-C Gummy Bears 90s",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "health gummies",
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Multi Gummy Bears 90s",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "health gummies",
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Magnesium Deep Sleep & 5HTP 60 Capsules",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Garlic 5000mg",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Fish Oil 1500mg 150 Capsules",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Ester-C 550mg 60 Tablets",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Vita-C 1000mg 90 Tablets",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Mega Multi Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies",
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Probiotics Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "digestion",
+        "health gummies"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Magnesium Muscle Relax Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies",
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Kids Probiotic Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "digestion",
+        "health gummies"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport L-Arginine Tablets",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Caffeine Tablets",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "caffeine pills"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Beta-Alanine",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Nutrition Tribulus",
+      "productType": "",
+      "vendor": "Gaspari Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Nutrition HMB",
+      "productType": "",
+      "vendor": "Gaspari Nutrition",
+      "tags": [
+        "hmb"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Full Power Rack",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "racks"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Sleep & Mood 60 Capsules",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Beta-Alanine",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Glucosamine 1-A-Day",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Flaxseed Oil 1,000mg",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy CO-Q10 160mg",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Chromium 3,340mcg",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Adrenal Support",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy 5-HTP 120mg",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Hi-Dose Vitamin C",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Wall Ball",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [
+        "swiss / medicine / slam balls"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Sandbag",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Optifast VLCD Shake",
+      "productType": "",
+      "vendor": "Optifast",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy PRO Iron Forte VegeCapsules 30s",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "FUELR Caffeinated Gel 60ml",
+      "productType": "",
+      "vendor": "Fuel R",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "FUELR ISOTONIC ENERGY GEL",
+      "productType": "",
+      "vendor": "Fuel R",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Rise Leggings",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "leggings"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Rise Crop",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "singlets / sports bras"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Rise Shorts",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shorts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elevate Shorts",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shorts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi Reaper Stress Matrix 100 Capsules",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi Reaper Performance Greens",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Greens Sachets",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Ultra Fish Oil Caps",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Magnesium Pro",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Vitasport 99% Sugar Free Electrolyte Sachets",
+      "productType": "",
+      "vendor": "Vitasport",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Vitasport+ Electrolyte + Caffeine Sachet",
+      "productType": "",
+      "vendor": "Vitasport",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Magnesium Glycinate + High Strength Powder",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Magnesium Glycinate 60 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Fish Oil One-A-Day",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life MSM 1000mg 120 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Caffeine 100 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Swoleys Electrolyte Gummies",
+      "productType": "",
+      "vendor": "swoleys",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Swoleys Testie Chews",
+      "productType": "",
+      "vendor": "swoleys",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Alphalab Turkesterone Twinpack",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Alphalab Anabolic Growth Stack",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Bundle with NZ Muscle Pre Ultra",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Bundle with Optimum Nutrition Isolate",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle NMN (Nicotinamide Mononucleotide) 50g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Testo Tribulus",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Raw Apple Cider",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [
+        "digestion",
+        "non stimulant burners"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Cramp Block tablets",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-321 Digital Kitchen Scale",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-192 Digital Scale with Removable Silicone Cover",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-177 Digital Scale",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita BC-587",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita BC-545N",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita BC-401",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Tongkat Ali",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Sleep+ Nasal Strips",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Sleep+ Mouth Tape",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Shilajit 60 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Pure Glycine Powder",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition NMN 60 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "hair / skin / nails"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Irish Sea Moss 60 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Inositol",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Estro 120 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "estrogen support",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essentials Glycerol",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential Taurine 200g",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential MCT Powder",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "fatty acids / oils",
+        "mct oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential Mag3 Magnesium L-Threonate Powder",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snow White Caffeine 200 Caps",
+      "productType": "",
+      "vendor": "Snow White",
+      "tags": [
+        "caffeine pills"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Porridge - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Pastry Mix - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Mini Pizza Base - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Dough - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Choc Mousse - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Cinnamon Donut - 4 srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Brownie - 4 SRV",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Banana Bread - 4srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Trainer Mat",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Super Sandbag (fillable)",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Speed Rope",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Mini Bands - set of 3",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Jump Rope",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Grip Strength Trainer",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "accessories / attachments",
+        "grip strength"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PVL Gold Series Watertight 90 Capsules",
+      "productType": "",
+      "vendor": "PVL Nutrients",
+      "tags": [
+        "diuretics"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PVL D-Aspartic Acid",
+      "productType": "",
+      "vendor": "PVL Nutrients",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Push Up Stands",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "push up"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Performance+ Race Ready Anthocyanins 60 Capsules",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Performance + Race Ready Magnesium 90 Capsules",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Fluid Energy Gel 50g - 8 Gel Sample Pack",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Electrolyte Capsules (Salt Caps)",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Blackcurrant Recovery 200g",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Beet Endurance 150g",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pulldown attachments - 5 piece set",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Professional Speed Jump Rope",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Vitex",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Tongkat Ali",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Shilajit",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Restore",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics NMN",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "hair / skin / nails"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Magnesium Bi-Glycinate",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Estro",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "estrogen support",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics DIM",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "estrogen support",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Ashwagandha",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Wrist Wraps, Black/Red - Elastic/Velcro",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Wrist Wraps, Black - Elastic/Velcro",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Tumbler Shaker 500ml",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Taurine 200g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Smilax 100g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Rechargeable Vortex Mixer",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Performance Bands 2 Pack",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Peach Pad",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Peach Bands (Twinpack)",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Padded Lifting Straps, Black",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Multi 30 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Light Weight Wrist Wraps",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Lifting Straps with wrist wrap",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting straps",
+        "wrist support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Lifting Hooks",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Lifting Gripper with wrist wrap",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Leather Lifting Straps Single Loop",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle L-Citrulline Powder",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Knee Wraps",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle HMB 200g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "hmb"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Tribulus 1400 - 90 capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Lipo-6 Stim Free 60 Capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [
+        "non stimulant burners"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Anabol Ripped",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Anabol Hardcore 60 Capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Alpha-T Magnum 120 Capsules",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex 6 Defining Gel",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NutraLife ProBiotica Ultra Strength 100 Billion 30 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Womens Multi One-A-Day 120 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "multi vitamins",
+        "womens health"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Vitamin C 500mg, 200 Chewables",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ultra Strength Turmeric 55,500+ 50 Tablets",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Super B Plus 60 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Omega 3 Fish Oil 180 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Mens Multi One-A-Day 120 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "mens health",
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-life Magnesium Sleep+ 60 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-life Magnesium Sleep & Collagen Renew 250g",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "collagen",
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Magnesium Sleep+ Advanced 60 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Liposomal-C 1200mg Vit C + D + Zinc 30 Tablets",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "vitamins",
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Gut Health",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Potassium Chloride Powder 227g",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods MCT 1000mg, 150 Softgel",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "fatty acids / oils",
+        "mct oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Magnesium Citrate 120 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods L-Arginine 1,000m, 120 Tablets",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Glycine 1,000mg, 100 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Glutathione 500mg, 30 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Garcinia Cambogia Extract 120 Tablets",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "non stimulant burners"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods DIM 200, 90 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "estrogen support",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Cider Vinegar 180 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "digestion",
+        "non stimulant burners"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Ashwagandha 90 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mutant Deluxe 1L Shaker",
+      "productType": "",
+      "vendor": "Mutant",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mutant Born Hardcore 700ml Shaker",
+      "productType": "",
+      "vendor": "Mutant",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Waist/Back Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "waist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Waist Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "waist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Waist Belt",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "lifting belts",
+        "waist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Training Resistance Band Set",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Liveup Sports Training Gloves - pair",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "lifting gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Thigh Master",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Swiss Ball + Bands",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands",
+        "swiss / medicine / slam balls"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Suspension Training System",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Steel Cable Jump Rope",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Speed Jump Rope",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Slim Belt",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Sit Up Bench",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "benches"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Single Station Home Gym",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Tube Set",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Toning Tube Set",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Band",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Quick Hurdles - 5pcs",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Kettlebell Rack",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "kettlebells"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Foam Roller",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Balance Board",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Adjustable Weight Bench With Leg Extension",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "benches"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Adjustable Power Step",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "balance / agility",
+        "boxes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Adjustable Handgrip",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "accessories / attachments",
+        "grip strength"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Adjustable Fitness Bench",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "benches"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Liveup Sports Abdominal Exercise Wheel",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "core workout"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports 3-in-1 Roller Set",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Wide Grip Handle",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting Straps",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting Olympic Bar",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "barbells"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting 1.2m Bar",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weighted Band",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "weight vests / bands",
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Water Boxing Bag",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "boxing bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Training Straps",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Targeted Massage Ball",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro T-Bar Row Handle",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Suspension Trainer",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Strap Handle Pro",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sports Pull Rope",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sports Mat",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sports Belt",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Single Cable Handle",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Lifting Wrist Wraps",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Home Training Cables",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Fish Oil 1000mg - 200 Capsules",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Easy Sleep",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Apple Cider Vinegar 750ml",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "digestion",
+        "non stimulant burners"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Red Line Wrist Wraps",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Pro Thumbloop Wrist Wraps (2 piece)",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger PolyPro Dip Belt",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Padded Cotton Lifting Straps",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Chalk Ball",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Ab Carver Sport",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "core workout"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Kids Elderberry+Ivy Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Iron + Vitamin C Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies",
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Destress Ashwaghanda Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Collagen Glowing Skin Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "collagen",
+        "hair / skin / nails",
+        "health gummies"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Biotin Skin Hair Nails Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "hair / skin / nails",
+        "health gummies"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Zinc Complex 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Womens Multi Advanced 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "multi vitamins",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Vir-Defence Extra + Ester-C 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Turmeric 30,000+ 1-A-Day 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Stress Support 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Sleep Support 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Prostate Support 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "mens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Probiotic 75 Billion 1-A-Day 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Pro Zinc Forte 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Pro Magnesium Sleep Powder 240g",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Pro Magnesium Muscle Powder 360g",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Pro Ashwagandha Sleep 60 Caps",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Milk Thistle 50,000 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "liver support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Mens Multi Advanced 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Magnesium Sleep 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium",
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Magnesium Glycinate",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Nutrition PlasmaJet 90 Capsules",
+      "productType": "",
+      "vendor": "Gaspari Nutrition",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Faction Labs Uppers 60 Capsules",
+      "productType": "",
+      "vendor": "Faction Labs",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Faction Labs Downers 60 Capsules",
+      "productType": "",
+      "vendor": "Faction Labs",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "EHP Labs Oxyglow",
+      "productType": "",
+      "vendor": "EHP Labs",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Douglas Iron Melts, 50 Tablets",
+      "productType": "",
+      "vendor": "Iron Melts",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Zinc Oral Drops",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Womens Hormone Support DIM",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "estrogen support",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Vitamin C & Quercetin Liposomal",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Vitamin B12 Oral Drops",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians GastroEzy",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Stress Adapt",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Rest and Relax",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science L-Citrulline Malate",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Gutright",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Beta Alanine 250g",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Animal Huge Water Jug 1.8L",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Aluminium Handle Speed Rope + Carry Bag",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Alphalab Tongkat Ali 60 Capsules",
+      "productType": "",
+      "vendor": "Alphalab",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Alphalab Glycerol",
+      "productType": "",
+      "vendor": "Alphalab",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Air Rower",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "rowers"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Waist Trainer",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories",
+        "waist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Neo Weight Belt 15cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Neo Weight Belt 13cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Knee Sleeves",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elbow Sleeves - pair",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "elbow support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Eco Leather Weight Belt 15cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Eco Leather Weight Belt 10cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Classic Leather Weightlifting Belt",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Good Green Vitality",
+      "productType": "",
+      "vendor": "Nuzest",
+      "tags": [
+        "greens / superfoods",
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NutraLife High Strength Vira-Immune Support",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "immune"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Super Calcium Complete",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Magnesium Complete 400",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Joint Care",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Joint Bio-Flex",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester C + Bioflavonoids",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Workout Gloves with 12inch Wrist Wrap",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "lifting gloves",
+        "wrist support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Weight Jacket",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Training Gloves",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "boxing gloves",
+        "lifting gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Training Fitness Gloves",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "boxing gloves",
+        "lifting gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Sauna Suit",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Medicine Ball",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "swiss / medicine / slam balls"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Kettlebell",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "kettlebells"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Hip Band",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Heavy Duty Resistance band",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Elbow Support Sleeve",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "elbow support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Elbow Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "elbow support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Elbow Sleeve",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "elbow support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Anti-burst Swiss Ball",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "swiss / medicine / slam balls"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Anti-burst Mini Swiss Ball",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "swiss / medicine / slam balls"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "ankle support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sparring Gloves",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "boxing gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Rubber Bumper Plate",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Power Bag",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Hex Dumbbell",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "dumbbells",
+        "weights / plates"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Super Family Vitamin C Powder",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians MultiVitamin & Mineral Boost",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Octo Kettlebell",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [
+        "kettlebells"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biosphere Magnesium",
+      "productType": "",
+      "vendor": "Biosphere",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure One Daily Multi Vitamin",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Zombie Labs Cross Eyed Sample Sachet",
+      "productType": "",
+      "vendor": "Zombie Labs",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Xtend Healthy Hydration 15 Stick Pack",
+      "productType": "",
+      "vendor": "Xtend",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Syrup",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "sauces & seasonings"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Dressing",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "sauces & seasonings"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Multi Mag Perform",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Keto 60srv",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "keto supplements"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Keto 30srv",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "keto supplements"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Hydrate",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Collagen",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Coffee",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Adrenal",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Hydrate+",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Air Freshener",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snow White Ice Lightning 300g",
+      "productType": "",
+      "vendor": "Snow White",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Mousse - 4 srv",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 MOAB",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 Green Beret",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 GI Juice",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Fluid Energy Gel 50g",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Electrolyte Hydration",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Electrolyte Hydration 42g - 1 Sachet",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Promera Sports CON-CRET",
+      "productType": "",
+      "vendor": "Con-cret (Promera)",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Tart",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Slice",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Pancake",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Mini Cheesecake",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Donut",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Cupcake",
+      "productType": "",
+      "vendor": "One Minute SNAXX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Beef Bone Broth",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi Electrolytes 300g",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Syrup",
+      "productType": "",
+      "vendor": "Mrs Taste",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Sauce",
+      "productType": "",
+      "vendor": "Mrs Taste",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Mayo",
+      "productType": "",
+      "vendor": "Mrs Taste",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Dressing",
+      "productType": "",
+      "vendor": "Mrs Taste",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Super Greens",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Mug Cake (6 x 50g pack)",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Baking Mix",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "baking mixes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Hydration Tab",
+      "productType": "",
+      "vendor": "GU",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Energy Gel",
+      "productType": "",
+      "vendor": "GU",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Chews",
+      "productType": "",
+      "vendor": "GU",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ghost Pump",
+      "productType": "",
+      "vendor": "Ghost Lifestyle",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ghost Legend V4",
+      "productType": "",
+      "vendor": "Ghost Lifestyle",
+      "tags": [
+        "abc-a"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ghost Hydration",
+      "productType": "",
+      "vendor": "Ghost Lifestyle",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ghost Greens",
+      "productType": "",
+      "vendor": "Ghost Lifestyle",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clif Shot Energy Gel, 1 Shot",
+      "productType": "",
+      "vendor": "Clif Bar",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clif Nut Butter Bar",
+      "productType": "",
+      "vendor": "Clif Bar",
+      "tags": [],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clif Bloks Energy Chew, 1 Chew",
+      "productType": "",
+      "vendor": "Clif Bar",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Chief Organic Biltong 30g Bag",
+      "productType": "",
+      "vendor": "Chief Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 Ripped Sport",
+      "productType": "",
+      "vendor": "Cellucor",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 Ripped",
+      "productType": "",
+      "vendor": "Cellucor",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Before You Speak Collagen Coffee",
+      "productType": "",
+      "vendor": "Before You Speak",
+      "tags": [
+        "coffee & creamers",
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Before You Speak Coffee - Single Sachet",
+      "productType": "",
+      "vendor": "Before You Speak",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Battle Rope 38mm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Performance Hydration (20 x 5g Stick)",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Noway Collagen Jelly Bar",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Noway Collagen Jelly + Mallow Fusion Bar",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Smartshake Revive 750ml",
+      "productType": "",
+      "vendor": "Smartshake",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Smartshake 800ml",
+      "productType": "",
+      "vendor": "Smartshake",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Tumbler View - 700ml",
+      "productType": "",
+      "vendor": "Shakesphere",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Tumbler Original - 700ml",
+      "productType": "",
+      "vendor": "Shakesphere",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "RockTape Wrist Wraps",
+      "productType": "",
+      "vendor": "RockTape",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "RockTape H2o 5cm x 5m Roll",
+      "productType": "",
+      "vendor": "RockTape",
+      "tags": [
+        "workout tape"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "RockTape 5cm x 5m Roll",
+      "productType": "",
+      "vendor": "RockTape",
+      "tags": [
+        "workout tape"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Portable Rechargeable Blender - 500ml",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Vortex 2.0",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Travel Tumbler 40oz (1180ml)",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Tank Top",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "tanks / singlets"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Stainless Steel Jug 2.2L",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Sports Shorts",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shorts / pants"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Short Sleeve Crew",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle #NZMGAINSDAY Shaker",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "MARKETPLACER",
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elevate Crop",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "singlets / sports bras"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elevate Leggings",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "leggings"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Go Gut Soothe",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutry Nuts Protein Nut Butter Cups Mixed Box",
+      "productType": "",
+      "vendor": "Nutry Nuts",
+      "tags": [
+        "protein bars / snacks"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle KSM-66 Ashwagandha 500mg 60 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Shilajit 500mg 60 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PharmaFreak Ripped Freak 2.0",
+      "productType": "",
+      "vendor": "PharmaFreak",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Goli Nutrition Magnesium Gummies - Zero Sugar",
+      "productType": "",
+      "vendor": "goli nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste Mrs Fil-A Sauce",
+      "productType": "",
+      "vendor": "Mrs Taste",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Goli Nutrition Ashwaganda Gummies",
+      "productType": "",
+      "vendor": "goli nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 Energy Stick - 1 Packet",
+      "productType": "",
+      "vendor": "Cellucor",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Bundle with NZ Muscle Electrolytes",
+      "productType": "",
+      "vendor": "Product-Bundle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle L-Arginine 200g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Magnesium L-Threonate 60g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Drawstring Bag",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Macro Shake Meal Replacement Sample Pack",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "meal replacement",
+        "plant based protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal ZMA Pro 90 Capsules",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Tribulus Pro 110 Capsules",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Natural Sterol Complex 100 Tablets",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Jointment Sport 120 Capsules",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal GH Max 180 Tablets",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Test",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Stak 21 Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Pump 30 Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential L-Arginine 200g",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential Citrulline",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential Carbs",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "carbohydrates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential Beta-Alanine",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Essential Ashwagandha 60 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Dim+ 60 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "estrogen support",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition D3 + K2 60 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Beef Liver 120 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "mens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Alpha 120 Capsules",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Suspension Training Set",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Power Pro Lifting Straps",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ski Exercise Vertical Rower",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "rowers"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Silicone 3L Ice Tray",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Shaker 600ml Black",
+      "productType": "",
+      "vendor": "Shotgun Supplements",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Shaker 400ml Pink",
+      "productType": "",
+      "vendor": "Shotgun Supplements",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Beta Alanine 200g",
+      "productType": "",
+      "vendor": "Shotgun Supplements",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Magnetic Pill Storage - Two Layers",
+      "productType": "",
+      "vendor": "Shakesphere",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Magnetic Pill Storage - One Layer",
+      "productType": "",
+      "vendor": "Shakesphere",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Hydration Jug - 2.2l",
+      "productType": "",
+      "vendor": "Shakesphere",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Hydration Jug - 1.3l",
+      "productType": "",
+      "vendor": "Shakesphere",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Multi-Source Collagen",
+      "productType": "",
+      "vendor": "Rule1",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rubber Flooring 1m",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Curcumin",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Calcium D-Glucarate",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Post Landmine",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pillar Performance Ultra Omega",
+      "productType": "",
+      "vendor": "Pillar Performance",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pillar Performance Triple Magnesium 90 Capsules",
+      "productType": "",
+      "vendor": "Pillar Performance",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pillar Performance Motion Armour Joint Longevity",
+      "productType": "",
+      "vendor": "Pillar Performance",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PharmaFreak Test Freak GOLD 120 Capsules",
+      "productType": "",
+      "vendor": "PharmaFreak",
+      "tags": [
+        "mens health",
+        "testosterone"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Performance Curved Treadmill",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "treadmills"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pack Nutrition Tongkat Ali 60 Capsules",
+      "productType": "",
+      "vendor": "Pack Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pack Nutrition Testosterone Booster",
+      "productType": "",
+      "vendor": "Pack Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle ICE Bucket",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Funnel",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Fat Caliper",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Fabric Booty Band 3 Pack",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elbow Wraps",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "elbow support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Double Loop Lifting Straps",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle D-Aspartic Acid 200g",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Cotton Lifting Straps Single Loop",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Collagen Gummies",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "abc-a",
+        "collagen",
+        "hair / skin / nails",
+        "health gummies"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Beach Ball",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Armblaster",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Alpha 180 Capsules",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Vibrant Insides",
+      "productType": "",
+      "vendor": "Nuzest",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Glucosamine 1500 Complex Advanced 180 Tablets",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Fish Oil 1500mg Plus Vitamin D 180 Caps",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester C 500mg, 120 Chewable Tablets",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester C 1500mg Plus Bioflavanoids One-A-Day, 100 Tablets",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Digestive Enzymes 60 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-life Beauty Collagen Complex 60 Capsules",
+      "productType": "",
+      "vendor": "Nutra-Life",
+      "tags": [
+        "collagen",
+        "hair / skin / nails"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Vegetable Broth (Vegan)",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Collagen Build 450g",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Collagen Build 225g",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Collagen Beauty + Verisol 450g",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Collagen Beauty + Verisol 225g",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods ZMA 90 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Vitamin A 10,000IU, 100 Softgels",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Sunflower Lecithin 454g",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Saccharomyces Boulardii 60 Capsules",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods MCT Oil 473ml",
+      "productType": "",
+      "vendor": "NOW Foods",
+      "tags": [
+        "fatty acids / oils",
+        "mct oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "MuscleTech Clear Muscle",
+      "productType": "",
+      "vendor": "MuscleTech",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Muscletech Classic Shaker 800ml White/Purple",
+      "productType": "",
+      "vendor": "MuscleTech",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi ZMA+ 60 Capsules",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi Tribulus+ 60 Capsules",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi Sleep Recovery",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Musashi Beta-alanine",
+      "productType": "",
+      "vendor": "Musashi",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Multi Weight Adjustable Dumbbell 24Kg / 52.5Lb",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "dumbbells"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Push Up Stands",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "push up"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Patella Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Support w/ strap",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve/wrap Short",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve/wrap Long",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Inter-locking Mat",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Home Pull Up Bar 80-120cm",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Home Pull Up Bar 63-96cm",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Gymnastic Rings",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "accessories / attachments",
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Cotton Wrist Support",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Exercise Wheel",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "core workout"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Core Sliding Discs",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "core workout"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Chest Expander",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Battle Rope 9m",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Balance Board 41.5cm",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Speed Rope",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Single Row Handle",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Resistance Training Kit",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "balance / agility",
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Punching Bag",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "boxing bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Performance Roller",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Multi-Grip Bar",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "barbells"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Mini Bands - Set of 4",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Harness Vest",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Handle Grip",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Gym Chalk Bag",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Focus Pads",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro EZ Curl Bar",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Door Anchor",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Dip Belt Black",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Dip Belt",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Core Plate",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Boxing Pillar",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "boxing bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Battle Rope Wall Anchor",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Barbell Pad",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Barbell Collars",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Ab Sling",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "core workout"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro 3-in-1 Soft Plyometric Box",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "boxes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger 14\" Bar Pad",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Magnesium 1-A-Day 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Magnesium 800 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Magnesium 1-A-Day 120 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Lions Mane Mushroom Focus 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Iron for Women 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Ginkgo 9,000 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Fish Oil 2,000mg Compact Odourless 230 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Fish Oil 1500mg 210 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Fish Oil 1-A-Day + Vitamin D3 1000IU 200 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "fatty acids / oils"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Co-Q10 400mg 1-A-Day 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Cherry Sleep 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Beautiful Skin Collagen Support 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "collagen",
+        "hair / skin / nails"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy B Complex 30 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Ashwagandha 8000+ 60 Capsules",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Get Raw Nutrition Test",
+      "productType": "",
+      "vendor": "Raw Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Get Raw Nutrition Signal Natural Test Booster Capsules",
+      "productType": "",
+      "vendor": "Raw Nutrition",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Tribulus Capsules",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Vitamin B12 Liposomal",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "stress / sleep",
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Sleep Science",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Rejuvenate 60 Capsules",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "hair / skin / nails"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Magnesium 625",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Hi-Dose Vitamin C Sachets",
+      "productType": "",
+      "vendor": "Clinicians",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Perform Tread",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [
+        "treadmills"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Rig Target",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Power Sled",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Power Rope",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [
+        "ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Interlocking 25kg Plate",
+      "productType": "",
+      "vendor": "Centr x HYROX",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Celsius Portable Sauna Pod",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Celsius Ice Bath + Chiller",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor P6 Alpha",
+      "productType": "",
+      "vendor": "Cellucor",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSc ZMB6+",
+      "productType": "",
+      "vendor": "BSc BodyScience",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSc Triandrobol",
+      "productType": "",
+      "vendor": "BSc BodyScience",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSc Collagen Regenerate",
+      "productType": "",
+      "vendor": "BSc BodyScience",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSc Clean Greens 150g",
+      "productType": "",
+      "vendor": "BSc BodyScience",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biosphere Nutrition Astaxanthin 60 Softgels",
+      "productType": "",
+      "vendor": "Biosphere",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biogenetic Laboratories Forskolin",
+      "productType": "",
+      "vendor": "Biogenetic",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biody Scan at Constellation Drive",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Zinc Restore 60 Capsules",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure VitD Restore",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure TWO Probiotic 120 Capsules",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Ten COQ10 60 Capsules",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Super Boost C, 200g",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Magnesium Restore 120 Capsules",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Gut Assist 180 Capsules",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ab Roller Pro",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "core workout"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Agility Ladder 10 metres",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "AccuFitness MyoTape",
+      "productType": "",
+      "vendor": "AccuFitness",
+      "tags": [
+        "scales / measurement"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Air Bike",
+      "productType": "",
+      "vendor": "FitEQUIP",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SmartShake Reforce 900ml - DC Comics",
+      "productType": "",
+      "vendor": "Smartshake",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Fitness Pro Band",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Mini Band",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Fitness Band",
+      "productType": "",
+      "vendor": "SKLZ",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Fabric Resistance Band",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Tube",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Power Band",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Exercise Band with Handle",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Womens Mystery Clothing Pack - 2 items",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Pak",
+      "productType": "",
+      "vendor": "Universal",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Neo Lifting Belt 4 Inch",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Neo Lifting Belt 6 Inch",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Quick Wraps",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "wraps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Eco Leather Lifting Belt 6 Inch",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "No Brand L-Citrulline Powder",
+      "productType": "",
+      "vendor": "No Brand",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "No Brand Beta-Alanine Powder",
+      "productType": "",
+      "vendor": "No Brand",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "MMA Fighter Gloves",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "boxing gloves",
+        "lifting gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mitchells Bone Broth Powder",
+      "productType": "",
+      "vendor": "Mitchells",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mens Mystery Clothing Pack - 2 items",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist/Ankle Weights (pair)",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "weight vests / bands",
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist Wrap",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist Support Sleeve",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Weight (pair)",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "weight vests / bands",
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Sleeve",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "ankle support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting Leather Belt",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weighted Vest",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "abc-a",
+        "weight vests / bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Rubber Granule Bumper Plate",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Premium Urethane Barbell",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "barbells"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Premium Rubber Hex Dumbbell - pair",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "dumbbells",
+        "weights / plates"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Kettlebell",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "kettlebells"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Hand Grip",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "accessories / attachments",
+        "grip strength"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Battle Rope",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Anti-burst Swiss Ball",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [
+        "swiss / medicine / slam balls"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Lifting Glove with Wrist Wrap",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "lifting gloves",
+        "wrist support"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Women's Multi One-A-Day",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "multi vitamins",
+        "womens health"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Vit C 1000mg Plus Echinacea Chewable",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Vit C 500mg Chewable",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Mens Multi One-A-Day",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "mens health",
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Magnesium One-A-Day",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Womens Power Gloves 3.0 Carbon",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Mens Power Gloves",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger 7.5 Inch Firm Fit Contour Belt",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger 4 Inch Padded Leather Belt 2.0",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Kids Vita-C Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies",
+        "vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Street Taco Sauce",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "sauces & seasonings"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Spread",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "sauces & seasonings"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Mayonnaise",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "sauces & seasonings"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Dip",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "sauces & seasonings"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Coffee Creamer",
+      "productType": "",
+      "vendor": "Walden Farms",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Inner Biome Blend",
+      "productType": "",
+      "vendor": "Nuzest",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Zero Sugar Hydrator",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Phedracut Slim Packs",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN L-Carnicut 4000 Liquid",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Lean Protein 1Kg",
+      "productType": "",
+      "vendor": "Shotgun Supplements",
+      "tags": [
+        "meal replacement",
+        "thermogenic protein",
+        "whey protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Electrolytes 30 serve",
+      "productType": "",
+      "vendor": "Shotgun Supplements",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ryse Hydration",
+      "productType": "",
+      "vendor": "Ryse",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Pump",
+      "productType": "",
+      "vendor": "Rule1",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Energy Chews",
+      "productType": "",
+      "vendor": "Pure Sports Nutrition",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Everyday Sleep",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Everyday Primal",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Everyday Health",
+      "productType": "",
+      "vendor": "Primabolics",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PranaOn Super Greens Inner Health",
+      "productType": "",
+      "vendor": "PranaOn",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PranaOn Sample Sachet",
+      "productType": "",
+      "vendor": "PranaOn",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Pillar Performance Triple Magnesium Powder",
+      "productType": "",
+      "vendor": "Pillar Performance",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Lean Protein",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "abc-a",
+        "meal replacement",
+        "thermogenic protein",
+        "whey protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Electrolytes Sachet - 1 Stick",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Electrolytes",
+      "productType": "",
+      "vendor": "NZ Muscle Supps",
+      "tags": [
+        "abc-a",
+        "electrolytes",
+        "MARKETPLACER",
+        "nzmtop"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Air Freshener",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutry Nuts Protein Nut Butter Cups",
+      "productType": "",
+      "vendor": "Nutry Nuts",
+      "tags": [
+        "protein bars / snacks"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nothing Naughty Pure Collagen + VitC",
+      "productType": "",
+      "vendor": "Nothing Naughty",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nothing Naughty Electrolyte Hydration",
+      "productType": "",
+      "vendor": "Nothing Naughty",
+      "tags": [
+        "abc-a",
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "No Brand Whey+",
+      "productType": "",
+      "vendor": "No Brand",
+      "tags": [
+        "meal replacement",
+        "whey protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Hydration+ Creatine & Vitamin C",
+      "productType": "",
+      "vendor": "Nexus",
+      "tags": [
+        "creatine blends"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Muscle Nation Daily Greens",
+      "productType": "",
+      "vendor": "Muscle Nation",
+      "tags": [
+        "greens / superfoods"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike PB+",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Macro Shake Meal Replacement",
+      "productType": "",
+      "vendor": "Macro Mike",
+      "tags": [
+        "abc-a"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports The Shadow",
+      "productType": "",
+      "vendor": "JNX Sports",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports The Curse Pump",
+      "productType": "",
+      "vendor": "JNX Sports",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Inspired Hydrate Electrolytes",
+      "productType": "",
+      "vendor": "Inspired",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Inspired DVST8 Energy Powder",
+      "productType": "",
+      "vendor": "Inspired",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Horleys Replace Gels-5 pack",
+      "productType": "",
+      "vendor": "Horleys",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Get Raw Nutrition Fuel 60srv",
+      "productType": "",
+      "vendor": "Raw Nutrition",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GAT Sport Nitraflex",
+      "productType": "",
+      "vendor": "GAT Sport",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "CBUM Christopher's Juicy Pumps",
+      "productType": "",
+      "vendor": "CBUM",
+      "tags": [
+        "pump formula"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Bumper Plate",
+      "productType": "",
+      "vendor": "FitEQUIP",
+      "tags": [
+        "weights / plates"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSN Syntha-6",
+      "productType": "",
+      "vendor": "BSN",
+      "tags": [
+        "abc-a",
+        "meal replacement",
+        "protein blends",
+        "whey protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSN NO Xplode",
+      "productType": "",
+      "vendor": "BSN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSc Electrolyte+ Hydration Mix",
+      "productType": "",
+      "vendor": "BSc BodyScience",
+      "tags": [
+        "electrolytes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Magx4",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "magnesium"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Gutright sachet",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Gutright Daily",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Atkins Advantage Shake Mix",
+      "productType": "",
+      "vendor": "Atkins",
+      "tags": [
+        "meal replacement",
+        "whey protein"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Weight Vest",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Varsity Tee",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Storage Shaker",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Small Gym Towel 33x55cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Sleeveless Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Resistance Bands",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Pump Cover Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Pullover Hoodie",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "outerwear"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Premium Logo Cap",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Oversized Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Oversized Calli Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Oversized Block Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Meal Prep Bag",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "meal & gym bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Large Gym Towel 130x65cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Jug 2.2L",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Jug 1.3L",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Insulated Stainless Steel Shaker 600ml",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Insulated Hydration Flask 946mL",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Faux Leather Meal Management bag",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "meal & gym bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Essential Tank",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "tanks / singlets"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Comfort Shorts",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shorts / pants"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Classic Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Athletic Dept Tee",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "MHP Xpel",
+      "productType": "",
+      "vendor": "MHP",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Cable Jump Rope",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "skipping ropes"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Brace",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "ankle support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Agility Ladder 4m",
+      "productType": "",
+      "vendor": "LiveUp Sports",
+      "tags": [
+        "balance / agility"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LCD Massage Gun - 6 Heads",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "accessories",
+        "yoga / rollers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports The Curse Wristband",
+      "productType": "",
+      "vendor": "JNX Sports",
+      "tags": [
+        "wrist support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Band Assisted Abdominal Roller",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "core workout",
+        "resistance bands"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Balance Beta Alanine",
+      "productType": "",
+      "vendor": "Balance",
+      "tags": [
+        "beta-alanine"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science ZMAG",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Tongkat Ali & Shilajit Powder",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Test Perform",
+      "productType": "",
+      "vendor": "ATP Science",
+      "tags": [
+        "testosterone"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Eco Leather Lifting Belt 4 Inch",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "lifting belts"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Armaplus Boxing Gloves",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "boxing gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Armalite Boxing Gloves",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "boxing gloves"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Train Daily",
+      "productType": "",
+      "vendor": "Rule1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "RockTape Assassins Knee Sleeves 5mm",
+      "productType": "",
+      "vendor": "RockTape",
+      "tags": [
+        "knee support"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Quest Nutrition Peanut Butter Cups",
+      "productType": "",
+      "vendor": "Quest Nutrition",
+      "tags": [],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Optimum Nutrition ZMA",
+      "productType": "",
+      "vendor": "Optimum Nutrition",
+      "tags": [
+        "zinc / zma"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Optimum Nutrition Opti-Men",
+      "productType": "",
+      "vendor": "Optimum Nutrition",
+      "tags": [
+        "mens health",
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Lifting Grips",
+      "productType": "",
+      "vendor": "Harbinger",
+      "tags": [
+        "lifting straps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Kids Multi Gummies",
+      "productType": "",
+      "vendor": "The Good Vitamin Co.",
+      "tags": [
+        "health gummies",
+        "multi vitamins"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Vir-Defence",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Probiotic 40 Billion 1-A-Day",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "digestion"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Multi 1-A-Day",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [
+        "multi vitamins"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Man Plus",
+      "productType": "",
+      "vendor": "GO Healthy",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Diet Fuel Ultralean",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN CarniCut 3500",
+      "productType": "",
+      "vendor": "USN",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Vitality",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "greens / superfoods",
+        "immune"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Sleep+",
+      "productType": "",
+      "vendor": "Switch Nutrition",
+      "tags": [
+        "stress / sleep"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Lean 5",
+      "productType": "",
+      "vendor": "Rule1",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Collagen",
+      "productType": "",
+      "vendor": "Rule1",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 War Games",
+      "productType": "",
+      "vendor": "Redcon1",
+      "tags": [],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Kids Good Stuff",
+      "productType": "",
+      "vendor": "Nuzest",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex IsoFit",
+      "productType": "",
+      "vendor": "Nutrex",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Collagen Beauty 225g",
+      "productType": "",
+      "vendor": "Nutra Organics",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mutant Mind FK",
+      "productType": "",
+      "vendor": "Mutant",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Boost Immunity Tablets 20 Pack",
+      "productType": "",
+      "vendor": "Healtheries",
+      "tags": [
+        "immune"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Stroopwafel Gluten Free",
+      "productType": "",
+      "vendor": "GU",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Liquid Energy Gel",
+      "productType": "",
+      "vendor": "GU",
+      "tags": [
+        "energy gels"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "EHP Labs OxyGreens",
+      "productType": "",
+      "vendor": "EHP Labs",
+      "tags": [
+        "abc-a"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "EHP Labs Hydreau",
+      "productType": "",
+      "vendor": "EHP Labs",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biosphere Nitric Oxide 360g",
+      "productType": "",
+      "vendor": "Biosphere",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Collagen Plus",
+      "productType": "",
+      "vendor": "bepure",
+      "tags": [
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Before You Speak Performance Coffee",
+      "productType": "",
+      "vendor": "Before You Speak",
+      "tags": [
+        "coffee & creamers"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Before You Speak Collagen Complex",
+      "productType": "",
+      "vendor": "Before You Speak",
+      "tags": [
+        "coffee & creamers",
+        "collagen"
+      ],
+      "reason": "no-category-after-fallback"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita UM-041",
+      "productType": "",
+      "vendor": "Tanita",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Hand Wraps",
+      "productType": "",
+      "vendor": "Sting Sports",
+      "tags": [
+        "wraps"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Zip Shorts",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "shorts / pants"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Stitch Tank",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "tanks / singlets"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Stitch Oversized Tee",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Rubber Key Chain",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Oversized Logo Tee",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Oversized Aesthetics Tee",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Logo Tee",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "t-shirts"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Gym Bag 45cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "meal & gym bags"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Gym Bag 60cm",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "meal & gym bags"
+      ],
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Bar Pad",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Backpack",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "meal & gym bags"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Athletic Dept Tank",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "tanks / singlets"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Shaker (Limited edition)",
+      "productType": "",
+      "vendor": "NZ Muscle",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Tactical Weight Vest",
+      "productType": "",
+      "vendor": "LIVEPRO Fitness",
+      "tags": [],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Club Status Tank",
+      "productType": "",
+      "vendor": "Status Aesthetics",
+      "tags": [
+        "tanks / singlets"
+      ],
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor Typhoon Shaker",
+      "productType": "",
+      "vendor": "Cellucor",
+      "tags": [
+        "shakers & bottles"
+      ],
+      "reason": "not-gym-related"
+    }
+  ]
+}

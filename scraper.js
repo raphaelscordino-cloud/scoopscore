@@ -23,9 +23,18 @@ const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
 
-const OUT_FILE = path.join(__dirname, 'data', 'products.json');
-const LOG_FILE = path.join(__dirname, 'data', 'scrape.log');
+const OUT_FILE   = path.join(__dirname, 'data', 'products.json');
+const LOG_FILE   = path.join(__dirname, 'data', 'scrape.log');
+const DEBUG_FILE = path.join(__dirname, 'data', 'debug-skipped.json');
 fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+
+// Debug mode: node scraper.js --debug [retailerId]
+// Writes data/debug-skipped.json with every skipped product + reason
+const DEBUG_RETAILER = (() => {
+  const i = process.argv.indexOf('--debug');
+  return i !== -1 ? (process.argv[i + 1] || 'all') : null;
+})();
+const debugSkipped = [];
 
 // ─── HARD EXCLUSIONS ───────────────────────────────────────────
 // Products matching any of these are skipped entirely.
@@ -113,6 +122,11 @@ const CATEGORY_RULES = [
       'pre-workout','pre workout','preworkout','pre workouts',
       'stim free pre','non-stim pre','pump pre-workout',
       'pump pre workout','stimulant free pre',
+      // Pump / nitric oxide products sold as pre-workout alternatives
+      'nitric oxide','n.o. booster','no booster','pump formula','pump supplement',
+      'vasodilator','blood flow','vascularity',
+      // Named pre-workout ingredients that are entire products
+      'alpha gpc','alpha-gpc','nootropic pre','caffeine supplement',
     ],
   },
 
@@ -135,6 +149,13 @@ const CATEGORY_RULES = [
       'bcaa','bcaas','eaa','eaas','amino acids','amino acid',
       'essential amino','intra-workout','intra workout',
       'glutamine','post workout','post-workout','aminos',
+      // Individual amino acids sold as standalone supplements
+      'beta alanine','beta-alanine','citrulline malate','l-citrulline','citrulline',
+      'l-arginine','arginine','l-taurine','taurine','l-tyrosine','tyrosine',
+      'l-glutamine','l-glycine','glycine','l-lysine','l-leucine','leucine',
+      'l-carnosine','carnosine','l-ornithine','ornithine','l-threonine',
+      'hmb','beta-hydroxy','agmatine','betaine anhydrous','betaine',
+      'recovery amino','amino recovery','amino blend',
     ],
   },
 
@@ -162,11 +183,36 @@ const CATEGORY_RULES = [
 // we check these signals to decide if the product should still be
 // included under a best-guess category.
 const GYM_SIGNALS = [
-  'supplement','supplements','sports nutrition','sports supplement',
-  'pre-workout','preworkout','creatine','protein','whey','casein',
-  'bcaa','eaa','amino','glutamine','collagen','omega',
-  'fat burner','thermogenic','carnitine','oxyshred','shred',
-  'mass gainer','rtd','ready to drink','protein bar','protein cookie',
+  // Category anchors (always gym)
+  'supplement','supplements','sports nutrition','sports supplement','sports performance',
+  'pre-workout','preworkout','post-workout','post workout','intra workout','intra-workout',
+  'creatine','protein','whey','casein','isolate','concentrate','hydrolysed','hydrolyzed',
+  'bcaa','eaa','amino','glutamine','collagen','carnitine','mass gainer','weight gainer',
+  'fat burner','thermogenic','oxyshred','shred','lean','metabolism',
+  'rtd','ready to drink','energy drink','protein bar','protein cookie',
+  // Individual amino acids — frequently the entire product name
+  'beta alanine','beta-alanine','citrulline','arginine','taurine','tyrosine',
+  'leucine','isoleucine','valine','lysine','threonine','phenylalanine',
+  'methionine','histidine','tryptophan','cysteine','glycine','alanine',
+  'hmb','aakg','agmatine','betaine','ornithine','carnosine',
+  // Performance / pump ingredients
+  'nitric oxide','pump','vascularity','n.o.','alpha gpc','alpha-gpc',
+  'caffeine','stimulant','stim','nootropic','focus','cognitive',
+  'ashwagandha','rhodiola','panax','adaptogen',
+  // Recovery & health
+  'recovery','muscle recovery','post workout','repair','regenerate',
+  'electrolyte','hydration','magnesium','zinc','vitamin d','omega 3','omega-3',
+  'sleep formula','zma','melatonin',
+  // Bodybuilding / gym culture terms
+  'bodybuilding','powerlifting','crossfit','athletic','athlete','gym',
+  'workout','training','performance','endurance','strength','muscle',
+  'bulking','cutting','lean mass','body composition','physique',
+  // Common product series / brand patterns
+  'stack','bundle','combo','matrix','formula','complex',
+  'anabolic','natural test','testosterone','hormone',
+  'collagen peptide','keratin','biotin',
+  'greens','superfoods','spirulina','chlorella',
+  'probiotic','gut health','digestive',
 ];
 
 // ─── DETECTION LOGIC ───────────────────────────────────────────
@@ -409,25 +455,39 @@ async function httpGetWithRetry(url, headers = {}, maxRetries = 3) {
  *      isGymRelated returned false)
  */
 function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, description, variants, imageUrl) {
+  const isDebugging = DEBUG_RETAILER && (DEBUG_RETAILER === 'all' || retailer.id === DEBUG_RETAILER);
+
+  function skip(reason) {
+    if (isDebugging) {
+      debugSkipped.push({ retailer: retailer.id, title: rawTitle, productType, vendor, tags: (tags||[]).slice(0,5), reason });
+    }
+    return null;
+  }
+
   // Guard: hard exclusions first
-  if (isExcluded(rawTitle, productType, tags)) return null;
+  if (isExcluded(rawTitle, productType, tags)) return skip('hard-excluded');
 
   // Parse prices
   const allPrices = variants.map(v => parseFloat(v.price)).filter(p => !isNaN(p) && p > 0);
-  if (allPrices.length === 0) return null; // no purchasable price
+  if (allPrices.length === 0) return skip('no-price');
 
   // Category detection — uses title, type, tags, and first 200 chars of description
   let cat = detectCategory(rawTitle, productType, tags, description);
 
-  // If no category matched, check gym signals before giving up
+  // If no category matched, use gym signals or dedicated-store bypass
   if (!cat) {
-    if (!isGymRelated(rawTitle, productType, tags, description)) return null; // truly irrelevant
-    // Gym-related but uncategorised — use best-effort fallback
+    const gymRelated = isGymRelated(rawTitle, productType, tags, description);
+    if (!gymRelated && !retailer.dedicated) return skip('not-gym-related');
+    // Gym-related or dedicated store — try best-effort category
     cat = guessCategoryFromSignals(rawTitle, productType, tags);
   }
 
-  // Final guard — if still no category, skip the product
-  if (!cat) return null;
+  // For dedicated stores, fall back to 'protein' rather than dropping the product
+  // (better to miscategorise than to lose a real supplement)
+  if (!cat) {
+    if (retailer.dedicated) cat = 'protein';
+    else return skip('no-category-after-fallback');
+  }
 
   const availVariants = variants.filter(v => v.available !== false);
   const minPrice = availVariants.length > 0
@@ -575,17 +635,17 @@ async function scrapeShopifyStore(retailer) {
 
 // ─── RETAILER LIST ─────────────────────────────────────────────
 const RETAILERS = [
-  { id: 'nzmuscle',            name: 'NZ Muscle',             baseUrl: 'nzmuscle.co.nz',                    freeShipping: 'Always free' },
+  { id: 'nzmuscle',            name: 'NZ Muscle',             baseUrl: 'nzmuscle.co.nz',                    freeShipping: 'Always free',      dedicated: true },
   { id: 'sportsfuel',          name: 'Sportsfuel',            baseUrl: 'www.sportsfuel.co.nz',              freeShipping: 'Free over $60' },
-  { id: 'scorpion',            name: 'Scorpion Supplements',  baseUrl: 'scorpionsupplements.co.nz',         freeShipping: 'Check site' },
-  { id: 'asnonline',           name: 'ASN Online',            baseUrl: 'asnonline.co.nz',                   freeShipping: 'Free over $100' },
-  { id: 'supplementsolutions', name: 'Supplement Solutions',  baseUrl: 'www.supplementsolutions.co.nz',     freeShipping: 'Check site' },
-  { id: 'raiseys',             name: "Raisey's",              baseUrl: 'raiseys.co.nz',                     freeShipping: 'Check site' },
-  { id: 'bodystrong',          name: 'BodyStrong',            baseUrl: 'bodystrong.co.nz',                  freeShipping: 'Check site' },
-  { id: 'payless',             name: 'Payless Supplements',   baseUrl: 'paylesssupplements.co.nz',          freeShipping: 'Free shipping' },
+  { id: 'scorpion',            name: 'Scorpion Supplements',  baseUrl: 'scorpionsupplements.co.nz',         freeShipping: 'Check site',       dedicated: true },
+  { id: 'asnonline',           name: 'ASN Online',            baseUrl: 'asnonline.co.nz',                   freeShipping: 'Free over $100',   dedicated: true },
+  { id: 'supplementsolutions', name: 'Supplement Solutions',  baseUrl: 'www.supplementsolutions.co.nz',     freeShipping: 'Check site',       dedicated: true },
+  { id: 'raiseys',             name: "Raisey's",              baseUrl: 'raiseys.co.nz',                     freeShipping: 'Check site',       dedicated: true },
+  { id: 'bodystrong',          name: 'BodyStrong',            baseUrl: 'bodystrong.co.nz',                  freeShipping: 'Check site',       dedicated: true },
+  { id: 'payless',             name: 'Payless Supplements',   baseUrl: 'paylesssupplements.co.nz',          freeShipping: 'Free shipping',    dedicated: true },
   { id: 'supplementsnz',       name: 'Supplements NZ',        baseUrl: 'www.supplements.co.nz',             freeShipping: 'Free shipping' },
-  { id: 'reactiv',             name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide' },
-  { id: 'eatme',               name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site' },
+  { id: 'reactiv',             name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide',     dedicated: true },
+  { id: 'eatme',               name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site',       dedicated: true },
   { id: 'nutritionwarehouse',  name: 'Nutrition Warehouse',   baseUrl: 'www.nutritionwarehouse.co.nz',      freeShipping: 'Free over $60' },
   // Xplosiv and Sprint Fit are not Shopify and require Playwright (see README)
 ];
@@ -689,6 +749,17 @@ async function main() {
   };
 
   fs.writeFileSync(OUT_FILE, JSON.stringify(output));
+
+  // Write debug file if --debug was used
+  if (DEBUG_RETAILER) {
+    const byReason = {};
+    for (const s of debugSkipped) {
+      byReason[s.reason] = (byReason[s.reason] || 0) + 1;
+    }
+    fs.writeFileSync(DEBUG_FILE, JSON.stringify({ summary: byReason, skipped: debugSkipped }, null, 2));
+    log(`  Debug: ${debugSkipped.length} skipped products written to data/debug-skipped.json`);
+    log(`  Skip reasons: ${JSON.stringify(byReason)}`);
+  }
   log('');
   log('═══════════════════ RESULTS ═══════════════════');
   log(`  Total products: ${merged.length}`);
