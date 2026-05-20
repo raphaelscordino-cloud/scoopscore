@@ -1995,6 +1995,9 @@ function crossBrandMerge(brands){
   }
 }
 
+// ── Anthropic API key — replace with your key from console.anthropic.com ──
+const ANTHROPIC_API_KEY = 'YOUR_API_KEY_HERE';
+
 let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
 
 async function loadData(){
@@ -2762,7 +2765,12 @@ Rules: no markdown, no backticks, no preamble. Just the JSON object.`;
   try {
     const resp = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-calls': 'true'
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 400,
