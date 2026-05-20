@@ -2018,9 +2018,14 @@ async function loadData(){
     return;
   }
   try{
-    const r=await fetch('data/products.json');
+    const [r, dr] = await Promise.all([
+      fetch('data/products.json'),
+      fetch('data/descriptions.json').catch(()=>null)
+    ]);
     if(!r.ok) throw new Error(`HTTP ${r.status}`);
     const d=await r.json();
+    if(dr?.ok){ try{ window.AI_DESCRIPTIONS=await dr.json(); }catch(e){ window.AI_DESCRIPTIONS={}; } }
+    else { window.AI_DESCRIPTIONS={}; }
     if(d.products?.length){
       ALL=d.products;
       META=d.meta||{};
@@ -2742,11 +2747,24 @@ function renderModal(){
 async function _generateAiDescription(g, brandName) {
   const el = document.getElementById('dpAiContent');
   if (!el) return;
+
+  // ── 1. Use pre-generated description if available (free, instant) ──
+  const descKey = `${brandName.toLowerCase().trim().replace(/\s+/g,' ')}::${g.key}`;
+  const prebuilt = (window.AI_DESCRIPTIONS||{})[descKey];
+  if (prebuilt) {
+    el.innerHTML = _renderAiHtml(prebuilt);
+    return;
+  }
+
+  // ── 2. Session cache (for same-session reopens) ──
   const cacheKey = 'ai2_' + g.key;
+  if (!window._aiDescCache) window._aiDescCache = {};
   if (window._aiDescCache[cacheKey]) {
     el.innerHTML = window._aiDescCache[cacheKey];
     return;
   }
+
+  // ── 3. Live API fallback (only hits for products not yet in descriptions.json) ──
   const productName = g.name || g.key;
   const category = g.category || '';
   const flavours = [...new Set((g.listings||[]).flatMap(l=>(l.variants||[]).map(v=>v.title)).filter(Boolean))].slice(0,6).join(', ');
@@ -2788,31 +2806,35 @@ Rules: no markdown, no backticks, no preamble. Just the JSON object.`;
       el.innerHTML = `<div class="dp-desc">${raw}</div>`;
       return;
     }
-    const html = `
-      <div class="dp-desc" style="margin-bottom:18px">${parsed.overview||''}</div>
-      ${parsed.reviewerSay?.length ? `
-        <div class="dp-ai-sub-title">What reviewers say</div>
-        <div class="dp-review-comments">
-          ${parsed.reviewerSay.map(c=>`<div class="dp-review-comment"><span class="dp-review-quote">❝</span>${c}</div>`).join('')}
-        </div>` : ''}
-      ${(parsed.pros?.length||parsed.cons?.length) ? `
-        <div class="dp-proscons">
-          ${parsed.pros?.length ? `<div class="dp-pros-col">
-            <div class="dp-ai-sub-title">Pros</div>
-            ${parsed.pros.map(p=>`<div class="dp-pro-item"><span class="dp-pro-icon">✓</span>${p}</div>`).join('')}
-          </div>` : ''}
-          ${parsed.cons?.length ? `<div class="dp-cons-col">
-            <div class="dp-ai-sub-title">Cons</div>
-            ${parsed.cons.map(c=>`<div class="dp-con-item"><span class="dp-con-icon">–</span>${c}</div>`).join('')}
-          </div>` : ''}
-        </div>` : ''}
-    `;
+    const html = _renderAiHtml(parsed);
     el.innerHTML = html;
     window._aiDescCache[cacheKey] = html;
   } catch(e) {
     const curEl = document.getElementById('dpAiContent');
     if (curEl) curEl.innerHTML = '<div class="dp-desc" style="color:var(--ink4)">Unable to load AI summary.</div>';
   }
+}
+
+function _renderAiHtml(parsed) {
+  return `
+    <div class="dp-desc" style="margin-bottom:18px">${parsed.overview||''}</div>
+    ${parsed.reviewerSay?.length ? `
+      <div class="dp-ai-sub-title">What reviewers say</div>
+      <div class="dp-review-comments">
+        ${parsed.reviewerSay.map(c=>`<div class="dp-review-comment"><span class="dp-review-quote">❝</span>${c}</div>`).join('')}
+      </div>` : ''}
+    ${(parsed.pros?.length||parsed.cons?.length) ? `
+      <div class="dp-proscons">
+        ${parsed.pros?.length ? `<div class="dp-pros-col">
+          <div class="dp-ai-sub-title">Pros</div>
+          ${parsed.pros.map(p=>`<div class="dp-pro-item"><span class="dp-pro-icon">✓</span>${p}</div>`).join('')}
+        </div>` : ''}
+        ${parsed.cons?.length ? `<div class="dp-cons-col">
+          <div class="dp-ai-sub-title">Cons</div>
+          ${parsed.cons.map(c=>`<div class="dp-con-item"><span class="dp-con-icon">–</span>${c}</div>`).join('')}
+        </div>` : ''}
+      </div>` : ''}
+  `;
 }
 
 function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.body.style.overflow='';_modalGroup=null;}
