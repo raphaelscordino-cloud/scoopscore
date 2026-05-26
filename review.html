@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScoopScore — Review Queue</title>
+<style>
+  :root {
+    --bg: #f7f6f4; --bg2: #eeecea; --bg3: #e4e1db;
+    --ink: #1c1c1a; --ink2: #3d4a52; --ink3: #8a8a85;
+    --teal: #1e6076; --teal-dim: rgba(30,96,118,.09); --teal-border: rgba(30,96,118,.24);
+    --orange: #e8621a; --orange-dim: rgba(232,98,26,.1);
+    --green: #2a7a45; --green-dim: rgba(42,122,69,.1);
+    --red: #c0392b; --red-dim: rgba(192,57,43,.1);
+    --yellow: #b7791f; --yellow-dim: rgba(183,121,31,.1);
+    --r: 8px; --border: rgba(28,28,26,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--teal), #5b9ea0, var(--orange)); z-index: 999; }
+
+  /* ── NAV ── */
+  .nav { background: rgba(20,40,50,.97); color: #fff; padding: 0 32px; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'Georgia', serif; font-size: 18px; font-weight: bold; letter-spacing: .04em; }
+  .nav-logo span { color: var(--orange); }
+  .nav-sub { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 1px; }
+  .nav-right { display: flex; gap: 10px; align-items: center; }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* ── UPLOAD ZONE ── */
+  .upload-zone { background: var(--bg2); border: 2px dashed var(--teal-border); border-radius: 12px; padding: 48px 32px; text-align: center; cursor: pointer; transition: all .15s; }
+  .upload-zone:hover, .upload-zone.drag { border-color: var(--teal); background: var(--teal-dim); }
+  .upload-zone h2 { font-size: 18px; margin-bottom: 8px; }
+  .upload-zone p { color: var(--ink3); font-size: 13px; }
+  .upload-zone .icon { font-size: 40px; margin-bottom: 16px; }
+  #fileInput { display: none; }
+
+  /* ── STATS BAR ── */
+  .stats-bar { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat { background: #fff; border: 1px solid var(--border); border-radius: var(--r); padding: 14px 20px; flex: 1; min-width: 120px; }
+  .stat-num { font-size: 28px; font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+  .stat.pending  .stat-num { color: var(--yellow); }
+  .stat.approved .stat-num { color: var(--green); }
+  .stat.excluded .stat-num { color: var(--red); }
+
+  /* ── FILTERS ── */
+  .filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+  .filter-btn { font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg2); color: var(--ink2); cursor: pointer; transition: all .12s; }
+  .filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .filter-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .filter-search { flex: 1; min-width: 200px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 100px; background: var(--bg2); font-size: 13px; outline: none; }
+  .filter-search:focus { border-color: var(--teal-border); box-shadow: 0 0 0 3px var(--teal-dim); }
+
+  /* ── CARDS ── */
+  .cards { display: flex; flex-direction: column; gap: 10px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: var(--r); padding: 16px 20px; display: grid; grid-template-columns: 72px 1fr auto; gap: 16px; align-items: start; transition: border-color .12s; }
+  .card:hover { border-color: rgba(28,28,26,.18); }
+  .card.decision-confirmed { border-left: 3px solid var(--green); }
+  .card.decision-excluded  { border-left: 3px solid var(--red); opacity: .6; }
+  .card.decision-pending   { border-left: 3px solid var(--yellow); }
+
+  .card-img { width: 72px; height: 72px; object-fit: contain; border-radius: 6px; background: var(--bg2); }
+  .card-img-placeholder { width: 72px; height: 72px; border-radius: 6px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+
+  .card-body { min-width: 0; }
+  .card-brand { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--teal); margin-bottom: 3px; }
+  .card-name  { font-size: 14px; font-weight: 600; line-height: 1.35; margin-bottom: 6px; }
+  .card-meta  { display: flex; gap: 10px; flex-wrap: wrap; font-size: 11px; color: var(--ink3); }
+  .card-tag   { background: var(--bg2); border-radius: 4px; padding: 2px 7px; }
+  .card-reason { font-size: 11px; color: var(--yellow); margin-top: 4px; }
+  .card-variants { margin-top: 8px; font-size: 12px; color: var(--ink2); }
+  .anomaly { color: var(--red); font-weight: 600; }
+
+  .card-actions { display: flex; flex-direction: column; gap: 6px; min-width: 180px; }
+  .cat-select { width: 100%; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; background: var(--bg2); color: var(--ink); outline: none; }
+  .cat-select:focus { border-color: var(--teal-border); }
+  .btn { width: 100%; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; border: none; transition: all .12s; }
+  .btn-confirm  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(42,122,69,.25); }
+  .btn-confirm:hover  { background: var(--green); color: #fff; }
+  .btn-exclude  { background: var(--red-dim); color: var(--red); border: 1px solid rgba(192,57,43,.25); }
+  .btn-exclude:hover  { background: var(--red); color: #fff; }
+  .btn-reset    { background: var(--bg2); color: var(--ink3); border: 1px solid var(--border); font-size: 11px; }
+  .btn-reset:hover { color: var(--ink); }
+
+  /* ── SAVE BAR ── */
+  .save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(20,40,50,.97); backdrop-filter: blur(12px); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; z-index: 200; display: none; }
+  .save-bar.visible { display: flex; }
+  .save-bar-info { color: rgba(255,255,255,.8); font-size: 13px; }
+  .save-bar-info strong { color: #fff; }
+  .btn-save { background: var(--orange); color: #fff; border: none; padding: 10px 28px; border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .btn-save:hover { background: #f07a35; }
+
+  /* ── EMPTY ── */
+  .empty { text-align: center; padding: 64px 32px; color: var(--ink3); }
+  .empty-icon { font-size: 48px; margin-bottom: 16px; }
+
+  /* ── TOAST ── */
+  .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1c1a; color: #fff; padding: 10px 20px; border-radius: 100px; font-size: 13px; opacity: 0; transition: all .25s; pointer-events: none; z-index: 999; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div>
+    <div class="nav-logo">Scoop<span>Score</span></div>
+    <div class="nav-sub">Review Queue — Admin</div>
+  </div>
+  <div class="nav-right">
+    <button class="filter-btn" onclick="document.getElementById('fileInput').click()">📂 Load review.json</button>
+    <input type="file" id="fileInput" accept=".json">
+  </div>
+</nav>
+
+<div class="wrap" id="main">
+
+  <!-- Upload zone (shown when no file loaded) -->
+  <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()"
+    ondragover="event.preventDefault();this.classList.add('drag')"
+    ondragleave="this.classList.remove('drag')"
+    ondrop="handleDrop(event)">
+    <div class="icon">📋</div>
+    <h2>Load your review.json</h2>
+    <p>After running <code>node scraper.js</code>, drag <strong>data/review.json</strong> here<br>or click to browse. Your decisions are saved locally — nothing is uploaded.</p>
+  </div>
+
+  <!-- Content (shown after file loaded) -->
+  <div id="content" style="display:none">
+    <div class="stats-bar" id="statsBar"></div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="pending" onclick="setFilter('pending',this)">🟡 Pending</button>
+      <button class="filter-btn" data-filter="confirmed" onclick="setFilter('confirmed',this)">✅ Confirmed</button>
+      <button class="filter-btn" data-filter="excluded" onclick="setFilter('excluded',this)">❌ Excluded</button>
+      <button class="filter-btn" data-filter="all" onclick="setFilter('all',this)">All</button>
+      <input class="filter-search" type="text" placeholder="Search by name or brand…" oninput="setSearch(this.value)">
+    </div>
+    <div class="cards" id="cardsContainer"></div>
+    <div class="empty" id="emptyState" style="display:none">
+      <div class="empty-icon">🎉</div>
+      <div>Nothing here! All products in this filter have been actioned.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="save-bar" id="saveBar">
+  <div class="save-bar-info">
+    <strong id="saveCount">0</strong> decisions made — download to apply on next scrape
+  </div>
+  <button class="btn-save" onclick="saveFile()">💾 Download updated review.json</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins'];
+const CAT_LABELS = {
+  protein:'Protein Powder', proteinbars:'Protein Bars', rtd:'RTD',
+  creatine:'Creatine', preworkout:'Pre-Workout', fatburner:'Fat Burner',
+  bcaa:'BCAAs / Aminos', vitamins:'Vitamins & Health',
+};
+
+let data = null;          // full review.json
+let activeFilter = 'pending';
+let searchQuery = '';
+let dirty = false;
+
+// ── File loading ──────────────────────────────────────────────────
+document.getElementById('fileInput').addEventListener('change', e => {
+  if (e.target.files[0]) loadFile(e.target.files[0]);
+});
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('uploadZone').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file && file.name.endsWith('.json')) loadFile(file);
+  else toast('Drop a .json file');
+}
+
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      data = JSON.parse(e.target.result);
+      if (!data.products) throw new Error('No products array found');
+      document.getElementById('uploadZone').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      renderAll();
+      toast(`Loaded ${data.products.length} products`);
+    } catch(err) {
+      toast('Invalid JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ── Render ────────────────────────────────────────────────────────
+function renderAll() {
+  renderStats();
+  renderCards();
+  updateSaveBar();
+}
+
+function renderStats() {
+  const pending   = data.products.filter(p => p.decision === 'pending').length;
+  const confirmed = data.products.filter(p => p.decision === 'confirmed').length;
+  const excluded  = data.products.filter(p => p.decision === 'excluded').length;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat pending">
+      <div class="stat-num">${pending}</div>
+      <div class="stat-label">Pending review</div>
+    </div>
+    <div class="stat approved">
+      <div class="stat-num">${confirmed}</div>
+      <div class="stat-label">Confirmed ✅</div>
+    </div>
+    <div class="stat excluded">
+      <div class="stat-num">${excluded}</div>
+      <div class="stat-label">Excluded ❌</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">${data.products.length}</div>
+      <div class="stat-label">Total in queue</div>
+    </div>
+  `;
+}
+
+function renderCards() {
+  const container = document.getElementById('cardsContainer');
+  const empty     = document.getElementById('emptyState');
+
+  let items = data.products;
+
+  if (activeFilter !== 'all') {
+    items = items.filter(p => p.decision === activeFilter);
+  }
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    items = items.filter(p =>
+      (p.product?.name || '').toLowerCase().includes(q) ||
+      (p.product?.brand || '').toLowerCase().includes(q) ||
+      (p.product?.retailerName || '').toLowerCase().includes(q)
+    );
+  }
+
+  if (items.length === 0) {
+    container.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  container.innerHTML = items.map(item => buildCard(item)).join('');
+}
+
+function buildCard(item) {
+  const p = item.product || {};
+  const variants = (p.variants || []).slice(0, 5);
+  const anomalyCount = variants.filter(v => v.priceAnomaly).length;
+
+  const variantHtml = variants.map(v => {
+    const parts = [];
+    if (v.sizeLabel) parts.push(v.sizeLabel);
+    if (v.flavour)   parts.push(v.flavour);
+    const label = parts.join(' / ') || v.title || '—';
+    const priceStr = v.price ? `$${v.price.toFixed(2)}` : '—';
+    const anomaly = v.priceAnomaly ? ' <span class="anomaly">⚠ anomaly</span>' : '';
+    return `<span>${label}: ${priceStr}${anomaly}</span>`;
+  }).join(' · ');
+
+  const imgHtml = p.imageUrl
+    ? `<img class="card-img" src="${p.imageUrl}" alt="" loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="card-img-placeholder">💊</div>`;
+
+  const catOptions = CATS.map(c =>
+    `<option value="${c}" ${item.confirmedCategory === c ? 'selected' : ''}>${CAT_LABELS[c]}</option>`
+  ).join('');
+
+  const anomalyNote = anomalyCount > 0
+    ? `<div style="color:var(--red);font-size:11px;margin-top:4px">⚠ ${anomalyCount} variant price anomaly detected — check before confirming</div>`
+    : '';
+
+  return `
+    <div class="card decision-${item.decision}" id="card-${item.id}">
+      ${imgHtml}
+      <div class="card-body">
+        <div class="card-brand">${p.brand || 'Unknown'} · ${p.retailerName || ''}</div>
+        <div class="card-name">${p.name || item.id}</div>
+        <div class="card-meta">
+          <span class="card-tag">💰 $${p.priceFrom?.toFixed(2) ?? '?'}</span>
+          ${p.category ? `<span class="card-tag">📁 ${p.category}</span>` : ''}
+          <span class="card-tag">🔗 <a href="${p.url || '#'}" target="_blank" style="color:inherit">View product</a></span>
+          ${item.decision !== 'pending' ? `<span class="card-tag" style="background:${item.decision==='confirmed'?'var(--green-dim)':'var(--red-dim)'}">Decision: ${item.decision}</span>` : ''}
+        </div>
+        ${item.reviewReason ? `<div class="card-reason">ℹ Flagged: ${item.reviewReason}</div>` : ''}
+        <div class="card-variants">${variantHtml}</div>
+        ${anomalyNote}
+      </div>
+      <div class="card-actions">
+        <select class="cat-select" id="cat-${item.id}" onchange="setCat('${item.id}', this.value)">
+          <option value="">— pick category —</option>
+          ${catOptions}
+        </select>
+        <button class="btn btn-confirm" onclick="decide('${item.id}', 'confirmed')">✅ Confirm</button>
+        <button class="btn btn-exclude" onclick="decide('${item.id}', 'excluded')">❌ Exclude</button>
+        ${item.decision !== 'pending' ? `<button class="btn btn-reset" onclick="decide('${item.id}', 'pending')">↩ Reset</button>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+// ── Actions ───────────────────────────────────────────────────────
+function setCat(id, cat) {
+  const item = data.products.find(p => p.id === id);
+  if (item) item.confirmedCategory = cat || null;
+}
+
+function decide(id, decision) {
+  const item = data.products.find(p => p.id === id);
+  if (!item) return;
+
+  if (decision === 'confirmed') {
+    const cat = document.getElementById(`cat-${id}`)?.value;
+    if (!cat) { toast('Pick a category first'); return; }
+    item.confirmedCategory = cat;
+    if (item.product) item.product.category = cat;
+  }
+
+  item.decision = decision;
+  dirty = true;
+  renderAll();
+  toast(decision === 'confirmed' ? '✅ Confirmed' : decision === 'excluded' ? '❌ Excluded' : '↩ Reset to pending');
+}
+
+// ── Filters ───────────────────────────────────────────────────────
+function setFilter(filter, btn) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards();
+}
+
+function setSearch(val) {
+  searchQuery = val;
+  renderCards();
+}
+
+// ── Save ──────────────────────────────────────────────────────────
+function updateSaveBar() {
+  const changed = data ? data.products.filter(p => p.decision !== 'pending').length : 0;
+  document.getElementById('saveCount').textContent = changed;
+  document.getElementById('saveBar').classList.toggle('visible', changed > 0);
+}
+
+function saveFile() {
+  if (!data) return;
+  data.meta = data.meta || {};
+  data.meta.updatedAt  = new Date().toISOString();
+  data.meta.total      = data.products.length;
+  data.meta.pending    = data.products.filter(p => p.decision === 'pending').length;
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'review.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('💾 Downloaded review.json — replace data/review.json then re-run the scraper');
+}
+
+// ── Toast ─────────────────────────────────────────────────────────
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>

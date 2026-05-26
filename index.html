@@ -336,36 +336,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 .dp-var-price{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.03em;color:var(--ink)}
 .dp-var-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:-.01em;padding:7px 14px;border-radius:100px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);cursor:pointer;transition:all .12s}
 .dp-var-btn:hover{background:var(--ink2);border-color:var(--ink2);color:var(--bg)}
-.dp-desc{font-size:13px;color:var(--ink3);line-height:1.75;font-weight:300;min-height:20px}
-.dp-sec-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.dp-sec-title-row .dp-sec-title{margin-bottom:0}
-.dp-ai-badge{display:inline-flex;align-items:center;gap:5px;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--ink4);background:var(--bg2);border:1px solid var(--border);padding:3px 9px;border-radius:100px}
-.dp-ai-skeleton{display:flex;align-items:center;padding:4px 0}
-.dp-ai-loading{display:inline-flex;align-items:center;gap:5px}
-.dp-ai-dot{width:6px;height:6px;border-radius:50%;background:var(--ink3);animation:aiDotPulse 1.2s ease-in-out infinite}
-.dp-ai-dot:nth-child(2){animation-delay:.2s}
-.dp-ai-dot:nth-child(3){animation-delay:.4s}
-@keyframes aiDotPulse{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
-.dp-ai-sub-title{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
-.dp-review-comments{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
-.dp-review-comment{font-size:13px;color:var(--ink2);line-height:1.6;font-style:italic;font-weight:300;padding:9px 13px;background:var(--bg2);border-left:2px solid var(--border2);border-radius:0 6px 6px 0;display:flex;gap:8px;align-items:flex-start}
-.dp-review-quote{font-size:16px;color:var(--ink4);line-height:1;flex-shrink:0;margin-top:1px}
-.dp-proscons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.dp-pros-col,.dp-cons-col{display:flex;flex-direction:column;gap:6px}
-.dp-pro-item,.dp-con-item{font-size:12px;color:var(--ink2);line-height:1.5;display:flex;align-items:flex-start;gap:7px;font-weight:400}
-.dp-pro-icon{color:var(--green);font-size:13px;font-weight:700;flex-shrink:0;margin-top:1px}
-.dp-con-icon{color:var(--ink3);font-size:16px;font-weight:400;flex-shrink:0;line-height:1;margin-top:1px}
-.dp-scoop-score{display:flex;align-items:flex-start;gap:20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:20px}
-.dp-scoop-score-left{display:flex;flex-direction:column;align-items:center;min-width:60px}
-.dp-scoop-number{font-size:36px;font-weight:800;line-height:1;color:var(--ink1);font-family:'Inter',sans-serif;letter-spacing:-1px}
-.dp-scoop-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-top:4px;text-align:center}
-.dp-scoop-denom{font-size:10px;font-weight:400;color:var(--ink4)}
-.dp-scoop-bars{flex:1;display:flex;flex-direction:column;gap:8px;justify-content:center}
-.dp-scoop-bar-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink3)}
-.dp-scoop-bar-row>span:first-child{min-width:120px;font-weight:400}
-.dp-bar-track{flex:1;height:5px;background:var(--border);border-radius:99px;overflow:hidden}
-.dp-bar-fill{height:100%;background:var(--green,#22c55e);border-radius:99px;transition:width .4s ease}
-.dp-bar-val{min-width:24px;text-align:right;font-weight:600;color:var(--ink2)}
+.dp-desc{font-size:13px;color:var(--ink3);line-height:1.75;font-weight:300}
 
 /* ── HOME CATEGORY FILTER STRIP ── */
 .home-cat-strip{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
@@ -2006,9 +1977,6 @@ function crossBrandMerge(brands){
   }
 }
 
-// ── Anthropic API key — replace with your key from console.anthropic.com ──
-const ANTHROPIC_API_KEY = 'YOUR_API_KEY_HERE';
-
 let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
 
 async function loadData(){
@@ -2737,7 +2705,7 @@ function renderModal(){
       ${retailerRows}${oosNote}
     </div>
     <div class="dp-section" id="dpAboutSection">
-      <div class="dp-sec-title-row"><div class="dp-sec-title">About this product</div><div class="dp-ai-badge">✦ AI generated</div></div>
+      <div class="dp-sec-title-row"><div class="dp-sec-title">About this product</div><div class="dp-ai-badge">✶ AI generated</div></div>
       <div id="dpAiContent"><div class="dp-ai-skeleton"><span class="dp-ai-loading"><span class="dp-ai-dot"></span><span class="dp-ai-dot"></span><span class="dp-ai-dot"></span></span><span style="margin-left:10px;font-size:12px;color:var(--ink4)">Analysing product…</span></div></div>
     </div>
   `;
@@ -2758,9 +2726,6 @@ function renderModal(){
 async function _generateAiDescription(g, brandName) {
   const el = document.getElementById('dpAiContent');
   if (!el) return;
-
-  // ── 1. Use pre-generated description if available (free, instant) ──
-  // Build key matching descriptions.json format (different from site normKey)
   function _descNormKey(n){
     return n.toLowerCase()
       .replace(/\b(whey|protein|isolate|concentrate|blend|complex|formula|nz|new zealand)\b/g,'')
@@ -2768,68 +2733,10 @@ async function _generateAiDescription(g, brandName) {
   }
   const descKey = `${brandName.toLowerCase().trim().replace(/\s+/g,' ')}::${_descNormKey(g.name)}`;
   const prebuilt = (window.AI_DESCRIPTIONS||{})[descKey];
-  if (prebuilt) {
-    el.innerHTML = _renderAiHtml(prebuilt);
-    return;
-  }
-
-  // ── 2. Session cache (for same-session reopens) ──
+  if (prebuilt) { el.innerHTML = _renderAiHtml(prebuilt); return; }
   const cacheKey = 'ai2_' + g.key;
-  if (!window._aiDescCache) window._aiDescCache = {};
-  if (window._aiDescCache[cacheKey]) {
-    el.innerHTML = window._aiDescCache[cacheKey];
-    return;
-  }
-
-  // ── 3. Live API fallback (only hits for products not yet in descriptions.json) ──
-  const productName = g.name || g.key;
-  const category = g.category || '';
-  const flavours = [...new Set((g.listings||[]).flatMap(l=>(l.variants||[]).map(v=>v.title)).filter(Boolean))].slice(0,6).join(', ');
-  const sizes = [...new Set((g.sizes||[]).map(s=>s.label).filter(Boolean))].join(', ');
-  const prompt = `You are a supplement expert writing for a NZ price comparison site. Generate a structured JSON review for "${productName}" by ${brandName}${category?' (category: '+category+')':''}.${flavours?' Flavours: '+flavours+'.':''}${sizes?' Sizes: '+sizes+'.':''}
-
-Return ONLY valid JSON with exactly this shape:
-{
-  "overview": "2-3 sentence factual overview: what it is, who it's for, key ingredients/benefits. No hype.",
-  "reviewerSay": ["short quote-style comment reflecting real user sentiment 1", "comment 2", "comment 3"],
-  "pros": ["pro 1", "pro 2", "pro 3"],
-  "cons": ["con 1", "con 2"]
-}
-
-Rules: no markdown, no backticks, no preamble. Just the JSON object.`;
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-calls': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 400,
-        messages: [{role:'user', content: prompt}]
-      })
-    });
-    if (!resp.ok) { el.innerHTML = '<div class="dp-desc" style="color:var(--ink4)">Unable to load AI summary.</div>'; return; }
-    const data = await resp.json();
-    const raw = (data.content||[]).map(b=>b.text||'').join('').trim();
-    let parsed;
-    try {
-      const jsonStr = raw.replace(/^```json|^```|```$/gm,'').trim();
-      parsed = JSON.parse(jsonStr);
-    } catch {
-      el.innerHTML = `<div class="dp-desc">${raw}</div>`;
-      return;
-    }
-    const html = _renderAiHtml(parsed);
-    el.innerHTML = html;
-    window._aiDescCache[cacheKey] = html;
-  } catch(e) {
-    const curEl = document.getElementById('dpAiContent');
-    if (curEl) curEl.innerHTML = '<div class="dp-desc" style="color:var(--ink4)">Unable to load AI summary.</div>';
-  }
+  if (window._aiDescCache[cacheKey]) { el.innerHTML = window._aiDescCache[cacheKey]; return; }
+  el.innerHTML = '<div class="dp-desc" style="color:var(--ink4)">No description available yet.</div>';
 }
 
 function _renderAiHtml(parsed) {
@@ -2838,7 +2745,6 @@ function _renderAiHtml(parsed) {
   const criticised = parsed.commonlyCriticised || parsed.cons || [];
   const score = parsed.scoopScore || null;
   const breakdown = parsed.scoreBreakdown || null;
-
   const scoreHtml = score ? `
     <div class="dp-scoop-score">
       <div class="dp-scoop-score-left">
@@ -2851,21 +2757,20 @@ function _renderAiHtml(parsed) {
         <div class="dp-scoop-bar-row"><span>Value for Money</span><div class="dp-bar-track"><div class="dp-bar-fill" style="width:${breakdown.value*10}%"></div></div><span class="dp-bar-val">${breakdown.value}</span></div>
       </div>` : ''}
     </div>` : '';
-
   return `
     ${scoreHtml}
     <div class="dp-desc" style="margin-bottom:18px">${verdict}</div>
     ${praised.length ? `
       <div class="dp-ai-sub-title">Commonly praised</div>
       <div class="dp-review-comments">
-        ${praised.map(c=>`<div class="dp-review-comment"><span class="dp-pro-icon">✓</span>${c}</div>`).join('')}
+        ${praised.map(c=>`<div class="dp-review-comment"><span class="dp-pro-icon">\u2713</span>${c}</div>`).join('')}
       </div>` : ''}
     ${criticised.length ? `
       <div class="dp-ai-sub-title">Commonly criticised</div>
       <div class="dp-review-comments">
-        ${criticised.map(c=>`<div class="dp-review-comment"><span class="dp-con-icon">–</span>${c}</div>`).join('')}
+        ${criticised.map(c=>`<div class="dp-review-comment"><span class="dp-con-icon">\u2013</span>${c}</div>`).join('')}
       </div>` : ''}
-  \`;
+  `;
 }
 
 function closeDetail(){document.getElementById('detailOverlay').classList.remove('open');document.body.style.overflow='';_modalGroup=null;}

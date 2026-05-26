@@ -1,100 +1,118 @@
 /**
- * ScoopScore Price Scraper v4
+ * ScoopScore Scraper v5
  * ─────────────────────────────────────────────────────────────
- * KEY CHANGES FROM v3:
+ * CHANGES FROM v4:
  *
- * 1. REMOVED gymfood, accessories, clothing categories — products
- *    matching those keywords are excluded, not miscategorised.
+ * 1. GRAPHQL REMOVED — The Storefront API requires a real per-store token.
+ *    Passing 'anonymous' always failed silently, so v4 was falling back to
+ *    products.json on every single retailer. GQL is now gone entirely.
  *
- * 2. RETRY WITH BACKOFF — 429/503 responses are retried up to 3 times
- *    with exponential backoff (2s → 4s → 8s) so rate-limited stores
- *    are fully scraped instead of returning 0 products.
+ * 2. THREE-BUCKET OUTPUT (no product silently dropped)
+ *    ✅ confirmed  → data/products.json    (live on site)
+ *    🟡 review     → data/review.json      (open review.html to action)
+ *    ❌ excluded   → data/excluded.json    (audit trail only)
+ *    Review decisions persist across runs — approve once, stays approved.
  *
- * 3. SLOWER PACING — 1s between pages (was 400ms), 3s between retailer
- *    batches (was 1s), batch size reduced to 3 (was 5) to avoid
- *    triggering rate limits in the first place.
+ * 3. VARIANT NORMALISATION — sizeKg, serves, and flavour are parsed at
+ *    scrape time so the frontend never has to guess from raw strings.
+ *    Anomalous prices (3× or ⅓ of median) are flagged per variant.
  *
- * Run manually:   node scraper.js
- * GitHub Actions: see .github/workflows/scrape.yml
+ * 4. RETAILER HEALTH CHECK — if a retailer's count drops >20% vs the
+ *    previous run a warning is printed and written to scrape.log.
+ *
+ * 5. TIGHTENED EXCLUSIONS — removed overly broad food patterns that
+ *    were dropping legitimate supplements (peanut butter protein powder,
+ *    meal replacements, etc.). These now go to the review queue instead.
+ *
+ * Usage:
+ *   node scraper.js               — normal daily run
+ *   node scraper.js --debug all   — dump every skipped product with reason
+ *   node scraper.js --debug nzmuscle
  * ─────────────────────────────────────────────────────────────
  */
+
+'use strict';
 
 const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
 
-const OUT_FILE   = path.join(__dirname, 'data', 'products.json');
-const LOG_FILE   = path.join(__dirname, 'data', 'scrape.log');
-const DEBUG_FILE = path.join(__dirname, 'data', 'debug-skipped.json');
-fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+// ─── PATHS ──────────────────────────────────────────────────────
+const DATA_DIR    = path.join(__dirname, 'data');
+const OUT_FILE    = path.join(DATA_DIR, 'products.json');
+const REVIEW_FILE = path.join(DATA_DIR, 'review.json');
+const EXCL_FILE   = path.join(DATA_DIR, 'excluded.json');
+const LOG_FILE    = path.join(DATA_DIR, 'scrape.log');
+fs.mkdirSync(DATA_DIR, { recursive: true });
 
-// Debug mode: node scraper.js --debug [retailerId]
-// Writes data/debug-skipped.json with every skipped product + reason
+// ─── CLI FLAGS ───────────────────────────────────────────────────
+const ARGS = process.argv.slice(2);
 const DEBUG_RETAILER = (() => {
-  const i = process.argv.indexOf('--debug');
-  return i !== -1 ? (process.argv[i + 1] || 'all') : null;
+  const i = ARGS.indexOf('--debug');
+  return i !== -1 ? (ARGS[i + 1] || 'all') : null;
 })();
-const debugSkipped = [];
 
-// ─── HARD EXCLUSIONS ───────────────────────────────────────────
-// Products matching any of these are skipped entirely.
-// Includes gym equipment, cosmetics, AND the three dropped categories
-// (accessories, clothing, gymfood) so they never appear in output.
+// ─── RETAILERS ───────────────────────────────────────────────────
+// All of these expose /products.json (standard on every Shopify store).
+// Sprint Fit uses a custom platform (cdn.n2erp.co.nz) and requires
+// Playwright — see README for setup. Add it back when ready.
+const RETAILERS = [
+  { id: 'nzmuscle',            name: 'NZ Muscle',            baseUrl: 'nzmuscle.co.nz',                freeShipping: 'Always free'    },
+  { id: 'sportsfuel',          name: 'Sportsfuel',           baseUrl: 'www.sportsfuel.co.nz',          freeShipping: 'Free over $60'  },
+  { id: 'scorpion',            name: 'Scorpion Supplements', baseUrl: 'scorpionsupplements.co.nz',     freeShipping: 'Check site'     },
+  { id: 'asnonline',           name: 'ASN Online',           baseUrl: 'asnonline.co.nz',               freeShipping: 'Free over $100' },
+  { id: 'supplementsolutions', name: 'Supplement Solutions', baseUrl: 'www.supplementsolutions.co.nz', freeShipping: 'Check site'     },
+  { id: 'raiseys',             name: "Raisey's",             baseUrl: 'raiseys.co.nz',                 freeShipping: 'Check site'     },
+  { id: 'bodystrong',          name: 'BodyStrong',           baseUrl: 'bodystrong.co.nz',              freeShipping: 'Check site'     },
+  { id: 'payless',             name: 'Payless Supplements',  baseUrl: 'paylesssupplements.co.nz',      freeShipping: 'Free shipping'  },
+  { id: 'supplementsnz',       name: 'Supplements NZ',       baseUrl: 'www.supplements.co.nz',         freeShipping: 'Free shipping'  },
+  { id: 'reactiv',             name: 'Reactiv Supplements',  baseUrl: 'www.reactivsupplements.co.nz',  freeShipping: 'Free NZ-wide'   },
+  { id: 'eatme',               name: 'Eat Me Supplements',   baseUrl: 'www.eatmesupplements.co.nz',    freeShipping: 'Check site'     },
+  { id: 'nutritionwarehouse',  name: 'Nutrition Warehouse',  baseUrl: 'www.nutritionwarehouse.co.nz',  freeShipping: 'Free over $60'  },
+];
+
+// ─── HARD EXCLUSIONS ─────────────────────────────────────────────
+// Only things that can NEVER be supplements: gym equipment, cosmetics,
+// clothing, accessories, and non-gym media. Borderline food products
+// (peanut butter protein, meal replacements) are removed from here —
+// they'll be caught by category rules or sent to the review queue.
 const EXCLUDE_PATTERNS = [
   // Gym equipment
   /\btreadmill\b/, /\brower\b/, /\bstationary\s*bike\b/, /\bspin\s*bike\b/,
   /\bpower\s*rack\b/, /\bsquat\s*rack\b/, /\bdumbbell\b/, /\bbarbell\b/,
   /\bkettlebell\b/, /\bweight\s*plate\b/, /\bgym\s*flooring\b/,
-  /\bcold\s*plunge\b/, /\bice\s*bath\b/,
-  // Cosmetics / non-supplements
+  /\bcold\s*plunge\b/, /\bice\s*bath\b/, /\bworkout\s*equipment\b/,
+  // Cosmetics
   /\bperfume\b/, /\bfragrance\b/, /\bskincare\b/, /\bmakeup\b/,
   /\bhair\s*care\b/, /\bhaircare\b/,
-  /\bworkout\s*equipment\b/,
-  /\bbook\b/, /\bebook\b/,
-  /\bphone\s*case\b/, /\bwallet\b/, /\bsunglasses\b/,
-  // Accessories (shakers, bags, belts, etc.)
-  /\bshaker\s*bottle\b/, /\bshaker\s*cup\b/, /\bblender\s*bottle\b/, /\bwater\s*bottle\b/,
-  /\bgym\s*bag\b/, /\blifting\s*strap\b/, /\blifting\s*belt\b/,
-  /\bgym\s*glove\b/, /\bwrist\s*wrap\b/, /\bknee\s*sleeve\b/,
-  /\bresistance\s*band\b/, /\bfoam\s*roller\b/,
+  // Accessories (shaker bottles are sold as accessories, not supplements)
+  /\bshaker\s*bottle\b/, /\bshaker\s*cup\b/, /\bblender\s*bottle\b/,
+  /\bwater\s*bottle\b/, /\bgym\s*bag\b/, /\blifting\s*strap\b/,
+  /\blifting\s*belt\b/, /\bgym\s*glove\b/, /\bwrist\s*wrap\b/,
+  /\bknee\s*sleeve\b/, /\bresistance\s*band\b/, /\bfoam\s*roller\b/,
   // Clothing
-  /\bgym\s*wear\b/, /\bgym\s*clothing\b/, /\bactivewear\b/, /\bactive\s*wear\b/,
+  /\bgym\s*wear\b/, /\bgym\s*clothing\b/, /\bactivewear\b/,
   /\bsinglet\b/, /\bleggings\b/, /\bsports\s*bra\b/, /\bcompression\s*wear\b/,
-  // Gym food (meal replacements, snack foods, condiments)
-  /\bmeal\s*replacement\b/, /\bpeanut\s*butter\b/, /\bnut\s*butter\b/,
-  /\bbeef\s*jerky\b/, /\brice\s*cake\b/, /\bgranola\b/, /\bovernight\s*oats\b/,
-  // Generic pharmacy / chemist vitamins — not gym goods
-  /\bvitamin\s*c\b/, /\bvitamin\s*b12\b/, /\bvitamin\s*b\s*complex\b/,
-  /\bzinc\s*(tablet|lozenge|capsule)\b/,
-  /\biron\s*(supplement|tablet)\b/,
-  /\bfolate\b/, /\bfolic\s*acid\b/,
-  /\bcalcium\s*(supplement|tablet)\b/,
-  /\bimmunity\b/, /\bimmune\s*support\b/,
-  /\bcold\s*(and|&)\s*flu\b/, /\bhayfever\b/, /\ballergy\b/,
-  /\bprenatal\b/, /\bpregnancy\s*vitamin\b/,
+  // Non-gym media & items
+  /\bebook\b/, /\bphone\s*case\b/, /\bwallet\b/, /\bsunglasses\b/,
+  // Pharmacy-only vitamins (not gym-relevant)
+  /\bfolic\s*acid\b/, /\bfolate\b/, /\bprenatal\b/, /\bpregnancy\s*vitamin\b/,
   /\bkids?\s*vitamin\b/, /\bchildren.s\s*vitamin\b/,
-  /\bcoenzyme\s*q10\b/, /\bcoq10\b/,
+  /\bcold\s*(and|&)\s*flu\b/, /\bhayfever\b/,
 ];
 
-// ─── CATEGORY RULES ────────────────────────────────────────────
-// Each rule has: keywords (matched against combined title+type+tags text),
-// and the category it maps to.
-// ORDER MATTERS — first match wins for deterministic assignment.
-// More specific rules are listed first.
-
+// ─── CATEGORY RULES ──────────────────────────────────────────────
+// First match wins. More specific rules are listed first.
 const CATEGORY_RULES = [
-  // ── Protein Bars / Snacks (must come before generic 'protein') ──
   {
     cat: 'proteinbars',
     keywords: [
       'protein bar','protein bars','protein cookie','protein cookies',
       'protein chip','protein chips','protein wafer','protein spread',
       'protein snack','protein snacks','snack bar','nutrition bar',
-      'high protein snack','energy bar',
+      'high protein snack','energy bar','protein ball','protein balls',
     ],
   },
-
-  // ── RTD (must come before generic 'protein' / 'energy') ──
   {
     cat: 'rtd',
     keywords: [
@@ -104,8 +122,6 @@ const CATEGORY_RULES = [
       'electrolyte drink','recovery drink','canned protein',
     ],
   },
-
-  // ── Creatine ──
   {
     cat: 'creatine',
     keywords: [
@@ -114,52 +130,57 @@ const CATEGORY_RULES = [
       'creatine gummies','flavoured creatine','creatine',
     ],
   },
-
-  // ── Pre-workout ──
   {
     cat: 'preworkout',
     keywords: [
       'pre-workout','pre workout','preworkout','pre workouts',
-      'stim free pre','non-stim pre','pump pre-workout',
-      'pump pre workout','stimulant free pre',
-      // Pump / nitric oxide products sold as pre-workout alternatives
-      'nitric oxide','n.o. booster','no booster','pump formula','pump supplement',
-      'vasodilator','blood flow','vascularity',
-      // Named pre-workout ingredients that are entire products
-      'alpha gpc','alpha-gpc','nootropic pre','caffeine supplement',
+      'stim free pre','non-stim pre','pump pre-workout','pump pre workout',
+      'stimulant free pre','nitric oxide','n.o. booster','no booster',
+      'pump formula','pump supplement','vasodilator','blood flow',
+      'vascularity','alpha gpc','alpha-gpc','nootropic pre',
+      'caffeine supplement','caffeine powder','caffeine tablets',
     ],
   },
-
-  // ── Fat Burners ──
   {
     cat: 'fatburner',
     keywords: [
       'fat burner','fat burners','fat metaboliser','fat metabolisers',
-      'thermogenic','thermogenics','weight loss','weight management',
-      'l-carnitine','l carnitine','carnitine','cla',
+      'thermogenic','thermogenics','weight loss supplement',
+      'weight management supplement','l-carnitine','l carnitine',
+      'carnitine supplement','cla supplement','cla softgel',
       'appetite control','metabolism support','oxyshred',
-      'shred supplement','fat loss',
+      'shred supplement','fat loss supplement',
     ],
   },
-
-  // ── BCAAs / Aminos ──
   {
     cat: 'bcaa',
     keywords: [
       'bcaa','bcaas','eaa','eaas','amino acids','amino acid',
       'essential amino','intra-workout','intra workout',
-      'glutamine','post workout','post-workout','aminos',
-      // Individual amino acids sold as standalone supplements
-      'beta alanine','beta-alanine','citrulline malate','l-citrulline','citrulline',
-      'l-arginine','arginine','l-taurine','taurine','l-tyrosine','tyrosine',
-      'l-glutamine','l-glycine','glycine','l-lysine','l-leucine','leucine',
-      'l-carnosine','carnosine','l-ornithine','ornithine','l-threonine',
-      'hmb','beta-hydroxy','agmatine','betaine anhydrous','betaine',
-      'recovery amino','amino recovery','amino blend',
+      'glutamine','post workout amino','post-workout amino','amino blend',
+      'beta alanine','beta-alanine','citrulline malate','l-citrulline',
+      'citrulline supplement','l-arginine supplement','arginine supplement',
+      'l-taurine supplement','taurine supplement','l-tyrosine supplement',
+      'tyrosine supplement','l-glutamine supplement','glycine supplement',
+      'l-leucine supplement','leucine supplement','hmb supplement',
+      'agmatine','betaine anhydrous','betaine supplement','amino recovery',
+      'recovery amino',
     ],
   },
-
-  // ── Protein (broad — intentionally last so specifics above win) ──
+  {
+    cat: 'vitamins',
+    keywords: [
+      'multivitamin','multi-vitamin','vitamin d3','vitamin d supplement',
+      'vitamin c supplement','vitamin b12 supplement','vitamin e supplement',
+      'omega 3','omega-3','fish oil','krill oil','magnesium supplement',
+      'zinc supplement','iron supplement','calcium supplement',
+      'vitamin mineral','electrolyte tablet','electrolyte capsule',
+      'zma','ashwagandha supplement','rhodiola','adaptogen supplement',
+      'sleep formula','melatonin','probiotic supplement','gut health',
+      'greens powder','super greens','spirulina','chlorella','collagen peptide',
+      'collagen supplement','biotin supplement','coq10','coenzyme q10',
+    ],
+  },
   {
     cat: 'protein',
     keywords: [
@@ -170,110 +191,35 @@ const CATEGORY_RULES = [
       'pea protein','hemp protein','rice protein','soy protein',
       'mass gainer','mass gainers','weight gainer',
       'casein protein','casein','egg protein','beef protein',
-      'collagen protein','thermogenic protein','lean protein',
-      'low carb protein','protein powder','protein blend',
-      'isolate protein','whey isolate','wpi','wpc',
-      'protein', // catch-all for protein — listed last within this rule
+      'thermogenic protein','lean protein','low carb protein',
+      'protein powder','protein blend','isolate protein',
+      'whey isolate','wpi','wpc','protein',
     ],
   },
 ];
 
-// ─── BROAD GYM SIGNALS ─────────────────────────────────────────
-// Used as a FINAL safety-net: if none of the category rules matched,
-// we check these signals to decide if the product should still be
-// included under a best-guess category.
+// ─── GYM SIGNALS ─────────────────────────────────────────────────
+// Safety net: if no category matched, check these to decide whether
+// the product belongs in the review queue (gym-related, needs a human)
+// or excluded.json (not gym-related at all).
 const GYM_SIGNALS = [
-  // Category anchors (always gym)
-  'supplement','supplements','sports nutrition','sports supplement','sports performance',
-  'pre-workout','preworkout','post-workout','post workout','intra workout','intra-workout',
-  'creatine','protein','whey','casein','isolate','concentrate','hydrolysed','hydrolyzed',
-  'bcaa','eaa','amino','glutamine','collagen','carnitine','mass gainer','weight gainer',
-  'fat burner','thermogenic','oxyshred','shred','lean','metabolism',
-  'rtd','ready to drink','energy drink','protein bar','protein cookie',
-  // Individual amino acids — frequently the entire product name
-  'beta alanine','beta-alanine','citrulline','arginine','taurine','tyrosine',
-  'leucine','isoleucine','valine','lysine','threonine','phenylalanine',
-  'methionine','histidine','tryptophan','cysteine','glycine','alanine',
-  'hmb','aakg','agmatine','betaine','ornithine','carnosine',
-  // Performance / pump ingredients
-  'nitric oxide','pump','vascularity','n.o.','alpha gpc','alpha-gpc',
-  'caffeine','stimulant','stim','nootropic','focus','cognitive',
-  'ashwagandha','rhodiola','panax','adaptogen',
-  // Recovery & health
-  'recovery','muscle recovery','post workout','repair','regenerate',
-  'electrolyte','hydration','magnesium','zinc','vitamin d','omega 3','omega-3',
-  'sleep formula','zma','melatonin',
-  // Bodybuilding / gym culture terms
-  'bodybuilding','powerlifting','crossfit','athletic','athlete','gym',
-  'workout','training','performance','endurance','strength','muscle',
-  'bulking','cutting','lean mass','body composition','physique',
-  // Common product series / brand patterns
-  'stack','bundle','combo','matrix','formula','complex',
-  'anabolic','natural test','testosterone','hormone',
-  'collagen peptide','keratin','biotin',
-  'greens','superfoods','spirulina','chlorella',
-  'probiotic','gut health','digestive',
+  'supplement','supplements','sports nutrition','sports supplement',
+  'pre-workout','preworkout','post-workout','creatine','protein','whey',
+  'casein','isolate','bcaa','eaa','amino','glutamine','carnitine',
+  'mass gainer','fat burner','thermogenic','oxyshred','anabolic',
+  'bodybuilding','powerlifting','crossfit','athlete','gym','workout',
+  'training','performance','endurance','strength','muscle','bulking',
+  'cutting','body composition','physique','stack','formula','complex',
+  'testosterone','collagen','greens','probiotic','electrolyte','recovery',
+  'beta alanine','citrulline','arginine','taurine','tyrosine','hmb',
+  'nitric oxide','pump','nootropic','adaptogen','ashwagandha',
 ];
 
-// ─── DETECTION LOGIC ───────────────────────────────────────────
-/**
- * Build a single normalised search string from all available metadata.
- * The more data we include, the less likely we are to miss a product.
- */
-function buildSearchText(title, productType, tags, description) {
-  return [
-    title || '',
-    productType || '',
-    Array.isArray(tags) ? tags.join(' ') : (tags || ''),
-    (description || '').slice(0, 200),
-  ].join(' ').toLowerCase();
-}
-
-/**
- * Detect category using multi-pass keyword matching.
- * Returns { cat, matched } or null if no match.
- */
-function detectCategory(title, productType, tags, description) {
-  const text = buildSearchText(title, productType, tags, description);
-
-  for (const rule of CATEGORY_RULES) {
-    for (const kw of rule.keywords) {
-      // Use word-boundary where possible; fallback to includes for phrases
-      const hasSpace = kw.includes(' ') || kw.includes('-');
-      const matched  = hasSpace
-        ? text.includes(kw)
-        : new RegExp(`\\b${kw.replace(/[-]/g, '[-]')}\\b`).test(text);
-      if (matched) return rule.cat;
-    }
-  }
-  return null;
-}
-
-/**
- * Check if a product is gym-related even if we couldn't pin a category.
- * Checks title, product_type, AND tags.
- */
-function isGymRelated(title, productType, tags, description) {
-  const text = buildSearchText(title, productType, tags, description);
-  if (EXCLUDE_PATTERNS.some(rx => rx.test(text))) return false;
-  return GYM_SIGNALS.some(sig => text.includes(sig));
-}
-
-/**
- * Is this product explicitly excluded (equipment, cosmetics, etc.)?
- */
-function isExcluded(title, productType, tags) {
-  const text = buildSearchText(title, productType, tags, '');
-  return EXCLUDE_PATTERNS.some(rx => rx.test(text));
-}
-
-
-// ── BRAND NORMALISATION ───────────────────────────────────────
+// ─── BRAND ALIASES ───────────────────────────────────────────────
 const BRAND_ALIASES = {
-  'mutant nutrition':'Mutant','mutant':'Mutant','mutant supplements':'Mutant',
+  'mutant nutrition':'Mutant','mutant':'Mutant',
   'optimum nutrition':'Optimum Nutrition','on':'Optimum Nutrition','optimum':'Optimum Nutrition',
-  'bsn':'BSN',
-  'dymatize':'Dymatize','dymatize nutrition':'Dymatize',
+  'bsn':'BSN','dymatize':'Dymatize','dymatize nutrition':'Dymatize',
   'muscletech':'MuscleTech','muscle tech':'MuscleTech',
   'ghost':'Ghost','ghost lifestyle':'Ghost',
   'ehp labs':'EHP Labs','ehplabs':'EHP Labs',
@@ -284,58 +230,47 @@ const BRAND_ALIASES = {
   "max's":"Max's",'maxs':"Max's",
   'emrald labs':'Emrald Labs','emrald':'Emrald Labs',
   'gen-tec':'Gen-Tec','gen tec':'Gen-Tec','gentec':'Gen-Tec',
-  'musashi':'Musashi',
-  'balance':'Balance','balance sports nutrition':'Balance',
-  'cellucor':'Cellucor',
-  'redcon1':'Redcon1','redcon 1':'Redcon1',
-  'ryse':'Ryse','ryse supps':'Ryse',
-  'atp science':'ATP Science',
+  'musashi':'Musashi','balance':'Balance','balance sports nutrition':'Balance',
+  'cellucor':'Cellucor','redcon1':'Redcon1','redcon 1':'Redcon1',
+  'ryse':'Ryse','ryse supps':'Ryse','atp science':'ATP Science',
   'isopure':'Isopure','the isopure company':'Isopure',
-  'vpa':'VPA','vpa australia':'VPA',
-  'bulk nutrients':'Bulk Nutrients',
-  'true protein':'True Protein',
-  'prana on':'Prana ON','prana':'Prana ON',
+  'vpa':'VPA','vpa australia':'VPA','bulk nutrients':'Bulk Nutrients',
+  'true protein':'True Protein','prana on':'Prana ON','prana':'Prana ON',
   'body science':'Body Science','bsc':'Body Science',
-  'calocurb':'Calocurb',
   'science in sport':'Science in Sport','sis':'Science in Sport',
   'switch nutrition':'Switch Nutrition','switch':'Switch Nutrition',
-  'nutrition warehouse':'Nutrition Warehouse',
-  'nz muscle':'NZ Muscle',
-  'xtend':'Xtend',
-  'inspired nutraceuticals':'Inspired','inspired':'Inspired',
+  'xtend':'Xtend','inspired nutraceuticals':'Inspired','inspired':'Inspired',
   'outbreak nutrition':'Outbreak','outbreak':'Outbreak',
   'staunch':'Staunch','staunch nation':'Staunch',
   'axe & sledge':'Axe & Sledge','axe and sledge':'Axe & Sledge',
-  'gorilla mind':'Gorilla Mind',
-  'cbum':'CBUM','cbum itholics':'CBUM',
+  'gorilla mind':'Gorilla Mind','cbum':'CBUM',
 };
 
 function normalizeBrand(raw) {
   if (!raw || raw.trim() === '' || raw === 'Unknown') return 'Unknown';
   const key = raw.toLowerCase().trim();
-  if (BRAND_ALIASES[key]) return BRAND_ALIASES[key];
-  return raw.trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  return BRAND_ALIASES[key] || raw.trim().replace(/\b\w/g, c => c.toUpperCase());
 }
 
-// ─── LOGGING ───────────────────────────────────────────────────
+// ─── LOGGING ─────────────────────────────────────────────────────
 function log(msg) {
   const line = `[${new Date().toISOString()}] ${msg}`;
   console.log(line);
-  try { fs.appendFileSync(LOG_FILE, line + '\n'); } catch(e) {}
+  try { fs.appendFileSync(LOG_FILE, line + '\n'); } catch (_) {}
 }
 
-// ─── HTTP HELPERS ──────────────────────────────────────────────
-function httpGet(url, headers = {}) {
+// ─── HTTP HELPERS ────────────────────────────────────────────────
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function httpGet(url) {
   return new Promise((resolve, reject) => {
     const req = https.get(url, {
-      headers: {
-        'User-Agent': 'ScoopScore/3.0 price-comparison-bot (+https://scoopscore.co.nz)',
-        ...headers
-      },
-      timeout: 20000,
+      headers: { 'User-Agent': 'ScoopScore/5.0 price-comparison-bot (+https://scoopscore.co.nz)' },
+      timeout: 25000,
     }, (res) => {
+      // Follow redirects
       if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
-        return httpGet(res.headers.location, headers).then(resolve).catch(reject);
+        return httpGet(res.headers.location).then(resolve).catch(reject);
       }
       let data = '';
       res.on('data', chunk => data += chunk);
@@ -349,92 +284,15 @@ function httpGet(url, headers = {}) {
   });
 }
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-// ─── SHOPIFY GRAPHQL STOREFRONT API ────────────────────────────
-const GQL_QUERY = `
-  query GetProducts($cursor: String) {
-    products(first: 250, after: $cursor) {
-      pageInfo { hasNextPage endCursor }
-      edges {
-        node {
-          id
-          title
-          handle
-          productType
-          vendor
-          tags
-          description
-          images(first: 1) { edges { node { url } } }
-          variants(first: 100) {
-            edges {
-              node {
-                id
-                title
-                price { amount currencyCode }
-                availableForSale
-                sku
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-async function fetchShopifyGraphQL(domain, cursor = null) {
-  const body = JSON.stringify({
-    query: GQL_QUERY,
-    variables: { cursor }
-  });
-
-  return new Promise((resolve, reject) => {
-    const req = https.request({
-      hostname: domain.replace(/^https?:\/\//, '').replace(/\/$/, ''),
-      path: '/api/2024-01/graphql.json',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body),
-        'X-Shopify-Storefront-Access-Token': 'anonymous',
-        'User-Agent': 'ScoopScore/3.0 price-comparison-bot',
-      },
-      timeout: 25000,
-    }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        if (res.statusCode !== 200) return reject(new Error(`GQL HTTP ${res.statusCode} for ${domain}`));
-        try { resolve(JSON.parse(data)); }
-        catch(e) { reject(new Error(`GQL JSON parse error for ${domain}: ${e.message}`)); }
-      });
-    });
-    req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error(`GQL timeout: ${domain}`)); });
-    req.write(body);
-    req.end();
-  });
-}
-
-// ─── SHOPIFY products.json FALLBACK ────────────────────────────
-async function fetchProductsJSON(baseUrl, page = 1) {
-  const url = `https://${baseUrl}/products.json?limit=250&page=${page}`;
-  const data = await httpGetWithRetry(url);
-  if (data.trim().startsWith('<')) throw new Error('Got HTML instead of JSON');
-  return JSON.parse(data);
-}
-
-// Retry wrapper — handles 429 / 503 with exponential backoff
-async function httpGetWithRetry(url, headers = {}, maxRetries = 3) {
+async function httpGetWithRetry(url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      return await httpGet(url, headers);
+      return await httpGet(url);
     } catch (err) {
-      const isRateLimit = err.message.includes('429') || err.message.includes('503');
-      if (isRateLimit && attempt < maxRetries) {
+      const isRetryable = /429|503|502|504/.test(err.message);
+      if (isRetryable && attempt < maxRetries) {
         const delay = 2000 * Math.pow(2, attempt - 1); // 2s, 4s, 8s
-        log(`    ↻ Rate limited (${err.message.match(/\d{3}/)?.[0] || '?'}) — retrying in ${delay/1000}s (attempt ${attempt}/${maxRetries})`);
+        log(`    ↻ Retryable error (${err.message.match(/\d{3}/)?.[0] ?? '?'}) — waiting ${delay / 1000}s (attempt ${attempt}/${maxRetries})`);
         await sleep(delay);
       } else {
         throw err;
@@ -443,55 +301,205 @@ async function httpGetWithRetry(url, headers = {}, maxRetries = 3) {
   }
 }
 
-// ─── BUILD PRODUCT RECORD ──────────────────────────────────────
+// ─── VARIANT NORMALISATION ───────────────────────────────────────
 /**
- * Given raw product data and a retailer config, return a normalised
- * product record — or null if the product should be skipped.
- *
- * Skip conditions (as tight as possible):
- *   1. Hard-excluded (gym equipment, cosmetics, books)
- *   2. No purchasable price (all variants $0 / unparseable)
- *   3. Not gym-related at all (detectCategory returned null AND
- *      isGymRelated returned false)
+ * Parse a Shopify variant title into structured fields.
+ * Shopify variants use patterns like:
+ *   "2.27kg / Chocolate Fudge"
+ *   "500g / Vanilla"
+ *   "5lb / Unflavoured"
+ *   "80 Serves / Chocolate"
+ *   "Chocolate / 2kg"    ← reversed order
+ *   "Default Title"      ← single-variant product
  */
-function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, description, variants, imageUrl) {
-  const isDebugging = DEBUG_RETAILER && (DEBUG_RETAILER === 'all' || retailer.id === DEBUG_RETAILER);
+function parseVariantTitle(title) {
+  const t = (title || '').trim();
+  if (!t || t.toLowerCase() === 'default title') {
+    return { sizeKg: null, serves: null, sizeLabel: null, flavour: null };
+  }
 
-  function skip(reason) {
-    if (isDebugging) {
-      debugSkipped.push({ retailer: retailer.id, title: rawTitle, productType, vendor, tags: (tags||[]).slice(0,5), reason });
+  const parts = t.split('/').map(p => p.trim()).filter(Boolean);
+  let sizeKg = null, serves = null, sizeLabel = null;
+  const flavourParts = [];
+
+  for (const part of parts) {
+    const lower = part.toLowerCase();
+
+    // Weight: 2.27kg, 500g, 2KG, 500G
+    const weightMatch = lower.match(/^(\d+(?:\.\d+)?)\s*(kg|g)$/);
+    if (weightMatch) {
+      const val = parseFloat(weightMatch[1]);
+      sizeKg = weightMatch[2] === 'g' ? +(val / 1000).toFixed(3) : val;
+      sizeLabel = part;
+      continue;
     }
-    return null;
+
+    // Weight embedded in text: "2kg Bag", "900g Pouch"
+    const weightEmbedded = lower.match(/(\d+(?:\.\d+)?)\s*(kg|g)\b/);
+    if (weightEmbedded) {
+      const val = parseFloat(weightEmbedded[1]);
+      sizeKg = weightEmbedded[2] === 'g' ? +(val / 1000).toFixed(3) : val;
+      sizeLabel = `${weightEmbedded[1]}${weightEmbedded[2]}`;
+      // The remainder might be a descriptor, not a flavour — skip it
+      continue;
+    }
+
+    // Imperial: 5lb, 2.2lbs, 5 lb
+    const lbMatch = lower.match(/^(\d+(?:\.\d+)?)\s*lbs?$/);
+    if (lbMatch) {
+      sizeKg = +(parseFloat(lbMatch[1]) * 0.453592).toFixed(3);
+      sizeLabel = part;
+      continue;
+    }
+
+    // Ounces: 32oz
+    const ozMatch = lower.match(/^(\d+(?:\.\d+)?)\s*oz$/);
+    if (ozMatch) {
+      sizeKg = +(parseFloat(ozMatch[1]) * 0.028349).toFixed(3);
+      sizeLabel = part;
+      continue;
+    }
+
+    // Serves / caps / tablets: "80 Serves", "120 Capsules", "30 Sachets"
+    const servesMatch = lower.match(/^(\d+)\s*(?:serves?|servings?|scoops?|sachets?|caps?|capsules?|tabs?|tablets?|softgels?|gummies?)$/);
+    if (servesMatch) {
+      serves = parseInt(servesMatch[1]);
+      sizeLabel = part;
+      continue;
+    }
+
+    // Everything else is flavour / option
+    if (part && part !== '-') flavourParts.push(part);
   }
 
-  // Guard: hard exclusions first
-  if (isExcluded(rawTitle, productType, tags)) return skip('hard-excluded');
+  return {
+    sizeKg,
+    serves,
+    sizeLabel,
+    flavour: flavourParts.join(' / ').trim() || null,
+  };
+}
 
-  // Parse prices
+/**
+ * Detect price anomalies within a product's variants.
+ * A variant price is flagged if it's more than 3× or less than ⅓
+ * of the product's median price — almost always a data error.
+ */
+function flagPriceAnomalies(variants) {
+  const prices = variants.map(v => v.price).filter(p => p > 0).sort((a, b) => a - b);
+  if (prices.length < 3) return variants; // not enough data
+
+  const median = prices[Math.floor(prices.length / 2)];
+  return variants.map(v => ({
+    ...v,
+    priceAnomaly: v.price > 0 && (v.price > median * 3 || v.price < median / 3),
+  }));
+}
+
+// ─── CLASSIFICATION ──────────────────────────────────────────────
+function buildSearchText(...parts) {
+  return parts
+    .map(p => Array.isArray(p) ? p.join(' ') : (p || ''))
+    .join(' ')
+    .toLowerCase();
+}
+
+function isExcluded(text) {
+  return EXCLUDE_PATTERNS.some(rx => rx.test(text));
+}
+
+function detectCategory(text) {
+  for (const rule of CATEGORY_RULES) {
+    for (const kw of rule.keywords) {
+      const matched = kw.includes(' ') || kw.includes('-')
+        ? text.includes(kw)
+        : new RegExp(`\\b${kw.replace(/[-]/g, '[-]')}\\b`).test(text);
+      if (matched) return rule.cat;
+    }
+  }
+  return null;
+}
+
+function isGymRelated(text) {
+  return GYM_SIGNALS.some(sig => text.includes(sig));
+}
+
+// ─── BUILD PRODUCT RECORD ────────────────────────────────────────
+/**
+ * Returns { record, bucket, reason } where bucket is:
+ *   'confirmed' — category matched, ready for products.json
+ *   'review'    — gym-related but needs a human to assign category
+ *   'excluded'  — definitely not a supplement
+ */
+function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, description, variants, imageUrl, prevReviewDecisions) {
+  const searchText = buildSearchText(rawTitle, productType, tags, (description || '').slice(0, 300));
+
+  // ── 1. Hard exclusion ──
+  if (isExcluded(searchText)) {
+    return { record: null, bucket: 'excluded', reason: 'hard-excluded' };
+  }
+
+  // ── 2. Price check ──
   const allPrices = variants.map(v => parseFloat(v.price)).filter(p => !isNaN(p) && p > 0);
-  if (allPrices.length === 0) return skip('no-price');
-
-  // Category detection — uses title, type, tags, and first 200 chars of description
-  let cat = detectCategory(rawTitle, productType, tags, description);
-
-  // If no category matched, use gym signals or dedicated-store bypass
-  if (!cat) {
-    const gymRelated = isGymRelated(rawTitle, productType, tags, description);
-    if (!gymRelated && !retailer.dedicated) return skip('not-gym-related');
-    // Gym-related or dedicated store — try best-effort category
-    cat = guessCategoryFromSignals(rawTitle, productType, tags);
+  if (allPrices.length === 0) {
+    return { record: null, bucket: 'excluded', reason: 'no-valid-price' };
   }
 
-  // For dedicated stores, fall back to 'protein' rather than dropping the product
-  // (better to miscategorise than to lose a real supplement)
-  if (!cat) {
-    if (retailer.dedicated) cat = 'protein';
-    else return skip('no-category-after-fallback');
+  // ── 3. Normalise variants ──
+  const normalisedVariants = flagPriceAnomalies(
+    variants.map(v => {
+      const parsed = parseVariantTitle(v.title);
+      return {
+        id:           v.id,
+        title:        v.title,
+        price:        parseFloat(v.price) || 0,
+        sku:          v.sku || '',
+        available:    v.available !== false,
+        sizeKg:       parsed.sizeKg,
+        serves:       parsed.serves,
+        sizeLabel:    parsed.sizeLabel,
+        flavour:      parsed.flavour,
+      };
+    })
+  );
+
+  // ── 4. Check for a previous human review decision ──
+  const productId = `${retailer.id}_${handle}`;
+  if (prevReviewDecisions[productId]) {
+    const decision = prevReviewDecisions[productId];
+    if (decision.bucket === 'confirmed') {
+      const record = assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, decision.category);
+      return { record, bucket: 'confirmed', reason: 'human-approved' };
+    }
+    if (decision.bucket === 'excluded') {
+      return { record: null, bucket: 'excluded', reason: 'human-excluded' };
+    }
+    // decision is still 'pending' — fall through to re-classify
   }
 
-  const availVariants = variants.filter(v => v.available !== false);
-  const minPrice = availVariants.length > 0
-    ? Math.min(...availVariants.map(v => parseFloat(v.price)).filter(p => p > 0))
+  // ── 5. Category detection ──
+  let cat = detectCategory(searchText);
+
+  if (cat) {
+    const record = assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, cat);
+    return { record, bucket: 'confirmed', reason: `matched:${cat}` };
+  }
+
+  // ── 6. Gym signal check — send to review rather than drop ──
+  if (isGymRelated(searchText)) {
+    const record = assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, null);
+    return { record, bucket: 'review', reason: 'gym-related-uncategorised' };
+  }
+
+  // ── 7. Not gym-related at all ──
+  return { record: null, bucket: 'excluded', reason: 'not-gym-related' };
+}
+
+function assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, cat) {
+  const availableVariants = normalisedVariants.filter(v => v.available && v.price > 0 && !v.priceAnomaly);
+  const allPrices = normalisedVariants.map(v => v.price).filter(p => p > 0);
+  const minPrice = availableVariants.length > 0
+    ? Math.min(...availableVariants.map(v => v.price))
     : Math.min(...allPrices);
 
   return {
@@ -505,9 +513,9 @@ function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, des
     tags:         (Array.isArray(tags) ? tags : []).slice(0, 10),
     priceFrom:    parseFloat(minPrice.toFixed(2)),
     priceTo:      parseFloat(Math.max(...allPrices).toFixed(2)),
-    available:    availVariants.length > 0,
+    available:    availableVariants.length > 0,
     currency:     'NZD',
-    variants,
+    variants:     normalisedVariants,
     url:          `https://${retailer.baseUrl}/products/${handle}`,
     imageUrl:     imageUrl || null,
     updatedAt:    new Date().toISOString(),
@@ -515,142 +523,87 @@ function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, des
   };
 }
 
-/**
- * Last-resort category guess for confirmed gym products that didn't
- * match any CATEGORY_RULES keyword. Checks broad signals in priority order.
- */
-function guessCategoryFromSignals(title, productType, tags) {
-  const text = buildSearchText(title, productType, tags, '');
-  if (/creatine/.test(text))                                return 'creatine';
-  if (/pre.?workout|preworkout/.test(text))                 return 'preworkout';
-  if (/fat.?burn|thermogen|carnitine|shred/.test(text))     return 'fatburner';
-  if (/bcaa|eaa|\bamino\b|glutamine/.test(text))            return 'bcaa';
-  if (/protein.?bar|protein.?cookie|snack.?bar/.test(text)) return 'proteinbars';
-  if (/ready.?to.?drink|rtd|energy.?drink/.test(text))      return 'rtd';
-  if (/whey|isolate|casein|mass.?gain|plant.?protein|vegan.?protein|protein/.test(text)) return 'protein';
-  return null; // can't categorise — will be excluded
+// ─── FETCH ───────────────────────────────────────────────────────
+async function fetchProductsJSON(baseUrl, page) {
+  const url = `https://${baseUrl}/products.json?limit=250&page=${page}`;
+  const raw = await httpGetWithRetry(url);
+  if (raw.trim().startsWith('<')) throw new Error('Got HTML instead of JSON — store may not be Shopify');
+  return JSON.parse(raw);
 }
 
-// ─── SCRAPE ONE SHOPIFY STORE ───────────────────────────────────
-async function scrapeShopifyStore(retailer) {
+async function scrapeShopifyStore(retailer, prevReviewDecisions) {
   log(`Scraping ${retailer.name}...`);
-  const products = [];
-  let skipped = 0;
-  let cursor = null;
+
+  const confirmed = [], review = [], excluded = [];
   let page = 0;
 
-  // Try GraphQL first
-  try {
-    while (true) {
-      page++;
-      const result = await fetchShopifyGraphQL(retailer.baseUrl, cursor);
+  while (true) {
+    page++;
+    try {
+      const data = await fetchProductsJSON(retailer.baseUrl, page);
+      const batch = data.products || [];
+      if (batch.length === 0) break;
 
-      if (result.errors || !result.data?.products) {
-        throw new Error(result.errors?.[0]?.message || 'No product data in GQL response');
-      }
-
-      const { edges, pageInfo } = result.data.products;
-      for (const { node } of edges) {
-        const variants = node.variants.edges.map(({ node: v }) => ({
+      for (const raw of batch) {
+        const desc = (raw.body_html || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+        const variants = (raw.variants || []).map(v => ({
           id:        v.id,
           title:     v.title,
-          price:     parseFloat(v.price.amount),
+          price:     parseFloat(v.price),
           sku:       v.sku || '',
-          available: v.availableForSale,
+          available: v.available !== false,
         }));
 
-        const desc   = node.description || '';
-        const record = buildProduct(
+        const result = buildProduct(
           retailer,
-          node.title,
-          node.handle,
-          node.productType,
-          node.vendor,
-          node.tags,
+          raw.title,
+          raw.handle || String(raw.id),
+          raw.product_type,
+          raw.vendor,
+          raw.tags || [],
           desc,
           variants,
-          node.images.edges[0]?.node.url || null,
+          raw.images?.[0]?.src || null,
+          prevReviewDecisions,
         );
 
-        if (record) products.push(record);
-        else skipped++;
+        if (result.bucket === 'confirmed' && result.record) confirmed.push(result.record);
+        else if (result.bucket === 'review' && result.record)  review.push({ ...result.record, reviewReason: result.reason });
+        else excluded.push({ retailer: retailer.id, title: raw.title, reason: result.reason });
       }
 
-      log(`  ${retailer.name} page ${page}: ${edges.length} fetched, ${skipped} skipped so far (GQL)`);
-      if (!pageInfo.hasNextPage) break;
-      cursor = pageInfo.endCursor;
-      await sleep(1000); // 1s between pages
-    }
-
-  } catch(gqlErr) {
-    log(`  ${retailer.name} GQL failed (${gqlErr.message}), falling back to products.json...`);
-
-    let jsonPage = 1;
-    while (true) {
-      try {
-        const data  = await fetchProductsJSON(retailer.baseUrl, jsonPage);
-        const batch = data.products || [];
-        if (batch.length === 0) break;
-
-        for (const raw of batch) {
-          const desc = (raw.body_html || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-          const variants = (raw.variants || []).map(v => ({
-            id:        v.id,
-            title:     v.title,
-            price:     parseFloat(v.price),
-            sku:       v.sku || '',
-            available: true, // products.json available flag is unreliable
-          }));
-
-          const record = buildProduct(
-            retailer,
-            raw.title,
-            raw.handle || String(raw.id),
-            raw.product_type,
-            raw.vendor,
-            raw.tags || [],
-            desc,
-            variants,
-            raw.images?.[0]?.src || null,
-          );
-
-          if (record) products.push(record);
-          else skipped++;
-        }
-
-        log(`  ${retailer.name} page ${jsonPage}: ${batch.length} fetched, ${skipped} skipped so far (JSON)`);
-        if (batch.length < 250) break;
-        jsonPage++;
-        await sleep(1000); // 1s between pages to avoid rate limits
-      } catch(jsonErr) {
-        log(`  ${retailer.name} products.json page ${jsonPage} failed: ${jsonErr.message}`);
-        break;
-      }
+      log(`  ${retailer.name} page ${page}: ${batch.length} fetched → ${confirmed.length} confirmed, ${review.length} review, ${excluded.length} excluded`);
+      if (batch.length < 250) break;
+      await sleep(1000);
+    } catch (err) {
+      log(`  ${retailer.name} page ${page} FAILED: ${err.message}`);
+      break;
     }
   }
 
-  log(`  ${retailer.name}: ${products.length} products kept, ${skipped} skipped`);
-  return products;
+  log(`  ${retailer.name} done: ${confirmed.length} confirmed, ${review.length} pending review, ${excluded.length} excluded`);
+  return { confirmed, review, excluded };
 }
 
-// ─── RETAILER LIST ─────────────────────────────────────────────
-const RETAILERS = [
-  { id: 'nzmuscle',            name: 'NZ Muscle',             baseUrl: 'nzmuscle.co.nz',                    freeShipping: 'Always free',      dedicated: true },
-  { id: 'sportsfuel',          name: 'Sportsfuel',            baseUrl: 'www.sportsfuel.co.nz',              freeShipping: 'Free over $60' },
-  { id: 'scorpion',            name: 'Scorpion Supplements',  baseUrl: 'scorpionsupplements.co.nz',         freeShipping: 'Check site',       dedicated: true },
-  { id: 'asnonline',           name: 'ASN Online',            baseUrl: 'asnonline.co.nz',                   freeShipping: 'Free over $100',   dedicated: true },
-  { id: 'supplementsolutions', name: 'Supplement Solutions',  baseUrl: 'www.supplementsolutions.co.nz',     freeShipping: 'Check site',       dedicated: true },
-  { id: 'raiseys',             name: "Raisey's",              baseUrl: 'raiseys.co.nz',                     freeShipping: 'Check site',       dedicated: true },
-  { id: 'bodystrong',          name: 'BodyStrong',            baseUrl: 'bodystrong.co.nz',                  freeShipping: 'Check site',       dedicated: true },
-  { id: 'payless',             name: 'Payless Supplements',   baseUrl: 'paylesssupplements.co.nz',          freeShipping: 'Free shipping',    dedicated: true },
-  { id: 'supplementsnz',       name: 'Supplements NZ',        baseUrl: 'www.supplements.co.nz',             freeShipping: 'Free shipping' },
-  { id: 'reactiv',             name: 'Reactiv Supplements',   baseUrl: 'www.reactivsupplements.co.nz',      freeShipping: 'Free NZ-wide',     dedicated: true },
-  { id: 'eatme',               name: 'Eat Me Supplements',    baseUrl: 'www.eatmesupplements.co.nz',        freeShipping: 'Check site',       dedicated: true },
-  { id: 'nutritionwarehouse',  name: 'Nutrition Warehouse',   baseUrl: 'www.nutritionwarehouse.co.nz',      freeShipping: 'Free over $60' },
-  // Xplosiv and Sprint Fit are not Shopify and require Playwright (see README)
-];
+// ─── HEALTH CHECK ────────────────────────────────────────────────
+/**
+ * Compare new product counts to the previous run.
+ * Returns an array of warning strings for any retailer that dropped >20%.
+ */
+function healthCheck(newStats, prevStats) {
+  const warnings = [];
+  for (const [name, newCount] of Object.entries(newStats)) {
+    const prev = prevStats[name];
+    if (prev == null || prev === 0) continue;
+    const drop = (prev - newCount) / prev;
+    if (drop > 0.2) {
+      warnings.push(`⚠️  ${name}: ${prev} → ${newCount} products (${Math.round(drop * 100)}% drop — possible scrape failure)`);
+    }
+  }
+  return warnings;
+}
 
-// ─── MERGE WITH EXISTING (preserve price history) ───────────────
+// ─── MERGE PRICE HISTORY ─────────────────────────────────────────
 function mergeWithExisting(newProducts, existing) {
   const existMap = {};
   for (const p of existing) existMap[p.id] = p;
@@ -659,115 +612,196 @@ function mergeWithExisting(newProducts, existing) {
     const prev = existMap[p.id];
     if (!prev) return p;
 
-    const history = prev.priceHistory || [];
+    const history = [...(prev.priceHistory || [])];
     if (prev.priceFrom !== p.priceFrom) {
-      history.push({ date: prev.updatedAt, price: prev.priceFrom });
+      history.push({ date: prev.updatedAt?.slice(0, 10) ?? 'unknown', price: prev.priceFrom });
       if (history.length > 30) history.shift();
     }
     return { ...p, priceHistory: history };
   });
 }
 
-// ─── MAIN ──────────────────────────────────────────────────────
-async function main() {
-  log('');
-  log('═══════════════════════════════════════════');
-  log('  ScoopScore Scraper v4 — Rate-Limit Safe  ');
-  log('═══════════════════════════════════════════');
-  log(`  Retailers: ${RETAILERS.length}`);
-  log(`  Method: Shopify GraphQL → products.json fallback`);
-  log(`  Categories: protein, proteinbars, rtd, creatine, preworkout, fatburner, bcaa`);
-  log(`  Pacing: batch=3, page delay=1s, batch pause=3s, retry 429/503 x3`);
-  log('');
-
-  let existing = [];
+// ─── LOAD PREVIOUS REVIEW DECISIONS ──────────────────────────────
+/**
+ * Read the existing review.json and extract human decisions (confirmed/excluded).
+ * These are applied during classification so approved products don't
+ * fall back into the queue on every scrape.
+ */
+function loadPrevReviewDecisions() {
   try {
-    const raw = JSON.parse(fs.readFileSync(OUT_FILE, 'utf8'));
-    existing = raw.products || [];
-    log(`  Loaded ${existing.length} existing products for price history`);
-  } catch(e) { log('  No existing data — fresh start'); }
+    const raw = JSON.parse(fs.readFileSync(REVIEW_FILE, 'utf8'));
+    const decisions = {};
+    for (const item of raw.products || []) {
+      if (item.decision && item.decision !== 'pending') {
+        decisions[item.id] = { bucket: item.decision, category: item.confirmedCategory || null };
+      }
+    }
+    const count = Object.keys(decisions).length;
+    if (count > 0) log(`  Loaded ${count} previous review decisions (will auto-apply)`);
+    return decisions;
+  } catch (_) {
+    return {};
+  }
+}
 
-  const allProducts = [];
-  const stats = {};
+// ─── MAIN ────────────────────────────────────────────────────────
+async function main() {
+  // Truncate log for this run
+  try { fs.writeFileSync(LOG_FILE, ''); } catch (_) {}
+
+  log('═══════════════════════════════════════════════');
+  log('  ScoopScore Scraper v5 — Three-Bucket Edition  ');
+  log('═══════════════════════════════════════════════');
+  log(`  Retailers: ${RETAILERS.length}`);
+  log(`  Output: confirmed → products.json | uncategorised → review.json | junk → excluded.json`);
+  log('');
+
+  // Load previous data for price history + health check baseline
+  let existingProducts = [];
+  let prevRetailerStats = {};
+  try {
+    const prev = JSON.parse(fs.readFileSync(OUT_FILE, 'utf8'));
+    existingProducts = prev.products || [];
+    prevRetailerStats = prev.meta?.retailerStats || {};
+    log(`  Loaded ${existingProducts.length} existing products (for price history)`);
+  } catch (_) {
+    log('  No existing products.json — fresh start');
+  }
+
+  // Load previous human review decisions
+  const prevReviewDecisions = loadPrevReviewDecisions();
+
+  const allConfirmed = [];
+  const allReview    = [];
+  const allExcluded  = [];
+  const retailerStats = {};
   const startTime = Date.now();
 
-  const BATCH_SIZE = 3; // smaller batches = less simultaneous load on any one server
+  // Scrape in small batches — 3 concurrent to avoid overloading retailers
+  const BATCH_SIZE = 3;
   for (let i = 0; i < RETAILERS.length; i += BATCH_SIZE) {
     const batch = RETAILERS.slice(i, i + BATCH_SIZE);
-    const results = await Promise.allSettled(batch.map(r => scrapeShopifyStore(r)));
+    const results = await Promise.allSettled(
+      batch.map(r => scrapeShopifyStore(r, prevReviewDecisions))
+    );
+
     for (let j = 0; j < results.length; j++) {
       const retailer = batch[j];
       if (results[j].status === 'fulfilled') {
-        const products = results[j].value;
-        allProducts.push(...products);
-        stats[retailer.name] = products.length;
+        const { confirmed, review, excluded } = results[j].value;
+        allConfirmed.push(...confirmed);
+        allReview.push(...review);
+        allExcluded.push(...excluded);
+        retailerStats[retailer.name] = confirmed.length;
       } else {
         log(`  ${retailer.name} FAILED: ${results[j].reason?.message}`);
-        stats[retailer.name] = 0;
+        retailerStats[retailer.name] = 0;
       }
     }
-    if (i + BATCH_SIZE < RETAILERS.length) await sleep(3000); // 3s between batches
+
+    if (i + BATCH_SIZE < RETAILERS.length) await sleep(3000);
   }
 
-  // Deduplicate by id (same product from multiple collections within one store)
+  // ── Health check ──
+  const warnings = healthCheck(retailerStats, prevRetailerStats);
+  if (warnings.length > 0) {
+    log('');
+    log('  HEALTH CHECK WARNINGS:');
+    warnings.forEach(w => log(`  ${w}`));
+    log('');
+  }
+
+  // ── Deduplicate confirmed (same product in multiple collections) ──
   const seen = new Set();
-  const deduped = allProducts.filter(p => {
+  const deduped = allConfirmed.filter(p => {
     if (seen.has(p.id)) return false;
     seen.add(p.id);
     return true;
   });
 
-  const merged = mergeWithExisting(deduped, existing);
+  // ── Merge price history ──
+  const merged = mergeWithExisting(deduped, existingProducts);
 
+  // ── Sort ──
   merged.sort((a, b) => {
-    const ca = a.category || 'zzz';
-    const cb = b.category || 'zzz';
-    if (ca !== cb) return ca.localeCompare(cb);
-    const ba = a.brand || '';
-    const bb = b.brand || '';
-    if (ba !== bb) return ba.localeCompare(bb);
-    return (a.priceFrom || 0) - (b.priceFrom || 0);
+    const catOrder = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins'];
+    const ai = catOrder.indexOf(a.category ?? '');
+    const bi = catOrder.indexOf(b.category ?? '');
+    if (ai !== bi) return ai - bi;
+    return (a.brand || '').localeCompare(b.brand || '');
   });
 
-  const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa'];
-  const catCounts = {};
-  for (const c of ALL_CATS) catCounts[c] = merged.filter(p => p.category === c).length;
+  // ── Category counts ──
+  const ALL_CATS = ['protein','proteinbars','rtd','creatine','preworkout','fatburner','bcaa','vitamins'];
+  const catCounts = Object.fromEntries(ALL_CATS.map(c => [c, merged.filter(p => p.category === c).length]));
 
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
 
-  const output = {
+  // ── Write products.json ──
+  fs.writeFileSync(OUT_FILE, JSON.stringify({
     meta: {
       updatedAt:     new Date().toISOString(),
       totalProducts: merged.length,
       retailers:     RETAILERS.map(r => r.name),
-      retailerStats: stats,
+      retailerStats,
       categories:    catCounts,
-      scrapeMethod:  'shopify-graphql-v4',
+      pendingReview: allReview.length,
       elapsed:       `${elapsed}s`,
+      healthWarnings: warnings,
     },
     products: merged,
-  };
+  }));
 
-  fs.writeFileSync(OUT_FILE, JSON.stringify(output));
+  // ── Write / merge review.json ──
+  // Keep existing pending decisions, add new uncategorised products,
+  // don't overwrite any item that already has a human decision.
+  let existingReview = [];
+  try {
+    existingReview = JSON.parse(fs.readFileSync(REVIEW_FILE, 'utf8')).products || [];
+  } catch (_) {}
 
-  // Write debug file if --debug was used
-  if (DEBUG_RETAILER) {
-    const byReason = {};
-    for (const s of debugSkipped) {
-      byReason[s.reason] = (byReason[s.reason] || 0) + 1;
-    }
-    fs.writeFileSync(DEBUG_FILE, JSON.stringify({ summary: byReason, skipped: debugSkipped }, null, 2));
-    log(`  Debug: ${debugSkipped.length} skipped products written to data/debug-skipped.json`);
-    log(`  Skip reasons: ${JSON.stringify(byReason)}`);
+  const existingReviewIds = new Set(existingReview.map(r => r.id));
+  const newReviewItems = allReview
+    .filter(p => !existingReviewIds.has(p.id))       // don't add duplicates
+    .map(p => ({
+      id:                p.id,
+      decision:          'pending',
+      confirmedCategory: null,
+      reviewReason:      p.reviewReason,
+      product:           p,
+    }));
+
+  // Prune review items for products that are now confirmed or excluded
+  const confirmedIds = new Set(merged.map(p => p.id));
+  const prunedExisting = existingReview.filter(r => !confirmedIds.has(r.id));
+
+  const allReviewItems = [...prunedExisting, ...newReviewItems];
+  fs.writeFileSync(REVIEW_FILE, JSON.stringify({
+    meta: { updatedAt: new Date().toISOString(), total: allReviewItems.length, pending: allReviewItems.filter(r => r.decision === 'pending').length },
+    products: allReviewItems,
+  }, null, 2));
+
+  // ── Write excluded.json (audit only, not committed to git) ──
+  fs.writeFileSync(EXCL_FILE, JSON.stringify({
+    meta: { updatedAt: new Date().toISOString(), total: allExcluded.length },
+    products: allExcluded,
+  }, null, 2));
+
+  // ── Print results ──
+  log('');
+  log('═══════════════════════ RESULTS ═══════════════════════');
+  log(`  ✅ Confirmed:     ${merged.length} products → products.json`);
+  log(`  🟡 Review queue:  ${allReviewItems.filter(r => r.decision === 'pending').length} products → review.json  ← open review.html`);
+  log(`  ❌ Excluded:      ${allExcluded.length} products → excluded.json`);
+  log(`  ⏱  Time:          ${elapsed}s`);
+  if (warnings.length > 0) {
+    log('');
+    log(`  ⚠️  ${warnings.length} health warning(s) — see above`);
   }
   log('');
-  log('═══════════════════ RESULTS ═══════════════════');
-  log(`  Total products: ${merged.length}`);
-  log(`  Time: ${elapsed}s`);
-  log('');
-  log('  By retailer:');
-  for (const [name, count] of Object.entries(stats)) {
-    const bar = '█'.repeat(Math.min(30, Math.round(count / 10)));
+  log('  By retailer (confirmed):');
+  for (const [name, count] of Object.entries(retailerStats)) {
+    const bar = '█'.repeat(Math.min(30, Math.round(count / 5)));
     log(`    ${name.padEnd(26)} ${String(count).padStart(5)}  ${bar}`);
   }
   log('');
@@ -775,8 +809,7 @@ async function main() {
   for (const [cat, count] of Object.entries(catCounts)) {
     log(`    ${cat.padEnd(15)} ${count}`);
   }
-  log(`\n  Output: ${OUT_FILE}`);
-  log('═══════════════════════════════════════════════');
+  log('═══════════════════════════════════════════════════════');
 }
 
 main().catch(err => {
