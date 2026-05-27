@@ -1,0 +1,332 @@
+<!--
+  ══════════════════════════════════════════════════════════════════
+  SCOOPSCORE — QUICK REVIEWS PANEL  (modal patch)
+  ══════════════════════════════════════════════════════════════════
+
+  THREE CHANGES NEEDED IN index.html:
+
+    CHANGE 1 → paste the CSS block into your <style> section
+    CHANGE 2 → paste the new JS function anywhere before renderModal()
+    CHANGE 3 → add one line inside renderModal()'s dpBody.innerHTML
+
+  Each change is marked with ── CHANGE 1 / 2 / 3 ──
+  ══════════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHANGE 1 — ADD THIS CSS INTO YOUR <style> BLOCK
+     Paste anywhere inside your existing <style>…</style> tag.
+     ══════════════════════════════════════════════════════════════ -->
+<style>
+
+/* ── Quick Reviews Panel ── */
+.dp-reviews-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Section sub-label (used inside dp-section) */
+.dp-reviews-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink4);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 14px 0 8px;
+}
+.dp-reviews-sub:first-of-type {
+  margin-top: 0;
+}
+
+/* Each clickable review link row */
+.dp-review-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color .12s, background .12s, box-shadow .12s;
+  cursor: pointer;
+}
+.dp-review-link:hover {
+  border-color: var(--teal-border);
+  background: var(--bg);
+  box-shadow: 0 2px 12px var(--teal-dim);
+}
+.dp-review-link-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.dp-review-link-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+}
+.dp-review-link-icon.retailer {
+  background: var(--teal-dim);
+  border-color: var(--teal-border);
+}
+.dp-review-link-icon.yt {
+  background: rgba(255,0,0,.08);
+  border-color: rgba(255,0,0,.18);
+}
+.dp-review-link-icon.reddit {
+  background: rgba(255,87,0,.08);
+  border-color: rgba(255,87,0,.18);
+}
+.dp-review-link-icon.google {
+  background: rgba(66,133,244,.08);
+  border-color: rgba(66,133,244,.18);
+}
+.dp-review-link-text {
+  min-width: 0;
+}
+.dp-review-link-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dp-review-link-sub {
+  font-size: 11px;
+  color: var(--ink4);
+  margin-top: 1px;
+}
+.dp-review-link-arrow {
+  font-size: 13px;
+  color: var(--ink4);
+  flex-shrink: 0;
+  transition: color .12s, transform .12s;
+}
+.dp-review-link:hover .dp-review-link-arrow {
+  color: var(--teal);
+  transform: translate(2px, -1px);
+}
+
+/* "Leave a review" nudge at the bottom */
+.dp-reviews-nudge {
+  margin-top: 6px;
+  padding: 12px 14px;
+  background: var(--orange-dim);
+  border: 1px solid var(--orange-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.dp-reviews-nudge-text {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+.dp-reviews-nudge-text strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.dp-reviews-nudge-btn {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background .12s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.dp-reviews-nudge-btn:hover {
+  background: var(--orange2);
+}
+
+</style>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHANGE 2 — ADD THIS FUNCTION TO YOUR <script> BLOCK
+     Paste it anywhere before the renderModal() function.
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+
+/**
+ * Builds the Quick Reviews HTML for the product modal.
+ * Shows direct links to retailer review sections + YouTube/Reddit/Google searches.
+ *
+ * @param {object} g          - product group object (_modalGroup)
+ * @param {string} brandName  - e.g. "Optimum Nutrition"
+ * @param {Array}  retailers  - array of { retailer, url, price, available }
+ * @returns {string} HTML string
+ */
+function _renderQuickReviews(g, brandName, retailers) {
+
+  const productName = g.name;
+  const searchTerm  = encodeURIComponent(`${brandName} ${productName} review`);
+  const nzTerm      = encodeURIComponent(`${brandName} ${productName} review NZ`);
+
+  // ── Retailer links (only in-stock ones, so the URL is live) ──
+  // Retailer review sections are anchored differently per site.
+  // We link to the product page — reviews are on the same page.
+  const RETAILER_REVIEW_ANCHORS = {
+    'NZ Muscle':          '#reviews',
+    'Sportsfuel':         '#Reviews',
+    'Payless Supplements':'#product-reviews',
+    'Supplements NZ':     '#shopify-product-reviews',
+    'Nutrition Warehouse':'#Reviews',
+    'ASN Online':         '#reviews',
+    'Chemist Warehouse':  '#reviews',
+  };
+
+  // Deduplicate by retailer name (keep cheapest/available)
+  const seen = new Set();
+  const uniqueRetailers = retailers.filter(r => {
+    if (seen.has(r.retailer)) return false;
+    seen.add(r.retailer);
+    return true;
+  });
+
+  const retailerLinks = uniqueRetailers.map(r => {
+    const anchor = RETAILER_REVIEW_ANCHORS[r.retailer] || '#reviews';
+    const reviewUrl = r.url + anchor;
+    const isOos = !r.available;
+    return `
+      <a class="dp-review-link" href="${reviewUrl}" target="_blank" rel="noopener"
+         ${isOos ? 'style="opacity:.55"' : ''}>
+        <div class="dp-review-link-left">
+          <div class="dp-review-link-icon retailer">⭐</div>
+          <div class="dp-review-link-text">
+            <div class="dp-review-link-name">${r.retailer}</div>
+            <div class="dp-review-link-sub">Customer reviews on product page${isOos ? ' · out of stock' : ''}</div>
+          </div>
+        </div>
+        <div class="dp-review-link-arrow">↗</div>
+      </a>`;
+  }).join('');
+
+  // ── Web review links ──
+  const webLinks = `
+    <a class="dp-review-link" href="https://www.youtube.com/results?search_query=${searchTerm}" target="_blank" rel="noopener">
+      <div class="dp-review-link-left">
+        <div class="dp-review-link-icon yt">▶</div>
+        <div class="dp-review-link-text">
+          <div class="dp-review-link-name">YouTube Reviews</div>
+          <div class="dp-review-link-sub">Search: "${brandName} ${productName} review"</div>
+        </div>
+      </div>
+      <div class="dp-review-link-arrow">↗</div>
+    </a>
+
+    <a class="dp-review-link" href="https://www.reddit.com/search/?q=${searchTerm}&sort=top" target="_blank" rel="noopener">
+      <div class="dp-review-link-left">
+        <div class="dp-review-link-icon reddit">🔴</div>
+        <div class="dp-review-link-text">
+          <div class="dp-review-link-name">Reddit Community</div>
+          <div class="dp-review-link-sub">r/Supplements, r/fitness &amp; more</div>
+        </div>
+      </div>
+      <div class="dp-review-link-arrow">↗</div>
+    </a>
+
+    <a class="dp-review-link" href="https://www.google.com/search?q=${nzTerm}" target="_blank" rel="noopener">
+      <div class="dp-review-link-left">
+        <div class="dp-review-link-icon google">G</div>
+        <div class="dp-review-link-text">
+          <div class="dp-review-link-name">Google Search</div>
+          <div class="dp-review-link-sub">"${brandName} ${productName} review NZ"</div>
+        </div>
+      </div>
+      <div class="dp-review-link-arrow">↗</div>
+    </a>`;
+
+  // ── "Leave a review" nudge ──
+  // Replace YOUR_GOOGLE_REVIEW_LINK with your actual Google Business review link
+  const nudge = `
+    <div class="dp-reviews-nudge">
+      <div class="dp-reviews-nudge-text">
+        <strong>Used this product?</strong><br>
+        Help the NZ community — leave a review on Google.
+      </div>
+      <a class="dp-reviews-nudge-btn"
+         href="https://g.page/r/YOUR_GOOGLE_REVIEW_LINK/review"
+         target="_blank" rel="noopener">
+        Rate on Google ↗
+      </a>
+    </div>`;
+
+  return `
+    <div class="dp-reviews-panel">
+      <div class="dp-reviews-sub">At these retailers</div>
+      ${retailerLinks || '<div style="font-size:13px;color:var(--ink3)">No retailers currently tracked.</div>'}
+      <div class="dp-reviews-sub" style="margin-top:16px">Around the web</div>
+      ${webLinks}
+      ${nudge}
+    </div>`;
+}
+
+</script>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     CHANGE 3 — EDIT renderModal() IN YOUR EXISTING <script> BLOCK
+
+     Find this block inside renderModal() (around line 3092):
+
+       document.getElementById('dpBody').innerHTML=`
+         <div class="dp-size-tabs">${sizeTabs}</div>
+         ...
+         <div class="dp-section" id="dpAboutSection">
+           ...
+         </div>
+       `;
+
+     ADD the line marked with ✚ below — paste it right after
+     the closing </div> of dpAboutSection, before the closing
+     backtick ` of the innerHTML assignment.
+     ══════════════════════════════════════════════════════════════
+
+  BEFORE (the end of your dpBody.innerHTML assignment):
+
+    <div class="dp-section" id="dpAboutSection">
+      <div class="dp-sec-title-row">...</div>
+      <div id="dpAiContent">...</div>
+    </div>
+  `;   ← closing backtick
+
+  ──────────────────────────────────────────────────────────────
+
+  AFTER (add the ✚ line):
+
+    <div class="dp-section" id="dpAboutSection">
+      <div class="dp-sec-title-row">...</div>
+      <div id="dpAiContent">...</div>
+    </div>
+
+    ✚  <div class="dp-section">
+    ✚    <div class="dp-sec-title">Quick Reviews</div>
+    ✚    ${_renderQuickReviews(g, brandName, retailers)}
+    ✚  </div>
+
+  `;   ← closing backtick (already there, don't add again)
+
+  ══════════════════════════════════════════════════════════════
+  That's it — three changes, no new dependencies.
+  ══════════════════════════════════════════════════════════════ -->
