@@ -777,8 +777,10 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 .page{display:none}.page.active{display:block}
 /* About dropdown */
 .nav-about-wrap{position:relative}
-.nav-about-drop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:200px;background:#fff;border:1px solid var(--border2);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.12);padding:8px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;transform:translateX(-50%) translateY(-6px);z-index:700}
-.nav-about-wrap:hover .nav-about-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-about-drop{position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:200px;background:#fff;border:1px solid var(--border2);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.12);padding:4px 8px 8px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:700}
+.nav-about-drop.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+/* invisible bridge so mouse can reach the dropdown */
+.nav-about-drop::before{content:'';position:absolute;top:-12px;left:0;right:0;height:12px}
 .nav.scrolled .nav-about-drop{background:rgba(20,40,50,.97);border-color:rgba(255,255,255,.1)}
 .nav-drop-item{display:block;width:100%;padding:9px 14px;font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--ink2);background:none;border:none;border-radius:8px;cursor:pointer;text-align:left;transition:background .1s,color .1s;white-space:nowrap}
 .nav-drop-item:hover{background:var(--bg3);color:var(--ink)}
@@ -2088,11 +2090,10 @@ function renderBrandsMega(){
   if(_brandsMegaCat!=='all') brands=brands.filter(b=>b.cats.includes(_brandsMegaCat));
   if(_brandsMegaQ) brands=brands.filter(b=>b.name.toLowerCase().includes(_brandsMegaQ));
   brands.sort((a,z)=>a.name.localeCompare(z.name));
-  grid.innerHTML=brands.slice(0,60).map(b=>{
-    const featImg=b.groupList.find(g=>g.imageUrl)?.imageUrl||null;
-    const imgHtml=featImg
-      ?`<img class="bmg-logo" src="${featImg}" alt="${b.name}" onerror="this.outerHTML='<div class=\\'bmg-logo\\'>${b.name[0]}</div>'">`
-      :`<div class="bmg-logo" style="display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink3)">${b.name[0]}</div>`;
+  grid.innerHTML=brands.map(b=>{
+    const color=brandColor(b.name);
+    const initial=b.name[0].toUpperCase();
+    const imgHtml=`<div class="bmg-logo" style="display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;font-weight:400;color:#fff;background:${color};border-radius:5px">${initial}</div>`;
     const count=b.groupList.length;
     return`<div class="bmg-item" onclick="openBrand('${b.name.replace(/'/g,"\\'")}');closeBrandsMega();closeMega()">
       ${imgHtml}
@@ -2174,7 +2175,7 @@ function renderCatTiles(){
   });
 
   grid.innerHTML=tiles.map(t=>{
-    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}${t.wide3?' cat-tile-wide':''}`;
+    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}${t.wide3?' cat-tile-wide-3':''}`;
     const img=t.best?.group.imageUrl
       ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.style.display='none'">`
       :`<div class="cat-tile-img" style="background:linear-gradient(135deg,#2a2926,#1a1917)"></div>`;
@@ -3263,12 +3264,28 @@ function _renderPerServe(kg,bestPrice){
 }
 function handleDetailBg(e){if(e.target===document.getElementById('detailOverlay'))closeDetail();}
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function goHome(){closeDetail();showView('viewHome');currentBrand=null;setBreadcrumb([]);document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));document.querySelector('.nav-cat').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function goHome(){closeDetail();showPage('page-home');showView('viewHome');currentBrand=null;setBreadcrumb([]);document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));document.querySelector('.nav-cat').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function navGoHome(el){document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));el.classList.add('active');goHome();}
 function scrollToAlerts(){if(!document.getElementById('viewHome').classList.contains('active')){goHome();setTimeout(()=>document.getElementById('alertBar').scrollIntoView({behavior:'smooth'}),100);}else{document.getElementById('alertBar').scrollIntoView({behavior:'smooth'});}}
 function setStatus(state,msg,updatedAt){const dot=document.getElementById('sDot'),txt=document.getElementById('sTxt'),time=document.getElementById('sTime');if(dot)dot.style.background=state==='live'?'var(--green)':state==='loading'?'#f59e0b':'var(--red)';if(txt)txt.textContent=msg;if(time&&updatedAt){const d=new Date(updatedAt);time.textContent=`Updated ${d.toLocaleDateString('en-NZ',{day:'numeric',month:'short'})} ${d.toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'})}`;}}
 function signupAlert(){const e=document.getElementById('alertEmail').value;if(!e||!e.includes('@')){showToast('Enter a valid email');return;}document.getElementById('alertEmail').value='';showToast('Done — you\'ll be notified of price drops');}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// ── ABOUT DROPDOWN ──
+(function(){
+  const wrap=document.querySelector('.nav-about-wrap');
+  const drop=document.querySelector('.nav-about-drop');
+  if(!wrap||!drop)return;
+  let timer;
+  function open(){clearTimeout(timer);drop.classList.add('open');}
+  function close(){timer=setTimeout(()=>drop.classList.remove('open'),120);}
+  wrap.addEventListener('mouseenter',open);
+  wrap.addEventListener('mouseleave',close);
+  drop.addEventListener('mouseenter',open);
+  drop.addEventListener('mouseleave',close);
+  // Close on click of any item
+  drop.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>drop.classList.remove('open')));
+})();
 
 // Keyboard: Escape closes modal
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDetail();closeMega();}});
