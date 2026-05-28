@@ -2135,7 +2135,7 @@ function filterByRetailer(retailerId){
   openCategoryView('all');
   // Filter to just this retailer's products in the category view
   setTimeout(()=>{
-    catViewRetailer=retailerId;
+    catViewRetailerFilter=retailerId;
     renderCatProducts();
   },100);
 }
@@ -2404,11 +2404,11 @@ function crossBrandMerge(brands){
 let ALL=[],BRANDS={},META={},currentBrand=null,currentCat='all',catFilter='all',searchQ='';
 
 async function loadData(){
-  document.getElementById('featRow').innerHTML=Array(6).fill('<div class="skel skel-card"></div>').join('');
+  const _featRow=document.getElementById('featRow');if(_featRow)_featRow.innerHTML=Array(6).fill('<div class="skel skel-card"></div>').join('');
   // Detect if opened as a local file — fetch() won't work in this case
   if(location.protocol==='file:'){
     setStatus('error','Open via a local server, not file://',null);
-    document.getElementById('featRow').innerHTML=`
+    if(document.getElementById('featRow'))document.getElementById('featRow').innerHTML=`
       <div style="padding:32px;max-width:500px;font-family:Inter,sans-serif">
         <div style="font-weight:600;color:var(--ink);margin-bottom:8px">Use a local server</div>
         <div style="font-size:13px;color:var(--ink3);line-height:1.6">
@@ -2441,7 +2441,7 @@ async function loadData(){
     console.error('ScoopScore loadData error:',e);
     setStatus('error',`Could not load products — ${e.message}`,null);
     // Show helpful message in feat row
-    document.getElementById('featRow').innerHTML=`
+    if(document.getElementById('featRow'))document.getElementById('featRow').innerHTML=`
       <div style="padding:32px;max-width:500px;font-family:Inter,sans-serif">
         <div style="font-weight:600;color:var(--ink);margin-bottom:8px">Products not loaded</div>
         <div style="font-size:13px;color:var(--ink3);line-height:1.6">
@@ -2547,6 +2547,7 @@ function renderValuePicks(){
     if(best)picks.push(best);
   }
   const el=document.getElementById('valuePicksGrid');
+  if(!el)return;
   if(!picks.length){el.innerHTML='<div class="plist-empty">No data yet</div>';return;}
   el.innerHTML=picks.map(p=>{
     const img=p.group.imageUrl
@@ -2576,6 +2577,7 @@ function renderMostCompared(){
   all.sort((a,z)=>z.rc-a.rc||a.best-z.best);
   const top=all.slice(0,18);
   const el=document.getElementById('mostComparedGrid');
+  if(!el)return;
   if(!top.length){el.innerHTML='<div class="plist-empty">No data yet</div>';return;}
   el.innerHTML=top.map(p=>{
     const img=p.group.imageUrl
