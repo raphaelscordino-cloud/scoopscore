@@ -944,32 +944,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
         </div>
       </div>
 
-      <!-- Brands dropdown -->
-      <div class="nav-mega-wrap" id="brandsMegaWrap">
-        <button class="nav-cat nav-mega-btn" id="brandsMegaBtn" onclick="toggleBrandsMega(event)">
-          Brands <span class="nav-mega-chevron" id="brandsMegaChevron">▾</span>
-        </button>
-        <div class="nav-mega nav-brands-mega" id="navBrandsMega">
-          <div class="brands-mega-inner">
-            <div class="brands-mega-search-wrap">
-              <input class="brands-mega-search" id="brandsMegaSearch" type="text" placeholder="Search brands…" oninput="filterBrandsMega(this.value)">
-            </div>
-            <div class="brands-mega-cats">
-              <button class="bmc-pill active" onclick="setBrandsMegaCat(this,'all')">All</button>
-              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'protein')">Protein</button>
-              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'creatine')">Creatine</button>
-              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'preworkout')">Pre-Workout</button>
-              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'fatburner')">Fat Burners</button>
-              <button class="bmc-pill" onclick="setBrandsMegaCat(this,'bcaa')">BCAAs</button>
-
-            </div>
-            <div class="brands-mega-grid" id="brandsMegaGrid"></div>
-          </div>
-        </div>
-      </div>
-
-      <button class="nav-cat" onclick="scrollToAlerts();closeMega()">Price Alerts</button>
-      <button class="nav-cat" onclick="showPage('page-deals');closeMega()">Deals 🔥</button>
+      <button class="nav-cat" id="navDealsBtn" onclick="document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));this.classList.add('active');showPage('page-deals');populateDealsPage();closeMega()">Deals 🔥</button>
       <!-- About dropdown -->
       <div class="nav-about-wrap">
         <button class="nav-cat">About ▾</button>
@@ -2062,49 +2037,8 @@ function catLoadMore(){
 }
 
 // ── BRANDS MEGA DROPDOWN ──────────────────────────────────────
-let _brandsMegaOpen=false,_brandsMegaCat='all',_brandsMegaQ='';
-function toggleBrandsMega(e){
-  e.stopPropagation();
-  _brandsMegaOpen=!_brandsMegaOpen;
-  document.getElementById('navBrandsMega').classList.toggle('open',_brandsMegaOpen);
-  document.getElementById('brandsMegaChevron').style.transform=_brandsMegaOpen?'rotate(180deg)':'';
-  document.getElementById('megaOverlay').classList.toggle('active',_brandsMegaOpen);
-  if(_brandsMegaOpen){renderBrandsMega();setTimeout(()=>document.getElementById('brandsMegaSearch')?.focus(),80);}
-}
-function closeBrandsMega(){
-  _brandsMegaOpen=false;
-  document.getElementById('navBrandsMega')?.classList.remove('open');
-  document.getElementById('brandsMegaChevron').style.transform='';
-}
-function setBrandsMegaCat(el,cat){
-  _brandsMegaCat=cat;
-  document.querySelectorAll('.bmc-pill').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  renderBrandsMega();
-}
-function filterBrandsMega(q){_brandsMegaQ=q.toLowerCase();renderBrandsMega();}
-function renderBrandsMega(){
-  const grid=document.getElementById('brandsMegaGrid');
-  if(!grid||!Object.keys(BRANDS).length)return;
-  let brands=Object.values(BRANDS);
-  if(_brandsMegaCat!=='all') brands=brands.filter(b=>b.cats.includes(_brandsMegaCat));
-  if(_brandsMegaQ) brands=brands.filter(b=>b.name.toLowerCase().includes(_brandsMegaQ));
-  brands.sort((a,z)=>a.name.localeCompare(z.name));
-  grid.innerHTML=brands.map(b=>{
-    const color=brandColor(b.name);
-    const initial=b.name[0].toUpperCase();
-    const imgHtml=`<div class="bmg-logo" style="display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;font-weight:400;color:#fff;background:${color};border-radius:5px">${initial}</div>`;
-    const count=b.groupList.length;
-    return`<div class="bmg-item" onclick="openBrand('${b.name.replace(/'/g,"\\'")}');closeBrandsMega();closeMega()">
-      ${imgHtml}
-      <div><div class="bmg-name">${b.name}</div><div class="bmg-count">${count} products</div></div>
-    </div>`;
-  }).join('');
-}
-// Close brands mega on outside click
-document.addEventListener('click',e=>{
-  if(_brandsMegaOpen&&!e.target.closest('#brandsMegaWrap')){closeBrandsMega();document.getElementById('megaOverlay').classList.remove('active');}
-});
+// Brands mega removed — stub keeps existing callers safe
+function closeBrandsMega(){}
 
 // ── RETAILER CARDS ────────────────────────────────────────────
 function renderRetailerStrip(){
@@ -2177,8 +2111,8 @@ function renderCatTiles(){
   grid.innerHTML=tiles.map(t=>{
     const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}${t.wide3?' cat-tile-wide-3':''}`;
     const img=t.best?.group.imageUrl
-      ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.style.display='none'">`
-      :`<div class="cat-tile-img" style="background:linear-gradient(135deg,#2a2926,#1a1917)"></div>`;
+      ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.outerHTML='<div class=\\'cat-tile-img\\' style=\\'background:linear-gradient(135deg,#1e3a4a,#0f2535)\\'></div>'">`
+      :`<div class="cat-tile-img" style="background:linear-gradient(135deg,#1e3a4a,#0f2535)"></div>`;
     return`<div class="${cls}" onclick="openCategoryView('${t.key}')">
       ${img}
       <div class="cat-tile-veil"></div>
@@ -3308,50 +3242,53 @@ function populateDealsPage() {
 
 function populatePerServeGrid() {
   const el = document.getElementById('dealsPerServeGrid');
-  if (!el || !window.BRANDS) return;
+  if (!el || !Object.keys(BRANDS).length) return;
   const cats = [
-    {key:'protein', label:'Whey Protein'},
-    {key:'creatine', label:'Creatine'},
-    {key:'preworkout', label:'Pre-Workout'},
-    {key:'massgainer', label:'Mass Gainer'},
+    {key:'protein',     label:'Whey Protein'},
+    {key:'creatine',    label:'Creatine'},
+    {key:'preworkout',  label:'Pre-Workout'},
     {key:'proteinbars', label:'Protein Bar'},
-    {key:'bcaa', label:'BCAAs'},
-    {key:'fatburner', label:'Fat Burner'},
-    {key:'vitamins', label:'Multivitamin'},
+    {key:'bcaa',        label:'BCAAs'},
+    {key:'fatburner',   label:'Fat Burner'},
+    {key:'rtd',         label:'RTD / Drink'},
   ];
-  // Collect all products with price-per-serve
-  const allProds = [];
-  for (const [brandKey, brand] of Object.entries(window.BRANDS)) {
-    for (const [pKey, p] of Object.entries(brand.products || {})) {
-      const retailers = Object.values(p.retailers || {}).filter(r => r.inStock && r.price);
-      if (!retailers.length) continue;
-      const best = Math.min(...retailers.map(r => r.price));
-      const bestR = retailers.find(r => r.price === best);
-      const kg = p.weightKg || null;
-      const serves = kg ? Math.round(kg * 1000 / 30) : null;
-      const pps = (serves && serves > 1) ? best / serves : null;
-      allProds.push({ brandName: brand.name, name: p.name, cat: p.category, price: best, retailer: bestR.retailer, pps, serves });
+  // Collect all size entries with a valid kg and in-stock price
+  const allEntries = [];
+  for (const brand of Object.values(BRANDS)) {
+    for (const g of brand.groupList) {
+      const sizeMap = buildSizeMap(g);
+      for (const [sizeKey, sz] of sizeMap.entries()) {
+        if (!sz.kg) continue;
+        const retailers = [...sz.retailers.values()].filter(r => r.available);
+        if (!retailers.length) continue;
+        const best = Math.min(...retailers.map(r => r.price));
+        const bestR = retailers.find(r => r.price === best);
+        const serves = Math.round(sz.kg * 1000 / 30);
+        if (serves < 2) continue;
+        const pps = best / serves;
+        allEntries.push({ brandName: brand.name, name: g.name, cat: g.category, price: best, retailer: bestR.retailer, pps, serves, sizeKey });
+      }
     }
   }
   let cards = '';
   for (const cat of cats) {
-    const matches = allProds.filter(p => p.cat === cat.key && p.pps).sort((a,b) => a.pps - b.pps);
+    const matches = allEntries.filter(p => p.cat === cat.key).sort((a,b) => a.pps - b.pps);
     const top = matches[0];
     if (!top) {
       cards += `<div class="cps-card"><span class="cps-cat">${cat.label}</span><div class="cps-name" style="color:var(--ink3)">No data yet</div></div>`;
       continue;
     }
     const rb = rm(top.retailer);
-    const avg = matches.reduce((s,p) => s+p.pps, 0) / matches.length;
+    const avg = matches.reduce((s,p) => s + p.pps, 0) / matches.length;
     const savePct = avg > 0 ? Math.round((1 - top.pps / avg) * 100) : 0;
     cards += `<div class="cps-card">
       <span class="cps-cat">${cat.label}</span>
       <div class="cps-name">${top.name}</div>
-      <div class="cps-brand">${top.brandName}</div>
+      <div class="cps-brand">${top.brandName} · ${top.sizeKey}</div>
       <div class="cps-price">$${top.pps.toFixed(2)}</div>
-      <div class="cps-price-label">per serve (approx. 30g)</div>
+      <div class="cps-price-label">per serve (~30g · ${top.serves} serves)</div>
       <div class="cps-retailer">Best at ${rb.name}</div>
-      ${savePct > 0 ? `<div class="cps-savings">↓ ${savePct}% cheaper than NZ avg</div>` : ''}
+      ${savePct > 0 ? `<div class="cps-savings">↓ ${savePct}% below NZ avg</div>` : ''}
     </div>`;
   }
   el.innerHTML = cards || '<p style="color:var(--ink3)">Load data to see deals.</p>';
@@ -3359,20 +3296,23 @@ function populatePerServeGrid() {
 
 function populateBiggestDiscounts() {
   const el = document.getElementById('dealsBigDiscounts');
-  if (!el || !window.BRANDS) return;
+  if (!el || !Object.keys(BRANDS).length) return;
   const rows = [];
-  for (const [brandKey, brand] of Object.entries(window.BRANDS)) {
-    for (const [pKey, p] of Object.entries(brand.products || {})) {
-      const retailers = Object.values(p.retailers || {}).filter(r => r.inStock && r.price);
-      if (retailers.length < 2) continue;
-      const prices = retailers.map(r => r.price);
-      const best = Math.min(...prices);
-      const worst = Math.max(...prices);
-      if (worst <= best) continue;
-      const pct = Math.round((1 - best / worst) * 100);
-      if (pct < 5) continue;
-      const bestR = retailers.find(r => r.price === best);
-      rows.push({ name: p.name, brand: brand.name, pct, best, worst, retailer: bestR.retailer });
+  for (const brand of Object.values(BRANDS)) {
+    for (const g of brand.groupList) {
+      const sizeMap = buildSizeMap(g);
+      for (const [sizeKey, sz] of sizeMap.entries()) {
+        const retailers = [...sz.retailers.values()].filter(r => r.available);
+        if (retailers.length < 2) continue;
+        const prices = retailers.map(r => r.price);
+        const best = Math.min(...prices);
+        const worst = Math.max(...prices);
+        if (worst <= best) continue;
+        const pct = Math.round((1 - best / worst) * 100);
+        if (pct < 5) continue;
+        const bestR = retailers.find(r => r.price === best);
+        rows.push({ name: g.name, brand: brand.name, sizeKey, pct, best, worst, retailer: bestR.retailer });
+      }
     }
   }
   rows.sort((a,b) => b.pct - a.pct);
@@ -3383,12 +3323,12 @@ function populateBiggestDiscounts() {
     return `<div class="discount-row">
       <div class="discount-pct">${r.pct}%<span style="font-size:16px;color:var(--ink4)"> off</span></div>
       <div class="discount-info">
-        <div class="discount-name">${r.name}</div>
+        <div class="discount-name">${r.name} <span style="font-weight:400;color:var(--ink3)">(${r.sizeKey})</span></div>
         <div class="discount-sub">${r.brand}</div>
       </div>
       <div class="discount-prices">
         <div class="discount-now">$${r.best.toFixed(2)}</div>
-        <div class="discount-was">was $${r.worst.toFixed(2)}</div>
+        <div class="discount-was">vs $${r.worst.toFixed(2)} elsewhere</div>
         <span class="discount-retailer">${rb.name}</span>
       </div>
     </div>`;
