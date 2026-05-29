@@ -404,6 +404,9 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 .rc-arrow{position:absolute;top:14px;right:14px;font-size:11px;color:var(--ink4);opacity:0;transform:translate(0,0);transition:opacity .15s,transform .15s}
 .rc-card:hover .rc-arrow{opacity:1;transform:translate(2px,-2px)}
 
+.cat-tile-icon-bg{position:absolute;bottom:-10px;right:-4px;font-size:clamp(80px,14vw,140px);opacity:.18;line-height:1;pointer-events:none;user-select:none;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));z-index:1}
+.cat-tile-tall .cat-tile-icon-bg{font-size:clamp(100px,18vw,180px);bottom:-20px}
+.cat-tile-wide .cat-tile-icon-bg{font-size:clamp(90px,12vw,150px);right:8%}
 /* ── EDITORIAL CATEGORY TILES ── */
 .cat-tile-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:12px}
 /* big tiles span 2 rows */
@@ -2077,49 +2080,52 @@ function filterByRetailer(retailerId){
 
 // ── EDITORIAL CATEGORY TILES ──────────────────────────────────
 const CAT_TILE_CONFIG=[
-  // 3-col grid — fills perfectly with zero gaps:
   // Row 1: protein(tall) | creatine | preworkout
   // Row 2: protein(tall) | proteinbars(wide 2-col)
   // Row 3: fatburner | bcaa | rtd
-  {key:'protein',    label:'Protein',       tall:true,  wide:false, wide3:false},
-  {key:'creatine',   label:'Creatine',      tall:false, wide:false, wide3:false},
-  {key:'preworkout', label:'Pre-Workout',   tall:false, wide:false, wide3:false},
-  {key:'proteinbars',label:'Protein Bars',  tall:false, wide:false, wide3:true },
-  {key:'fatburner',  label:'Fat Burners',   tall:false, wide:false, wide3:false},
-  {key:'bcaa',       label:'BCAAs',         tall:false, wide:false, wide3:false},
-  {key:'rtd',        label:'Drinks',        tall:false, wide:false, wide3:false},
+  {key:'protein',     label:'Protein Powder', icon:'💪', grad:['#0c2340','#1a4a8a'], tall:true,  wide:false},
+  {key:'creatine',    label:'Creatine',        icon:'⚡', grad:['#0d2e1a','#1a5c35'], tall:false, wide:false},
+  {key:'preworkout',  label:'Pre-Workout',     icon:'🔥', grad:['#2d1206','#7a3010'], tall:false, wide:false},
+  {key:'proteinbars', label:'Protein Bars',    icon:'🍫', grad:['#1f0d2e','#4a1f6b'], tall:false, wide:true },
+  {key:'fatburner',   label:'Fat Burners',     icon:'⚗️', grad:['#2e0d0d','#6b1a1a'], tall:false, wide:false},
+  {key:'bcaa',        label:'BCAAs & Aminos',  icon:'🧬', grad:['#120d2e','#2d1f70'], tall:false, wide:false},
+  {key:'rtd',         label:'RTD Drinks',      icon:'🥤', grad:['#0d2430','#1a5266'], tall:false, wide:false},
 ];
 
 function renderCatTiles(){
   const grid=document.getElementById('catTileGrid');
   if(!grid)return;
-  // For each category, find the most-compared product with an image
   const tiles=CAT_TILE_CONFIG.map(cfg=>{
     let best=null,bestScore=0;
     for(const b of Object.values(BRANDS)){
       for(const g of b.groupList){
-        if(g.category!==cfg.key||!g.imageUrl)continue;
+        if(g.category!==cfg.key)continue;
         const rc=new Set(g.inStockListings.map(l=>l.retailer)).size;
-        if(rc>bestScore){bestScore=rc;best={group:g,brand:b.name,rc};}
+        if(rc>bestScore||(rc===bestScore&&g.imageUrl&&!best?.group.imageUrl)){
+          bestScore=rc;best={group:g,brand:b.name,rc};
+        }
       }
     }
-    const counts={};
-    for(const b of Object.values(BRANDS))for(const g of b.groupList)if(g.category===cfg.key)counts[cfg.key]=(counts[cfg.key]||0)+1;
-    return{...cfg,best,count:counts[cfg.key]||0};
+    let count=0;
+    for(const b of Object.values(BRANDS))for(const g of b.groupList)if(g.category===cfg.key)count++;
+    return{...cfg,best,count};
   });
 
   grid.innerHTML=tiles.map(t=>{
-    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}${t.wide3?' cat-tile-wide-3':''}`;
-    const img=t.best?.group.imageUrl
-      ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.outerHTML='<div class=\\'cat-tile-img\\' style=\\'background:linear-gradient(135deg,#1e3a4a,#0f2535)\\'></div>'">`
-      :`<div class="cat-tile-img" style="background:linear-gradient(135deg,#1e3a4a,#0f2535)"></div>`;
-    return`<div class="${cls}" onclick="openCategoryView('${t.key}')">
-      ${img}
+    const cls=`cat-tile${t.tall?' cat-tile-tall':''}${t.wide?' cat-tile-wide':''}`;
+    const bg=`linear-gradient(145deg,${t.grad[0]},${t.grad[1]})`;
+    // If the product has an image, overlay it at low opacity on top of the gradient
+    const imgLayer=t.best?.group.imageUrl
+      ?`<img class="cat-tile-img" src="${t.best.group.imageUrl}" alt="${t.label}" loading="lazy" onerror="this.remove()" style="opacity:.35">`
+      :'';
+    return`<div class="${cls}" onclick="openCategoryView('${t.key}')" style="background:${bg}">
+      ${imgLayer}
+      <div class="cat-tile-icon-bg">${t.icon}</div>
       <div class="cat-tile-veil"></div>
       <div class="cat-tile-arrow">↗</div>
       <div class="cat-tile-content">
         <div class="cat-tile-label">${t.label}</div>
-        <div class="cat-tile-count">${t.count} products</div>
+        <div class="cat-tile-count">${t.count?t.count+' products':'Browse →'}</div>
       </div>
     </div>`;
   }).join('');
