@@ -1133,6 +1133,48 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
     </div>
   </section>
 
+    <!-- FEATURED PRODUCTS -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Top Picks</div>
+          <div class="home-section-title">Featured Products</div>
+        </div>
+        <span class="home-section-meta" id="featCount" style="font-size:13px;color:var(--ink3)"></span>
+      </div>
+      <div class="feat-scroll-wrap" style="overflow-x:auto;overflow-y:hidden;margin:0 -8px">
+        <div class="feat-row" id="featRow">
+          <div class="loading-wrap" style="padding:40px 0"><div class="spinner"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE PICKS -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Best Value</div>
+          <div class="home-section-title">Value Picks</div>
+        </div>
+      </div>
+      <div class="value-picks-grid" id="valuePicksGrid">
+        <div class="loading-wrap" style="grid-column:1/-1;padding:40px 0"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- MOST COMPARED -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Popular</div>
+          <div class="home-section-title">Most Compared</div>
+        </div>
+      </div>
+      <div class="compared-grid" id="mostComparedGrid">
+        <div class="loading-wrap" style="grid-column:1/-1;padding:40px 0"><div class="spinner"></div></div>
+      </div>
+    </section>
+
     <!-- SHOP BY CATEGORY — editorial image tiles -->
     <section class="home-section">
       <div class="home-section-hdr">
@@ -1148,6 +1190,20 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
     </section>
 
 
+
+    <!-- RETAILER STRIP -->
+    <section class="retailer-cards-section home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Our Partners</div>
+          <div class="home-section-title">NZ Retailers</div>
+        </div>
+        <span id="retailerCardsCount" style="font-size:13px;color:var(--ink3)"></span>
+      </div>
+      <div class="retailer-cards-grid" id="retailerLogoStrip">
+        <div class="loading-wrap" style="grid-column:1/-1;padding:40px 0"><div class="spinner"></div></div>
+      </div>
+    </section>
 
     <!-- HIDDEN brand grid — still needed for openBrand() calls -->
     <div id="brandGrid" style="display:none"></div>
@@ -2550,8 +2606,8 @@ function renderFeatured(){
   const top=featured.slice(0,16);
   const featCountEl=document.getElementById('featCount');
   if(featCountEl)featCountEl.textContent=`${top.length} products`;
-  if(!top.length){document.getElementById('featRow').innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
-  document.getElementById('featRow').innerHTML=top.map((f,i)=>{
+  if(!top.length){const _fr=document.getElementById('featRow');if(_fr)_fr.innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
+  const _featRowEl=document.getElementById('featRow');if(_featRowEl)_featRowEl.innerHTML=top.map((f,i)=>{
     const d=Math.floor(f.best);const c=(f.best%1).toFixed(2).slice(1);
     return `<div class="feat-card" style="animation-delay:${i*.04}s;position:relative" onclick="openDetail('${f.group.key.replace(/'/g,"\\'")}','${f.brand.replace(/'/g,"\\'")}')">
       ${f.rc>1?`<div class="feat-retailers-badge">${f.rc} retailers</div>`:''}
