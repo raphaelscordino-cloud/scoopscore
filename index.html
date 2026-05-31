@@ -114,11 +114,9 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 
 
 /* ── STATUS ── */
-.status{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;border-top:1px solid var(--teal-border)}
-.status-inner{max-width:1320px;margin:0 auto;height:36px;display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:var(--ink3);letter-spacing:-.01em}
-.s-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--orange);animation:blink 2.5s infinite}
+
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.s-time{margin-left:auto}
+
 
 /* ── CONTENT WRAPPER ── */
 .wrap{max-width:100%;padding:0 32px}
@@ -376,7 +374,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 /* ── EDITORIAL CATEGORY TILES ── */
 .cat-tile-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:12px}
 /* big tiles span 2 rows */
-.cat-tile{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:auto;background:#1a1917;transition:transform .2s}
+.cat-tile{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:auto;background:#1a1917;transition:transform .2s;min-height:200px}
 .cat-tile:hover{transform:scale(1.02)}
 .cat-tile:hover .cat-tile-img{transform:scale(1.06)}
 .cat-tile-tall{grid-row:span 2}
@@ -951,7 +949,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
     </div>
     <div class="hero-veil"></div>
     <div class="hero-veil2"></div>
-    <div class="hero-content" style="padding-bottom:120px">
+    <div class="hero-content" style="padding-top:140px;padding-bottom:120px">
       <div class="hero-overline"><div class="hero-overline-bar"></div>NZ supplement price comparison</div>
       <h1 class="hero-h1" style="font-size:clamp(64px,10vw,150px)">
         <span class="hero-h1-plain">Find the best supplements for</span><br>
@@ -966,14 +964,6 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
       </div>
     </div>
 
-  </div>
-
-  <div class="status">
-    <div class="status-inner">
-      <div class="s-dot" id="sDot"></div>
-      <span id="sTxt">Loading prices…</span>
-      <span class="s-time" id="sTime"></span>
-    </div>
   </div>
 
   <!-- HOMEPAGE BODY -->
@@ -1086,6 +1076,42 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
       </div>
     </div>
   </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Top Picks</div>
+          <div class="home-section-title">Featured Products</div>
+        </div>
+        <span id="featCount" style="font-size:13px;color:var(--ink3)"></span>
+      </div>
+      <div style="overflow-x:auto;overflow-y:hidden;margin:0 -8px">
+        <div class="feat-row" id="featRow"></div>
+      </div>
+    </section>
+
+    <!-- VALUE PICKS -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Best Value</div>
+          <div class="home-section-title">Value Picks</div>
+        </div>
+      </div>
+      <div class="value-picks-grid" id="valuePicksGrid"></div>
+    </section>
+
+    <!-- MOST COMPARED -->
+    <section class="home-section">
+      <div class="home-section-hdr">
+        <div>
+          <div class="home-section-label">Popular</div>
+          <div class="home-section-title">Most Compared</div>
+        </div>
+      </div>
+      <div class="compared-grid" id="mostComparedGrid"></div>
+    </section>
 
     <!-- SHOP BY CATEGORY — editorial image tiles -->
     <section class="home-section">
@@ -2467,8 +2493,8 @@ function renderFeatured(){
   const top=featured.slice(0,16);
   const featCountEl=document.getElementById('featCount');
   if(featCountEl)featCountEl.textContent=`${top.length} products`;
-  if(!top.length){document.getElementById('featRow').innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
-  document.getElementById('featRow').innerHTML=top.map((f,i)=>{
+  if(!top.length){const _fr=document.getElementById('featRow');if(_fr)_fr.innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
+  const _featRowEl=document.getElementById('featRow');if(_featRowEl)_featRowEl.innerHTML=top.map((f,i)=>{
     const d=Math.floor(f.best);const c=(f.best%1).toFixed(2).slice(1);
     return `<div class="feat-card" style="animation-delay:${i*.04}s;position:relative" onclick="openDetail('${f.group.key.replace(/'/g,"\\'")}','${f.brand.replace(/'/g,"\\'")}')">
       ${f.rc>1?`<div class="feat-retailers-badge">${f.rc} retailers</div>`:''}
@@ -3110,7 +3136,7 @@ function handleDetailBg(e){if(e.target===document.getElementById('detailOverlay'
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goHome(){closeDetail();showPage('page-home');showView('viewHome');currentBrand=null;setBreadcrumb([]);document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));document.querySelector('.nav-cat').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function navGoHome(el){document.querySelectorAll('.nav-cat').forEach(b=>b.classList.remove('active'));el.classList.add('active');goHome();}
-function setStatus(state,msg,updatedAt){const dot=document.getElementById('sDot'),txt=document.getElementById('sTxt'),time=document.getElementById('sTime');if(dot)dot.style.background=state==='live'?'var(--green)':state==='loading'?'#f59e0b':'var(--red)';if(txt)txt.textContent=msg;if(time&&updatedAt){const d=new Date(updatedAt);time.textContent=`Updated ${d.toLocaleDateString('en-NZ',{day:'numeric',month:'short'})} ${d.toLocaleTimeString('en-NZ',{hour:'2-digit',minute:'2-digit'})}`;}}
+function setStatus(state,msg,updatedAt){}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
 // ── ABOUT DROPDOWN ──
