@@ -133,20 +133,24 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 /* ── FEATURED STRIP ── */
 .feat-scroll{overflow-x:auto;margin:0 -32px;padding:0 32px 2px}
 .feat-scroll::-webkit-scrollbar{display:none}
-.feat-row{display:flex;gap:12px;min-width:max-content;padding-right:32px;padding-bottom:48px}
-.feat-card{width:185px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:all .2s;overflow:hidden;flex-shrink:0;border-radius:12px;animation:fadeUp .4s ease both}
-.feat-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
-.feat-img{height:165px;background:var(--bg2);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
-.feat-img img{width:100%;height:100%;object-fit:contain;padding:18px;transition:transform .25s}
-.feat-card:hover .feat-img img{transform:scale(1.06)}
-.feat-body{padding:12px 13px 14px}
-.feat-brand-lbl{font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
-.feat-name{font-size:12px;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:8px}
-.feat-bottom{display:flex;justify-content:space-between;align-items:baseline}
-.feat-price{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em;color:var(--ink)}
-.feat-price sup{font-size:13px;vertical-align:super;font-family:'Inter',sans-serif;font-weight:600}
-.feat-badge{font-size:11px;font-weight:600;color:var(--orange)}
-.feat-retailers-badge{position:absolute;top:8px;left:8px;font-family:'Inter',sans-serif;font-size:10px;font-weight:600;background:rgba(255,255,255,.9);color:var(--ink2);padding:3px 9px;border-radius:100px;border:1px solid var(--border)}
+.feat-row{display:flex;gap:14px;min-width:max-content;padding-right:32px;padding-bottom:48px}
+.feat-card{width:210px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;transition:all .2s;overflow:hidden;flex-shrink:0;border-radius:16px;animation:fadeUp .4s ease both;position:relative}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.13)}
+.feat-img{height:200px;background:var(--bg);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.feat-img img{width:100%;height:100%;object-fit:contain;padding:20px;transition:transform .3s ease}
+.feat-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px}
+.feat-card:hover .feat-img img{transform:scale(1.08)}
+.feat-img-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--teal))}
+.feat-cat-badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(14,38,50,.7);color:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:0.5px solid rgba(255,255,255,.12)}
+.feat-retailers-badge{position:absolute;top:10px;right:10px;font-size:10px;font-weight:600;background:rgba(14,38,50,.7);color:var(--teal);padding:3px 9px;border-radius:100px;backdrop-filter:blur(6px);border:0.5px solid rgba(91,158,160,.25)}
+.feat-body{padding:13px 15px 15px}
+.feat-brand-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.feat-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.feat-bottom{display:flex;justify-content:space-between;align-items:center}
+.feat-price{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.03em;color:var(--ink);line-height:1}
+.feat-price sup{font-size:12px;vertical-align:super;font-family:'Inter',sans-serif;font-weight:600}
+.feat-arrow{width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:14px;transition:all .15s}
+.feat-card:hover .feat-arrow{background:var(--orange);border-color:var(--orange);color:#fff}
 
 /* ── ALERT BANNER ── */
 
@@ -415,37 +419,45 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
 .cat-shortcut-all{border-style:dashed}
 .cat-shortcut-all .cat-shortcut-icon{opacity:.5}
 
-/* Value picks grid */
-.value-picks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.vp-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
-.vp-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
-.vp-cat-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:12px;background:var(--badge-bg,var(--bg3));color:var(--badge-c,var(--ink2))}
-.vp-img{width:72px;height:72px;object-fit:contain;border-radius:10px;background:var(--bg3);margin-bottom:12px}
-.vp-img-placeholder{width:72px;height:72px;border-radius:10px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:12px}
-.vp-brand{font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-.vp-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.vp-price-row{display:flex;align-items:baseline;gap:4px}
-.vp-price{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.02em;color:var(--ink);line-height:1}
-.vp-from{font-size:11px;color:var(--ink3);font-weight:500}
-.vp-retailers{font-size:11px;color:var(--orange);font-weight:600;margin-top:6px}
-.vp-arrow{position:absolute;top:20px;right:20px;font-size:18px;color:var(--ink4);transition:all .12s}
-.vp-card:hover .vp-arrow{color:var(--ink2);transform:translate(2px,-2px)}
+/* Value picks grid — Option C tall image cards */
+.value-picks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vp-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.vp-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.13)}
+.vp-img-wrap{height:180px;background:var(--bg);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.vp-img{width:100%;height:100%;object-fit:contain;padding:20px;transition:transform .3s ease}
+.vp-card:hover .vp-img{transform:scale(1.08)}
+.vp-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px}
+.vp-img-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--teal))}
+.vp-cat-badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(14,38,50,.7);color:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:0.5px solid rgba(255,255,255,.12)}
+.vp-body{padding:13px 15px 15px}
+.vp-brand{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.vp-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vp-footer{display:flex;justify-content:space-between;align-items:center}
+.vp-price-row{display:flex;align-items:baseline;gap:3px}
+.vp-from{font-size:10px;color:var(--ink3);font-weight:500}
+.vp-price{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.02em;color:var(--ink);line-height:1}
+.vp-retailers{font-size:10px;color:var(--teal);font-weight:600}
+.vp-arrow{width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:14px;transition:all .15s;flex-shrink:0}
+.vp-card:hover .vp-arrow{background:var(--orange);border-color:var(--orange);color:#fff}
 
-/* Most compared grid */
-.compared-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.cmp-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .15s;display:flex;gap:14px;align-items:center}
-.cmp-card:hover{border-color:var(--border2);background:var(--bg3)}
-.cmp-img{width:52px;height:52px;object-fit:contain;border-radius:8px;background:var(--bg3);flex-shrink:0}
-.cmp-img-ph{width:52px;height:52px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.cmp-info{min-width:0}
-.cmp-brand{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
-.cmp-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0 4px}
+/* Most compared — clean image-led list rows */
+.compared-grid{display:flex;flex-direction:column;gap:8px}
+.cmp-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:12px 16px 12px 12px;cursor:pointer;transition:all .15s;display:flex;gap:14px;align-items:center}
+.cmp-card:hover{border-color:var(--border2);transform:translateX(3px)}
+.cmp-img-wrap{width:64px;height:64px;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;border:1px solid var(--border)}
+.cmp-img{width:100%;height:100%;object-fit:contain;padding:6px}
+.cmp-img-ph{font-size:26px}
+.cmp-info{flex:1;min-width:0}
+.cmp-brand{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.cmp-name{font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px}
 .cmp-meta{display:flex;align-items:center;gap:8px}
-.cmp-price{font-size:14px;font-weight:700;color:var(--ink)}
-.cmp-badge{font-size:10px;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:100px;padding:2px 7px}
+.cmp-price{font-size:15px;font-weight:700;color:var(--ink)}
+.cmp-badge{font-size:10px;font-weight:600;color:var(--teal);background:rgba(30,96,118,.12);border:0.5px solid rgba(30,96,118,.2);border-radius:100px;padding:2px 8px}
+.cmp-chevron{font-size:16px;color:var(--ink4);flex-shrink:0;transition:transform .15s}
+.cmp-card:hover .cmp-chevron{transform:translateX(2px);color:var(--ink2)}
 
 @media(max-width:1024px){.cat-shortcut-grid{grid-template-columns:repeat(4,1fr)}.value-picks-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:680px){.cat-shortcut-grid{grid-template-columns:repeat(3,1fr)}.value-picks-grid{grid-template-columns:1fr 1fr}.compared-grid{grid-template-columns:1fr 1fr}.home-body{padding:0 16px 60px}.home-section-dark{margin:56px -16px 0;padding:56px 16px;left:-16px;width:calc(100% + 32px)}}
+@media(max-width:680px){.cat-shortcut-grid{grid-template-columns:repeat(3,1fr)}.value-picks-grid{grid-template-columns:1fr 1fr}.home-body{padding:0 16px 60px}.home-section-dark{margin:56px -16px 0;padding:56px 16px;left:-16px;width:calc(100% + 32px)}}
 /* Product card grid — 6 columns on wide screens = 12+ visible at once */
 .pcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 @media(max-width:1100px){.pcard-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr))}}
@@ -949,7 +961,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;height:3px;backgroun
     </div>
     <div class="hero-veil"></div>
     <div class="hero-veil2"></div>
-    <div class="hero-content" style="padding-top:140px;padding-bottom:120px">
+    <div class="hero-content" style="padding-top:140px;padding-bottom:180px">
       <div class="hero-overline"><div class="hero-overline-bar"></div>NZ supplement price comparison</div>
       <h1 class="hero-h1" style="font-size:clamp(64px,10vw,150px)">
         <span class="hero-h1-plain">Find the best supplements for</span><br>
@@ -2426,12 +2438,24 @@ function renderValuePicks(){
       :`<div class="vp-img-placeholder">${p.cat.icon}</div>`;
     const d=Math.floor(p.price),c=(p.price%1).toFixed(2).slice(1);
     return`<div class="vp-card" onclick="openDetail('${p.group.key.replace(/'/g,"\\'")}','${p.brand.replace(/'/g,"\\'")}')">
-      <div class="vp-cat-badge" style="--badge-bg:${p.cat.bg};--badge-c:${p.cat.c}">${p.cat.icon} ${p.cat.label}</div>
-      ${img}<div class="vp-brand">${p.brand}</div>
-      <div class="vp-name">${p.group.name}</div>
-      <div class="vp-price-row"><div class="vp-from">from</div><div class="vp-price">$${d}${c}</div></div>
-      ${p.rc>1?`<div class="vp-retailers">Sold at ${p.rc} retailers</div>`:''}
-      <div class="vp-arrow">↗</div>
+      <div class="vp-img-wrap">
+        ${p.group.imageUrl
+          ?`<img class="vp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="vp-img-ph" style="display:none">${p.cat.icon}</div>`
+          :`<div class="vp-img-ph">${p.cat.icon}</div>`}
+        <div class="vp-img-bar"></div>
+        <div class="vp-cat-badge">${p.cat.icon} ${p.cat.label}</div>
+      </div>
+      <div class="vp-body">
+        <div class="vp-brand">${p.brand}</div>
+        <div class="vp-name">${p.group.name}</div>
+        <div class="vp-footer">
+          <div>
+            <div class="vp-price-row"><div class="vp-from">from&nbsp;</div><div class="vp-price">$${d}${c}</div></div>
+            ${p.rc>1?`<div class="vp-retailers">${p.rc} retailers</div>`:''}
+          </div>
+          <div class="vp-arrow">↗</div>
+        </div>
+      </div>
     </div>`;
   }).join('');
 }
@@ -2451,11 +2475,12 @@ function renderMostCompared(){
   if(!el)return;
   if(!top.length){el.innerHTML='<div class="plist-empty">No data yet</div>';return;}
   el.innerHTML=top.map(p=>{
-    const img=p.group.imageUrl
-      ?`<img class="cmp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.style.display='none'">`
+    const imgContent=p.group.imageUrl
+      ?`<img class="cmp-img" src="${p.group.imageUrl}" alt="${p.group.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="cmp-img-ph" style="display:none">${p.brand[0]}</div>`
       :`<div class="cmp-img-ph">${p.brand[0]}</div>`;
     return`<div class="cmp-card" onclick="openDetail('${p.group.key.replace(/'/g,"\\'")}','${p.brand.replace(/'/g,"\\'")}')">
-      ${img}<div class="cmp-info">
+      <div class="cmp-img-wrap">${imgContent}</div>
+      <div class="cmp-info">
         <div class="cmp-brand">${p.brand}</div>
         <div class="cmp-name">${p.group.name}</div>
         <div class="cmp-meta">
@@ -2463,6 +2488,7 @@ function renderMostCompared(){
           <div class="cmp-badge">${p.rc} retailers</div>
         </div>
       </div>
+      <span class="cmp-chevron">›</span>
     </div>`;
   }).join('');
 }
@@ -2496,15 +2522,24 @@ function renderFeatured(){
   if(!top.length){const _fr=document.getElementById('featRow');if(_fr)_fr.innerHTML='<div class="load-txt" style="padding:40px 0">No products with images yet</div>';return;}
   const _featRowEl=document.getElementById('featRow');if(_featRowEl)_featRowEl.innerHTML=top.map((f,i)=>{
     const d=Math.floor(f.best);const c=(f.best%1).toFixed(2).slice(1);
-    return `<div class="feat-card" style="animation-delay:${i*.04}s;position:relative" onclick="openDetail('${f.group.key.replace(/'/g,"\\'")}','${f.brand.replace(/'/g,"\\'")}')">
-      ${f.rc>1?`<div class="feat-retailers-badge">${f.rc} retailers</div>`:''}
-      <div class="feat-img"><img src="${f.group.imageUrl}" alt="${f.group.name}" onerror="this.parentElement.style.background='#f3f4f6'"></div>
+    const catLabel=Object.values(CAT_META||{}).find?.(m=>m.key===f.group.category)?.label||f.group.category||'';
+    const imgContent=f.group.imageUrl
+      ?`<img src="${f.group.imageUrl}" alt="${f.group.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      :`<div class="feat-img-ph">💪</div>`;
+    return `<div class="feat-card" style="animation-delay:${i*.04}s" onclick="openDetail('${f.group.key.replace(/'/g,"\\'")}','${f.brand.replace(/'/g,"\\'")}')">
+      <div class="feat-img">
+        ${imgContent}
+        <div style="${f.group.imageUrl?'':''}display:none" class="feat-img-ph">💪</div>
+        <div class="feat-img-bar"></div>
+        ${catLabel?`<div class="feat-cat-badge">${catLabel}</div>`:''}
+        ${f.rc>1?`<div class="feat-retailers-badge">${f.rc} stores</div>`:''}
+      </div>
       <div class="feat-body">
         <div class="feat-brand-lbl">${f.brand}</div>
         <div class="feat-name">${f.group.name}</div>
         <div class="feat-bottom">
-          <div class="feat-price"><sup>$</sup>${d}.${c}</div>
-          ${f.rc>1?`<div class="feat-badge">↓ compare</div>`:''}
+          <div class="feat-price"><sup>$</sup>${d}${c}</div>
+          <div class="feat-arrow">↗</div>
         </div>
       </div>
     </div>`;
