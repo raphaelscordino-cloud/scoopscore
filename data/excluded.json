@@ -1,0 +1,6883 @@
+{
+  "meta": {
+    "updatedAt": "2026-05-30T07:15:11.773Z",
+    "total": 1375
+  },
+  "products": [
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Beetroot Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Berberine",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Purest Creatine",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Faction Labs 600ml Shaker",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Selectorised Power Rack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Elbow Wraps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Knee Wraps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Knee Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Knee Sleeve",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "EHP Labs Hydreau (Hard Stock)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Shaker 600ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste Sauce (Dated 04/26)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Tumbler 650ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Motion Leggings",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Superpump Aggression",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Angled Plyometric Box",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Lifting Chain 10Kg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Mid Grip Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials NMN 60 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials Shilajit 60 caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nexus Essentials NAC 100% Pure N-Acetyl L-Cysteine",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Before You Speak Discovery Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Gaspari Proven Pump",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Basic Hydration",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Pro Knee Sleeves 5mm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Pro Knee Sleeves 7mm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Obvi Goodbye 120 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rechargeable Hand Mixer",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Shaker 600ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 Shaker 600ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Energy 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "TriggerPoint MobiPoint Massage Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "TriggerPoint MB1 Massage Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita UM-075",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-400",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita HD-384 Digital Scale",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Fibre+",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Power Pro Lifting Grips",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Lifting Wrist Wrap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Lifting Knee Wrap",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Scone - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Olympic Spring Collars - pair",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Immune Amie",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Vitrix 80 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Caffeine 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester-C Echinacea 60 Chewables",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Inulin Prebiotic 227g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Melrose MCT Oil 500ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Melrose MCT Oil 250ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Medium Wide Grip Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Swivel Push Up Pro",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Yoga Mat",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Liveup Sports Weighted Jump Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports Air Freshener",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ice Bath Thermometer",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Home Gym Resistance Band Set",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Vit-C Gummy Bears 90s",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Garlic 5000mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Ester-C 550mg 60 Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Vita-C 1000mg 90 Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Full Power Rack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Sleep & Mood 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Flaxseed Oil 1,000mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy CO-Q10 160mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Chromium 3,340mcg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Adrenal Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy 5-HTP 120mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Wall Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Sandbag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Optifast VLCD Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "FUELR Caffeinated Gel 60ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Rise Leggings",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Rise Shorts",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elevate Shorts",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Dr Hydrate Variety Pack Sachet Box",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life MSM 1000mg 120 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Swoleys Testie Chews",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Alphalab Turkesterone Twinpack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Raw Apple Cider",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Cramp Block tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN CLA 90 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-321 Digital Kitchen Scale",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-192 Digital Scale with Removable Silicone Cover",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita KD-177 Digital Scale",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita BC-545N",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Sleep+ Nasal Strips",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Sleep+ Mouth Tape",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition NMN 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Irish Sea Moss 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Inositol",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition MCT Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Porridge - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Pastry Mix - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Mini Pizza Base - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Dough - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Choc Mousse - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Cinnamon Donut - 4 srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Brownie - 4 SRV",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Banana Bread - 4srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Super Sandbag (fillable)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Speed Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Mini Bands - set of 3",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Jump Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PVL Gold Series Watertight 90 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Push Up Stands",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Fluid Energy Gel 50g - 8 Gel Sample Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Professional Speed Jump Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Vitex",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics NMN",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics DIM",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Peach Pad",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Lifting Straps with wrist wrap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Lifting Gripper with wrist wrap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Lipo-6 Stim Free 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex 6 Defining Gel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Super B Plus 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Potassium Chloride Powder 227g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Glutathione 500mg, 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Garcinia Cambogia Extract 120 Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods DIM 200, 90 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Cider Vinegar 180 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mutant Deluxe 1L Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mutant Born Hardcore 700ml Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist Support",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Waist/Back Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Waist Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Waist Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Training Resistance Band Set",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Thigh Master",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Steel Cable Jump Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Speed Jump Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Slim Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Sit Up Bench",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Tube Set",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Toning Tube Set",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Band",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Quick Hurdles - 5pcs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Kettlebell Rack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Foam Roller",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Balance Board",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Adjustable Weight Bench With Leg Extension",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Adjustable Power Step",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports 3-in-1 Roller Set",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Wide Grip Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting Straps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting Olympic Bar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting 1.2m Bar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weighted Band",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Livepro Water Boxing Bag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Targeted Massage Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro T-Bar Row Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Strap Handle Pro",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sports Pull Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sports Mat",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sports Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Single Cable Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Lifting Wrist Wraps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Easy Sleep",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Apple Cider Vinegar 750ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Red Line Wrist Wraps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Pro Thumbloop Wrist Wraps (2 piece)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger PolyPro Dip Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Padded Cotton Lifting Straps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Chalk Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Kids Elderberry+Ivy Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Destress Ashwaghanda Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Good Apple Cider Vinegar Gummies - 90s",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Vir-Defence Extra + Ester-C 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Turmeric 30,000+ 1-A-Day 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Stress Support 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Sleep Support 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Prostate Support 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Milk Thistle 50,000 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Faction Labs Uppers 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Faction Labs Downers 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Womens Hormone Support DIM",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians GastroEzy",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Stress Adapt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Rest and Relax",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Animal Huge Water Jug 1.8L",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Aluminium Handle Speed Rope + Carry Bag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Air Rower",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SmartShake Lite 800ml - DC Comics",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Neo Weight Belt 15cm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Neo Weight Belt 13cm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Classic Leather Weightlifting Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex Lipo6 CLA",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Joint Care",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Joint Bio-Flex",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester C + Bioflavonoids",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Workout Gloves with 12inch Wrist Wrap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Weight Jacket",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Sauna Suit",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve Support",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Kettlebell",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Hip Band",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Heavy Duty Resistance band",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Elbow Support Sleeve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Elbow Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Elbow Sleeve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Anti-burst Swiss Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Anti-burst Mini Swiss Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Sparring Gloves",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Rubber Bumper Plate",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Power Bag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Hex Dumbbell",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Octo Kettlebell",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Zombie Labs Cross Eyed Sample Sachet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Syrup",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Sauce",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Dressing",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Coffee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Air Freshener",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snow White Ice Lightning 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Snaxx Keto Mousse - 4 srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 Green Beret",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Redcon1 GI Juice",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Promera Sports CON-CRET",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Tart",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Slice",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Pancake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Mini Cheesecake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Donut",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "One Minute Cupcake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra Organics Beef Bone Broth",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Syrup",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Sauce",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Mayo",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste ZERO Calorie Dressing",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Mug Cake (6 x 50g pack)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Baking Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Green Tea X50",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ghost Legend V4",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clif Nut Butter Bar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Chief Organic Biltong 30g Bag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "C4 ENERGY CARBONATED RTDS 473ML",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Smartshake Slim Series 400ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Smartshake Revive 750ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Smartshake 800ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SmartShake 400ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Tumbler View - 700ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Tumbler Original - 700ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "RockTape Wrist Wraps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Portable Rechargeable Blender - 500ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle #NZMGAINSDAY Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Tornado Shaker 600ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Elevate Leggings",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Go Gut Soothe",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mrs Taste Mrs Fil-A Sauce",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Goli Nutrition Ashwaganda Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor C4 Energy Stick - 1 Packet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Protein Starter Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal GH Max 180 Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Carbs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Dim+ 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition D3 + K2 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Switch Nutrition Beef Liver 120 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Power Pro Lifting Straps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Ski Exercise Vertical Rower",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Silicone 3L Ice Tray",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Shaker 600ml Black",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Shotgun Shaker 400ml Pink",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Magnetic Pill Storage - Two Layers",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Magnetic Pill Storage - One Layer",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Hydration Jug - 2.2l",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ShakeSphere Hydration Jug - 1.3l",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rubber Flooring 1m",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Curcumin",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Performance Curved Treadmill",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Vibrant Insides",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester C 500mg, 120 Chewable Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutra-Life Ester C 1500mg Plus Bioflavanoids One-A-Day, 100 Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Sunflower Lecithin 454g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods Saccharomyces Boulardii 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Now Foods MCT Oil 473ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Multi Weight Adjustable Dumbbell 24Kg / 52.5Lb",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Push Up Stands",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Patella Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Support w/ strap",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve/wrap Short",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Knee Sleeve/wrap Long",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Inter-locking Mat",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Home Pull Up Bar 80-120cm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Home Pull Up Bar 63-96cm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Cotton Wrist Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Chest Expander",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Battle Rope 9m",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Balance Board 41.5cm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Speed Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Single Row Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Resistance Training Kit",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Punching Bag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Multi-Grip Bar",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Mini Bands - Set of 4",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Harness Vest",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Handle Grip",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Focus Pads",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro EZ Curl Bar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Door Anchor",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Dip Belt Black",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Dip Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Core Plate",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Boxing Pillar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Battle Rope Wall Anchor",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Barbell Pad",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Barbell Collars",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro 3-in-1 Soft Plyometric Box",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger 14\" Bar Pad",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Ginkgo 9,000 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Go Healthy Co-Q10 400mg 1-A-Day 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Cherry Sleep 30 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Sleep Science",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Clinicians Rejuvenate 60 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Perform Tread",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Rig Target",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Power Sled",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Power Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Centr x HYROX Competition Interlocking 25kg Plate",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Celsius Portable Sauna Pod",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Celsius Ice Bath + Chiller",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSc Triandrobol",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biosphere Nutrition Astaxanthin 60 Softgels",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biogenetic Laboratories Forskolin",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Biody Scan at Constellation Drive",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Super Boost C, 200g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BePure Gut Assist 180 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Agility Ladder 10 metres",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "AccuFitness MyoTape",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Air Bike",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SmartShake Reforce 900ml - DC Comics",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Fitness Pro Band",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Mini Band",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "SKLZ Fitness Band",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Fabric Resistance Band",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Resistance Tube",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Power Band",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Exercise Band with Handle",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Womens Mystery Clothing Pack - 2 items",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Universal Animal Pak",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Neo Lifting Belt 4 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Neo Lifting Belt 6 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Quick Wraps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Eco Leather Lifting Belt 6 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mitchells Bone Broth Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mens Mystery Clothing Pack - 2 items",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist Wrap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Wrist Support Sleeve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Weight (pair)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Sleeve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weightlifting Leather Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Weighted Vest",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Rubber Granule Bumper Plate",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Premium Urethane Barbell",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Premium Rubber Hex Dumbbell - pair",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Kettlebell",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Battle Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LivePro Anti-burst Swiss Ball",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Lifting Glove with Wrist Wrap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Vit C 1000mg Plus Echinacea Chewable",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Vit C 500mg Chewable",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Womens Power Gloves 3.0 Carbon",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Mens Power Gloves",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger 7.5 Inch Firm Fit Contour Belt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger 4 Inch Padded Leather Belt 2.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Street Taco Sauce",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Spread",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Mayonnaise",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Dip",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Walden Farms Coffee Creamer",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Phedracut Slim Packs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN L-Carnicut 4000 Liquid",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PURE Energy Chews",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Everyday Sleep",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Primabolics Everyday Primal",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "PranaOn Sample Sachet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike PB+",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Macro Mike Macro Shake Meal Replacement",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports The Shadow",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Inspired DVST8 Energy Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Horleys Replace Gels-5 pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Get Raw Nutrition Fuel 60srv",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Bumper Plate",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "BSN NO Xplode",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Gutright sachet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "ATP Science Gutright Daily",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Weight Vest",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "MHP Xpel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Cable Jump Rope",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Ankle Brace",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LiveUp Sports Agility Ladder 4m",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "LCD Massage Gun - 6 Heads",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "JNX Sports The Curse Wristband",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Eco Leather Lifting Belt 4 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Armaplus Boxing Gloves",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Armalite Boxing Gloves",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Train Daily",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "RockTape Assassins Knee Sleeves 5mm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Quest Nutrition Peanut Butter Cups",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Harbinger Lifting Grips",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Vir-Defence",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GO Healthy Man Plus",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN Diet Fuel Ultralean",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "USN CarniCut 3500",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Rule1 Lean 5",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nuzest Kids Good Stuff",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Nutrex IsoFit",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Mutant Mind FK",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Healtheries Boost Immunity Tablets 20 Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Stroopwafel Gluten Free",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "GU Liquid Energy Gel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "EHP Labs Hydreau",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Tanita UM-041",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Sting Elasticised Hand Wraps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Zip Shorts",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Rubber Key Chain",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Oversized Logo Tee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Oversized Aesthetics Tee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Status Logo Tee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Gym Bag 45cm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Gym Bag 60cm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "NZ Muscle Shaker (Limited edition)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Club Status Tank",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nzmuscle",
+      "title": "Cellucor Typhoon Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Optimum Nutrition Gold Standard 100% Whey Protein Powder Sample - Extreme Milk Choc *Free Sample*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "JNX The Curse! Premium Whey Keychain & Funnel *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Muscle Nation Cheesecake Protein Bar (Random Flavours) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Skratch Labs Hydration Sport Drink Mix Single Serve Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "MyPause Gift Bundle *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Creakong Creatine 300g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "6x Pack Nutrition Loaded Pre Workout Samples *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Athletech Purest Creatine Monohydrate Sample Sachets *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "6x Athletech Purest Creatine Monohydrate Sample Sachets *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "6x Musashi Deluxe Protein Bars (Random Flavour/s) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ATP Performance Hydration Electrolyte Mix 30 Serves (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium No Added Sugar Meringues",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balance BCAA 60 Caps *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harmony Makeup Bag *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Faction Labs Glutamine Powder 150g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Chief Organic Iron+C Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ATP NoWay Collagen Protein Water - 10 Serve - Kiwi Apple *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Before You Speak Performance Coffee Sachet *Free Sample*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Before You Speak Collagen Coffee *Free Sample*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Muscle Nation Sparkling Protein Water Drink *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Vital Electric Hand Mixer *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "EHP Labs X Ghostbuster Beanie *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "6x PVL ISOGOLD 100% Whey Isolate Protein Sample (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Inspired Shaker (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Inspired Air Freshener *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Metabolic Health Support Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Maurten Drink Bottle 500ml *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nutrex Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "JNX The Curse Wrist Band *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Before You Speak Octane Thermogenic Coffee 7 Pack - Original *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Pack Nutrition Loaded Pre Workout Samples *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SmartShake Lite Shaker 1L",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "MitoQ Pure Antioxidant Caps - Mini (7 Days) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Musashi Energy Drink Can (Random Flavours) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Musashi Creatine Monohydrate 500mg Capsules *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Vivoo Wellness 8x Biomarker Urine Test Strip *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harmony Radiance+ 60 Caps  *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "4x Swoleys Variety Sample Pack *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "5x Athletech Purest Creatine Monohydrate Sample Sachets *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PVL ProH20 Rapid Hydration Mix (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Go Folate & B12 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x PURE Performance+ Race Energy Gel *Free Sample*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BSC Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ATP NoWay Creatine Monohydrate Powder 250g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Alani Nu Energy RTD Can (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x MusclePharm Combat Ready Protein Shake RTD 500ml (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "6x Ryse Fuel Energy Drink RTDs (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Creatine Monohydrate Powder 300g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PVL Typhoon Flip-N-Sip Shaker 800ml *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium Sweet Chilli Sauce - No Added Sugar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Optimum Nutrition Amino Energy Sparkling RTD *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "EHP Labs OxyShred Ultra Concentration Fat Burner - Random Flavour - Best Before: 03/26 *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Musashi Random Bar *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Vivoo Wellness 8x Biomarker Urine Test Strips",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x SIS Go Energy + Electrolytes Isotonic Sports Drink RTD - Orange *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Liquid Chalk",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x BSC Zappo Pre Shot (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pack Nutrition Elementals Creatine Powder Unflavoured 150g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Red Dragon Nutritionals Creatine 150g (Dated: 10/25) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Optimum Nutrition Stainless Steel Black Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SmartShake Bohtal Insulated Travel Mug 600ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SmartShake Bohtal Insulated Tumbler 750ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Nuzest Kids Good Stuff Sachets (Random Flavour) Flow *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Eve Wellness Cranberry Active Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Musashi Protein Crisp Bars (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Musashi Protein Crisp Bar (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Inspired Shred Fat Burner *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pack Nutrition Elementals Creatine 100g (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Swoleys LyteBites Electrolyte Gummies 45 Serves *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Pillar Performance Ultra Immune C Single Serve *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Swoleys LyteBites Electrolyte Gummies Single Sachet *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Atkins Low Carb Endulge Pecan Caramel Clusters",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro Vitamin Co Apple Cider Vinegar+ Jelly Beans",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Free Spooky Halloween Gift Pack",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pack Nutrition Flavoured Creatine Monohydrate (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "FREE Labour Weekend Sale Gift Card",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "5x Get Raw Creatine Monohydrate Single Serve Sachets *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Ghost Energy Drink RTD (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Onest Super Greens (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "9x Zombie Labs Protein Water Assorted Sachets Sample Pack *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "5x Pillar Performance Magnesium Powder Sample Pack (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Madness Pre-Workout 30 Serve (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Faction Labs 100% Whey Protein Variety Pack *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PURE Race Starter Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Pro Elbow Sleeves 4mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Pro Lifting Grips",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Shaker 700ml *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Pro Knee Sleeves 7mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Pro Knee Sleeves 5mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Elite Member Thank You *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balance Carnitine 60 caps *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Musashi Shred Energy Drink RTD 355ml (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Musashi Shred Energy Drink RTD 355ml (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Swoleys LyteBites Electrolyte Gummies Single Sachet *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x JNX Sports The Shadow Sample Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Loaded Shaker 600ml (Random Shaker & Samples) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Plant-Based Keto Koko",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Air Freshener",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Rule 1 Mass Sample Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Rule 1 Pre LIFT Single Serve Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Rule 1 Essential Amino 9 Sample (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "X50 600ml Shaker (Random colour) *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Rule 1 Whey Blend Protein Sample (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Rule 1 Whey Isolate Protein Powder Single Serve Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ Fitness Trainer Mat",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Zombie Labs Chuggz Water Bottle *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscle Nation Shaker (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium Chocolate Sauce - No Added Sugar *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscle Nation Clear 700ml Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Clean Nutrition Air Freshener *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscle Nation Electric Hand Mixer (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Big Grip Pro Lifting Straps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Women's Pro Glove 3.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Women's Power Glove 3.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Pro Wristwrap Glove 3.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Men's Pro Glove 3.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Men's Power Glove 3.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Atkins Low Carb Endulge Bars 5 Pack (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Sticker",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x JNX Sports The Curse! Pre-Workout Single Serve  (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x JNX Sports The Ripper! Fat Burner Single Serve (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Applied Nutrition Mushroom Superblend",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 4\" Padded Leather Lifting Belt 2.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 6\" Padded Leather Lifting Belt 2.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "NutraLife Magnesium Glycinate 60 Caps *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Fruit Rippers",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Chief Organic Grass-Fed Beef Biltong 30g (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Ryse Fuel Energy Drink RTDs (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Premium Nutrition Creatine Monohydrate 300g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Sticker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Power Pro Lifting Straps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PranaOn Super Greens Single Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Red Dragon Nutritionals Glutamine 150g (Dated: 03/26) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GoGenerosity Pay-it-forward",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Rocktape H2O Tape (5cm X 5m)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Good Health B Activated B12 Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Go Meno Support Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Eve Wellness Berry Beauty Latte Limited Edition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "5x Cellucor C4 Original Sample Pack *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Clean Collective Energy Drink (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Zombie Labs Pumpz Non-Stim Pump + Nootropic - 10 Serve *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "EHP Labs Sports Socks *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2x Muscle Nation Protein Jelly + Collagen Sachets (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscletech Perfect Activ Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Swoleys Creatine Monohydrate Sour Gummy Bears Single Sachet *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Trove Wellness Resveratrol Antioxidant Support *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Sticker - Social Club Cutout *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Sticker - Social Club Round *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Chief Collagen Protein Bar (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Cellucor C4 Carbonated Energy RTD (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BSc Ultra Strong Pre-Workout Coffee 150G *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Unisex Bucket Hat *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Physical Gift Card Voucher",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mitchells Nutrition Beef Tallow",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Swoleys Creatine Monohydrate Sour Gummy Bears Single Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "4x Forest Finds Sachet Sample Pack *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Perfect Sports DIESEL Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Tote Bag *Gift* [Stores Only]",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gut Performance Key Ring *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gut Performance Towel *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Born Hardcore Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Clean Collective Energy Drink (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Chief Organic Beef Liver Energy Boost Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium Zero Sugar Syrup",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium Teriyaki Sauce - No Added Sugar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium Salted Caramel Sauce - Zero Sugar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium BBQ Sauce - No Added Sugar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Low Carb Emporium Chocolate Sauce - No Added Sugar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition Sleep+ Nasal Strips",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition Sleep+ Mouth Tape",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Thermal Labs Forge Whey Single Sachets (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Swoleys Creatine Monohydrate Sour Gummy Bears 30 Serves *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Musclepharm Womens Singlet SMALL",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Paper Bag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Donation",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ Speed Chute",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pure Raspberry caffeine Gels (batch tested) box",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pure orange gels (batch tested)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pure espresso gels (short dated) (batch tested)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Batch tested gels SGL",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Smoothie bar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Active Cushion Crew Socks - White - Large *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel \"Do More\" Cotton Tote Bag *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "5x Samples - Pick and Mix [Stores Only]",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SFQD - Sportsfuel Quarterly Digest",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Goli Matcha Mind Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds Wellbeing Mushroom Tonic Refill Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds AM Mushroom Tonic Refill Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Lifestream Circulate 5 Herbs Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Healtheries Easy Sleep Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Bucked Up Black Pre-Workout Sachets (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gut Performance Mini Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Forest Finds Wellbeing Mushroom Tonic Sample Pack *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds Organic NZ Lion's Mane Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Forest Finds PM Mushroom Tonic Sample Pack *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gut Performance Mason Jar *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "USN Raw Apple Cider",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "USN Keto MCT Oil",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Test Product (Review Test)",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Faction Labs Creatine Monohydrate 150g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ATP Rest & Relax",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ATP Premenstrual Tension (PMT) Rescue",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Rocktape Assassins Knee Sleeves Pair - 5mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Rocktape Assassins Knee Sleeves Pair - 7mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscletech Test HD Elite *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Figure 8 Lifting Strap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Applied Nutrition Critical Cookie",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Applied Nutrition Berberine 1000mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Pro Monthly",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Pro Annual",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Active Cushion Crew Socks - 3 Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Active Cushion Ankle Socks - 3 Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balega Blister Resist Socks - Quarter",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balega Blister Resist Socks - Crew",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Moringa Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds AM Mushroom Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Lever Clasp Lifting Belt 100mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Granarolo Cheese Snack Bites",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Faction Labs \"REFUSE TO BE ORDINARY\" 600ml Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Faction Labs \"BE MORE THAN A GREAT PERSONALITY\" 600ml Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Mixed Colour Shaker *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Women's Pro Wristwrap Gloves 2.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Power Knee Wraps Black 72″",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BioTrace Glutathione 250mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "JNX Sports Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Reduced-Sodium Iodised Sea Salt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds PM Mushroom Tonic Single Serve Sachet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds AM Mushroom Tonic Single Serve Sachet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nexus 700ml Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mitchells Nutrition Stainless Steel Tea Strainer",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mitchells Nutrition Digest Well Botanical Loose Tea Blend",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mitchells Nutrition Digest Soothe Botanical Loose Tea Blend",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x PVL ISOGOLD 100% Whey Isolate Protein Sample (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Get Raw Cbum Thavage Pre-Workout Sample (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Vitafit Psyllium 450 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Vitafit Haemoglobin Glandular",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Vitafit Chlorophyll",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition 100% Pure Quercetin",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Embossed Bread Tin *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Digital Camo Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Crazy Monkey Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Blue Crush Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Galaxy Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Nuke Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Shiny Dragon Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Shiny Fox Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "H2 Hydrogen Water Bottle",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Macro Mike Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscletech Stainless Steel Shaker (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "3x Mutant Mind FK Sample Sachet - Tropical Punch *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Air Freshener (Random Scent) *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Authentic Chai Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ABE Isolate Whey Protein Sample *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justines Keto Crunch Cookie",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Morning Made Organic Matcha Latté",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Push Towel - Green *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "MuscleTech Lifting Straps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Eve Wellness Functional Mushroom Latte",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Eve Wellness Matcha Latte",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Born Hardcore Mega Jug 2.6L *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "LevlUp Shaker (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ABE Loaded Jug *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Musashi Alpha Jug 2.4L *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting ArmaBlast/ArmaLite Boxing Gloves",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Vital Greens All-in-One Sachet *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition 100% Pure Organic Golden Irish Sea Moss (10:1) 60 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Air Freshener *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Car Air Freshener",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Cellucor C4 Drink Bottle *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Snackn Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel 600ml Shaker (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Ghiotti Italian Cheese Bites *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition Quercetin Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition Shilajit 8:1 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition 100% Pure TMG (Trimethyglycine) Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Cellucor C4 Shaker (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "MuscleTech Shaker Black *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Musashi Alpha Shaker Bottle 750ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Omrub Organic Muscle Rub 24g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds Wellbeing Mushroom Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Clinicians Prospan Bronchial Syrup",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Unleash Magnet *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Optimum Nutrition Gold Standard Pre Advanced Trial Tub *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Pro Activated B Complex Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Ghiotti Italian Cheese Bites",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Performa 7-Day Pill Container Case Batman",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Performa 7-Day Pill Container Case Superman",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Hip Thrust Bar Pad",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Radix Nutrition - Keto Meals v9.0",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Radix Nutrition - Original Meals v9.0",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Weekly Meal Planners *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Pro Loaded Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Weekly Meal Planners",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Brave Face Junior Stay Cool Spray",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Awak'n Calm Oil",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Awak'n Calm Mints",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Radix Nutrition - Protein Single Sachet (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "2 x Nexus Super Protein Sparkling Water RTD Dated: 03/25 (Random Flavour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Guar Gum Food Thickener 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Sugar Free Cocktail Mixers",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Deluxe 1L Shaker (Red/Black) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PVL EAA + BCAA Complete Trial Size *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BSC 1L Nitrovol Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition 100% Pure Colostrum (20% IgG) Powder 150g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition 100% Pure Inositol Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Switch Nutrition Berberine+ Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "CableFit NZ Adjustable Speed Rope",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "CableFit NZ Single Arm Attachment x2 Handles",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "CableFit NZ Ankle Attachments",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "CableFit NZ Plate Carrier Vest",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "CableFit NZ Portable Weights Pulley System - Originals Package",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Lifting Grips",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balega Blister Resist Socks - No Show",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balega Hidden Comfort Socks",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Palm Grips",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Poly Pro Dip Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Men's 5\" Foam Core Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Women's 4.5\" Hexcore Lifting Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Men's 4.7\" Hexcore Lifting Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Red Line Knee Wraps 78\"",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Red Line Thumb Loop Wrist Wraps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 7.5\" Firm Fit Contoured Lifting Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Men's Pro Wristwrap Gloves 2.0",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Women's Power Gloves Black",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Rocktape Rockguard Shin Guards",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "McDavid 513 Wrist Sleeve Adjustable / Elastic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "McDavid 493 Back Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "McDavid Jumper's Knee Strap",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "McDavid 511 Ankle Sleeve - Elastic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "McDavid 402 Open Patella Knee Support",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro Vitamin Co Apple Cider Vinegar+ Gummies",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Redcon1 MRE Lite - Meal Replacement",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint Grid STK Foam Roller",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint Mobility Exercise Mat 5mm",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint Grid X Massage Ball",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint Mobi Point Massage Ball",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint MB1 Massage Ball",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint AcuCurve Self Massage Cane",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint Impact Massage Vibrating Buffer",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds AM Mushroom Tonic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Forest Finds PM Mushroom Tonic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Lifestream Spirulina Bioactive 100 Tablets *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SOS Daily Hydration Electrolyte Tub",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SOS Daily Hydration Electrolyte Sachets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Active Cushion Ankle Socks *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "ABE Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Eve Wellness Blood Sugar Babe",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "EHP Labs Portable Hand Mixer",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Erythritol Sugar-Free Sweetener 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Sunflower Lecithin 200g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Before You Speak “Have a Nice Day” Middle Finger Mug *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Chaos Crew Shaker 600ml (Random Colour) *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Social Club Magnet *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "USN Immune Health *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Natures Sunshine Berberine",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "MuscleTech Clear 1L Shaker *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justine's Keto Hot Chocolate Mix 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Quest Frosted Cookies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Massage Ball  (Random Colour) *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justine's Keto Afghan Crunch Cookies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PVL Gold Series Creatine X8 249g *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Social Club Unisex Tee - Charcoal - Limited Edition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Optimum Amino Energy Trial Tub *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Powder Funnel *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Optimum Nutrition Blender Bottle Shaker *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Volo Wellbeing Natural Sleep Remedy",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel 600ml Shaker *Gift*",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Shaker Magnet *Gift*",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pack Nutrition Become The Beast Shaker *Gift*",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Social Club Unisex Tee - Oat - Limited Edition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Social Club Unisex Sweatpants  - Limited Edition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Social Club Unisex Hoodie - Limited Edition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Active Performance Women's Leggings",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Juub Apple Cider Vinegar Gummies - 60 Soft Chew",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Powder Funnel",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Magnet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SF Active Cushion Crew Socks - Single Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Off-Piste Plant-Based Biltong",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Organic Mushroom Coffee 100g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Reishi Lemon Myrtle Mouth Mist 60ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Lion's Mane Lemon Myrtle Mouth Mist 60ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Turkey Tail Mushroom Double Extract",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Shiitake Mushroom Double Extract 60ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Reishi Mushroom Double Extract",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Life Cykel Chaga Mushroom Double Extract",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Curry Mango Style Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Remoulade / Tartare Style Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Curry Ketchup Style Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Sweet Chilli Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Tomato Ketchup 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Cookies & Cream Sauce 300mL",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PharmaFreak Anabolic Freak Ultra Edition 144 Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Turkey Tail Mushroom",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Lifestream Biogenic Aloe Vera Tonic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Delicious Gut Bar (Previously Goodness Gut Bar)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justine's Keto Victoria Sponge Cake Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Collagen Bar - Single",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justine's Keto Porridge Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Bounce Superfood Powder 600g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Muscle Nation Aminos BCAAS EAAS",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Inspired Keto Ketones + MCT",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ Mini Bands 10 Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Before You Speak Keto Creamer",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PVL Domin8 225gm",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justine’s Easy As Keto Scone Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Before You Speak Immunity Coffee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Devil's Breath Liquid Chalk",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Good4Me Hair Skin Nails Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Good4Me Apple Cider Vinegar Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nature's Sunshine Kava Kava Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nutrex Lipo 6 Black Thyrolean",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Giant Sports Keto Rise",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life NAC Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Healthspan Elite All Blacks Opti-Turmeric",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justine's Keto Hot Cross Bun Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SIS Immune Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Fenugreek",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Black Seed",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "X50 Organic Herbal Matcha Tea",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Skinny Chocaholic Drops",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Low Sugar Jam",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Skinny Syrups",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Skinny Sauce",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nutrex Lipo-6 Chromium Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "RAW Protein Pregnancy",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Kidney Tonic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Deep Lung Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Children's Vira Guard",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Stress Relief",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Sniffle Juice",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Sleep Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Prostate Health",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals General Tonic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Ear, Nose & Throat Tonic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Detox Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbals Children's Ear, Nose & Throat",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harker Herbal Bladder Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "USN Turmeric Curcumin+",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balance Shaker 700ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justines Keto Gingerbread Cake Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Justines Fruit Cake Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Body & Liver Cleanse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Organic Wheatgrass",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Ultra Cleanse Repair + Renew Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Organic Turmeric Latte Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Sleep Herbal Infusion",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Protect Herbal Infusion",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka MCT Oil Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Hydroxycut Max For Women + Collagen Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "X50 Herbal Tea Sleepy",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "X50 Herbal Tea Cleanse Night",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "X50 Herbal Tea Cleanse Day",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "X50 Herbal Tea Antiflam",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Grounded Blanched Almonds",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Inulin",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Hemp Hearts 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Cocoa Butter",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Cacao Nibs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Vanilla Style Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Thousand Island Style Dressing 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Salted Caramel Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Smokey BBQ Sauce- 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Peri Peri Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Mayo Style Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Honey Mustard Dressing 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Fancy Garlic Sauce 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Callowfit Low Carb Caesar Style Dressing 300ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Volo Wellbeing Natural Stress Remedy",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Balance Shaker 400ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Athletic Sport Estro-X",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Athletic Sport Digezyme",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Athletic Sport Adrenal Cort",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Healthspan Elite Opti-Turmeric",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Dragon Fruit Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Tropeaka Organic Cacao Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Pancake Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "The Skinny Food Co Fakeaway Sauce",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Reishi Mushroom Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Leppin Sport Traverse Drink System",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Leppin Sport Summit Drink System",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Leppin Sport SlipSteam Drink System",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SD Pharmaceuticals Diindolymethane DIM 90 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Viktual+ Kava Night",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Folic Acid Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Pro-Life Anti-Bite Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Knowrish Well Better Cheddar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BePure Folate Restore",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Natures Sunshine Saw Palmetto",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "TriggerPoint Grid 1.0 Foam Roller",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Eve Wellness Take Me With The Pill",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Gym Towel",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel 600ml Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nutrex Lipo 6 Black Diuretic",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 14\" Bar Pad Black",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "1x Cadbury Marshmallow Pineapple Lumps Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Women's 5\" Foam Core Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 5\" Competition Coreflex Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Womens 5\" Competition Coreflex Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 6\" Competition Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Alkeme Wholefoods Baking Mix",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Keto Koko 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Keto Chocolate Mix",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Xanthan Gum 300g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Keto Sweetener",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Fibre Syrup 250ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Rule 1 Easy Protein Mousse",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Musashi Alpha Jug 2.4L",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Slippery Elm 600mg - Digestion Assist",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PURE Electrolyte Hydration Premium Starter Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Clinicians REM Sleep Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Phloe Childrens' Bowel Health Chewable Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Phloe Bowel Health Chewable Tablets",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ Quick Ladder",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ 6 x Hurdles",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Padded Cotton Lifting Straps - Pink",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ Speed Rope",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SKLZ Mini Bands (set of 3)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Chalk Ball Single Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Padded Cotton Lifting Straps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger Big Grip Pro Lifting Straps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 2\" Wrist Supports - Adjustable",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 6\" Padded Leather Lifting Belt Black",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Harbinger 4\" Padded Leather Lifting Belt Black",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy 5-HTP 120mg (60 Vegecaps)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Milky Mumma Smoothie",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel E-Gift Card Voucher",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BePure Mums One",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "BePure Deep Sleep",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sixstar Pre-Workout Explosion Carbonated 6 Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Rocktape Rockwrist - Wrist Wraps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Hemp Seed Oil 1100mg 100 Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Apple Cider Vinegar 1000mg 90 caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "North Coast Naturals 100% Pure MCT Oil 946ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mars Bar Single",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Goli Apple Cider Vinegar Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Atomic Training Gloves",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting HD Cotton Lifting Straps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Vusion Matcha Green Tea - ARTIST EDITION 60 Serve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Phantom Speed Skipping Rope",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "IF Mag",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Lifting Straps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Elite Speed Rope with Bag",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gifted Athletics Roman XIII Tee White Large",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Chia Seeds White 375g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Chia Seeds Black 375g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Olympic Fast Load Collars",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gymwear Wrist Wraps Pair",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gymwear Wrist Wraps Black & Blue",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Ultra Plus Speed Rope Yellow",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Maqui Berry Powder 125g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Nylon Lifting Straps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Shockwave Aluminium Speed Rope",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gifted Athletics Crest Tee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Gymwear Wrist Wraps Black & Pink",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Coconut Water Powder 200g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Mutant Red Mega Jug 2.6L",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PURE Blackcurrant Recovery 200g",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Outbreak Refuge 30s Lemonade",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Kids Vitamin C 260mg 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Cherry Sleep 30caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Woman Plus 30 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting K1 Womens Training Gloves",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Manuka Honey UMF 23+ 250g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Manuka Honey UMF 5+ 250g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Manuka Honey UMF 8+ 250g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Manuka Honey UMF 12+ 250g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Manuka Honey UMF 16+ 250g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GO Healthy Manuka Honey UMF 20+ 250g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "North Coast Naturals 100% Pure MCT Oil 473ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "R3P Life MCT Oil",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Nothing Naughty Collagen Bar",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy 5 HTP 60mg Serotonin Support 60caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Hemp Farm Pure Hemp Seed Oil Caps 240 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SiS Go Hydro + Caffeine 8 Pack Cola",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Promixx iX Vortex Mixer Battery-Powered",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Keto Cocoa",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "MHP Xpel 80 caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Massage Ball",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sportsfuel Wrist Wraps Pair",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Fitique Nutrition Booty bands",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PB2 Powdered Peanut butter 450g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "PB2 Powdered Peanut butter 184g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Optimum Nutrition Amino Energy RTD 6 Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Elasticised Lifting Knee Wraps 80inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Melrose Organic Apple Cider Vinegar 500ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Ultra Jump Rope Replacement Rope",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Neo Dip Belt 7 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "GAT Whey Protein 2.2KG",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Palm Protector Grips",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Neo Lifting Belt 6 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Neo Lifting Belt 4 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Eco Leather Lifting Belt 6 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Oh My Spice Seasoning",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Elasticised Quick Wraps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Armalite SAS Focus Mitts Pair",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "SmartShake 400ml Protein Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Eco Leather Lifting Belt 4 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Cherry Sleep 60 caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Antibiotic Support 14 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Go Healthy Vir Defence",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Trigger Point Foam Roller 12 Inch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Trigger Point Muscle Massage Stick",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Power Pro Lifting Grips",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Sting Viper Cross Training Skipping Rope",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "sportsfuel",
+      "title": "Weightlifting Palm Guard",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "LEVEL UP TURKESTERONE - 50% EXTRA",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "DAILY FIX GREEN TEA - 2 BOX COMBO",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "DAILYFIX GREEN TEA 60pk",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "SCORPION KETO FAST",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "700ml SHAKER BOTTLE (NO STEEL BALL)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "SCORPION FIGURE 8 TRAINING STRAPS",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "Stainless Steel Drink Bottle",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "SCORPION SHAKER BOTTLE 500ML",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "SCORPION DAD HAT",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "scorpion",
+      "title": "SCORPION MASS ATTACK 3KG",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Inspired Blue Logo Shaker 600ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Bohtal Insulated Tumbler",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "ASN Micro Bottle 500ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Lite 1000 Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Bohtal Insulated Travel Mug",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Reforce Stainless Steel Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Lite Shaker DC Comics",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Slim Shaker",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "Smartshake Revive Shaker",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "asnonline",
+      "title": "ASN x Smartshake Retain Water Bottle",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsolutions",
+      "title": "Switch Nutrition Essentials Fibre+",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsolutions",
+      "title": "Inception Labs Shaker Bottle",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsolutions",
+      "title": "Inception Labs Basketball Singlet",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsolutions",
+      "title": "Supplement Solutions Stringer",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsolutions",
+      "title": "Supplement Solutions Leather Weight Lifting Belt (Blue Camo)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsolutions",
+      "title": "Supplement Solutions Neoprene Lifting Belt",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "raiseys",
+      "title": "QBs Crunchy Cheese 40g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "raiseys",
+      "title": "Voucher",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "raiseys",
+      "title": "Raiseys T Shirt",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "raiseys",
+      "title": "Crafty Weka Bar",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "raiseys",
+      "title": "RAISEYS SHAKER",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Forest Finds Well Being Mushroom Tonic 120 Serve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Forest Finds AM Mushroom Tonic 120 Serve",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Nature's Basket Fadogia Agrestis",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Faction Labs Disorder Ultimate Sample Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Nexus Per4m Variety Pack",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Jnx Sample Bundle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Nutralife ESTER-C® 1000MG WITH BIOFLAVONOIDS",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "MuscleTech Hydroxycut Gummies +Women",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "payless",
+      "title": "MuscleTech HydroxyCut +Woman",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "payless",
+      "title": "Mutant MCT Oil",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Universal Gym Bag",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "payless",
+      "title": "Animal Water Jug",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "payless",
+      "title": "USN® CLASSIC LOGO WHITE SPORTSHAKER®",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "payless",
+      "title": "PVL Gold Series Stainless Steel Shaker",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "EatMe Shaker",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "payless",
+      "title": "Swole Gallon Tankers",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Nutrex Lipo 6 Black Thyrolean Dated 7/24",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "USN Caffeine Capsules",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "RSP MATCHA BOMB",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Giant Sports Instant Keto Coffee Dated 8/24",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Giant Sports Instant Keto Coffee Unsweetened Dated 02/24",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Meilo Apple Cider Gummies",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "payless",
+      "title": "Cyclone Cup Cyclone 650ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulation Lipotropic Detox",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations E.P.O. (Evening Primrose Oil)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations Junior Nutrients",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations Hair/Skin/Nails Ultra",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations Grapefruit Seed extract",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations Folate 400",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations Chromium (picolinate) 200 mcg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pure Encapsulations Beta Carotene (with mixed carotenoids)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Chief Nutrition Organic Beef Liver Powder",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Lion's Mane Mushroom Extract 30ml",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Morlife Turmeric Powder 150g (Certified Organic)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Morlife Spiced Vanilla Turmeric Latte Powder 100g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Prosupps HydroBCAA + Essentials",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "REM Mouth Tape",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Henna Hair Gift Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Henna Hair Conditioner",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Henna Hair Treatment",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Henna Hair Shampoo",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nose Fresh &#8211; Nasal Spray",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Vitamin B-12 1000 mcg Lozenges",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Happy Ears - Ear Candles CONE - 1 Pair",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Happy Ears - Ear Candles STRAIGHT - 1 Pair",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Anxi Ease Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Travel Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Grief Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Sleep Support© 20ml Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Coping With Change Support© 20ml Oral Spray",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Calm Kids Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "De-Stress Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Weight Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "De-Tox Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Inner Stability Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Client Focus Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Aura Clear Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Confident Teens Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Creative Kids Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Confident Teens Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Confident Kids Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Stressed Teens Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "New Beginnings Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Mothers Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Mothers Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Strong Teens Support© Flower Essence Emotional Remedy - 100% Natural",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "EHP Labs Gym Towel",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Codeage Teen’s Daily Multivitamin+",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Codeage Women’s Daily Multivitamin+",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Codeage Men’s Daily Multivitamin+ 120 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Trace Minerals Bentonite Clay",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "LA Republica Instant Mushroom Coffee Reserve 70g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Coke Zero",
+      "reason": "no-valid-price"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Now Foods Castor Oil in Glass Bottle, Organic",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Now Foods Chlorophyll 100 mg 90 Capsules - Free Radical Scavenger with Alfalfa Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MUSASHI Pre-Workout Chewables",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Swanson Barley Grass Juice Powder 150g Nutrient-Rich Antioxidant Blend",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "VERSA Wrapps Wrist Wraps — Heavy-Duty Support",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Enzymedica pH Strips 120 Tests Roll Dispenser Accurate Colour Chart",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Therapure Ionic Dry Body Brush, Beech Handle and Copper Bristles",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Therapure Methylated Folate 5-MTHF Drops 30ml - Easy Dosing",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "GUTSI SkinRenew™",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Gutsi Ionic Dry Body Brush Natural Bristles Lymphatic Massage Handle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Doctor's Best Women's Hair, Skin & Nails 5000mcg Biotin Boost",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Quest Bake Shop Chocolate Brownies 56g (10 Pack)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Efamol Active Memory 30 Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Now Foods Certified Organic Pure Castor Oil Glass Bottle 473ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "VSL Pure Castor Oil in Glass Bottle 220ml & 520ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Rest & Quiet Teen Mind Support",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Rest & Quiet  Kids Calming Spray",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Xylitol Sinus Care Refill Solution",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Doctor's Best Fully Active Folate 400mcg 90 Caps ( Fully Active Folate with Quatrefolic® (400mcg DFE) )",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "cGPMAX Cardio Health (3x bottles in a branded box)",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Prochaine Yuzu Collagen Beauty Blend",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Prochaine Collagen Beauty Vanilla",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Prochaine Collagen Beauty Blend Unflavoured Powder",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "NOW Foods Borage Oil 1000mg",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "NBA Team Insulated Shaker Bottle",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MagicT Just Relax Tea Blend 20g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MagicT Easy Digest Tea Blend 40g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MagicT Deep Sleep 30g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MagicT Deep Sleep Tea Blend 20g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MagicT Daily Energizer 40g",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Breath Sleep Tape 30-day",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Cellucor C4 Original Pre Workout 50 serve + FREE STRINGER SINGLET  ( Only Large Size )",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "SmartShake Reforce Stainless Steel 900ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Garlic 5000 30 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Cellular Medicines Superhero 510ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Solgar Prenatal Nutrients 60 Tabs",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "restock fee",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Igennus Super B Complex High Potency 60 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "SOS Hydration Daily Hydration Tub 31 Serves",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "SOS Hydration Daily Hydration Sticks x8 Sachets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Now Foods Female Balance 90 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MagicT Pure Lavender 20g Pouch",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Pro-life Folic Acid 60 Tabs",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nordic Naturals Prenatal DHA 180 Softgels",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Ego QV Hair Gentle Shampoo 200g",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Pro Activated B Complex 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Pro Women's Advanced Multi 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Pro Advanced Multi 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Universal Animal Omega 30 Packs",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nothing Naughty Collagen Bar 40g x12",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MiBiome Advanced Topical Suspension 50ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "MiBiome Advanced Topical Suspension 30ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Rural Shipping ( per box or case )",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Ester-C 550mg 60 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Extra-C 1200+ 100 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go De-Congest Triple Strength 60 Veggie Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Vita-C 500mg Blackcurrant 200 Chewables",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Vir-Defence 60 Veggie Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Women's Multi 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Thompson's Manuka Sore Throat Spray 25ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Xlear Sinus Rinse Bottle with 6 Packets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Viralex Soothe EpiCor Throat Lozenges 20 Pack",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Now Foods PABA 500mg 100 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Solgar Quercetin Complex 50 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Extra-C 1200+ 200 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Garlic, Vitamin C, Zinc & Echinacea with Olive Leaf 120 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Garlic, Vitamin C, Zinc & Echinacea with Olive Leaf 200 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Solgar Quercetin Complex 100 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Morlife Junior Immune Kidz 150g",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nutralife Cranberry 50,000 50 Caps",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nutralife Super B 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Thompson's Vitamin C 500mg 200 Chewables",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nordic Naturals Prenatal DHA 90 Softgels",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "SmartShake Slim 500ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Supplements.co.nz Lifting Hooks",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Supplements.co.nz Weightlifting Belt ( Damaged item - some rust on rivets - discounted no returns )",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Olive Leaf 3500 30 Capsules x3 (3x Bottles)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Clinicians Vitamin B Complex Active 60 Tabs",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "SmartShake Lite 800ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Viralex Everyday Immune Support 60 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "EHPLabs Jug 2.2L",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "∙ Carbon Offset",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Viralex Kids Immune Chews 60 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Viralex Everyday Immune Support 30 Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Vit C 500mg Plus Echinacea 60 Chewable Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Futuro Knee Support Strap - Adjustable",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Futuro Performance Compression Knee Sleeve",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Olive Leaf 20,000mg 60 Veggie Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Iron for Women 30 Veggie Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Viralex Attack 60 Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Garlic 5000 30 Tablets x3 (3x Bottles)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Artemis BronchiClear 200ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Artemis BronchiClear 100ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Hemp Seed Oil 1,100mg 100 Softgels",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Berry Vit C 500mg 50 Chewable Tablets x3 (3x Bottles)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Solgar Ester-C Plus 1000mg 180 Tabs",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Nutralife Ester C 1200mg Effervescent Sachets (Pack of 15)",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Good Health Viralex Attack 30 Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Vita-C 500mg Orange 100 Chewables",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Healtheries Garlic, Vitamin C, Zinc, & Echinacea with Olive Leaf 60 Tablets",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Vir-Defence 30 Veggie Caps",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Go Healthy Go Vita-C 500mg Blackcurrant 100 Chewables",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Now Foods Jasmine Oil 30ml",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Solgar Beetroot Extract 500mg 90 Vegetable Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Solgar Echinacea 100 Vegetable Capsules",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Supplements.co.nz Trucker Cap",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "supplementsnz",
+      "title": "Optimum Nutrition Amino Energy 65 Serves + FREE ON Womens Singlet",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "reactiv",
+      "title": "Rough Cut V2 Diet",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "reactiv",
+      "title": "Earn My Carbs ebook",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "reactiv",
+      "title": "Pure Stevia",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "reactiv",
+      "title": "Pure Psyllium Husks Powder",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "eatme",
+      "title": "USN Keto MCT Oil",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shaker by Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Black Shaker by Optimum Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shaker by Faction Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shaker by Optimum Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Blackoutz Nasal Strips by Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shaker by EHP Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Perform Marathon Water bottle by Switch Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Perform + Restore System Sachets by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Whiz Stick by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Blackoutz (5 Serves) by Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "3 Piece Electric Whisk by bRaw",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Logo T-Shirt (Navy) by Applied Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Lifting Straps By Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Red Tote Shopping Bag by Nutrition Warehouse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Hair + Skin by Switch Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Socks By Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Exclusive Loaded Shaker by Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Stainless Steel Shaker by Zombie Labs",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Sleep+ Nasal Strips by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Quercetin (Capsules) by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Griffonia (5-HTP) by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Women's Multi Pro by Genetix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Stainless Steel Shaker (600ml) by Optimum Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Fireball Black (15 Serves) by Red Dragon Nutritionals",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Debloat & Detox by NutraLife",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Core Scrunch Leggings by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Core Scrunch Shorts Black by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Infinity Bralette Black by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Infinity Bralette White by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Fundamentals Sports Bra Violet by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Hype Pocket Shorts Violet V3 by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Hype Pocket Leggings Black V3 by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Core Scrunch Shorts Slate by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Core Scrunch Leggings Full Length Slate by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Fundamentals Sports Bra Black by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Energy Bralette Violet by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Infinity Bralette Slate by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Energy Bralette Black by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Apex Stringer Singlet Black by OneMoreRep",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shipping Insurance",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Drawstring Gym Bag (Built For Life) by Nutrition Warehouse",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "New Built For Life Stainless Steel Shaker (Red) by Nutrition Warehouse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Logo Bench Towel by Nutrition Warehouse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Digital Gift Card",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Support Plus Gym Gloves by Vantage Strength Accessories",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Women's Weight Lifting Belt By Vantage Strength Accessories",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Pill Box (Red) by Nutrition Warehouse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Ester C High Strength + Bioflavonoids by Nutra Life",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Super B Plus by Nutralife",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Smartshake Slim Series by SmartShake",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Smartshake Original 2GO 3-in-1 by SmartShake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Bone Broth Body Glue (A.M. CLEANSE) by Gevity RX",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Bone Broth Body Glue (POPULATE) by Gevity RX",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Leather Weight Belt by Vantage Strength",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Lysine 1200mg Tablets by NutraLife",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Liver Guard 35,000 Plus By NutraLife",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Barbell Pad by Vantage Strength",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Donut Baking Mix by Macro Mike",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Resistance Band Set (11 Piece) by Vantage Strength",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Bilberry 10,000 Plus by Nutralife",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gym Towel (Built for Life) by Nutrition Warehouse",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Acai Berry Blend by Nutra Organics",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Australian Gelatin by Nutra Organics",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Turkey Tail Mushroom Liquid Extract by Life Cykel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shiitake Mushroom Liquid Extract by Life Cykel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Reishi Mushroom Liquid Extract by Life Cykel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Chaga Mushroom Liquid Extract by Life Cykel",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Meal Prep Bag (Built Prepared) by Nutrition Warehouse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Batman - DC Comics Reforce Stainless Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Batman Logo - DC Comics Reforce Stainless Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Superman - DC Comics Reforce Stainless Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Wonder Woman - DC Comics Reforce Stainless Shaker by Smart Shake",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "The Joker Wanted - DC Comics Reforce Stainless Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Sweet Dreams by White Wolf Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "House of Lannister - Activ Shaker Game of Thrones Series by Performa",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "The Night King - Activ Shaker Game of Thrones Series by Performa",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "House of Stark - Activ Shaker Game of Thrones Series by Performa",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "House of Targaryen - Activ Shaker Game of Throne Series by Performa",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "The Iron Throne - Activ Shaker Game of Thrones Series by Performa",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Bone Broth Sauce (Mayo) by Gevity RX",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Women's Tank Top by Nutrition Warehouse",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Powdered Peanut Butter V2 by Macro Mike",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Superman - DC Comics Reforce Lite Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Supergirl - DC Comics Reforce Lite Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Ester C + Bioflavonoids by NutraLife",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Bone Broth Marinade by Gevity RX",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Collagen Beauty (Hot Drinks) by Nutra Organics",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Beta Fuel by Science in Sport",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gummy Molds by Nutra Organics",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gutsy Gummies by Nutra Organics",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Organic Turkey Tail by Evolution Botanicals",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Organic Tremella by Evolution Botanicals",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Built Active Stainless Steel Shaker (Pink) by Nutrition Warehouse",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Built For Life Stainless Steel Shaker (Red) by Nutrition Warehouse",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Best Protein Bar by EQ Food",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Reforce Harry Potter Shaker by Smartshake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Reforce Stainless Steel Shaker by SmartShake",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Electrolyte Gummies by BSc Supplements",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gym Bag (Black/Yellow) by Anabolix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Resveratrol + by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Built For Life Gym Bag by Nutrition Warehouse",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "The Joker HAHAHA - DC Comics Reforce Stainless Shaker by Smart Shake",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shilajit (Capsules) by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "DIM+ (Capsules) by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Fibre + by Switch Nutrition",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Stainless Steel Shaker (Blue) by Genetix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Stainless Steel Trim Bottle by Genetix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gym Bag by Genetix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Broccoli Chips by X50 Lifestyle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gym Bag (Black) by Anabolix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gutright by ATP Science",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Shaker (Black)  by bRaw",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "C4 Shot Rocks by Cellucor/C4 Energy",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Mushroom Chips by X50 Lifestyle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Gym Bag (Khaki) by Anabolix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Canvas Beach Bag by bRaw",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Cleanse for Day Time (Herbal Tea) by X50 Lifestyle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Immunity (Herbal Tea) by X50 Lifestyle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Antiflam (Herbal Tea) by X50 Lifestyle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Sleepy (Herbal Tea) by X50 Lifestyle",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Monst3r Shaker by Anabolix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Beauty Collagen by ATP Science",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Cap by bRaw",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Aqua Collagen by EHP Labs",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Stainless Steel Shaker (White) by bRaw",
+      "reason": "not-gym-related"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Stack3d Shaker by Anabolix Nutrition",
+      "reason": "hard-excluded"
+    },
+    {
+      "retailer": "nutritionwarehouse",
+      "title": "Cream of Rice by Applied Nutrition",
+      "reason": "not-gym-related"
+    }
+  ]
+}

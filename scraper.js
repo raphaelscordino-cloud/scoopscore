@@ -1,28 +1,39 @@
 /**
- * ScoopScore Scraper v5
+ * ScoopScore Scraper v6
  * ─────────────────────────────────────────────────────────────
- * CHANGES FROM v4:
+ * CHANGES FROM v5:
  *
- * 1. GRAPHQL REMOVED — The Storefront API requires a real per-store token.
- *    Passing 'anonymous' always failed silently, so v4 was falling back to
- *    products.json on every single retailer. GQL is now gone entirely.
+ * CLASSIFICATION OVERHAUL — replaced first-match-wins keyword scan
+ * with a multi-signal weighted scoring system:
  *
- * 2. THREE-BUCKET OUTPUT (no product silently dropped)
- *    ✅ confirmed  → data/products.json    (live on site)
- *    🟡 review     → data/review.json      (open review.html to action)
- *    ❌ excluded   → data/excluded.json    (audit trail only)
- *    Review decisions persist across runs — approve once, stays approved.
+ *   • Every category accumulates a score from four independent sources:
+ *       - Title match    (weight ×4 — highest signal, clearest intent)
+ *       - product_type   (weight ×3 — retailer-assigned, very reliable)
+ *       - Tags           (weight ×2 — structured metadata)
+ *       - Description    (weight ×1 — prose, noisier)
  *
- * 3. VARIANT NORMALISATION — sizeKg, serves, and flavour are parsed at
- *    scrape time so the frontend never has to guess from raw strings.
- *    Anomalous prices (3× or ⅓ of median) are flagged per variant.
+ *   • Keywords are split into two tiers per category:
+ *       - DEFINITIVE (score ×3): phrases that unambiguously identify the
+ *         category, e.g. "whey protein isolate", "pre-workout", "creatine"
+ *       - SUPPORTING (score ×1): broader terms that nudge the score but
+ *         alone are not enough to confirm, e.g. "protein", "energy"
  *
- * 4. RETAILER HEALTH CHECK — if a retailer's count drops >20% vs the
- *    previous run a warning is printed and written to scrape.log.
+ *   • A category is confirmed only when it clears MIN_SCORE (default 4).
+ *     This prevents weak substring matches from producing false positives.
  *
- * 5. TIGHTENED EXCLUSIONS — removed overly broad food patterns that
- *    were dropping legitimate supplements (peanut butter protein powder,
- *    meal replacements, etc.). These now go to the review queue instead.
+ *   • When two categories score closely (within AMBIGUITY_GAP = 2) the
+ *     product goes to the review queue instead of being auto-assigned.
+ *
+ *   • Negative keywords (-3 per hit) let a category actively reject
+ *     products that superficially match but belong elsewhere, e.g.
+ *     "protein" in the protein category is penalised when the title also
+ *     contains "bar" or "cookie" (those belong in proteinbars).
+ *
+ *   • Exclusions now also run against product_type alone (not just the
+ *     full search text) so mis-tagged accessories are caught faster.
+ *
+ * Everything else (three-bucket output, variant normalisation, price
+ * history, health check, review persistence) is unchanged from v5.
  *
  * Usage:
  *   node scraper.js               — normal daily run
@@ -101,107 +112,220 @@ const EXCLUDE_PATTERNS = [
   /\bcold\s*(and|&)\s*flu\b/, /\bhayfever\b/,
 ];
 
+// ─── CLASSIFICATION CONFIG ────────────────────────────────────────
+// Minimum total score required to confirm a category.
+// A product scoring below this goes to the review queue.
+const MIN_SCORE = 4;
+
+// If the top two category scores are within this gap, the result is
+// ambiguous and the product goes to review rather than being auto-assigned.
+const AMBIGUITY_GAP = 2;
+
+// Source weights: how much each data field contributes to the raw score.
+// Title is highest because it is the most intentional signal from the retailer.
+const SOURCE_WEIGHT = {
+  title:       4,
+  productType: 3,
+  tags:        2,
+  description: 1,
+};
+
 // ─── CATEGORY RULES ──────────────────────────────────────────────
-// First match wins. More specific rules are listed first.
+// Each rule has:
+//   cat         — the category ID
+//   definitive  — phrases that alone are strong enough to confirm the cat
+//                 (each match scores ×3 before the source weight is applied)
+//   supporting  — broader terms that add evidence but are not decisive
+//                 (each match scores ×1)
+//   negative    — patterns that actively lower the score for this category
+//                 (each match scores −3) used to prevent cross-category bleed
+//
+// Matching rules:
+//   • Multi-word / hyphenated phrases: substring match on the source text
+//   • Single words: whole-word boundary match (\b) to avoid partial hits
+//     (e.g. "eaa" won't match "pea" or "ideas")
+//   • All matches are case-insensitive (text is lowercased before scoring)
 const CATEGORY_RULES = [
   {
     cat: 'proteinbars',
-    keywords: [
+    definitive: [
       'protein bar','protein bars','protein cookie','protein cookies',
-      'protein chip','protein chips','protein wafer','protein spread',
-      'protein snack','protein snacks','snack bar','nutrition bar',
-      'high protein snack','energy bar','protein ball','protein balls',
+      'protein chip','protein chips','protein wafer','protein ball','protein balls',
+      'protein snack','protein snacks','protein brownie','protein muffin',
+      'high protein bar','high protein snack','protein flapjack',
+    ],
+    supporting: [
+      'snack bar','nutrition bar','energy bar','protein spread',
+      'high protein','cereal bar','oat bar','quest bar',
+    ],
+    // Avoid pulling in RTDs or powders that mention "protein"
+    negative: [
+      'ready to drink','ready-to-drink','rtd','protein shake','protein drink',
+      'protein powder','whey protein','protein blend','mass gainer',
     ],
   },
   {
     cat: 'rtd',
-    keywords: [
-      'rtd','ready to drink','ready-to-drink','protein water',
-      'protein shake','protein drink','energy drink','energy drinks',
-      'sports drink','sports drinks','hydration drink',
-      'electrolyte drink','recovery drink','canned protein',
+    definitive: [
+      'ready to drink','ready-to-drink','rtd','protein water',
+      'canned protein','protein can','protein milk','protein shake',
+      'protein drink','electrolyte drink','recovery drink',
+    ],
+    supporting: [
+      'energy drink','sports drink','hydration drink','isotonic drink',
+      'can','bottle','liquid protein',
+    ],
+    // RTDs shouldn't absorb powdered drink mixes
+    negative: [
+      'powder','tub','scoop','sachet',
     ],
   },
   {
     cat: 'creatine',
-    keywords: [
-      'creatine monohydrate','creatine hcl','creatine blend',
-      'creatine supplement','creatine powder','creatine capsules',
-      'creatine gummies','flavoured creatine','creatine',
+    definitive: [
+      'creatine monohydrate','creatine hcl','creatine ethyl ester',
+      'creatine blend','creatine powder','creatine capsules','creatine tablets',
+      'creatine gummies','flavoured creatine','micronised creatine',
+      'kre-alkalyn','buffered creatine',
     ],
+    supporting: [
+      'creatine',
+    ],
+    negative: [],
   },
   {
     cat: 'preworkout',
-    keywords: [
-      'pre-workout','pre workout','preworkout','pre workouts',
-      'stim free pre','non-stim pre','pump pre-workout','pump pre workout',
-      'stimulant free pre','nitric oxide','n.o. booster','no booster',
-      'pump formula','pump supplement','vasodilator','blood flow',
-      'vascularity','alpha gpc','alpha-gpc','nootropic pre',
+    definitive: [
+      'pre-workout','pre workout','preworkout',
+      'stim free pre','non-stim pre','stimulant free pre',
+      'pump pre-workout','pump pre workout','nootropic pre',
+      'n.o. booster','no booster','nitric oxide booster',
+    ],
+    supporting: [
+      'pump formula','pump supplement','vasodilator','vascularity',
+      'alpha gpc','alpha-gpc','citrulline malate','l-citrulline',
       'caffeine supplement','caffeine powder','caffeine tablets',
+      'energy supplement','focus supplement','pre training',
+      'agmatine','beta alanine','beta-alanine','betaine anhydrous',
+    ],
+    // "pump" alone is too generic — only count it when paired with other signals
+    negative: [
+      'protein bar','protein cookie','bcaa','amino acid','fat burner','thermogenic',
     ],
   },
   {
     cat: 'fatburner',
-    keywords: [
+    definitive: [
       'fat burner','fat burners','fat metaboliser','fat metabolisers',
       'thermogenic','thermogenics','weight loss supplement',
-      'weight management supplement','l-carnitine','l carnitine',
-      'carnitine supplement','cla supplement','cla softgel',
-      'appetite control','metabolism support','oxyshred',
-      'shred supplement','fat loss supplement',
+      'weight management supplement','oxyshred','fat loss supplement',
+      'shred supplement','shred formula','diet supplement',
+    ],
+    supporting: [
+      'l-carnitine','l carnitine','carnitine supplement',
+      'cla supplement','cla softgel','cla capsule',
+      'appetite control','appetite suppressant','metabolism support',
+      'metabolism booster','fat oxidation','lipotropic',
+      'acetyl l-carnitine','alcar',
+    ],
+    negative: [
+      'protein powder','whey protein','mass gainer','pre-workout','pre workout',
     ],
   },
   {
     cat: 'bcaa',
-    keywords: [
-      'bcaa','bcaas','eaa','eaas','amino acids','amino acid',
-      'essential amino','intra-workout','intra workout',
-      'glutamine','post workout amino','post-workout amino','amino blend',
-      'beta alanine','beta-alanine','citrulline malate','l-citrulline',
-      'citrulline supplement','l-arginine supplement','arginine supplement',
-      'l-taurine supplement','taurine supplement','l-tyrosine supplement',
-      'tyrosine supplement','l-glutamine supplement','glycine supplement',
-      'l-leucine supplement','leucine supplement','hmb supplement',
-      'agmatine','betaine anhydrous','betaine supplement','amino recovery',
-      'recovery amino',
+    definitive: [
+      'bcaa','bcaas','eaa','eaas','essential amino acids','essential aminos',
+      'intra-workout','intra workout','amino acid supplement','amino blend',
+      'amino recovery','recovery amino','post-workout amino','post workout amino',
+    ],
+    supporting: [
+      'amino acids','amino acid','leucine','isoleucine','valine',
+      'l-glutamine supplement','glutamine supplement','glutamine powder',
+      'l-leucine supplement','leucine supplement',
+      'hmb supplement','hmb powder',
+      'taurine supplement','l-taurine supplement',
+      'tyrosine supplement','l-tyrosine supplement',
+      'glycine supplement','l-arginine supplement','arginine supplement',
+    ],
+    // Single amino acids sold standalone are sometimes vitamins or preworkout
+    // ingredients — only score them as BCAA when the context is clear
+    negative: [
+      'pre-workout','pre workout','preworkout','fat burner','thermogenic',
+      'protein powder','whey protein',
     ],
   },
   {
     cat: 'vitamins',
-    keywords: [
-      'multivitamin','multi-vitamin','vitamin d3','vitamin d supplement',
-      'vitamin c supplement','vitamin b12 supplement','vitamin e supplement',
-      'omega 3','omega-3','fish oil','krill oil','magnesium supplement',
+    definitive: [
+      'multivitamin','multi-vitamin','multi vitamin',
+      'vitamin d3','vitamin d supplement','vitamin c supplement',
+      'vitamin b12 supplement','vitamin e supplement','vitamin k2',
+      'omega 3','omega-3','fish oil','krill oil',
+      'magnesium supplement','magnesium glycinate','magnesium citrate',
       'zinc supplement','iron supplement','calcium supplement',
-      'vitamin mineral','electrolyte tablet','electrolyte capsule',
-      'zma','ashwagandha supplement','rhodiola','adaptogen supplement',
-      'sleep formula','melatonin','probiotic supplement','gut health',
-      'greens powder','super greens','spirulina','chlorella','collagen peptide',
-      'collagen supplement','biotin supplement','coq10','coenzyme q10',
+      'greens powder','super greens','all-in-one greens',
+      'collagen peptide','collagen supplement','collagen powder',
+      'probiotic supplement','prebiotic supplement',
+      'sleep formula','sleep supplement','melatonin',
+      'ashwagandha supplement','ashwagandha extract',
+      'adaptogen supplement','rhodiola supplement',
+      'zma supplement','testosterone booster','test booster',
+      'joint supplement','joint support','glucosamine','chondroitin',
+      'coq10','coenzyme q10','ubiquinol',
+      'spirulina','chlorella','barley grass','wheat grass',
+    ],
+    supporting: [
+      'vitamin','mineral','supplement tablet','supplement capsule',
+      'softgel','electrolyte tablet','electrolyte capsule',
+      'biotin','collagen','probiotic','gut health','digestive enzyme',
+      'immune support','antioxidant','nootropic','cognitive support',
+      'ashwagandha','rhodiola','maca','tribulus','tongkat ali',
+      'omega','fish oil','krill','magnesium','zinc','calcium','iron',
+      'greens','superfoods','super food',
+    ],
+    // Vitamins category shouldn't pull in RTDs or powders labelled "greens drink"
+    negative: [
+      'ready to drink','ready-to-drink','rtd','protein powder','whey protein',
+      'mass gainer','pre-workout','pre workout','fat burner',
     ],
   },
   {
     cat: 'protein',
-    keywords: [
+    definitive: [
       'whey protein isolate','whey protein concentrate','whey protein blend',
-      'whey protein powder','whey protein','hydrolysed whey','hydrolyzed whey',
+      'whey protein powder','hydrolysed whey','hydrolyzed whey',
       'hydrolysed protein','hydrolyzed protein',
-      'plant based protein','plant protein','vegan protein',
-      'pea protein','hemp protein','rice protein','soy protein',
-      'mass gainer','mass gainers','weight gainer',
-      'casein protein','casein','egg protein','beef protein',
+      'plant based protein powder','plant protein powder','vegan protein powder',
+      'pea protein powder','pea protein isolate',
+      'hemp protein powder','rice protein powder','soy protein powder',
+      'casein protein','casein powder','slow release protein',
+      'egg protein','beef protein isolate','collagen protein',
+      'mass gainer','mass gainers','weight gainer','lean mass',
+      'protein powder','protein blend','isolate protein','protein tub',
+      'whey isolate','wpi','wpc',
+    ],
+    supporting: [
+      'whey protein','plant protein','vegan protein','pea protein',
+      'hemp protein','rice protein','soy protein',
       'thermogenic protein','lean protein','low carb protein',
-      'protein powder','protein blend','isolate protein',
-      'whey isolate','wpi','wpc','protein',
+      'protein supplement','high protein powder',
+      'casein','isolate','concentrate',
+    ],
+    // "protein" alone as a supporting word is very broad — keep it but
+    // negative-weight snack and RTD forms so they don't bleed here
+    negative: [
+      'protein bar','protein cookie','protein chip','protein ball','protein snack',
+      'ready to drink','ready-to-drink','rtd','protein shake','protein drink',
+      'protein water','canned protein',
     ],
   },
 ];
 
 // ─── GYM SIGNALS ─────────────────────────────────────────────────
-// Safety net: if no category matched, check these to decide whether
-// the product belongs in the review queue (gym-related, needs a human)
-// or excluded.json (not gym-related at all).
+// Used as a fallback: if scoring produces no confirmed category, check
+// whether the product is still gym-adjacent (→ review queue) or completely
+// unrelated (→ excluded).
 const GYM_SIGNALS = [
   'supplement','supplements','sports nutrition','sports supplement',
   'pre-workout','preworkout','post-workout','creatine','protein','whey',
@@ -212,7 +336,8 @@ const GYM_SIGNALS = [
   'cutting','body composition','physique','stack','formula','complex',
   'testosterone','collagen','greens','probiotic','electrolyte','recovery',
   'beta alanine','citrulline','arginine','taurine','tyrosine','hmb',
-  'nitric oxide','pump','nootropic','adaptogen','ashwagandha',
+  'nitric oxide','pump formula','nootropic','adaptogen','ashwagandha',
+  'vitamin d','omega 3','fish oil','magnesium','zinc',
 ];
 
 // ─── BRAND ALIASES ───────────────────────────────────────────────
@@ -396,7 +521,99 @@ function flagPriceAnomalies(variants) {
   }));
 }
 
-// ─── CLASSIFICATION ──────────────────────────────────────────────
+// ─── CLASSIFICATION ENGINE ────────────────────────────────────────
+
+/**
+ * Test whether a keyword matches a text string.
+ * Multi-word and hyphenated phrases use substring match.
+ * Single words use whole-word boundary match to prevent partial hits
+ * (e.g. "eaa" won't match "pea", "bar" won't match "barbell").
+ */
+function kwMatch(text, kw) {
+  if (kw.includes(' ') || kw.includes('-')) {
+    return text.includes(kw);
+  }
+  // Escape any regex special chars in the keyword then wrap in \b
+  const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`\\b${escaped}\\b`).test(text);
+}
+
+/**
+ * Score a single source field against one category rule.
+ * Returns a number: positive = evidence for, negative = evidence against.
+ *
+ * Scoring per keyword hit (before source weight is applied):
+ *   definitive match  → +3
+ *   supporting match  → +1
+ *   negative match    → -3
+ */
+function scoreField(fieldText, rule) {
+  let score = 0;
+  for (const kw of rule.definitive) {
+    if (kwMatch(fieldText, kw)) score += 3;
+  }
+  for (const kw of rule.supporting) {
+    if (kwMatch(fieldText, kw)) score += 1;
+  }
+  for (const kw of rule.negative) {
+    if (kwMatch(fieldText, kw)) score -= 3;
+  }
+  return score;
+}
+
+/**
+ * Score a product against every category using all available signal sources.
+ * Returns an array of { cat, score } sorted descending by score.
+ *
+ * Each source is scored independently then multiplied by SOURCE_WEIGHT
+ * before being summed into the category total.
+ */
+function scoreCategoryAll(title, productType, tags, description) {
+  const titleText = (title || '').toLowerCase();
+  const typeText  = (productType || '').toLowerCase();
+  const tagsText  = (Array.isArray(tags) ? tags.join(' ') : (tags || '')).toLowerCase();
+  const descText  = (description || '').slice(0, 400).toLowerCase();
+
+  return CATEGORY_RULES
+    .map(rule => {
+      const total =
+        scoreField(titleText, rule) * SOURCE_WEIGHT.title       +
+        scoreField(typeText,  rule) * SOURCE_WEIGHT.productType +
+        scoreField(tagsText,  rule) * SOURCE_WEIGHT.tags        +
+        scoreField(descText,  rule) * SOURCE_WEIGHT.description;
+
+      return { cat: rule.cat, score: total };
+    })
+    .sort((a, b) => b.score - a.score);
+}
+
+/**
+ * Classify a product into a category, or return null.
+ * Returns { cat, score, reason } where reason explains the decision.
+ *
+ * Decision logic:
+ *   1. Top score < MIN_SCORE → no category confirmed (→ review/excluded)
+ *   2. Top score ≥ MIN_SCORE AND gap to second place ≤ AMBIGUITY_GAP
+ *      → ambiguous (→ review queue)
+ *   3. Top score ≥ MIN_SCORE AND gap > AMBIGUITY_GAP → confirmed
+ */
+function detectCategory(title, productType, tags, description) {
+  const scores = scoreCategoryAll(title, productType, tags, description);
+  const best   = scores[0];
+  const second = scores[1];
+
+  if (best.score < MIN_SCORE) {
+    return { cat: null, score: best.score, reason: `below-threshold (best: ${best.cat} ${best.score})` };
+  }
+
+  const gap = best.score - second.score;
+  if (gap <= AMBIGUITY_GAP) {
+    return { cat: null, score: best.score, reason: `ambiguous (${best.cat} ${best.score} vs ${second.cat} ${second.score})` };
+  }
+
+  return { cat: best.cat, score: best.score, reason: `scored:${best.cat} (${best.score}, gap ${gap})` };
+}
+
 function buildSearchText(...parts) {
   return parts
     .map(p => Array.isArray(p) ? p.join(' ') : (p || ''))
@@ -406,18 +623,6 @@ function buildSearchText(...parts) {
 
 function isExcluded(text) {
   return EXCLUDE_PATTERNS.some(rx => rx.test(text));
-}
-
-function detectCategory(text) {
-  for (const rule of CATEGORY_RULES) {
-    for (const kw of rule.keywords) {
-      const matched = kw.includes(' ') || kw.includes('-')
-        ? text.includes(kw)
-        : new RegExp(`\\b${kw.replace(/[-]/g, '[-]')}\\b`).test(text);
-      if (matched) return rule.cat;
-    }
-  }
-  return null;
 }
 
 function isGymRelated(text) {
@@ -432,7 +637,7 @@ function isGymRelated(text) {
  *   'excluded'  — definitely not a supplement
  */
 function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, description, variants, imageUrl, prevReviewDecisions) {
-  const searchText = buildSearchText(rawTitle, productType, tags, (description || '').slice(0, 300));
+  const searchText = buildSearchText(rawTitle, productType, tags, (description || '').slice(0, 400));
 
   // ── 1. Hard exclusion ──
   if (isExcluded(searchText)) {
@@ -477,18 +682,19 @@ function buildProduct(retailer, rawTitle, handle, productType, vendor, tags, des
     // decision is still 'pending' — fall through to re-classify
   }
 
-  // ── 5. Category detection ──
-  let cat = detectCategory(searchText);
+  // ── 5. Multi-signal category scoring ──
+  // Pass individual fields so each source can be weighted independently.
+  const detection = detectCategory(rawTitle, productType, tags, (description || '').slice(0, 400));
 
-  if (cat) {
-    const record = assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, cat);
-    return { record, bucket: 'confirmed', reason: `matched:${cat}` };
+  if (detection.cat) {
+    const record = assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, detection.cat);
+    return { record, bucket: 'confirmed', reason: detection.reason };
   }
 
   // ── 6. Gym signal check — send to review rather than drop ──
   if (isGymRelated(searchText)) {
     const record = assembleRecord(retailer, rawTitle, handle, productType, vendor, tags, description, normalisedVariants, imageUrl, null);
-    return { record, bucket: 'review', reason: 'gym-related-uncategorised' };
+    return { record, bucket: 'review', reason: `gym-related-uncategorised: ${detection.reason}` };
   }
 
   // ── 7. Not gym-related at all ──
@@ -650,7 +856,7 @@ async function main() {
   try { fs.writeFileSync(LOG_FILE, ''); } catch (_) {}
 
   log('═══════════════════════════════════════════════');
-  log('  ScoopScore Scraper v5 — Three-Bucket Edition  ');
+  log('  ScoopScore Scraper v6 — Multi-Signal Classifier  ');
   log('═══════════════════════════════════════════════');
   log(`  Retailers: ${RETAILERS.length}`);
   log(`  Output: confirmed → products.json | uncategorised → review.json | junk → excluded.json`);
